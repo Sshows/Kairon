@@ -126,8 +126,8 @@ export function TrainingTerminal({
         </button>
       </form>
       <p className="terminal-caption">
-        Одна команда за раз · ↑/↓ история · clear очищает экран · reset
-        восстанавливает файлы кнопкой «Сбросить»
+        Одна команда за раз · ↑/↓ история · clear очищает экран · «Сбросить»
+        восстанавливает файлы
       </p>
     </section>
   );

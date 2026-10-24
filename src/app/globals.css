@@ -2322,3 +2322,6 @@ progress::-webkit-progress-value {
     font-size: 26px;
   }
 }
+[data-slot="button"][data-variant="default"] {
+  color: #101709;
+}
