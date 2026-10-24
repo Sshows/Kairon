@@ -88,6 +88,8 @@ npm run test:e2e
 - [Архитектура и roadmap](docs/architecture.md)
 - [Аутентификация и изоляция данных](docs/auth-security.md)
 - [План лабораторного VPS](docs/lab-host-plan.md)
+- [Бесплатный хостинг и автодеплой](docs/free-hosting.md)
+- [Установленные Neon skills и MCP](docs/neon-tooling.md)
 - [Аудит экосистемы: что используем и что пишем](docs/sources.md)
 - [Путь 4: аудит пяти лабораторий LevaAverGit](docs/ai-labs-audit.md)
 - [Схема нового урока](content/schema/lesson.schema.json)

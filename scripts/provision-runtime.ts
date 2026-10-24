@@ -1,11 +1,13 @@
 import { config } from "dotenv";
 import { randomBytes } from "node:crypto";
 import { appendFile, readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { Client } from "pg";
-config({ path: ".env.local", quiet: true });
+const envFile = process.env.KAIRON_ENV_FILE ?? ".env.local";
+config({ path: envFile, quiet: true });
 if (!process.env.DIRECT_URL)
   throw new Error("Задайте DIRECT_URL в .env.local перед настройкой роли.");
-const destination = new URL("../.env.local", import.meta.url);
+const destination = resolve(envFile);
 const localText = await readFile(destination, "utf8").catch(() => "");
 if (/^DATABASE_URL=.+/m.test(localText) || process.env.DATABASE_URL)
   throw new Error(
@@ -30,13 +32,18 @@ try {
   const runtimeUrl = new URL(process.env.DIRECT_URL);
   runtimeUrl.username = "kairon_runtime";
   runtimeUrl.password = password;
+  if (runtimeUrl.hostname.endsWith(".neon.tech")) {
+    const parts = runtimeUrl.hostname.split(".");
+    if (!parts[0].endsWith("-pooler")) parts[0] += "-pooler";
+    runtimeUrl.hostname = parts.join(".");
+  }
   await appendFile(
     destination,
-    `\n# Сгенерировано db:provision; для Neon замените host на pooled endpoint при необходимости.\nDATABASE_URL=${runtimeUrl.toString()}\n`,
+    `\n# Ограниченная runtime-роль; Neon использует pooled endpoint.\nDATABASE_URL=${runtimeUrl.toString()}\n`,
     { mode: 0o600 },
   );
   console.log(
-    "Runtime-роль настроена, DATABASE_URL записан в .env.local. Значение не выводится.",
+    "Runtime-роль настроена, DATABASE_URL записан в выбранный env-файл. Значение не выводится.",
   );
 } finally {
   await client.end();
