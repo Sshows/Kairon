@@ -9,6 +9,7 @@ import {
 import { paths } from "@/lib/curriculum";
 import { copy, getLocale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
+import { StarterPath } from "@/components/starter-path";
 export default async function PathPage({
   params,
 }: {
@@ -17,6 +18,7 @@ export default async function PathPage({
   const { slug } = await params;
   const path = paths.find((p) => p.slug === slug);
   if (!path) notFound();
+  if (slug === "from-zero") return <StarterPath />;
   const locale = await getLocale(),
     t = copy[locale];
   return (

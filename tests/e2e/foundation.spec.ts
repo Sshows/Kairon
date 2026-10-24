@@ -73,6 +73,59 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
   expect(data.id).toBe(learner.id);
   expect(data.ethicsAcceptedAt).toBeTruthy();
   expect(data.passwordHash).toBeUndefined();
+  const submit = (lesson: string, body: object) =>
+    page.request.post(`/api/learning/${lesson}`, {
+      headers: { Origin: "http://localhost:3000" },
+      data: body,
+    });
+  expect(
+    (
+      await submit("where-am-i", { action: "check", commands: ["pwd"] })
+    ).status(),
+  ).toBe(423);
+  const crossOrigin = await page.request.post("/api/learning/permission", {
+    headers: { Origin: "https://example.com" },
+    data: { action: "check", answer: "permission" },
+  });
+  expect(crossOrigin.status()).toBe(403);
+  const completed = await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit("permission", { action: "check", answer: "permission" }),
+    ),
+  );
+  for (const result of completed)
+    expect((await result.json()).status).toBe("passed");
+  const forged = await submit("where-am-i", {
+    action: "check",
+    commands: [],
+    answer: "pwd",
+  });
+  expect((await forged.json()).status).toBe("failed");
+  const hint = await submit("where-am-i", { action: "hint" });
+  expect((await hint.json()).hintsUsed).toBe(1);
+  await page.goto("/learn/where-am-i");
+  await page.getByLabel("Команда терминала", { exact: true }).fill("pwd");
+  await page.getByLabel("Команда терминала", { exact: true }).press("Enter");
+  await page
+    .getByRole("button", { name: "Проверить задание", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Урок засчитан", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Разбор", exact: true }),
+  ).toBeVisible();
+  const ownerDb = new Client({ connectionString: process.env.DIRECT_URL });
+  try {
+    await ownerDb.connect();
+    const result = await ownerDb.query(
+      'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
+      [learner.id],
+    );
+    expect(result.rows[0]).toEqual({ count: 2, xp: 100 });
+  } finally {
+    await ownerDb.end();
+  }
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -85,6 +138,52 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
   expect((await page.request.get("/api/me")).status()).toBe(401);
   await page.goto("/profile");
   await expect(page).toHaveURL(/\/login/);
+});
+test("guest terminal works and lesson debrief stays private", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/terminal");
+  const field = page.getByLabel("Команда терминала", { exact: true });
+  await field.fill("cat rules.txt");
+  await field.press("Enter");
+  await expect(page.getByRole("log")).toContainText("Разрешение владельца");
+  await field.fill("mkdir notes");
+  await field.press("Enter");
+  await field.fill("touch notes/demo.txt");
+  await field.press("Enter");
+  await field.fill("ls notes");
+  await field.press("Enter");
+  await expect(page.getByRole("log")).toContainText("demo.txt");
+  await page.screenshot({
+    path: "test-results/public-terminal-desktop.png",
+    fullPage: true,
+  });
+  await page.getByRole("button", { name: "Сбросить терминал" }).click();
+  await field.fill("ls notes");
+  await field.press("Enter");
+  await expect(page.getByRole("log")).toContainText("путь не найден");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/learn/read-evidence");
+  await expect(
+    page.getByRole("heading", { name: "Разбор", exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Проверить задание", exact: true }),
+  ).toBeDisabled();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-lesson-mobile.png",
+    fullPage: true,
+  });
+  await page.getByRole("button", { name: "В своей Kali", exact: true }).click();
+  await expect(
+    page.getByRole("link", { name: "Скачать учебные файлы (.sh) ↓" }),
+  ).toBeVisible();
 });
 test("administrator role is accepted after credentials login", async ({
   page,

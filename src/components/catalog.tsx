@@ -91,7 +91,11 @@ export function Catalog({ locale }: { locale: Locale }) {
               <div className="path-meta">
                 <span>PATH {path.number}</span>
                 <span className="draft-dot" />
-                {t.planned}
+                {path.availableLessons
+                  ? locale === "ru"
+                    ? "Можно начать"
+                    : "Start learning"
+                  : t.planned}
               </div>
               <h3>{path.title[locale]}</h3>
               <p>{path.description[locale]}</p>
@@ -102,8 +106,14 @@ export function Catalog({ locale }: { locale: Locale }) {
               </div>
               <div className="path-bottom">
                 <span>
-                  {path.modules[locale].length}{" "}
-                  {locale === "ru" ? "тем в программе" : "planned topics"}
+                  {path.availableLessons ?? path.modules[locale].length}{" "}
+                  {path.availableLessons
+                    ? locale === "ru"
+                      ? "уроков с практикой"
+                      : "practice lessons (RU)"
+                    : locale === "ru"
+                      ? "тем в программе"
+                      : "planned topics"}
                 </span>
                 <span className="path-open">
                   <ArrowUpRight size={19} />

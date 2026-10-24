@@ -39,7 +39,7 @@ export default async function Home() {
           <p>{t.heroBody}</p>
           <div className="hero-actions">
             <Button asChild>
-              <Link href="#paths">
+              <Link href="/learn/permission">
                 {t.heroAction}
                 <ArrowDown size={17} />
               </Link>

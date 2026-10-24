@@ -17,7 +17,7 @@ export async function verifyRuntimePrivileges() {
     >`
       SELECT current_user::text AS name,
         (rolsuper OR rolbypassrls OR rolcreaterole OR rolcreatedb) AS elevated,
-        EXISTS (SELECT FROM pg_class WHERE relname IN ('User','AuditLog','LoginAttempt') AND relowner = pg_roles.oid) AS owns_data,
+        EXISTS (SELECT FROM pg_class WHERE relname IN ('User','AuditLog','LoginAttempt','LessonProgress') AND relowner = pg_roles.oid) AS owns_data,
         (SELECT count(*) FROM pg_auth_members WHERE member = pg_roles.oid) AS memberships
       FROM pg_roles WHERE rolname = current_user
     `;

@@ -49,10 +49,10 @@ try {
   );
   const policies = (
     await owner.query(
-      "SELECT relname,relrowsecurity,relforcerowsecurity,pg_get_userbyid(relowner) AS owner FROM pg_class WHERE oid IN ('public.\"User\"'::regclass,'public.\"AuditLog\"'::regclass,'public.\"LoginAttempt\"'::regclass)",
+      "SELECT relname,relrowsecurity,relforcerowsecurity,pg_get_userbyid(relowner) AS owner FROM pg_class WHERE oid IN ('public.\"User\"'::regclass,'public.\"AuditLog\"'::regclass,'public.\"LoginAttempt\"'::regclass,'public.\"LessonProgress\"'::regclass)",
     )
   ).rows;
-  assert.equal(policies.length, 3);
+  assert.equal(policies.length, 4);
   for (const row of policies) {
     assert.equal(row.relrowsecurity, true);
     assert.equal(row.relforcerowsecurity, true);
@@ -114,6 +114,32 @@ try {
   assert.equal((await runtime.query('SELECT id FROM "User"')).rowCount, 0);
   await assert.rejects(runtime.query("SET ROLE kairon_auth"));
   await assert.rejects(runtime.query('SELECT * FROM "LoginAttempt"'));
+  await asUser(
+    ids[0],
+    'INSERT INTO "LessonProgress" (id,"userId","lessonId") VALUES ($1,$2,$3)',
+    [randomUUID(), ids[0], "permission"],
+  );
+  assert.equal(
+    (await asUser(ids[1], 'SELECT * FROM "LessonProgress"')).rowCount,
+    0,
+  );
+  await assert.rejects(
+    asUser(
+      ids[1],
+      'INSERT INTO "LessonProgress" (id,"userId","lessonId") VALUES ($1,$2,$3)',
+      [randomUUID(), ids[0], "forged"],
+    ),
+  );
+  assert.equal(
+    (
+      await asUser(
+        ids[1],
+        'UPDATE "LessonProgress" SET "awardedXp"=999 WHERE "userId"=$1',
+        [ids[0]],
+      )
+    ).rowCount,
+    0,
+  );
   const key = randomBytes(32).toString("hex");
   for (let i = 0; i < 9; i++)
     assert.equal(

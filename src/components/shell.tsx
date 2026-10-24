@@ -11,6 +11,7 @@ import {
   Wrench,
   Globe,
   LogOut,
+  Terminal,
 } from "lucide-react";
 import { copy, type Locale } from "@/lib/i18n";
 import { changeLocale, logout } from "@/app/actions";
@@ -49,6 +50,10 @@ export function Shell({
               <Compass size={18} />
               {t.paths}
               <span className="nav-count">5</span>
+            </Link>
+            <Link href="/terminal" className="nav-link">
+              <Terminal size={18} />
+              {locale === "ru" ? "Терминал" : "Terminal"}
             </Link>
             <Link href="/profile" className="nav-link">
               <UserRound size={18} />

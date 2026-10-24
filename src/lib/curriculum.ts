@@ -9,10 +9,12 @@ export type Path = {
   description: Record<Locale, string>;
   modules: Record<Locale, string[]>;
   tags: string[];
+  availableLessons?: number;
 };
 export const paths: Path[] = [
   {
     slug: "from-zero",
+    availableLessons: 10,
     number: "00",
     color: "lime",
     category: "beginner",

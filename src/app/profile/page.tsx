@@ -3,10 +3,18 @@ import { Compass, ShieldCheck, UserRound } from "lucide-react";
 import { requireUser } from "@/lib/access";
 import { getLocale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
+import { getProgress } from "@/lib/learning";
+import { lessons } from "@/lib/lessons";
 export const metadata = { title: "Профиль" };
 export default async function Profile() {
   const user = await requireUser(),
     locale = await getLocale();
+  const progress = await getProgress(user.id);
+  const completed = new Set(
+    progress.filter((p) => p.completedAt).map((p) => p.lessonId),
+  );
+  const totalXp = progress.reduce((sum, p) => sum + p.awardedXp, 0);
+  const next = lessons.find((l) => !completed.has(l.id));
   return (
     <div className="page-container document-page">
       <span className="eyebrow">YOUR ACCOUNT</span>
@@ -45,23 +53,57 @@ export default async function Profile() {
           )}
         </div>
       </section>
+      <section className="profile-learning">
+        <div className="learning-stats">
+          <article>
+            <strong>{totalXp}</strong>
+            <span>XP заработано</span>
+          </article>
+          <article>
+            <strong>
+              {completed.size}/{lessons.length}
+            </strong>
+            <span>уроков завершено</span>
+          </article>
+          <article>
+            <strong>
+              {Math.round((completed.size / lessons.length) * 100)}%
+            </strong>
+            <span>путь «Старт с нуля»</span>
+          </article>
+        </div>
+        <progress max={lessons.length} value={completed.size} />
+        {completed.size === lessons.length && (
+          <p className="course-award">🏅 Основы Linux — путь завершён</p>
+        )}
+      </section>
       <div className="empty-state">
         <Compass size={32} />
         <h2>
           {locale === "ru"
-            ? "Твой учебный путь впереди"
-            : "Your learning journey is ahead"}
+            ? next
+              ? "Продолжим практику?"
+              : "Первый путь завершён"
+            : next
+              ? "Continue your practice"
+              : "First path completed"}
         </h2>
         <p>
           {locale === "ru"
-            ? "Личный прогресс и награды появятся после запуска учебного ядра."
-            : "Progress and rewards will become available with the learning engine."}
+            ? next
+              ? `Следующий урок: ${next.title}`
+              : "Все десять уроков засчитаны. Можно повторить практику; XP повторно не начисляется."
+            : next
+              ? `Next lesson: ${next.title}`
+              : "All ten lessons completed. Repeating a lesson does not award XP twice."}
         </p>
         <Button asChild>
-          <Link href="/#paths">
+          <Link href={next ? `/learn/${next.id}` : "/paths/from-zero"}>
             {locale === "ru"
-              ? "Посмотреть программу"
-              : "Explore the curriculum"}
+              ? next
+                ? "Открыть урок"
+                : "Посмотреть результаты"
+              : "Open learning path"}
           </Link>
         </Button>
       </div>

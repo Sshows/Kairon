@@ -12,7 +12,7 @@ export const copy = {
     workspace: "ТВОЁ ПРОСТРАНСТВО",
     resources: "СПРАВОЧНИК",
     closed: "Доступ по приглашению",
-    foundation: "Фундамент платформы",
+    foundation: "Учебная платформа",
     catalog: "Программа обучения",
     search: "Найти путь или тему…",
     all: "Все направления",
@@ -35,14 +35,14 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "ЭТАП 0 · ФУНДАМЕНТ",
+    stage: "10 УРОКОВ · МОЖНО НАЧАТЬ",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
       "Разберись, как работают системы. Научись находить слабые места и защищать данные — шаг за шагом, с самого начала.",
-    heroAction: "Выбрать направление",
+    heroAction: "Начать обучение",
     heroSecondary: "Как устроено обучение",
     programNote:
-      "Это программа будущих курсов. Уроки и лаборатории откроются после проверки учебного ядра.",
+      "Путь «Старт с нуля» уже доступен: 10 уроков, учебный терминал и практика в своей Kali. Остальные направления готовятся.",
     freeStart: "ТВОЯ ТОЧКА ВХОДА В КИБЕРБЕЗОПАСНОСТЬ",
     learn: "Учебная платформа",
     roadmap: "От первых команд до защиты ИИ",
@@ -68,7 +68,7 @@ export const copy = {
     workspace: "YOUR WORKSPACE",
     resources: "REFERENCE",
     closed: "Invite-only access",
-    foundation: "Platform foundation",
+    foundation: "Learning platform",
     catalog: "Learning curriculum",
     search: "Find a path or topic…",
     all: "All paths",
@@ -90,14 +90,14 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "STAGE 0 · FOUNDATION",
+    stage: "10 LESSONS · START NOW",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
       "Understand how systems work. Learn to find weaknesses and protect data — one step at a time, starting from zero.",
-    heroAction: "Choose your path",
+    heroAction: "Start learning",
     heroSecondary: "How learning works",
     programNote:
-      "This is the planned curriculum. Lessons and labs will open after the learning engine is verified.",
+      "Start from zero is available: 10 Russian lessons, a simulated terminal, and practice in your own Kali. Other paths are being prepared.",
     freeStart: "YOUR START IN CYBERSECURITY",
     learn: "Learning platform",
     roadmap: "From first commands to AI security",

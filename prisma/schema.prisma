@@ -24,6 +24,7 @@ model User {
   createdAt        DateTime   @default(now()) @db.Timestamptz(3)
   updatedAt        DateTime   @updatedAt @db.Timestamptz(3)
   auditLogs        AuditLog[]
+  lessonProgress   LessonProgress[]
 }
 
 model AuditLog {
@@ -42,4 +43,20 @@ model LoginAttempt {
   windowStartedAt DateTime @default(now()) @db.Timestamptz(3)
 
   @@index([windowStartedAt])
+}
+
+model LessonProgress {
+  id             String    @id @default(uuid())
+  userId         String
+  lessonId       String
+  completedAt    DateTime? @db.Timestamptz(3)
+  awardedXp      Int       @default(0)
+  hintsUsed      Int       @default(0)
+  attemptCount   Int       @default(0)
+  attemptWindow  DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime  @updatedAt @db.Timestamptz(3)
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId, completedAt])
 }
