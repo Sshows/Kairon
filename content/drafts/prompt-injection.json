@@ -1,0 +1,38 @@
+{
+  "$schema": "../schema/lesson.schema.json",
+  "id": "4.1.1",
+  "pathId": "ai-data-security",
+  "moduleId": "4.1",
+  "title": "Когда данные притворяются инструкцией",
+  "status": "draft",
+  "locale": "ru",
+  "source": {
+    "author": "Lev Averyanov (LevaAverGit)",
+    "url": "https://github.com/LevaAverGit/llm-prompt-injection-lab",
+    "commit": "2311bfc5681c80993d3a8095c7e87709bb1b4faa",
+    "license": "MIT"
+  },
+  "explanation": {
+    "markdownFile": "prompt-injection.md",
+    "plainSummary": "Бот получает инструкции и данные. Недоверенный текст иногда пытается выдать себя за инструкцию. Это называют prompt injection. Мы будем исследовать синтетического бота внутри учебной среды.",
+    "analogy": "Вахтёру подложили записку: начальник разрешил пропустить.",
+    "goal": "Сравнить результат одного учебного сценария до и после включения защиты.",
+    "glossaryTerms": ["Prompt Injection", "Breach rate"]
+  },
+  "practice": {
+    "kind": "answer-form",
+    "labTemplateId": "prompt-injection-v1-pending",
+    "mode": "mock"
+  },
+  "check": {
+    "kind": "number",
+    "serverCheckerId": "matrix-breach-rate-pending",
+    "requiredTestIds": [],
+    "allowSkipped": false
+  },
+  "reward": { "xp": 100, "badgeId": null, "nextLessonId": null },
+  "debrief": {
+    "privateMarkdownFile": "private/4.1.1-debrief.md",
+    "visibleAfter": "server-confirmed-success"
+  }
+}

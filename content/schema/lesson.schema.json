@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kairon split lesson draft v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "pathId",
+    "moduleId",
+    "title",
+    "status",
+    "locale",
+    "source",
+    "explanation",
+    "practice",
+    "check",
+    "reward",
+    "debrief"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string" },
+    "pathId": { "type": "string" },
+    "moduleId": { "type": "string" },
+    "title": { "type": "string" },
+    "status": { "enum": ["draft", "review", "published"] },
+    "locale": { "enum": ["ru", "en"] },
+    "source": {
+      "type": "object",
+      "required": ["author", "url", "commit", "license"],
+      "properties": {
+        "author": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "license": { "type": "string" }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "required": ["markdownFile", "plainSummary", "analogy", "goal"],
+      "properties": {
+        "markdownFile": { "type": "string" },
+        "plainSummary": { "type": "string" },
+        "analogy": { "type": "string" },
+        "goal": { "type": "string" },
+        "glossaryTerms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "practice": {
+      "type": "object",
+      "required": ["kind", "labTemplateId", "mode"],
+      "properties": {
+        "kind": { "enum": ["terminal", "editor", "answer-form"] },
+        "labTemplateId": { "type": "string" },
+        "mode": { "enum": ["mock", "cached", "ollama", "postgres"] }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": [
+        "kind",
+        "serverCheckerId",
+        "requiredTestIds",
+        "allowSkipped"
+      ],
+      "properties": {
+        "kind": { "enum": ["flag", "choice", "number", "pytest", "output"] },
+        "serverCheckerId": { "type": "string" },
+        "requiredTestIds": { "type": "array", "items": { "type": "string" } },
+        "allowSkipped": { "const": false }
+      }
+    },
+    "reward": {
+      "type": "object",
+      "required": ["xp", "badgeId", "nextLessonId"],
+      "properties": {
+        "xp": { "type": "integer", "minimum": 0 },
+        "badgeId": { "type": ["string", "null"] },
+        "nextLessonId": { "type": ["string", "null"] }
+      }
+    },
+    "debrief": {
+      "type": "object",
+      "required": ["privateMarkdownFile", "visibleAfter"],
+      "properties": {
+        "privateMarkdownFile": { "type": "string" },
+        "visibleAfter": { "const": "server-confirmed-success" }
+      }
+    }
+  }
+}
