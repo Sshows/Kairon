@@ -35,17 +35,17 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "10 УРОКОВ · МОЖНО НАЧАТЬ",
+    stage: "KALI LINUX · 20 УРОКОВ",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
-      "Разберись, как работают системы. Научись находить слабые места и защищать данные — шаг за шагом, с самого начала.",
+      "Запусти готовую Kali Linux и попробуй себя в расследовании. Подозрительные письма, следы входа, свой сайт и восстановление файлов — с понятными шагами.",
     heroAction: "Начать обучение",
     heroSecondary: "Как устроено обучение",
     programNote:
-      "Путь «Старт с нуля» уже доступен: 10 уроков, учебный терминал и практика в своей Kali. Остальные направления готовятся.",
+      "Курс Kali Linux уже открыт: 20 уроков, установка готовой машины, Tor Browser и практические дела. Читай здесь, выполняй в своей Kali. Остальные направления готовятся.",
     freeStart: "ТВОЯ ТОЧКА ВХОДА В КИБЕРБЕЗОПАСНОСТЬ",
     learn: "Учебная платформа",
-    roadmap: "От первых команд до защиты ИИ",
+    roadmap: "От запуска Kali до расследования",
     goBack: "Все направления",
     noLabs: "Лаборатории ещё не подключены",
     preview: "Программа пути",
@@ -90,17 +90,17 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "10 LESSONS · START NOW",
+    stage: "KALI LINUX · 20 LESSONS",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
-      "Understand how systems work. Learn to find weaknesses and protect data — one step at a time, starting from zero.",
+      "Set up a ready-made Kali VM and investigate training cases: suspicious email, login traces, your own website, and file recovery.",
     heroAction: "Start learning",
     heroSecondary: "How learning works",
     programNote:
-      "Start from zero is available: 10 Russian lessons, a simulated terminal, and practice in your own Kali. Other paths are being prepared.",
+      "The Kali course is open: 20 Russian guides, ready-made VM setup, Tor Browser, and practical cases in your own Kali. Other paths are being prepared.",
     freeStart: "YOUR START IN CYBERSECURITY",
     learn: "Learning platform",
-    roadmap: "From first commands to AI security",
+    roadmap: "From Kali setup to investigation",
     goBack: "All learning paths",
     noLabs: "Labs are not connected yet",
     preview: "Path curriculum",

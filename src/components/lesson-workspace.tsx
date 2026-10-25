@@ -1,21 +1,25 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Markdown from "react-markdown";
 import {
+  ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  Download,
+  ExternalLink,
   Lightbulb,
   LoaderCircle,
   Monitor,
-  Terminal,
 } from "lucide-react";
 import type { PublicLesson } from "@/lib/lessons";
-import { TrainingTerminal } from "./training-terminal";
 import { Button } from "./ui/button";
+
 export function LessonWorkspace({
   lesson,
+  previous,
   next,
   loggedIn,
   accepted,
@@ -25,6 +29,7 @@ export function LessonWorkspace({
   unlocked,
 }: {
   lesson: PublicLesson;
+  previous: string | null;
   next: string | null;
   loggedIn: boolean;
   accepted: boolean;
@@ -34,23 +39,30 @@ export function LessonWorkspace({
   unlocked: boolean;
 }) {
   const router = useRouter();
-  const [mode, setMode] = useState<"browser" | "kali">("browser");
-  const [commands, setCommands] = useState<string[]>([]);
   const [answer, setAnswer] = useState("");
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState("");
   const [hint, setHint] = useState("");
+  const [hintsUsed, setHintsUsed] = useState(0);
   const [passed, setPassed] = useState(completed);
   const [debrief, setDebrief] = useState(initialDebrief ?? "");
   const [earned, setEarned] = useState(xp);
+  const [checkedSteps, setCheckedSteps] = useState<string[]>([]);
+  const canSubmit = !loggedIn || (accepted && unlocked);
+
   async function submit(action: "hint" | "check") {
+    if (pending) return;
     setPending(true);
     setMessage("");
     try {
       const response = await fetch(`/api/learning/${lesson.id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action, mode, commands, answer }),
+        body: JSON.stringify({
+          action,
+          answer,
+          hintIndex: Math.min(hintsUsed, 2),
+        }),
       });
       const data = await response.json();
       if (data.error) {
@@ -61,197 +73,278 @@ export function LessonWorkspace({
         setPassed(true);
         setEarned(data.xp);
         setDebrief(data.debrief);
-        router.refresh();
+        if (!data.guest) router.refresh();
       } else if (data.status === "hint") {
+        setHintsUsed(data.hintsUsed);
         setHint(`Подсказка ${data.hintsUsed}/3: ${data.hint}`);
       } else
         setMessage(
           data.status === "locked"
-            ? "Сначала заверши предыдущие уроки."
+            ? "Для зачёта в аккаунте сначала заверши предыдущие уроки."
             : data.status === "limited"
-              ? "Достигнут лимит проверок. Подожди минуту."
-              : "Пока не получилось. Проверь цель задания и результат команд.",
+              ? "Подожди минуту перед следующей проверкой."
+              : "Пока не совпало. Посмотри результат практики и попробуй ещё раз.",
         );
     } catch {
       setMessage(
-        "Не удалось связаться с сервером. Результат пока не сохранён. Попробуй ещё раз.",
+        "Не удалось проверить ответ. Проверь соединение и попробуй ещё раз.",
       );
     } finally {
       setPending(false);
     }
   }
+
   return (
-    <div className="lesson-split">
-      <article className="lesson-theory">
+    <div className="guide-layout">
+      <article className="lesson-theory guide-article">
         <span className="eyebrow">
-          {lesson.module} · {lesson.minutes} мин · до {lesson.xp} XP
+          {lesson.module} · {lesson.minutes} мин · {lesson.level}
         </span>
         <h1>{lesson.title}</h1>
+        <p className="guide-summary">{lesson.summary}</p>
+        <div className="practice-location">
+          <Monitor size={19} />
+          <span>
+            Делай шаги в своей Kali Linux. На сайте — объяснение и самопроверка.
+          </span>
+        </div>
+        <div className="guide-quick-links" aria-label="Ссылки для этого урока">
+          {lesson.resources.map((resource) => (
+            <a
+              href={resource.url}
+              key={resource.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {resource.label}
+              <ExternalLink size={13} />
+            </a>
+          ))}
+        </div>
+        {lesson.kit && (
+          <a
+            className="guide-kit-link"
+            href="/downloads/kairon-kali-lab.zip"
+            download
+          >
+            <Download size={17} />
+            Скачать учебный набор для Kali
+          </a>
+        )}
         <div className="lesson-markdown">
           <Markdown>{lesson.theory}</Markdown>
         </div>
-        <Link className="subtle-link" href="/glossary" target="_blank">
-          Непонятное слово? Открыть словарь ↗
-        </Link>
-        {passed && (
-          <section className="lesson-debrief">
-            <h2>
-              <CheckCircle2 size={20} />
-              Разбор
-            </h2>
-            <p>{debrief}</p>
-            <strong>Засчитано · {earned} XP</strong>
-            {next ? (
-              <Button asChild>
-                <Link href={`/learn/${next}`}>
-                  Следующий урок
-                  <ArrowRight size={16} />
-                </Link>
-              </Button>
+        <section
+          className="guide-checklist"
+          aria-label="Проверь результат практики"
+        >
+          <h2>Что должно получиться</h2>
+          <p>
+            Отметь то, что проверил у себя. Галочки помогают тебе и не
+            отправляются на сервер.
+          </p>
+          {lesson.checklist.map((step) => (
+            <label key={step}>
+              <input
+                type="checkbox"
+                checked={checkedSteps.includes(step)}
+                onChange={(event) =>
+                  setCheckedSteps((steps) =>
+                    event.target.checked
+                      ? [...steps, step]
+                      : steps.filter((item) => item !== step),
+                  )
+                }
+              />
+              <span>{step}</span>
+            </label>
+          ))}
+        </section>
+        <section className="guide-question" aria-label="Самопроверка">
+          <span className="eyebrow">ПРОВЕРЬ, ЧТО ПОНЯЛ</span>
+          <h2>{lesson.question}</h2>
+          <p className="check-explanation">
+            Проверяем твой ответ. Сайт не подключается к Kali и не проверяет
+            действия на компьютере.
+          </p>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              void submit("check");
+            }}
+          >
+            {lesson.kind === "choice" ? (
+              <fieldset className="lesson-choices">
+                <legend className="sr-only">Варианты ответа</legend>
+                {lesson.choices.map((choice) => (
+                  <label key={choice.id}>
+                    <input
+                      type="radio"
+                      name="lesson-answer"
+                      value={choice.id}
+                      checked={answer === choice.id}
+                      onChange={() => setAnswer(choice.id)}
+                      disabled={passed}
+                    />
+                    <span>{choice.text}</span>
+                  </label>
+                ))}
+              </fieldset>
             ) : (
-              <Button asChild>
-                <Link href="/profile">
-                  Путь завершён — открыть профиль
-                  <ArrowRight size={16} />
-                </Link>
-              </Button>
+              <label className="local-answer">
+                Твой ответ
+                <input
+                  value={answer}
+                  maxLength={150}
+                  onChange={(event) => setAnswer(event.target.value)}
+                  aria-label="Ответ по результату практики"
+                  autoComplete="off"
+                  disabled={passed}
+                  placeholder={lesson.placeholder}
+                />
+              </label>
             )}
-          </section>
-        )}
+            {loggedIn && !accepted ? (
+              <p className="learning-gate">
+                Для сохранения прогресса{" "}
+                <Link href="/ethics">прими правила практики</Link>.
+              </p>
+            ) : loggedIn && !unlocked ? (
+              <p className="learning-gate">
+                Читай и выполняй любой урок. Для XP заверши предыдущие уроки по
+                порядку.
+              </p>
+            ) : !loggedIn ? (
+              <p className="learning-gate">
+                Самопроверка доступна без входа.{" "}
+                <Link href="/login">Аккаунт</Link> сохраняет прогресс и XP;
+                гостевой результат действует до обновления страницы.
+              </p>
+            ) : null}
+            <div className="lesson-controls">
+              <Button
+                type="submit"
+                disabled={pending || passed || !canSubmit || !answer.trim()}
+              >
+                {pending ? (
+                  <LoaderCircle size={16} className="spin" />
+                ) : passed ? (
+                  <CheckCircle2 size={16} />
+                ) : null}
+                {passed ? "Ответ верный" : "Проверить ответ"}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => void submit("hint")}
+                disabled={pending || passed || !canSubmit || hintsUsed >= 3}
+              >
+                <Lightbulb size={16} />
+                {hintsUsed >= 3
+                  ? "Все подсказки открыты"
+                  : loggedIn
+                    ? "Подсказка · −10 XP"
+                    : "Нужна подсказка"}
+              </Button>
+            </div>
+          </form>
+          {message && (
+            <p className="learning-message" role="status">
+              {message}
+            </p>
+          )}
+          {hint && (
+            <p className="learning-hint" role="status">
+              {hint}
+            </p>
+          )}
+          {passed && (
+            <section className="lesson-debrief" aria-live="polite">
+              <h2>
+                <CheckCircle2 size={20} />
+                Разбор
+              </h2>
+              <div className="lesson-markdown">
+                <Markdown>{debrief}</Markdown>
+              </div>
+              <strong>
+                {loggedIn
+                  ? `Сохранено · ${earned} XP`
+                  : "Самопроверка пройдена"}
+              </strong>
+            </section>
+          )}
+        </section>
+        <nav className="guide-pagination" aria-label="Перейти к другому уроку">
+          {previous ? (
+            <Link href={`/learn/${previous}`} className="subtle-link">
+              <ArrowLeft size={16} />
+              Предыдущий урок
+            </Link>
+          ) : (
+            <Link href="/paths/from-zero" className="subtle-link">
+              Вся программа
+            </Link>
+          )}
+          <Button asChild>
+            <Link href={next ? `/learn/${next}` : "/paths/from-zero"}>
+              {next ? "Следующий урок" : "Вернуться к программе"}
+              <ArrowRight size={16} />
+            </Link>
+          </Button>
+        </nav>
       </article>
-      <aside className="lesson-practice">
-        <div className="practice-goal">
+      <aside className="guide-sidebar">
+        <section className="practice-goal">
           <span className="eyebrow">ТВОЯ ЗАДАЧА</span>
           <p>{lesson.goal}</p>
-        </div>
-        <div
-          className="practice-tabs"
-          role="group"
-          aria-label="Где выполнять практику"
-        >
-          <button
-            onClick={() => setMode("browser")}
-            aria-pressed={mode === "browser"}
-          >
-            <Monitor size={15} />В браузере
-          </button>
-          <button
-            onClick={() => setMode("kali")}
-            aria-pressed={mode === "kali"}
-          >
-            <Terminal size={15} />В своей Kali
-          </button>
-        </div>
-        {mode === "browser" ? (
-          <TrainingTerminal onCommands={setCommands} disabled={pending} />
-        ) : (
-          <section className="local-kali">
-            <h2>Практика на твоём компьютере</h2>
-            <p>
-              Скачай и просмотри скрипт. Он создаёт только новую папку
-              ~/kairon-lab с вымышленными файлами, без sudo и сетевых запросов.
-              Если папка уже есть, скрипт остановится и сохранит её.
-            </p>
-            <a className="subtle-link" href="/kairon-lab-setup.sh" download>
-              Скачать учебные файлы (.sh) ↓
+          <span className="guide-level">
+            {lesson.level} · до {lesson.xp} XP
+          </span>
+        </section>
+        <section className="guide-resources">
+          <h2>Открыть рядом</h2>
+          {lesson.resources.map((resource) => (
+            <a
+              key={resource.url}
+              href={resource.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>
+                {resource.label}
+                <small>{resource.note}</small>
+              </span>
+              <ExternalLink size={16} />
             </a>
-            <pre>
-              <code>
-                {
-                  "# Из папки с загруженным скриптом:\nbash kairon-lab-setup.sh\ncd ~/kairon-lab"
-                }
-              </code>
-            </pre>
+          ))}
+        </section>
+        {lesson.kit && (
+          <section className="guide-download">
+            <Download size={22} />
+            <h2>Файлы для практики</h2>
             <p>
-              В следующих уроках возвращайся в ~/kairon-lab. Проверка ниже
-              оценивает твой ответ и не подключается к Kali. Результаты со своей
-              машины не отправляются автоматически.
+              Учебные письма, логи, документы и маленький локальный сайт. Без
+              настоящих вирусов. Распакуй архив в своей Kali.
             </p>
-            <p>
-              Команды mkdir и touch можно повторять с другими учебными именами.
-              Не удаляй собственные рабочие файлы ради упражнения.
-            </p>
+            <Button asChild variant="outline">
+              <a href="/downloads/kairon-kali-lab.zip" download>
+                Скачать учебный набор
+              </a>
+            </Button>
+            <Link className="subtle-link" href="/learn/lab-files">
+              Как открыть набор →
+            </Link>
           </section>
         )}
-        {lesson.kind === "choice" ? (
-          <fieldset className="lesson-choices">
-            <legend>Выбери ответ</legend>
-            {lesson.choices?.map((choice) => (
-              <label key={choice.id}>
-                <input
-                  type="radio"
-                  name="lesson-answer"
-                  value={choice.id}
-                  checked={answer === choice.id}
-                  onChange={() => setAnswer(choice.id)}
-                />
-                <span>{choice.text}</span>
-              </label>
-            ))}
-          </fieldset>
-        ) : mode === "kali" ? (
-          <label className="local-answer">
-            {lesson.localQuestion}
-            <input
-              value={answer}
-              maxLength={150}
-              onChange={(e) => setAnswer(e.target.value)}
-              aria-label="Ответ после практики в Kali"
-            />
-          </label>
-        ) : null}
-        {!loggedIn ? (
-          <div className="learning-gate">
-            Практиковаться можно сразу. <Link href="/login">Войди</Link>, чтобы
-            сервер проверял задания и сохранял прогресс.
-          </div>
-        ) : !accepted ? (
-          <div className="learning-gate">
-            Перед сохранением результатов{" "}
-            <Link href="/ethics">прими правила практики</Link>.
-          </div>
-        ) : !unlocked ? (
-          <div className="learning-gate">
-            Для сохранения результата сначала заверши предыдущие уроки пути.
-            Практика для ознакомления доступна.
-          </div>
-        ) : null}
-        <div className="lesson-controls">
-          <Button
-            onClick={() => submit("check")}
-            disabled={pending || passed || !loggedIn || !accepted || !unlocked}
-          >
-            {pending ? (
-              <LoaderCircle size={16} className="spin" />
-            ) : passed ? (
-              <CheckCircle2 size={16} />
-            ) : null}
-            {passed ? "Урок засчитан" : "Проверить задание"}
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => submit("hint")}
-            disabled={pending || passed || !loggedIn || !accepted || !unlocked}
-          >
-            <Lightbulb size={16} />
-            Подсказка · −10 XP
-          </Button>
-        </div>
-        {message && (
-          <p className="learning-message" role="status">
-            {message}
-          </p>
-        )}
-        {hint && (
-          <p className="learning-hint" role="status">
-            {hint}
-          </p>
-        )}
-        {passed && (
-          <p className="learning-success" role="status">
-            Задание выполнено. Разбор открыт слева. XP начисляется один раз.
-          </p>
-        )}
+        <Link href="/resources" className="subtle-link">
+          Книги и проекты с GitHub
+          <ArrowRight size={16} />
+        </Link>
+        <Link href="/glossary" className="subtle-link">
+          Непонятное слово? Словарь
+          <ArrowRight size={16} />
+        </Link>
       </aside>
     </div>
   );

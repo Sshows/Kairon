@@ -4,11 +4,10 @@ import { getCurrentUser } from "@/lib/access";
 import { getLesson } from "@/lib/lessons";
 import { checkLesson } from "@/lib/lesson-checks";
 import { updateLearning } from "@/lib/learning";
-const schema = z.object({
+const schema = z.strictObject({
   action: z.enum(["check", "hint"]),
-  mode: z.enum(["browser", "kali"]).default("browser"),
-  commands: z.array(z.string().max(300)).max(80).default([]),
   answer: z.string().max(150).default(""),
+  hintIndex: z.number().int().min(0).max(2).default(0),
 });
 export async function POST(
   request: NextRequest,
@@ -25,20 +24,6 @@ export async function POST(
     return respond({ error: "Недопустимый источник запроса." }, 403);
   if (Number(request.headers.get("content-length") ?? 0) > 40000)
     return respond({ error: "Слишком большой запрос." }, 413);
-  const user = await getCurrentUser();
-  if (!user)
-    return respond(
-      { error: "Войди, чтобы проверять задания и сохранять прогресс." },
-      401,
-    );
-  if (!user.ethicsAcceptedAt)
-    return respond(
-      {
-        error: "Сначала прими правила безопасной практики.",
-        needsEthics: true,
-      },
-      403,
-    );
   const { lessonId } = await params;
   const lesson = getLesson(lessonId);
   if (!lesson) return respond({ error: "Урок не найден." }, 404);
@@ -52,15 +37,35 @@ export async function POST(
     return respond({ error: "Неверный формат запроса." }, 400);
   }
   if (!input.success)
-    return respond({ error: "Проверь размер ответа и список команд." }, 400);
+    return respond({ error: "Проверь формат и длину ответа." }, 400);
   const data = input.data;
-  const result = await updateLearning(
-    user.id,
-    lessonId,
-    data.action,
-    data.action === "check" &&
-      checkLesson(lessonId, data.commands, data.answer, data.mode),
-  );
+  const correct = data.action === "check" && checkLesson(lessonId, data.answer);
+  const user = await getCurrentUser();
+  // Открытая самопроверка не пишет в БД и не выдаёт XP.
+  if (!user) {
+    if (data.action === "hint")
+      return respond({
+        status: "hint",
+        hint: lesson.hints[data.hintIndex],
+        hintsUsed: data.hintIndex + 1,
+        guest: true,
+      });
+    return respond({
+      status: correct ? "passed" : "failed",
+      guest: true,
+      xp: 0,
+      ...(correct ? { debrief: lesson.debrief } : {}),
+    });
+  }
+  if (!user.ethicsAcceptedAt)
+    return respond(
+      {
+        error: "Для сохранения прогресса прими правила практики.",
+        needsEthics: true,
+      },
+      403,
+    );
+  const result = await updateLearning(user.id, lessonId, data.action, correct);
   return respond(
     {
       ...result,

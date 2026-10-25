@@ -1,0 +1,13 @@
+From: "Директор" <manager@office-payments.invalid>
+Reply-To: collect@reply-payments.invalid
+To: learner@office.example
+Subject: Учебный пример: срочно оплатить новые реквизиты
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Срочно выполните платёж на новые реквизиты. Не звоните, я занят.
+Подтвердите ответом на это письмо.
+
+Это вымышленное письмо для урока Kairon.
+Ожидаемый рабочий домен в сценарии: office.example.
+Не отправляйте ответы и не выполняйте платежи.

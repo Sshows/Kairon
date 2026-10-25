@@ -4,14 +4,16 @@ import { requireUser } from "@/lib/access";
 import { getLocale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { getProgress } from "@/lib/learning";
-import { lessons } from "@/lib/lessons";
+import { lessons, lessonIds } from "@/lib/lessons";
 export const metadata = { title: "Профиль" };
 export default async function Profile() {
   const user = await requireUser(),
     locale = await getLocale();
   const progress = await getProgress(user.id);
   const completed = new Set(
-    progress.filter((p) => p.completedAt).map((p) => p.lessonId),
+    progress
+      .filter((p) => p.completedAt && lessonIds.has(p.lessonId))
+      .map((p) => p.lessonId),
   );
   const totalXp = progress.reduce((sum, p) => sum + p.awardedXp, 0);
   const next = lessons.find((l) => !completed.has(l.id));
@@ -69,14 +71,22 @@ export default async function Profile() {
             <strong>
               {Math.round((completed.size / lessons.length) * 100)}%
             </strong>
-            <span>путь «Старт с нуля»</span>
+            <span>курс Kali Linux</span>
           </article>
         </div>
         <progress max={lessons.length} value={completed.size} />
         {completed.size === lessons.length && (
-          <p className="course-award">🏅 Основы Linux — путь завершён</p>
+          <p className="course-award">🏅 Курс Kali Linux — путь завершён</p>
         )}
       </section>
+      {progress.some(
+        (item) => item.completedAt && !lessonIds.has(item.lessonId),
+      ) && (
+        <p className="program-note">
+          XP за прежние уроки сохранены в общем счёте. Новый курс Kali
+          учитывается отдельно: старые ответы не заменяют новые задания.
+        </p>
+      )}
       <div className="empty-state">
         <Compass size={32} />
         <h2>
@@ -92,10 +102,10 @@ export default async function Profile() {
           {locale === "ru"
             ? next
               ? `Следующий урок: ${next.title}`
-              : "Все десять уроков засчитаны. Можно повторить практику; XP повторно не начисляется."
+              : "Все уроки курса засчитаны. Можно повторить практику; XP повторно не начисляется."
             : next
               ? `Next lesson: ${next.title}`
-              : "All ten lessons completed. Repeating a lesson does not award XP twice."}
+              : "All course lessons completed. Repeating a lesson does not award XP twice."}
         </p>
         <Button asChild>
           <Link href={next ? `/learn/${next.id}` : "/paths/from-zero"}>

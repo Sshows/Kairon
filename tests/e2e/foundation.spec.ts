@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { Client } from "pg";
 import { randomBytes, randomUUID } from "node:crypto";
+import course from "../../content/lessons/kali.json";
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
   { id: randomUUID(), role: "USER", name: "Test learner" },
@@ -80,41 +81,63 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     });
   expect(
     (
-      await submit("where-am-i", { action: "check", commands: ["pwd"] })
+      await submit("kali-first-boot", { action: "check", answer: "normal" })
     ).status(),
   ).toBe(423);
-  const crossOrigin = await page.request.post("/api/learning/permission", {
+  const crossOrigin = await page.request.post("/api/learning/kali-install", {
     headers: { Origin: "https://example.com" },
-    data: { action: "check", answer: "permission" },
+    data: { action: "check", answer: "vbox" },
   });
   expect(crossOrigin.status()).toBe(403);
   const completed = await Promise.all(
     Array.from({ length: 4 }, () =>
-      submit("permission", { action: "check", answer: "permission" }),
+      submit("kali-install", { action: "check", answer: "vbox" }),
     ),
   );
   for (const result of completed)
     expect((await result.json()).status).toBe("passed");
-  const forged = await submit("where-am-i", {
+  const invalid = await submit("kali-first-boot", {
     action: "check",
-    commands: [],
-    answer: "pwd",
+    commands: ["pwd"],
+    mode: "browser",
   });
-  expect((await forged.json()).status).toBe("failed");
-  const hint = await submit("where-am-i", { action: "hint" });
-  expect((await hint.json()).hintsUsed).toBe(1);
-  await page.goto("/learn/where-am-i");
-  await page.getByLabel("Команда терминала", { exact: true }).fill("pwd");
-  await page.getByLabel("Команда терминала", { exact: true }).press("Enter");
+  expect(invalid.status()).toBe(400);
+  expect(
+    (
+      await (
+        await submit("kali-first-boot", { action: "check", answer: "reboot" })
+      ).json()
+    ).status,
+  ).toBe("failed");
+  for (let index = 0; index < 4; index++) {
+    const hint = await submit("kali-first-boot", { action: "hint" });
+    expect((await hint.json()).hintsUsed).toBe(Math.min(index + 1, 3));
+  }
+  await page.goto("/learn/kali-first-boot");
   await page
-    .getByRole("button", { name: "Проверить задание", exact: true })
+    .getByRole("radio", {
+      name: "Продолжить ввод и нажать Enter — это нормально",
+    })
+    .check();
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
     .click();
   await expect(
-    page.getByRole("button", { name: "Урок засчитан", exact: true }),
+    page.getByRole("button", { name: "Ответ верный", exact: true }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Разбор", exact: true }),
   ).toBeVisible();
+  for (const lesson of course.slice(2)) {
+    const result = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    const checked = await result.json();
+    expect(checked.status, lesson.id).toBe("passed");
+    expect(checked.debrief).toBeTruthy();
+  }
+  await submit("final-case", { action: "check", answer: "203.0.113.44" });
   const ownerDb = new Client({ connectionString: process.env.DIRECT_URL });
   try {
     await ownerDb.connect();
@@ -122,10 +145,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 2, xp: 100 });
+    expect(result.rows[0]).toEqual({ count: 20, xp: 2100 });
+    // Existing results stay in history; only active IDs count toward 20 current lessons.
+    await ownerDb.query(
+      'INSERT INTO "LessonProgress" (id,"userId","lessonId","completedAt","awardedXp","updatedAt") VALUES ($1,$2,$3,now(),$4,now())',
+      [randomUUID(), learner.id, "permission", 50],
+    );
   } finally {
     await ownerDb.end();
   }
+  await page.goto("/profile");
+  await expect(page.locator(".learning-stats")).toContainText("20/20");
+  await expect(page.locator(".learning-stats")).toContainText("2150");
+  await expect(
+    page.getByText("XP за прежние уроки сохранены", { exact: false }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(page.locator(".learning-stats")).toContainText("20/20");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -139,51 +175,95 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
   await page.goto("/profile");
   await expect(page).toHaveURL(/\/login/);
 });
-test("guest terminal works and lesson debrief stays private", async ({
+test("public Kali guide has downloads, guest self-check, and no embedded terminal", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/terminal");
-  const field = page.getByLabel("Команда терминала", { exact: true });
-  await field.fill("cat rules.txt");
-  await field.press("Enter");
-  await expect(page.getByRole("log")).toContainText("Разрешение владельца");
-  await field.fill("mkdir notes");
-  await field.press("Enter");
-  await field.fill("touch notes/demo.txt");
-  await field.press("Enter");
-  await field.fill("ls notes");
-  await field.press("Enter");
-  await expect(page.getByRole("log")).toContainText("demo.txt");
-  await page.screenshot({
-    path: "test-results/public-terminal-desktop.png",
-    fullPage: true,
-  });
-  await page.getByRole("button", { name: "Сбросить терминал" }).click();
-  await field.fill("ls notes");
-  await field.press("Enter");
-  await expect(page.getByRole("log")).toContainText("путь не найден");
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/learn/read-evidence");
+  await expect(page).toHaveURL(/kali-install/);
+  await expect(
+    page.getByRole("heading", {
+      name: "Готовая Kali: скачать, открыть, запустить",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByLabel("Команда терминала", { exact: true }),
+  ).toHaveCount(0);
+  await expect(page.locator('a[href="/terminal"]')).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "Разбор", exact: true }),
   ).toHaveCount(0);
+  await page
+    .getByRole("radio", { name: ".vbox — настройки готовой машины" })
+    .check();
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
   await expect(
-    page.getByRole("button", { name: "Проверить задание", exact: true }),
-  ).toBeDisabled();
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("link", { name: "Следующий урок", exact: true })
+    .click();
+  await expect(page).toHaveURL(/kali-first-boot/);
+  await page.goto("/learn/kali-install");
+  await page.screenshot({
+    path: "test-results/public-kali-desktop.png",
+    fullPage: true,
+  });
+  await page.goto("/paths/from-zero");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(20);
+  await expect(page.locator(".course-module")).toHaveCount(4);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/learn/lab-files");
+  const download = await page.request.get("/downloads/kairon-kali-lab.zip");
+  expect(download.status()).toBe(200);
+  expect((await download.body()).subarray(0, 2).toString()).toBe("PK");
+  await expect(
+    page.getByRole("link", {
+      name: "Скачать учебный набор для Kali",
+      exact: true,
+    }),
+  ).toBeVisible();
+  const answer = page.getByLabel("Ответ по результату практики", {
+    exact: true,
+  });
+  await answer.fill("wrong");
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(page.getByRole("status")).toContainText("Пока не совпало");
+  await page
+    .getByRole("button", { name: "Нужна подсказка", exact: true })
+    .click();
+  await expect(
+    page.getByText("Подсказка 1/3:", { exact: false }),
+  ).toBeVisible();
+  await answer.fill("KLR-READY-2026");
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true);
   await page.screenshot({
-    path: "test-results/public-lesson-mobile.png",
+    path: "test-results/public-kali-mobile.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: "В своей Kali", exact: true }).click();
+  await page.goto("/resources");
   await expect(
-    page.getByRole("link", { name: "Скачать учебные файлы (.sh) ↓" }),
+    page.getByRole("heading", {
+      name: "Книги, инструменты и следующие проекты",
+    }),
   ).toBeVisible();
+  await expect(page.locator(".resource-list article")).toHaveCount(5);
+  await page.goto("/learn/permission");
+  await expect(page).toHaveURL(/kali-install/);
 });
 test("administrator role is accepted after credentials login", async ({
   page,

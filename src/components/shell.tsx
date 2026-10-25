@@ -11,7 +11,7 @@ import {
   Wrench,
   Globe,
   LogOut,
-  Terminal,
+  Monitor,
 } from "lucide-react";
 import { copy, type Locale } from "@/lib/i18n";
 import { changeLocale, logout } from "@/app/actions";
@@ -51,9 +51,9 @@ export function Shell({
               {t.paths}
               <span className="nav-count">5</span>
             </Link>
-            <Link href="/terminal" className="nav-link">
-              <Terminal size={18} />
-              {locale === "ru" ? "Терминал" : "Terminal"}
+            <Link href="/learn/kali-install" className="nav-link">
+              <Monitor size={18} />
+              {locale === "ru" ? "Запустить Kali" : "Set up Kali"}
             </Link>
             <Link href="/profile" className="nav-link">
               <UserRound size={18} />
@@ -68,6 +68,10 @@ export function Shell({
           </nav>
           <p className="nav-caption second">{t.resources}</p>
           <nav aria-label={t.resources}>
+            <Link href="/resources" className="nav-link">
+              <BookOpen size={18} />
+              {locale === "ru" ? "Книги и проекты" : "Books & projects"}
+            </Link>
             <Link href="/glossary" className="nav-link">
               <BookOpen size={18} />
               {t.glossary}
@@ -89,7 +93,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <span className="status-dot" />
           <span>{t.foundation}</span>
-          <span className="mono">v0.2</span>
+          <span className="mono">v0.3</span>
         </div>
       </aside>
       <div className="main-shell">

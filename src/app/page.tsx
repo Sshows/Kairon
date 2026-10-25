@@ -39,7 +39,7 @@ export default async function Home() {
           <p>{t.heroBody}</p>
           <div className="hero-actions">
             <Button asChild>
-              <Link href="/learn/permission">
+              <Link href="/learn/kali-install">
                 {t.heroAction}
                 <ArrowDown size={17} />
               </Link>
@@ -51,7 +51,9 @@ export default async function Home() {
           </div>
           <div className="hero-footnote">
             <ShieldCheck size={14} />
-            {t.closed}
+            {locale === "ru"
+              ? "Уроки открыты без регистрации"
+              : "Lessons open without an account"}
             <span>·</span>
             {locale === "ru"
               ? "Твой темп. Твой путь."
@@ -103,12 +105,12 @@ export default async function Home() {
               icon: Terminal,
               title:
                 locale === "ru"
-                  ? "Объяснение рядом с практикой"
-                  : "Explanation beside practice",
+                  ? "Сайт рядом, практика в Kali"
+                  : "Read here, practice in Kali",
               body:
                 locale === "ru"
-                  ? "Прочитай идею слева. Проверь её справа. У каждого задания будет одна понятная цель."
-                  : "Read an idea on the left. Try it on the right. Each task will have one clear goal.",
+                  ? "Запусти готовую Kali. Выполни шаги на своём компьютере. Сравни результат с примером и проверь, что понял."
+                  : "Launch a ready-made Kali VM. Follow the steps on your computer, compare results, and check your understanding.",
             },
             { icon: ShieldCheck, title: t.safe, body: t.safeBody },
           ].map((item, i) => (

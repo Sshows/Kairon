@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft, Check, LockKeyhole } from "lucide-react";
 import { getCurrentUser } from "@/lib/access";
 import { getProgress, isUnlocked } from "@/lib/learning";
-import { getLesson, lessons, publicLesson } from "@/lib/lessons";
+import { getLesson, lessons, publicLesson, lessonIds } from "@/lib/lessons";
 import { LessonWorkspace } from "@/components/lesson-workspace";
 export default async function LessonPage({
   params,
@@ -11,12 +11,28 @@ export default async function LessonPage({
   params: Promise<{ lessonId: string }>;
 }) {
   const { lessonId } = await params;
+  const legacyLessons: Record<string, string> = {
+    permission: "kali-install",
+    "where-am-i": "kali-first-boot",
+    "hidden-files": "lab-files",
+    "move-around": "lab-files",
+    "read-evidence": "suspicious-file",
+    "find-in-logs": "login-investigation",
+    "create-files": "lab-files",
+    "write-report": "incident-report",
+    "file-permissions": "file-access",
+    "network-basics": "local-web",
+  };
+  if (Object.hasOwn(legacyLessons, lessonId))
+    permanentRedirect("/learn/" + legacyLessons[lessonId]);
   const lesson = getLesson(lessonId);
   if (!lesson) notFound();
   const user = await getCurrentUser();
   const progress = user ? await getProgress(user.id) : [];
   const completed = new Set(
-    progress.filter((p) => p.completedAt).map((p) => p.lessonId),
+    progress
+      .filter((p) => p.completedAt && lessonIds.has(p.lessonId))
+      .map((p) => p.lessonId),
   );
   const current = progress.find((p) => p.lessonId === lessonId);
   const index = lessons.findIndex((l) => l.id === lessonId);
@@ -25,7 +41,7 @@ export default async function LessonPage({
       <header className="lesson-top">
         <Link href="/paths/from-zero" className="back-link">
           <ArrowLeft size={15} />
-          Старт с нуля
+          Курс Kali Linux
         </Link>
         <span>
           Урок {index + 1} из {lessons.length} · материалы на русском
@@ -60,6 +76,7 @@ export default async function LessonPage({
       <LessonWorkspace
         key={lessonId}
         lesson={publicLesson(lesson)}
+        previous={lessons[index - 1]?.id ?? null}
         next={lessons[index + 1]?.id ?? null}
         loggedIn={Boolean(user)}
         accepted={Boolean(user?.ethicsAcceptedAt)}
