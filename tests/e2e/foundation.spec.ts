@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { Client } from "pg";
 import { randomBytes, randomUUID } from "node:crypto";
-import course from "../../content/lessons/kali.json";
+import course from "../../content/lessons/kali.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
   { id: randomUUID(), role: "USER", name: "Test learner" },
