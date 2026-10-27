@@ -1,0 +1,6 @@
+2026-10-26T07:59:00Z INFO training_only=true application=portal-demo
+2026-10-26T08:00:00Z DEBUG database_url=postgresql://demo_user:DEMO_NOT_A_PASSWORD@db.training.invalid/demo
+2026-10-26T08:00:01Z DEBUG access_token=DEMO_NOT_A_TOKEN
+2026-10-26T08:03:00Z INFO Connecting to database
+2026-10-26T08:03:01Z INFO Connection established request_id=DEMO-REQ-81
+2026-10-26T08:04:00Z ERROR Connection failed reason=timeout request_id=DEMO-REQ-82

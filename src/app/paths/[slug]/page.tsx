@@ -19,6 +19,7 @@ export default async function PathPage({
   const path = paths.find((p) => p.slug === slug);
   if (!path) notFound();
   if (slug === "from-zero") return <StarterPath />;
+  if (slug === "blue-team") return <StarterPath pathId="blue-team" />;
   const locale = await getLocale(),
     t = copy[locale];
   return (

@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { Client } from "pg";
 import { randomBytes, randomUUID } from "node:crypto";
 import course from "../../content/lessons/kali.json" with { type: "json" };
+import company from "../../content/lessons/company.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
   { id: randomUUID(), role: "USER", name: "Test learner" },
@@ -81,6 +82,22 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     });
   expect(
     (
+      await submit(company[1].id, {
+        action: "check",
+        answer: company[1].answers[0],
+      })
+    ).status(),
+  ).toBe(423);
+  // The second path starts independently, even before completing any Kali lesson.
+  const firstCompany = await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit(company[0].id, { action: "check", answer: company[0].answers[0] }),
+    ),
+  );
+  for (const result of firstCompany)
+    expect((await result.json()).status).toBe("passed");
+  expect(
+    (
       await submit("kali-first-boot", { action: "check", answer: "normal" })
     ).status(),
   ).toBe(423);
@@ -142,8 +159,8 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
   try {
     await ownerDb.connect();
     const result = await ownerDb.query(
-      'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
-      [learner.id],
+      'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL AND "lessonId"=ANY($2::text[])',
+      [learner.id, course.map((lesson) => lesson.id)],
     );
     expect(result.rows[0]).toEqual({ count: 20, xp: 2100 });
     // Existing results stay in history; only active IDs count toward 20 current lessons.
@@ -154,14 +171,43 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
   } finally {
     await ownerDb.end();
   }
+  for (const lesson of company.slice(1)) {
+    const result = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await result.json()).status, lesson.id).toBe("passed");
+  }
+  const repeatedCompany = await submit(company[0].id, {
+    action: "check",
+    answer: company[0].answers[0],
+  });
+  expect((await repeatedCompany.json()).already).toBe(true);
+  const progressDb = new Client({ connectionString: process.env.DIRECT_URL });
+  try {
+    await progressDb.connect();
+    const result = await progressDb.query(
+      'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
+      [learner.id],
+    );
+    expect(result.rows[0]).toEqual({ count: 33, xp: 3510 });
+  } finally {
+    await progressDb.end();
+  }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("20/20");
-  await expect(page.locator(".learning-stats")).toContainText("2150");
+  await expect(page.locator(".learning-stats")).toContainText("32/32");
+  await expect(page.locator(".learning-stats")).toContainText("3510");
+  await expect(page.locator('[data-course="from-zero"]')).toContainText(
+    "20/20",
+  );
+  await expect(page.locator('[data-course="blue-team"]')).toContainText(
+    "12/12",
+  );
   await expect(
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("20/20");
+  await expect(page.locator(".learning-stats")).toContainText("32/32");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -202,9 +248,7 @@ test("public Kali guide has downloads, guest self-check, and no embedded termina
   await expect(
     page.getByText("Самопроверка пройдена", { exact: true }),
   ).toBeVisible();
-  await page
-    .getByRole("link", { name: "Следующий урок", exact: true })
-    .click();
+  await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
   await expect(page).toHaveURL(/kali-first-boot/);
   await page.goto("/learn/kali-install");
   await page.screenshot({
@@ -265,6 +309,69 @@ test("public Kali guide has downloads, guest self-check, and no embedded termina
   await page.goto("/learn/permission");
   await expect(page).toHaveURL(/kali-install/);
 });
+test("company path keeps its own lessons, downloads, source review and navigation", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/paths/blue-team");
+  await expect(
+    page.getByRole("heading", {
+      name: "Безопасность в компании: первая смена",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.locator(".course-lessons > a")).toHaveCount(12);
+  await expect(page.locator(".course-module")).toHaveCount(3);
+  await page.screenshot({
+    path: "test-results/public-company-desktop.png",
+    fullPage: true,
+  });
+  await page.goto("/sources/pocket-hacker");
+  await expect(page.locator(".source-lesson-list article")).toHaveCount(12);
+  await expect(page.locator(".source-index a")).toHaveCount(258);
+  await page.locator(".source-index summary").click();
+  await expect(
+    page.locator('.source-index a[href="https://t.me/PocketHackerOne/1"]'),
+  ).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/learn/company-final-case");
+  const next = page.getByRole("link", {
+    name: "Вернуться к программе",
+    exact: true,
+  });
+  await expect(next).toHaveAttribute("href", "/paths/blue-team");
+  await expect(page.locator(".guide-kit-link")).toHaveAttribute(
+    "href",
+    "/downloads/kairon-company-lab.zip",
+  );
+  await expect(
+    page.locator('a[href="/downloads/kairon-kali-lab.zip"]'),
+  ).toHaveCount(0);
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill(company.at(-1)!.answers[0]);
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-company-mobile.png",
+    fullPage: true,
+  });
+  await next.click();
+  await expect(page).toHaveURL(/paths\/blue-team/);
+  const zip = await page.request.get("/downloads/kairon-company-lab.zip");
+  expect(zip.status()).toBe(200);
+  expect((await zip.body()).subarray(0, 2).toString()).toBe("PK");
+});
+
 test("administrator role is accepted after credentials login", async ({
   page,
 }) => {

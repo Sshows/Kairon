@@ -1,0 +1,4 @@
+finding_id,asset,affected_version_confirmed,internet_exposed,business_criticality,cvss_base_demo,known_exploited_demo,epss_demo,next_step
+FIND-A,LAB-OFFLINE,yes,no,low,9.8,no,0.02,plan-test-window
+FIND-B,WEB-01,yes,yes,medium,8.1,yes,0.78,urgent-owner-review
+FIND-C,PAY-01,no,no,high,9.1,no,0.03,verify-version-first

@@ -1,5 +1,76 @@
 export const terms = [
   {
+    term: "Алерт / Alert",
+    ru: "Сигнал, что правило заметило подозрительное событие. Его нужно проверить; он ещё не доказывает атаку.",
+    en: "A signal that a rule detected something suspicious. It needs investigation and does not prove an attack.",
+    exampleRu:
+      "Пожарная сигнализация могла сработать из-за дыма от тоста. Сначала выясняем причину.",
+    exampleEn:
+      "A fire alarm may be triggered by burnt toast. Check the cause first.",
+  },
+  {
+    term: "Инцидент / Incident",
+    ru: "Событие или ситуация, которая нарушает безопасность либо требует реагирования по правилам организации.",
+    en: "An event or situation that compromises security or needs a response under an organization's procedures.",
+    exampleRu:
+      "Сигнал проверили и обнаружили, что посторонний получил доступ к рабочему аккаунту.",
+    exampleEn:
+      "An alert was checked and unauthorized access to a work account was found.",
+  },
+  {
+    term: "SIEM",
+    ru: "Система, которая собирает события из разных источников и помогает искать связи и создавать сигналы для проверки.",
+    en: "A system that collects events from different sources to help find relationships and raise alerts.",
+    exampleRu:
+      "Общая диспетчерская видит сообщения от нескольких зданий, а не только одной камеры.",
+    exampleEn:
+      "A shared control room receives signals from multiple buildings.",
+  },
+  {
+    term: "CVSS",
+    ru: "Метод описания технической тяжести уязвимости. Один балл не заменяет оценку риска для конкретной компании.",
+    en: "A method for describing vulnerability severity. A score alone is not the risk to a specific organization.",
+    exampleRu:
+      "Одинаковый дефект замка важнее на входе в хранилище, чем на двери пустой кладовки.",
+    exampleEn:
+      "The same lock defect matters more at a vault entrance than an empty closet.",
+  },
+  {
+    term: "EPSS",
+    ru: "Оценка вероятности эксплуатации уязвимости в ближайшие 30 дней по модели FIRST. Не вероятность взлома именно твоей компании.",
+    en: "FIRST's estimate of vulnerability exploitation probability over the next 30 days, not the probability of your company being breached.",
+    exampleRu:
+      "Прогноз помогает расставить очередь проверок, но не предсказывает судьбу отдельного сервера.",
+    exampleEn:
+      "A forecast helps prioritize reviews, without predicting a particular server's outcome.",
+  },
+  {
+    term: "KEV",
+    ru: "Каталог CISA с уязвимостями, эксплуатация которых уже наблюдалась. Полезный сигнал для очереди исправлений.",
+    en: "CISA's catalogue of vulnerabilities with observed exploitation, useful for patch prioritization.",
+    exampleRu:
+      "Есть сведения, что таким дефектом замка уже пользуются, а не только рассуждают о возможности.",
+    exampleEn:
+      "There is evidence that a lock defect is being used, not just discussed.",
+  },
+  {
+    term: "Минимальные права / Least privilege",
+    ru: "Человеку или программе дают только тот доступ, который нужен для согласованной задачи.",
+    en: "Give a person or program only the access required for an approved task.",
+    exampleRu:
+      "Для доставки посылки нужен вход в приёмную, а не ключи от всех кабинетов.",
+    exampleEn: "A delivery needs reception access, not keys to every office.",
+  },
+  {
+    term: "Ротация секрета / Secret rotation",
+    ru: "Замена ключа или пароля с прекращением действия прежнего. Стереть его из сообщения недостаточно.",
+    en: "Replace a key or password and invalidate the previous value. Erasing it from a message is not enough.",
+    exampleRu:
+      "Потерянный пропуск отключают и выдают новый, а не просто убирают его фотографию из чата.",
+    exampleEn:
+      "Disable a lost access badge and issue a new one, instead of just deleting its photo.",
+  },
+  {
     term: "IP",
     ru: "Адрес устройства в сети. По нему устройства находят друг друга.",
     en: "A device address on a network. Devices use it to find each other.",

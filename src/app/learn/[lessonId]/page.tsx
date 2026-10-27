@@ -3,7 +3,8 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft, Check, LockKeyhole } from "lucide-react";
 import { getCurrentUser } from "@/lib/access";
 import { getProgress, isUnlocked } from "@/lib/learning";
-import { getLesson, lessons, publicLesson, lessonIds } from "@/lib/lessons";
+import { getLesson, getCourseLessons, publicLesson } from "@/lib/lessons";
+import { getLearningPath } from "@/lib/learning-paths";
 import { LessonWorkspace } from "@/components/lesson-workspace";
 export default async function LessonPage({
   params,
@@ -27,6 +28,9 @@ export default async function LessonPage({
     permanentRedirect("/learn/" + legacyLessons[lessonId]);
   const lesson = getLesson(lessonId);
   if (!lesson) notFound();
+  const path = getLearningPath(lesson.pathId)!;
+  const lessons = getCourseLessons(lesson.pathId);
+  const lessonIds = new Set(lessons.map((item) => item.id));
   const user = await getCurrentUser();
   const progress = user ? await getProgress(user.id) : [];
   const completed = new Set(
@@ -39,9 +43,9 @@ export default async function LessonPage({
   return (
     <div className="learning-page">
       <header className="lesson-top">
-        <Link href="/paths/from-zero" className="back-link">
+        <Link href={"/paths/" + path.id} className="back-link">
           <ArrowLeft size={15} />
-          Курс Kali Linux
+          {path.name}
         </Link>
         <span>
           Урок {index + 1} из {lessons.length} · материалы на русском
@@ -76,6 +80,7 @@ export default async function LessonPage({
       <LessonWorkspace
         key={lessonId}
         lesson={publicLesson(lesson)}
+        path={path}
         previous={lessons[index - 1]?.id ?? null}
         next={lessons[index + 1]?.id ?? null}
         loggedIn={Boolean(user)}

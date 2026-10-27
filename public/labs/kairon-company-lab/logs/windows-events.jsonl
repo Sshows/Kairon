@@ -1,0 +1,8 @@
+{"record":"EV-01","time":"2026-10-26T08:10:00Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"198.51.100.42","logon_type":3,"outcome":"failure"}
+{"record":"EV-02","time":"2026-10-26T08:10:15Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"198.51.100.42","logon_type":3,"outcome":"failure"}
+{"record":"EV-03","time":"2026-10-26T08:10:30Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"198.51.100.42","logon_type":3,"outcome":"failure"}
+{"record":"EV-04","time":"2026-10-26T08:10:45Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"198.51.100.42","logon_type":3,"outcome":"failure"}
+{"record":"EV-05","time":"2026-10-26T08:11:00Z","host":"PAY-01","event_id":4624,"account":"payroll-demo","source_ip":"198.51.100.42","logon_type":3,"logon_id":"0xA41","outcome":"success"}
+{"record":"EV-06","time":"2026-10-26T08:11:20Z","host":"PAY-01","event_id":4688,"account":"payroll-demo","logon_id":"0xA41","process":"powershell.exe","command_line":"","note":"command-line audit disabled in fixture"}
+{"record":"EV-07","time":"2026-10-26T08:14:00Z","host":"BACKUP-01","event_id":4688,"account":"backup-demo","logon_id":"0xB88","process":"backup-demo.exe","command_line":"backup-demo.exe --profile nightly","note":"approved schedule fixture"}
+{"record":"EV-08","time":"2026-10-26T08:16:00Z","host":"WEB-01","event_id":4624,"account":"web-admin-demo","source_ip":"192.0.2.30","logon_type":3,"logon_id":"0xC90","outcome":"success"}

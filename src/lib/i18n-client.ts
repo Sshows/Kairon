@@ -35,14 +35,14 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "KALI LINUX · 20 УРОКОВ",
+    stage: "KALI + BLUE TEAM · 32 УРОКА",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
       "Запусти готовую Kali Linux и попробуй себя в расследовании. Подозрительные письма, следы входа, свой сайт и восстановление файлов — с понятными шагами.",
     heroAction: "Начать обучение",
     heroSecondary: "Как устроено обучение",
     programNote:
-      "Курс Kali Linux уже открыт: 20 уроков, установка готовой машины, Tor Browser и практические дела. Читай здесь, выполняй в своей Kali. Остальные направления готовятся.",
+      "Открыты два пути: Kali Linux — 20 уроков и «Безопасность в компании» — 12 дел. Читай здесь, выполняй в своей Kali. Новые темы выбраны после разбора канала «Карманный хакер».",
     freeStart: "ТВОЯ ТОЧКА ВХОДА В КИБЕРБЕЗОПАСНОСТЬ",
     learn: "Учебная платформа",
     roadmap: "От запуска Kali до расследования",
@@ -90,14 +90,14 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "KALI LINUX · 20 LESSONS",
+    stage: "KALI + BLUE TEAM · 32 LESSONS",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
       "Set up a ready-made Kali VM and investigate training cases: suspicious email, login traces, your own website, and file recovery.",
     heroAction: "Start learning",
     heroSecondary: "How learning works",
     programNote:
-      "The Kali course is open: 20 Russian guides, ready-made VM setup, Tor Browser, and practical cases in your own Kali. Other paths are being prepared.",
+      "Two paths are open: 20 Russian Kali guides and 12 company-security cases. Read here, practice in your own Kali. New topics follow a reviewed public Telegram source.",
     freeStart: "YOUR START IN CYBERSECURITY",
     learn: "Learning platform",
     roadmap: "From Kali setup to investigation",

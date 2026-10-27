@@ -1,0 +1,5 @@
+EXERCISE B. ACTOR=alice-demo. STATIC EVIDENCE.
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"status":"access_denied","message":"Учебный отказ без содержимого чужого заказа"}

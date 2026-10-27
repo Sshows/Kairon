@@ -123,6 +123,25 @@ export default function ResourcesPage() {
           </a>
         </div>
       </section>
+      <section className="resource-feature">
+        <BookOpen size={25} />
+        <div>
+          <h2>«Карманный хакер»: темы для работы в компании</h2>
+          <p>
+            Изучили доступную текстовую историю канала. На её темы подготовлен
+            отдельный курс с собственными учебными данными. На странице разбора
+            есть ссылки на посты, первичные источники и ограничения просмотра.
+          </p>
+          <Link href="/sources/pocket-hacker" className="subtle-link">
+            Открыть разбор канала
+            <ArrowUpRight size={15} />
+          </Link>
+          <Link href="/paths/blue-team" className="subtle-link">
+            Перейти к 12 новым делам
+            <ArrowUpRight size={15} />
+          </Link>
+        </div>
+      </section>
       <h2 className="resources-heading">Нашли на GitHub</h2>
       <p className="program-note">
         Звёзды проверены 25 октября 2026 года и со временем меняются. Список

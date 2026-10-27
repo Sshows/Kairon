@@ -1,0 +1,4 @@
+EXERCISE A. ACTOR=alice-demo. STATIC EVIDENCE.
+GET /api/orders/105 HTTP/1.1
+Host: training.invalid
+Cookie: session=[DEMO_SESSION_NOT_VALID]

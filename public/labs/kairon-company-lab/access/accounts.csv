@@ -1,0 +1,5 @@
+account,employment_status,required_role,current_role,active_sessions,api_tokens
+sales-demo,active,sales-reader,sales-reader,1,0
+temp-demo,left,none,portal-admin,2,1
+backup-demo,service,backup-writer,backup-writer,1,0
+auditor-demo,active,audit-reader,portal-admin,1,0

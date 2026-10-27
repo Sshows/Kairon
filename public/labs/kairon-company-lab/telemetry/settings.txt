@@ -1,0 +1,10 @@
+Учебный снимок настроек PAY-01 на 2026-10-26T08:00:00Z.
+Audit Process Creation: enabled
+Include command line in process creation events: disabled
+PowerShell Script Block Logging: disabled
+Collector heartbeat: healthy
+Collector source: shortened-demo-export
+
+В наборе есть EV-06 с event_id=4688, но command_line пуст.
+Событий 4104 в учебной выгрузке нет.
+Настройки приведены для анализа; менять Windows ученика не требуется.

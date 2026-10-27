@@ -72,6 +72,10 @@ export function Shell({
               <BookOpen size={18} />
               {locale === "ru" ? "Книги и проекты" : "Books & projects"}
             </Link>
+            <Link href="/sources/pocket-hacker" className="nav-link">
+              <ShieldCheck size={18} />
+              {locale === "ru" ? "Разбор источника" : "Source review"}
+            </Link>
             <Link href="/glossary" className="nav-link">
               <BookOpen size={18} />
               {t.glossary}
@@ -93,7 +97,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <span className="status-dot" />
           <span>{t.foundation}</span>
-          <span className="mono">v0.3</span>
+          <span className="mono">v0.4</span>
         </div>
       </aside>
       <div className="main-shell">

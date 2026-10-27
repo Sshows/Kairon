@@ -9,10 +9,19 @@ import {
 } from "lucide-react";
 import { getCurrentUser } from "@/lib/access";
 import { getProgress, isUnlocked } from "@/lib/learning";
-import { lessons, lessonIds, courseModules } from "@/lib/lessons";
+import { getCourseLessons, getCourseModules } from "@/lib/lessons";
+import { getLearningPath, type LearningPathId } from "@/lib/learning-paths";
 import { Button } from "./ui/button";
 
-export async function StarterPath() {
+export async function StarterPath({
+  pathId = "from-zero",
+}: {
+  pathId?: LearningPathId;
+}) {
+  const path = getLearningPath(pathId)!;
+  const lessons = getCourseLessons(pathId);
+  const courseModules = getCourseModules(pathId);
+  const lessonIds = new Set(lessons.map((lesson) => lesson.id));
   const user = await getCurrentUser();
   const progress = user ? await getProgress(user.id) : [];
   const completed = new Set(
@@ -28,13 +37,11 @@ export async function StarterPath() {
         <ArrowLeft size={16} />
         Все направления
       </Link>
-      <span className="eyebrow">PATH 00 · KALI LINUX</span>
-      <h1>Kali Linux: от запуска до расследования</h1>
-      <p className="lead">
-        Сначала запустим готовую виртуальную машину. Потом разберём
-        подозрительное письмо, найдём следы входа, проверим свой сайт и
-        восстановим файлы. Всё объясняем с нуля, на простых примерах.
-      </p>
+      <span className="eyebrow">
+        PATH {path.number} · {path.name}
+      </span>
+      <h1>{path.title}</h1>
+      <p className="lead">{path.description}</p>
       <div className="course-summary">
         <span>
           <Monitor size={18} />
@@ -42,16 +49,14 @@ export async function StarterPath() {
         </span>
         <span>
           <BookOpen size={18} />
-          {lessons.length} уроков · 4 уровня
+          {lessons.length} уроков · {courseModules.length} уровня
         </span>
         <span>До {lessons.reduce((sum, lesson) => sum + lesson.xp, 0)} XP</span>
       </div>
       <div className="course-actions">
         <Button asChild>
           <Link href={`/learn/${next.id}`}>
-            {completed.size
-              ? "Продолжить обучение"
-              : "Установить и запустить Kali"}
+            {completed.size ? "Продолжить обучение" : path.startLabel}
             <ArrowRight size={17} />
           </Link>
         </Button>
@@ -65,7 +70,7 @@ export async function StarterPath() {
             Пройдено {completed.size} из {lessons.length}
           </span>
           <progress
-            aria-label="Прогресс курса Kali"
+            aria-label={"Прогресс: " + path.name}
             value={completed.size}
             max={lessons.length}
           />
@@ -76,6 +81,25 @@ export async function StarterPath() {
         нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
         медленнее и повторять шаги.
       </p>
+      {pathId === "blue-team" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Темы подсказаны открытыми публикациями «Карманного хакера».
+              Объяснения и учебные дела написаны для Kairon; технические правила
+              проверены по документации.
+            </p>
+            <Link href="/sources/pocket-hacker" className="subtle-link">
+              Что проверили в канале →
+            </Link>
+            <p>
+              Начать можно независимо от курса Kali. Для практики распакуй
+              отдельный набор из первого урока.
+            </p>
+          </div>
+        </section>
+      )}
       <div className="course-jump-links" aria-label="Уровни курса">
         {courseModules.map((module, index) => (
           <a href={`#level-${index + 1}`} key={module}>

@@ -1,0 +1,5 @@
+action_id,action,approval,reason
+ACT-A,delete-all-logs,none,destroys-evidence
+ACT-B,shutdown-payroll-immediately-by-junior,none,outside-role
+ACT-C,escalate-to-incident-lead-and-preserve-evidence,incident-lead,unexpected-login-confirmed-by-owner
+ACT-D,upload-whole-case-to-public-scanner,none,discloses-internal-data

@@ -4,7 +4,8 @@ import { requireUser } from "@/lib/access";
 import { getLocale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { getProgress } from "@/lib/learning";
-import { lessons, lessonIds } from "@/lib/lessons";
+import { lessons, lessonIds, getCourseLessons } from "@/lib/lessons";
+import { learningPaths } from "@/lib/learning-paths";
 export const metadata = { title: "Профиль" };
 export default async function Profile() {
   const user = await requireUser(),
@@ -71,19 +72,61 @@ export default async function Profile() {
             <strong>
               {Math.round((completed.size / lessons.length) * 100)}%
             </strong>
-            <span>курс Kali Linux</span>
+            <span>оба учебных пути</span>
           </article>
         </div>
         <progress max={lessons.length} value={completed.size} />
         {completed.size === lessons.length && (
-          <p className="course-award">🏅 Курс Kali Linux — путь завершён</p>
+          <p className="course-award">🏅 Оба учебных пути завершены</p>
         )}
+      </section>
+      <section
+        className="profile-courses"
+        aria-label="Прогресс по направлениям"
+      >
+        {learningPaths.map((path) => {
+          const course = getCourseLessons(path.id);
+          const finished = course.filter((lesson) =>
+            completed.has(lesson.id),
+          ).length;
+          const pending = course.find((lesson) => !completed.has(lesson.id));
+          return (
+            <article
+              className="profile-course"
+              data-course={path.id}
+              key={path.id}
+            >
+              <span className="eyebrow">PATH {path.number}</span>
+              <h2>{path.name}</h2>
+              <p>
+                <strong>
+                  {finished}/{course.length}
+                </strong>{" "}
+                уроков завершено
+              </p>
+              <progress
+                aria-label={"Прогресс: " + path.name}
+                value={finished}
+                max={course.length}
+              />
+              {finished === course.length && (
+                <p className="course-award">{path.completionLabel}</p>
+              )}
+              <Link
+                className="subtle-link"
+                href={pending ? "/learn/" + pending.id : "/paths/" + path.id}
+              >
+                {pending ? "Продолжить этот путь →" : "Открыть программу →"}
+              </Link>
+            </article>
+          );
+        })}
       </section>
       {progress.some(
         (item) => item.completedAt && !lessonIds.has(item.lessonId),
       ) && (
         <p className="program-note">
-          XP за прежние уроки сохранены в общем счёте. Новый курс Kali
+          XP за прежние уроки сохранены в общем счёте. Каждый текущий курс
           учитывается отдельно: старые ответы не заменяют новые задания.
         </p>
       )}
@@ -93,10 +136,10 @@ export default async function Profile() {
           {locale === "ru"
             ? next
               ? "Продолжим практику?"
-              : "Первый путь завершён"
+              : "Оба пути завершены"
             : next
               ? "Continue your practice"
-              : "First path completed"}
+              : "Both paths completed"}
         </h2>
         <p>
           {locale === "ru"

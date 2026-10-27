@@ -1,0 +1,7 @@
+{"record":"FIN-01","time":"2026-10-27T06:50:00Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"203.0.113.62","outcome":"failure"}
+{"record":"FIN-02","time":"2026-10-27T06:50:20Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"203.0.113.62","outcome":"failure"}
+{"record":"FIN-03","time":"2026-10-27T06:50:40Z","host":"PAY-01","event_id":4625,"account":"payroll-demo","source_ip":"203.0.113.62","outcome":"failure"}
+{"record":"FIN-04","time":"2026-10-27T06:51:00Z","host":"PAY-01","event_id":4624,"account":"payroll-demo","source_ip":"203.0.113.62","logon_id":"0xF41","outcome":"success"}
+{"record":"FIN-05","time":"2026-10-27T06:51:20Z","host":"PAY-01","event_id":4688,"account":"payroll-demo","logon_id":"0xF41","process":"powershell.exe","command_line":""}
+{"record":"FIN-06","time":"2026-10-27T06:52:00Z","host":"PAY-01","event":"business-owner-check","owner":"finance","response":"login-not-expected"}
+{"record":"FIN-07","time":"2026-10-27T06:53:00Z","host":"BACKUP-01","event":"backup-check","response":"last-restore-test-passed-in-training"}

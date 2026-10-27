@@ -1,0 +1,5 @@
+asset,role,business_owner,technical_owner,internet_access,criticality
+PAY-01,payroll,finance,it-ops,no,high
+WEB-01,public-portal,customer-service,web-team,yes,medium
+BACKUP-01,backup-storage,it-ops,it-ops,no,high
+WS-17,employee-laptop,sales,helpdesk,no,medium

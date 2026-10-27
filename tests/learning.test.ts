@@ -1,14 +1,26 @@
 import { describe, expect, it } from "vitest";
 import { checkLesson } from "../src/lib/lesson-checks";
-import { lessons, publicLesson, courseModules } from "../src/lib/lessons";
+import {
+  lessons,
+  publicLesson,
+  getCourseLessons,
+  getCourseModules,
+} from "../src/lib/lessons";
+import audit from "../content/source-audits/pocket-hacker.json";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("publishes twenty independent guides across four levels", () => {
-    expect(lessons).toHaveLength(20);
-    expect(courseModules).toHaveLength(4);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(20);
-    expect(lessons.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
+    expect(lessons).toHaveLength(32);
+    const kali = getCourseLessons("from-zero");
+    const company = getCourseLessons("blue-team");
+    expect(kali).toHaveLength(20);
+    expect(company).toHaveLength(12);
+    expect(getCourseModules("from-zero")).toHaveLength(4);
+    expect(getCourseModules("blue-team")).toHaveLength(3);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(32);
+    expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
+    expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     for (const lesson of lessons) {
       expect(lesson.theory.length, lesson.id).toBeGreaterThan(1000);
       expect(lesson.checklist).toHaveLength(3);
@@ -46,8 +58,49 @@ describe("Kali guides and answer checks", () => {
     expect(
       isUnlocked(
         "final-case",
-        new Set(lessons.slice(0, -1).map((lesson) => lesson.id)),
+        new Set(
+          getCourseLessons("from-zero")
+            .slice(0, -1)
+            .map((lesson) => lesson.id),
+        ),
       ),
     ).toBe(true);
+    expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
+    expect(isUnlocked("soc-login-chain", new Set(["kali-install"]))).toBe(
+      false,
+    );
+    expect(isUnlocked("soc-login-chain", new Set(["soc-first-shift"]))).toBe(
+      true,
+    );
+    expect(
+      isUnlocked(
+        "company-final-case",
+        new Set(getCourseLessons("from-zero").map((lesson) => lesson.id)),
+      ),
+    ).toBe(false);
+    expect(
+      isUnlocked(
+        "company-final-case",
+        new Set(
+          getCourseLessons("blue-team")
+            .slice(0, -1)
+            .map((lesson) => lesson.id),
+        ),
+      ),
+    ).toBe(true);
+  });
+  it("records all public source IDs without mirroring channel message bodies", () => {
+    expect(audit.public_post_count).toBe(258);
+    expect(audit.posts).toHaveLength(258);
+    expect(new Set(audit.posts.map((post) => post.id)).size).toBe(258);
+    expect(audit.reached_public_history_start).toBe(true);
+    expect(audit.readable_text_posts + audit.media_only_posts).toBe(258);
+    for (const post of audit.posts) expect(post).not.toHaveProperty("text");
+    for (const lesson of getCourseLessons("blue-team"))
+      expect(
+        lesson.resources.some((source) =>
+          source.url.startsWith("https://t.me/PocketHackerOne/"),
+        ),
+      ).toBe(true);
   });
 });

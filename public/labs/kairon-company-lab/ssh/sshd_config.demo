@@ -1,0 +1,10 @@
+# STATIC TRAINING FILE. Never install into /etc/ssh.
+# No Include or Match blocks in this simplified exercise.
+PubkeyAuthentication yes
+PasswordAuthentication yes
+PasswordAuthentication no
+KbdInteractiveAuthentication yes
+PermitRootLogin no
+
+# Review only. A real system may have Include, Match, PAM and other providers.
+# AuthenticationMethods and MFA policy must be reviewed before changes.

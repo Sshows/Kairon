@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"order_id":104,"owner":"alice-demo","item":"TRAINING_NOTEBOOK","total_demo":30}

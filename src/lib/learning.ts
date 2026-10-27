@@ -1,7 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { withUser } from "./db";
-import { lessons } from "./lessons";
+import { getCourseLessons, getLesson } from "./lessons";
 export async function getProgress(userId: string) {
   return withUser(userId, (tx) =>
     tx.lessonProgress.findMany({
@@ -16,10 +16,11 @@ export async function getProgress(userId: string) {
   );
 }
 export function isUnlocked(lessonId: string, completed: Set<string>) {
-  const index = lessons.findIndex((l) => l.id === lessonId);
-  return (
-    index >= 0 && lessons.slice(0, index).every((l) => completed.has(l.id))
-  );
+  const lesson = getLesson(lessonId);
+  if (!lesson) return false;
+  const course = getCourseLessons(lesson.pathId);
+  const index = course.findIndex((l) => l.id === lessonId);
+  return index >= 0 && course.slice(0, index).every((l) => completed.has(l.id));
 }
 export async function updateLearning(
   userId: string,
@@ -27,7 +28,7 @@ export async function updateLearning(
   action: "hint" | "check",
   correct: boolean,
 ) {
-  const lesson = lessons.find((l) => l.id === lessonId);
+  const lesson = getLesson(lessonId);
   if (!lesson) throw new Error("Unknown lesson");
   return withUser(userId, async (tx) => {
     // Сериализация по ученику: параллельные проверки не открывают уроки раньше времени и не удваивают XP.

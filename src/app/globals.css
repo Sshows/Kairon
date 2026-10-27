@@ -2095,6 +2095,173 @@ progress::-webkit-progress-value {
 [data-slot="button"][data-variant="default"] {
   color: #101709;
 }
+.profile-courses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+.profile-course {
+  padding: 25px;
+  border: 1px solid #3c5031;
+  border-radius: 12px;
+  background: #192416;
+  min-width: 0;
+}
+.profile-course h2 {
+  font-size: 22px;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+.profile-course p {
+  font-size: 13px;
+  color: #b7cda4;
+  line-height: 1.8;
+  margin: 14px 0;
+}
+.profile-course .subtle-link {
+  margin-top: 20px;
+}
+.source-course-note {
+  align-items: flex-start;
+  margin: 28px 0;
+}
+.source-course-note p {
+  font-size: 13px;
+  line-height: 1.9;
+}
+.source-course-note > svg {
+  flex-shrink: 0;
+}
+.source-review-page .lead a {
+  color: #c5f277;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+.source-review-page .lead svg {
+  display: inline;
+  margin-left: 5px;
+}
+.source-review-page .notice {
+  align-items: flex-start;
+  margin: 28px 0;
+}
+.source-review-page .notice > svg {
+  flex-shrink: 0;
+}
+.source-review-page .notice h2 {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+.source-review-page .notice p {
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 10px;
+}
+.source-lesson-list {
+  display: grid;
+  gap: 13px;
+  margin: 25px 0;
+}
+.source-lesson-list article {
+  border: 1px solid #34472c;
+  border-radius: 9px;
+  padding: 22px;
+}
+.source-lesson-list h3 {
+  font-size: 17px;
+  color: #d5e9c1;
+  line-height: 1.7;
+}
+.source-lesson-list h3 a {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+}
+.source-lesson-list p {
+  color: #aabe9a;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 12px 0;
+}
+.source-post-links,
+.source-check-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+.source-post-links a,
+.source-check-links a {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: #bfd7a8;
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.source-review-page .resource-list h3 {
+  color: #d7e9c6;
+  font-size: 17px;
+  line-height: 1.7;
+}
+.source-index {
+  border: 1px solid #3f5234;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 30px 0;
+}
+.source-index summary {
+  cursor: pointer;
+  color: #c8e6a8;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.source-index > p {
+  color: #a7bc96;
+  margin: 20px 0;
+  font-size: 12px;
+  line-height: 1.9;
+}
+.source-index-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 20px;
+  margin-top: 22px;
+}
+.source-index-grid a {
+  display: grid;
+  grid-template-columns: 35px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid #314329;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #b4cda0;
+}
+.source-index-grid a > span:first-child {
+  font-family: monospace;
+  color: #94ae7e;
+}
+.source-index-grid small {
+  grid-column: 2;
+  color: #899d79;
+}
+@media (max-width: 650px) {
+  .profile-courses,
+  .source-index-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .source-review-stats strong {
+    font-size: 23px;
+  }
+  .source-lesson-list article {
+    padding: 18px 15px;
+  }
+}
 .guide-layout {
   display: grid;
   grid-template-columns: minmax(0, 800px) minmax(245px, 300px);

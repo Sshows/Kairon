@@ -15,10 +15,12 @@ import {
   Monitor,
 } from "lucide-react";
 import type { PublicLesson } from "@/lib/lessons";
+import type { learningPaths } from "@/lib/learning-paths";
 import { Button } from "./ui/button";
 
 export function LessonWorkspace({
   lesson,
+  path,
   previous,
   next,
   loggedIn,
@@ -29,6 +31,7 @@ export function LessonWorkspace({
   unlocked,
 }: {
   lesson: PublicLesson;
+  path: (typeof learningPaths)[number];
   previous: string | null;
   next: string | null;
   loggedIn: boolean;
@@ -122,13 +125,9 @@ export function LessonWorkspace({
           ))}
         </div>
         {lesson.kit && (
-          <a
-            className="guide-kit-link"
-            href="/downloads/kairon-kali-lab.zip"
-            download
-          >
+          <a className="guide-kit-link" href={path.kit.url} download>
             <Download size={17} />
-            Скачать учебный набор для Kali
+            {path.kit.label}
           </a>
         )}
         <div className="lesson-markdown">
@@ -282,12 +281,12 @@ export function LessonWorkspace({
               Предыдущий урок
             </Link>
           ) : (
-            <Link href="/paths/from-zero" className="subtle-link">
+            <Link href={"/paths/" + path.id} className="subtle-link">
               Вся программа
             </Link>
           )}
           <Button asChild>
-            <Link href={next ? `/learn/${next}` : "/paths/from-zero"}>
+            <Link href={next ? `/learn/${next}` : "/paths/" + path.id}>
               {next ? "Следующий урок" : "Вернуться к программе"}
               <ArrowRight size={16} />
             </Link>
@@ -323,16 +322,16 @@ export function LessonWorkspace({
           <section className="guide-download">
             <Download size={22} />
             <h2>Файлы для практики</h2>
-            <p>
-              Учебные письма, логи, документы и маленький локальный сайт. Без
-              настоящих вирусов. Распакуй архив в своей Kali.
-            </p>
+            <p>{path.kit.description}</p>
             <Button asChild variant="outline">
-              <a href="/downloads/kairon-kali-lab.zip" download>
+              <a href={path.kit.url} download>
                 Скачать учебный набор
               </a>
             </Button>
-            <Link className="subtle-link" href="/learn/lab-files">
+            <Link
+              className="subtle-link"
+              href={"/learn/" + path.kit.setupLesson}
+            >
               Как открыть набор →
             </Link>
           </section>

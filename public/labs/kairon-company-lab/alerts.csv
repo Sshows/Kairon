@@ -1,0 +1,3 @@
+alert_id,time,host,rule,account,related_record
+ALERT-01,2026-10-26T08:11:01Z,PAY-01,repeated-failures-then-success,payroll-demo,EV-05
+ALERT-02,2026-10-26T08:14:01Z,BACKUP-01,new-backup-process,backup-demo,EV-07
