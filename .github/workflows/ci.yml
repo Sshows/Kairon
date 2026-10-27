@@ -8,7 +8,7 @@ permissions:
   contents: read
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     services:
       postgres:
@@ -48,8 +48,11 @@ jobs:
       - run: npm run db:provision
       - run: npm run db:check
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - name: Browser provided by GitHub runner
+        run: google-chrome --version
       - run: npm run test:e2e
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
       - name: Public UI screenshots
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

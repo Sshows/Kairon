@@ -7,7 +7,11 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: "list",
-  use: { baseURL: "http://localhost:3000", trace: "off" },
+  use: {
+    baseURL: "http://localhost:3000",
+    trace: "off",
+    channel: process.env.PLAYWRIGHT_CHANNEL || undefined,
+  },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
     command: "npm run start",
