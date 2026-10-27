@@ -13,5 +13,7 @@ src/generated/
 !public/labs/**/*.log
 .DS_Store
 work/
+!public/labs/kairon-company-lab/recovery/work/
+!public/labs/kairon-company-lab/recovery/work/contacts.csv
 .neon
 .neon.env

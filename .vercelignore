@@ -6,3 +6,5 @@
 test-results/
 playwright-report/
 work/
+!public/labs/kairon-company-lab/recovery/work/
+!public/labs/kairon-company-lab/recovery/work/contacts.csv
