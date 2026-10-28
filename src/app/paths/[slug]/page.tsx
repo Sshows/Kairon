@@ -18,6 +18,7 @@ export default async function PathPage({
   const { slug } = await params;
   const path = paths.find((p) => p.slug === slug);
   if (!path) notFound();
+  if (slug === "diagnostics") return <StarterPath pathId="diagnostics" />;
   if (slug === "file-analysis") return <StarterPath pathId="file-analysis" />;
   if (slug === "security-basics")
     return <StarterPath pathId="security-basics" />;

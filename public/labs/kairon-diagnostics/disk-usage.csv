@@ -1,0 +1,4 @@
+observation_id,time_utc,node,path,allocated_bytes,kind,note
+du-1,2026-10-28T10:06:00Z,portal-node,/var/log/portal,1688207360,directory_total,Включает дочерний access.txt; не складывать со строкой du-2
+du-2,2026-10-28T10:06:00Z,portal-node,/var/log/portal/access.txt,1610612736,file,Крупный журнал; размер сам по себе не доказывает причину 503
+du-3,2026-10-28T10:06:00Z,archive-node,/archive/tiny-records,2147483648,directory_total,Много небольших файлов; в capacity-snapshots у этого узла закончились свободные inode

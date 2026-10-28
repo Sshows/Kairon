@@ -1,0 +1,27 @@
+Kairon DIAG-28. Сохранённые вымышленные наблюдения; это не команды.
+snapshot_time_utc=2026-10-28T10:05:00Z
+client=Kali
+
+snapshot_id=dns-good
+query_name=portal.example
+query_type=A
+dns_status=NOERROR
+answer=portal.example. 300 IN A 192.0.2.28
+http_observation=GET https://portal.example/orders -> HTTP 503; request_id REQ-28
+interpretation=Для данного запроса имя разрешилось; ошибка страницы требует дальнейшего разбора.
+
+snapshot_id=dns-typo
+query_name=portal.exmaple
+query_type=A
+dns_status=NXDOMAIN
+answer=none
+http_observation=HTTP-ответ не получен; имя в запросе отличается от portal.example
+interpretation=Сначала сверить точное имя с карточкой; не менять настройки DNS наугад.
+
+snapshot_id=dns-nodata
+query_name=portal.example
+query_type=AAAA
+dns_status=NOERROR
+answer=none
+http_observation=Не проверялся этим наблюдением
+interpretation=Отсутствие записи выбранного типа не равно NXDOMAIN; A имеется в dns-good.

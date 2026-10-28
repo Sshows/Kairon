@@ -1,0 +1,5 @@
+# Собственный формат Kairon. UTC. Это вымышленные строки шлюза; не стандартный журнал nginx.
+2026-10-28T10:04:59Z request_id=REQ-27 client=Kali-Firefox method=GET path=/ status=200 node=portal-node config=cfg-41
+2026-10-28T10:05:00Z request_id=REQ-28 client=Kali-Firefox method=GET path=/orders status=503 node=portal-node config=cfg-41
+2026-10-28T10:05:05Z request_id=REQ-29 client=Kali-Firefox method=GET path=/missing-page status=404 node=portal-node config=cfg-41
+2026-10-28T10:05:08Z request_id=REQ-30 client=Kali-Firefox method=GET path=/help status=200 node=portal-node config=cfg-41

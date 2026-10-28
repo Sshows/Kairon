@@ -81,6 +81,21 @@ export async function StarterPath({
         нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
         медленнее и повторять шаги.
       </p>
+      {pathId === "diagnostics" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Темы выбраны после разбора Awesome-Hacking и The Book of Secret
+              Knowledge. Учебное дело и файлы написаны для Kairon. Сначала
+              учимся понимать наблюдения, затем выбираем подходящий справочник.
+            </p>
+            <Link href="/collections" className="subtle-link">
+              Подборки с примерами и объяснениями →
+            </Link>
+          </div>
+        </section>
+      )}
       {pathId === "file-analysis" && (
         <section className="notice source-course-note">
           <BookOpen size={20} />

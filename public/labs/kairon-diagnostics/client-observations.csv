@@ -1,0 +1,4 @@
+observation_id,time_utc,client,request,observed_result,request_id,relation
+OBS-01,2026-10-28T10:03:00Z,Windows Edge,http://127.0.0.1:8000/,connection refused,none,Другой адрес; в Windows локального сервиса 8000 нет
+OBS-02,2026-10-28T10:05:00Z,Kali Firefox,https://portal.example/orders,HTTP 503 Service Unavailable,REQ-28,Основное обращение DIAG-28
+OBS-03,2026-10-28T10:05:05Z,Kali Firefox,https://portal.example/missing-page,HTTP 404 Not Found,REQ-29,Другая страница; не раздел заказов

@@ -1,0 +1,31 @@
+case_id=DIAG-28
+report_time_utc=2026-10-28T10:05:00Z
+reporter=сотрудник учебной компании
+message=Главная открывается; раздел заказов показывает Service Unavailable.
+target=https://portal.example/orders
+expected=HTTP 200 и текст Orders: 3 учебных заказа
+primary_observation=OBS-02
+scope=Чтение вымышленных сохранённых материалов Kairon; никаких запросов к настоящим системам.
+known=В OBS-02 клиент Kali Firefox получил HTTP 503 при GET /orders.
+unknown_at_intake=Сколько людей затронуто; когда началось; какая настройка ошибочна; не было ли других сбоев.
+time_note=Все времена UTC; Z означает UTC.
+
+[сохранённый снимок владельца стенда; не команда]
+snapshot_time_utc=2026-10-28T10:06:00Z
+node=portal-node
+gateway_config_revision=cfg-41
+gateway_orders_upstream=127.0.0.1:8081
+application_listener=127.0.0.1:8080
+application_local_check=GET /orders на 8080 дал HTTP 200 и ожидаемый учебный текст
+gateway_failure_policy=Отказ соединения с приложением отображается клиенту как HTTP 503
+comparison_listener=0.0.0.0:9000 в отдельной карточке scope-3; это не настройка portal-node
+
+[учебное действие владельца; уже произошло в сюжете]
+approved_change=change-b
+change_time_utc=2026-10-28T10:12:00Z
+before=cfg-41; upstream 127.0.0.1:8081
+after=cfg-42; upstream 127.0.0.1:8080
+review=Владелец подтвердил порт приложения; сохранена cfg-41; проверена копия cfg-42; изменено только назначение /orders.
+rollback_condition=Если повтор /orders не проходит либо появились новые ошибки; вернуть сохранённую cfg-41 по порядку владельца.
+verification_file=verification.csv
+limit=Одно успешное повторение не доказывает долгую стабильность или отсутствие других проблем.

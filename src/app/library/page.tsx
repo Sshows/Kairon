@@ -16,6 +16,22 @@ export default function LibraryPage() {
       </p>
       <section className="resource-feature">
         <div>
+          <h2>Большие подборки — по одной понятной теме</h2>
+          <p>
+            Разобрали Awesome-Hacking и The Book of Secret Knowledge: 96 тем с
+            объяснениями, примерами и ссылками на уроки. Для практики — новый
+            путь диагностики своего сервиса.
+          </p>
+          <Link href="/collections" className="subtle-link">
+            Выбрать тему из двух источников →
+          </Link>
+          <Link href="/paths/diagnostics" className="subtle-link">
+            Разобраться, почему сайт не открывается →
+          </Link>
+        </div>
+      </section>
+      <section className="resource-feature">
+        <div>
           <h2>Начни с разбора подозрительного файла</h2>
           <p>
             Тебе сообщили о странном вложении. Разберись, что известно, как

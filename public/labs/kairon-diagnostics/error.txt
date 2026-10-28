@@ -1,0 +1,3 @@
+# Собственный формат Kairon. UTC. Шлюз отображает upstream connection_refused как 503 по учебной политике.
+2026-10-28T10:05:00Z request_id=REQ-28 node=portal-node event=upstream_unavailable destination=127.0.0.1:8081 detail=connection_refused client_status=503 policy=map_upstream_failure_to_503
+2026-10-28T10:05:05Z request_id=REQ-29 node=portal-node event=route_not_found path=/missing-page client_status=404

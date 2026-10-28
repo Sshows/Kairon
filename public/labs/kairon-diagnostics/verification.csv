@@ -1,0 +1,4 @@
+check_id,time_utc,client,request,result,request_id,config,body_or_log,limit
+check-1,2026-10-28T10:13:00Z,Kali Firefox,GET https://portal.example/,HTTP 200,REQ-41,cfg-42,Главная страница,Эта страница работала и раньше; /orders не проверен
+check-2,2026-10-28T10:13:05Z,Kali Firefox,GET https://portal.example/orders,HTTP 200,REQ-42,cfg-42,Orders: 3 учебных заказа; для REQ-42 ошибки upstream нет,Подтверждено одно повторение нужного запроса; длительная стабильность ещё не проверена
+check-3,2026-10-28T10:13:08Z,Kali Firefox,GET https://portal.example/missing-page,HTTP 404,REQ-43,cfg-42,route_not_found,Другая страница; не опровергает результат /orders

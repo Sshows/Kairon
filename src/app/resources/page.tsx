@@ -62,6 +62,23 @@ export default function ResourcesPage() {
       <section className="resource-feature">
         <BookOpen size={25} />
         <div>
+          <h2>Awesome-Hacking и The Book of Secret Knowledge</h2>
+          <p>
+            Объяснили темы обеих подборок на примерах: от сетей и журналов до
+            устройства приложений. Добавили восемь уроков диагностики
+            вымышленного сервиса с отдельными файлами для Kali.
+          </p>
+          <Link href="/collections" className="subtle-link">
+            Открыть 96 тем с объяснениями →
+          </Link>
+          <Link href="/paths/diagnostics" className="subtle-link">
+            Перейти к практическим урокам →
+          </Link>
+        </div>
+      </section>
+      <section className="resource-feature">
+        <BookOpen size={25} />
+        <div>
           <h2>Разбор файлов и выбор инструментов</h2>
           <p>
             Изучили Malware Bible и справочник paulveillard/cybersecurity.

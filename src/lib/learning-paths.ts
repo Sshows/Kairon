@@ -3,9 +3,27 @@ export type LearningPathId =
   | "blue-team"
   | "kali-tools"
   | "security-basics"
-  | "file-analysis";
+  | "file-analysis"
+  | "diagnostics";
 
 export const learningPaths = [
+  {
+    id: "diagnostics",
+    number: "07",
+    name: "Диагностика своего сервиса",
+    title: "Сайт не открывается: разбираемся по шагам",
+    description:
+      "Научимся уточнять проблему, отличать ошибку DNS от ответа сайта и связывать записи журналов. На примере вымышленного сервиса проверим место на диске, выберем исправление и объясним, как проверить результат.",
+    startLabel: "Разобрать обращение",
+    completionLabel: "Диагностика своего сервиса — путь завершён",
+    kit: {
+      url: "/downloads/kairon-diagnostics.zip",
+      label: "Скачать набор: диагностика сервиса",
+      description:
+        "Сохранённые наблюдения, журналы и таблицы вымышленного сервиса. Распакуй в своей Kali: сервер, дополнительные программы и платные услуги не нужны.",
+      setupLesson: "diag-intake",
+    },
+  },
   {
     id: "security-basics",
     number: "05",

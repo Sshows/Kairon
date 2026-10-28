@@ -12,17 +12,23 @@ import studyPlan from "../content/study-plan.json";
 import jassicsPlan from "../content/source-audits/jassics-plan.json";
 import hamedPlan from "../content/source-audits/hamed-roadmap.json";
 import malwareBible from "../content/source-audits/malware-bible.json";
+import awesome from "../content/source-audits/awesome-hacking.json";
+import secret from "../content/source-audits/secret-knowledge.json";
 import paulCatalog from "../content/source-audits/paul-cybersecurity.json";
 import { directionLessons } from "../src/lib/study-plan";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
-  it("publishes twenty independent guides across four levels", () => {
-    expect(lessons).toHaveLength(60);
+  it("publishes six independent courses with stable lesson IDs", () => {
+    expect(lessons).toHaveLength(68);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
+    const diagnostics = getCourseLessons("diagnostics");
+    expect(diagnostics).toHaveLength(8);
+    expect(getCourseModules("diagnostics")).toHaveLength(2);
+    expect(diagnostics.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(800);
     const analysis = getCourseLessons("file-analysis");
     expect(kali).toHaveLength(20);
     expect(company).toHaveLength(12);
@@ -34,7 +40,7 @@ describe("Kali guides and answer checks", () => {
     expect(getCourseModules("kali-tools")).toHaveLength(2);
     expect(getCourseModules("security-basics")).toHaveLength(3);
     expect(getCourseModules("file-analysis")).toHaveLength(2);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(60);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(68);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
@@ -85,6 +91,9 @@ describe("Kali guides and answer checks", () => {
       ),
     ).toBe(true);
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
+    expect(isUnlocked("diag-intake", new Set())).toBe(true);
+    expect(isUnlocked("diag-scope", new Set(["analysis-intake"]))).toBe(false);
+    expect(isUnlocked("diag-scope", new Set(["diag-intake"]))).toBe(true);
     expect(isUnlocked("analysis-intake", new Set())).toBe(true);
     expect(
       isUnlocked(
@@ -207,5 +216,26 @@ describe("Kali guides and answer checks", () => {
       for (const section of source.sections)
         expect(section.sourceUrl).toContain(source.commit);
     }
+  });
+  it("maps all entries from both new sources to pinned references and valid lessons", () => {
+    expect(awesome.sections).toHaveLength(81);
+    expect(secret.sections).toHaveLength(15);
+    expect(awesome.commit).toBe("440486fd08b0a0d9ad9a041a0bb234dcdf65dee2");
+    expect(secret.commit).toBe("7d37069a361d3fd9f214480755f7969744e866fa");
+    const ids = new Set(lessons.map((lesson) => lesson.id));
+    for (const source of [awesome, secret]) {
+      expect(new Set(source.sections.map((section) => section.id)).size).toBe(
+        source.sections.length,
+      );
+      for (const section of source.sections) {
+        expect(section.sourceUrl, section.id).toContain(source.commit);
+        expect(section.example.length, section.id).toBeGreaterThan(50);
+        expect(section.lessonIds.length, section.id).toBeGreaterThan(0);
+        for (const id of section.lessonIds)
+          expect(ids.has(id), section.id + ": " + id).toBe(true);
+      }
+    }
+    for (const section of awesome.sections)
+      expect(section.resourceUrl).toMatch(/^https:\/\//);
   });
 });

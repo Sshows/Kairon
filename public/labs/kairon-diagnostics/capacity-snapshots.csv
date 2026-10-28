@@ -1,0 +1,3 @@
+snapshot_id,time_utc,node,mount,total_bytes,available_bytes,total_inodes,free_inodes,write_observation
+cap-portal,2026-10-28T10:06:00Z,portal-node,/,21474836480,9663676416,1310720,917504,Запись маленького файла прошла в сохранённой проверке
+cap-archive,2026-10-28T10:06:00Z,archive-node,/archive,107374182400,75161927680,1048576,0,Создание нового файла не удалось; No space left on device

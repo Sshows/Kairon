@@ -1,0 +1,5 @@
+observation_id,client_clock_utc,case_reference_time_utc,requested_name,certificate_names,not_before_utc,not_after_utc,saved_openssl_result,interpretation
+tls-good,2026-10-28T10:05:00Z,2026-10-28T10:05:00Z,portal.example,portal.example,2026-01-01T00:00:00Z,2027-01-01T00:00:00Z,verification OK,Проверки цепочки имени и срока прошли в этом сохранённом наблюдении
+tls-clock,2031-10-28T10:05:00Z,2026-10-28T10:05:00Z,portal.example,portal.example,2026-01-01T00:00:00Z,2027-01-01T00:00:00Z,certificate has expired,Часы этого клиента неверны; тот же сертификат в tls-good проходит проверку
+tls-name,2026-10-28T10:05:00Z,2026-10-28T10:05:00Z,portal.example,other.example,2026-01-01T00:00:00Z,2027-01-01T00:00:00Z,hostname mismatch,Имя назначения не совпадает с именем сертификата
+tls-expired,2026-10-28T10:05:00Z,2026-10-28T10:05:00Z,portal.example,portal.example,2025-01-01T00:00:00Z,2026-01-01T00:00:00Z,certificate has expired,Срок этой отдельной карточки закончился при правильных часах

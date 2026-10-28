@@ -13,6 +13,30 @@ export type Path = {
 };
 export const paths: Path[] = [
   {
+    slug: "diagnostics",
+    availableLessons: 8,
+    number: "07",
+    color: "amber",
+    category: "beginner",
+    icon: "tool",
+    title: {
+      ru: "Диагностика своего сервиса",
+      en: "Troubleshoot your service",
+    },
+    description: {
+      ru: "8 уроков: почему сайт не открывается, что говорят DNS, TLS и журналы, как проверить исправление и передать результат.",
+      en: "8 guides: identify a failure, read DNS, TLS and logs, check capacity, verify a fix and report the result.",
+    },
+    modules: {
+      ru: ["Находим слой проблемы", "Проверяем версию и передаём результат"],
+      en: [
+        "Locate the failing layer",
+        "Test a hypothesis and hand over findings",
+      ],
+    },
+    tags: ["Диагностика", "DNS", "TLS", "Журналы", "Troubleshooting"],
+  },
+  {
     slug: "file-analysis",
     availableLessons: 8,
     number: "06",

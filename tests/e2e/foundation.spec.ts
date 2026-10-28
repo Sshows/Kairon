@@ -5,6 +5,7 @@ import course from "../../content/lessons/kali.json" with { type: "json" };
 import company from "../../content/lessons/company.json" with { type: "json" };
 import projects from "../../content/lessons/projects.json" with { type: "json" };
 import basics from "../../content/lessons/basics.json" with { type: "json" };
+import diagnostics from "../../content/lessons/diagnostics.json" with { type: "json" };
 import analysis from "../../content/lessons/analysis.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
@@ -83,6 +84,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       headers: { Origin: "http://localhost:3000" },
       data: body,
     });
+  expect(
+    (
+      await submit(diagnostics[1].id, {
+        action: "check",
+        answer: diagnostics[1].answers[0],
+      })
+    ).status(),
+  ).toBe(423);
+  for (const response of await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit(diagnostics[0].id, {
+        action: "check",
+        answer: diagnostics[0].answers[0],
+      }),
+    ),
+  ))
+    expect((await response.json()).status).toBe("passed");
   expect(
     (
       await submit(analysis[1].id, {
@@ -251,6 +269,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       ).json()
     ).already,
   ).toBe(true);
+  for (const lesson of diagnostics.slice(1)) {
+    const response = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await response.json()).status, lesson.id).toBe("passed");
+  }
+  expect(
+    (
+      await (
+        await submit(diagnostics[0].id, {
+          action: "check",
+          answer: diagnostics[0].answers[0],
+        })
+      ).json()
+    ).already,
+  ).toBe(true);
   const progressDb = new Client({ connectionString: process.env.DIRECT_URL });
   for (const lesson of analysis.slice(1)) {
     const result = await submit(lesson.id, {
@@ -292,13 +327,16 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 61, xp: 6410 });
+    expect(result.rows[0]).toEqual({ count: 69, xp: 7210 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("60/60");
-  await expect(page.locator(".learning-stats")).toContainText("6410");
+  await expect(page.locator(".learning-stats")).toContainText("68/68");
+  await expect(page.locator(".learning-stats")).toContainText("7210");
+  await expect(page.locator('[data-course="diagnostics"]')).toContainText(
+    "8/8",
+  );
   await expect(page.locator('[data-course="file-analysis"]')).toContainText(
     "8/8",
   );
@@ -319,7 +357,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("60/60");
+  await expect(page.locator(".learning-stats")).toContainText("68/68");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -592,7 +630,7 @@ test("study map connects all directions and foundation lessons on mobile", async
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  await expect(page.locator(".path-card")).toHaveCount(7);
+  await expect(page.locator(".path-card")).toHaveCount(8);
   await page
     .getByRole("link", { name: "Начать обучение", exact: true })
     .click();
@@ -729,4 +767,97 @@ test("reference library and file investigation explain evidence without executab
   });
   await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
   await expect(page).toHaveURL(/analysis-filetype/);
+});
+
+test("knowledge collections connect both complete indexes to diagnostics practice", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/collections");
+  await expect(page.locator(".collection-card")).toHaveCount(96);
+  await page
+    .getByLabel("Источник", { exact: true })
+    .selectOption("awesome-hacking");
+  await expect(page.locator(".collection-card")).toHaveCount(81);
+  await page
+    .getByLabel("Источник", { exact: true })
+    .selectOption("secret-knowledge");
+  await expect(page.locator(".collection-card")).toHaveCount(15);
+  const title = (
+    await page.locator(".collection-card h2").first().innerText()
+  ).trim();
+  await page
+    .getByRole("searchbox", { name: "Найти тему в подборках" })
+    .fill(title);
+  await expect(page.locator(".collection-card")).toHaveCount(1);
+  await page
+    .getByRole("searchbox", { name: "Найти тему в подборках" })
+    .fill("");
+  await page.getByLabel("Источник", { exact: true }).selectOption("");
+  const links = await page
+    .locator(".collection-card h2 a")
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("href")!));
+  for (let offset = 0; offset < links.length; offset += 4)
+    for (const response of await Promise.all(
+      links.slice(offset, offset + 4).map((href) => page.request.get(href)),
+    ))
+      expect(response.status()).toBe(200);
+  await page.screenshot({
+    path: "test-results/public-collections-desktop.png",
+  });
+  await page.goto(links[0]);
+  await expect(page.locator(".study-example")).toContainText(/./);
+  expect(await page.locator(".study-lesson-links a").count()).toBeGreaterThan(
+    0,
+  );
+  for (const [source, count] of [
+    ["awesome-hacking", 81],
+    ["secret-knowledge", 15],
+  ] as const) {
+    await page.goto("/sources/" + source);
+    await expect(page.locator(".reference-source-grid article")).toHaveCount(
+      count,
+    );
+  }
+  await page.goto("/paths/diagnostics");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(8);
+  await expect(page.locator(".course-module")).toHaveCount(2);
+  const download = await page.request.get("/downloads/kairon-diagnostics.zip");
+  expect(download.status()).toBe(200);
+  expect((await download.body()).subarray(0, 2).toString()).toBe("PK");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/collections");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/learn/diag-intake");
+  await expect(page.locator(".guide-kit-link")).toHaveAttribute(
+    "href",
+    "/downloads/kairon-diagnostics.zip",
+  );
+  await expect(
+    page.getByLabel("Команда терминала", { exact: true }),
+  ).toHaveCount(0);
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill(diagnostics[0].answers[0]);
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-diagnostics-mobile.png",
+    fullPage: true,
+  });
+  await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
+  await expect(page).toHaveURL(/diag-scope/);
 });
