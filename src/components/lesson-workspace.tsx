@@ -17,6 +17,7 @@ import {
 import type { PublicLesson } from "@/lib/lessons";
 import type { learningPaths } from "@/lib/learning-paths";
 import { lessonSections } from "@/lib/lesson-outline";
+import { PracticeFolderHelp } from "./practice-folder-help";
 import { Button } from "./ui/button";
 
 export function LessonWorkspace({
@@ -131,6 +132,14 @@ export function LessonWorkspace({
             <Download size={17} />
             {path.kit.label}
           </a>
+        )}
+        {lesson.kit && (
+          <PracticeFolderHelp
+            folder={path.kit.url
+              .split("/")
+              .at(-1)!
+              .replace(/\.zip$/, "")}
+          />
         )}
         <details className="lesson-outline" open>
           <summary>Содержание урока</summary>

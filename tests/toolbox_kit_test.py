@@ -68,26 +68,29 @@ class ToolboxKit(unittest.TestCase):
         finally:
             conn.close()
 
-    def test_archive_contains_sixteen_original_files_and_no_generated_secrets(self):
+    def test_archive_contains_twenty_five_owned_files_and_no_generated_secrets(self):
         expected = {'README.md', 'READY.txt', 'service.py', 'web/index.html',
                     'data/order.txt', 'data/order-changed.txt', 'data/message.txt',
                     'data/message-changed.txt', 'data/wordlist.txt', 'data/demo.sha256',
                     'data/netcat-note.txt', 'data/hmac-message.txt',
                     'data/hmac-message-changed.txt', 'reference/tool-notes.txt',
-                    'reference/report-options.csv', 'reports/template.md'}
+                    'reference/report-options.csv', 'reports/template.md',
+                    'dns_server.py', 'data/http-response.json', 'data/paths.txt',
+                    'data/invoice.pdf.txt', 'data/reference-note.txt', 'data/metadata.png',
+                    'rules/demo-marker.yar', 'traffic/local-http.pcap', 'reference/toolbox-extra.md'}
         files = {p.relative_to(KIT).as_posix(): p for p in KIT.rglob('*')
                  if p.is_file() and '__pycache__' not in p.parts}
         self.assertEqual(set(files), expected)
         target = ROOT / 'public/downloads/kairon-toolbox.zip'
         manifest = json.loads(target.with_suffix('.json').read_text(encoding='utf-8'))
-        self.assertEqual(manifest['files'], 16)
+        self.assertEqual(manifest['files'], 25)
         self.assertEqual(manifest['sha256'], sha256(target.read_bytes()).hexdigest())
         with zipfile.ZipFile(target) as archive:
             self.assertEqual(set(archive.namelist()), {'kairon-toolbox/' + name for name in expected})
             for name, path in files.items():
-                path.read_text(encoding='utf-8')
+                if path.suffix not in {'.png', '.pcap'}: path.read_text(encoding='utf-8')
                 self.assertEqual(archive.read('kairon-toolbox/' + name), path.read_bytes())
-        self.assertNotIn('PRIVATE KEY', '\n'.join(p.read_text(encoding='utf-8') for p in files.values()))
+        self.assertNotIn('PRIVATE KEY', '\n'.join(p.read_text(encoding='utf-8') for p in files.values() if p.suffix not in {'.png', '.pcap'}))
 
     def test_owned_data_answers_and_final_report_match_the_evidence(self):
         self.assertEqual((KIT / 'data/order.txt').read_bytes(), 'Заказ: 28 коробок\n'.encode())

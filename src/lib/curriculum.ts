@@ -14,21 +14,42 @@ export type Path = {
 export const paths: Path[] = [
   {
     slug: "kali-practice",
-    availableLessons: 12,
+    availableLessons: 24,
     number: "08",
     color: "lime",
     category: "beginner",
     icon: "tool",
     title: { ru: "Инструменты Kali на практике", en: "Kali tools in practice" },
     description: {
-      ru: "12 уроков: как работают Nmap, Netcat, Hydra, Hashcat и OpenSSL. Свой локальный сервис, понятные команды и разбор вывода.",
-      en: "12 guides explaining Nmap, Netcat, Hydra, Hashcat and OpenSSL with a local service and original practice files.",
+      ru: "24 урока: от Nmap и OpenSSL до Burp Suite, своего DNS, трафика, метаданных, YARA и проверки путей сайта.",
+      en: "24 guides covering network tools, cryptography, HTTP, DNS, traffic, file metadata and local web checks.",
     },
     modules: {
-      ru: ["Сеть и проверка доступа", "Файлы, шифрование и итог"],
-      en: ["Network and access checks", "Files, cryptography and reporting"],
+      ru: [
+        "Сеть и проверка доступа",
+        "Файлы, шифрование и итог",
+        "Запросы, DNS и сетевой обмен",
+        "Файлы и автоматические проверки",
+      ],
+      en: [
+        "Network and access checks",
+        "Files, cryptography and reporting",
+        "Requests, DNS and network traffic",
+        "Files and automated checks",
+      ],
     },
-    tags: ["Nmap", "Netcat", "Hydra", "Hashcat", "OpenSSL", "Kali"],
+    tags: [
+      "Nmap",
+      "Netcat",
+      "Hydra",
+      "Hashcat",
+      "OpenSSL",
+      "Kali",
+      "Burp Suite",
+      "YARA",
+      "tcpdump",
+      "Gobuster",
+    ],
   },
   {
     slug: "diagnostics",

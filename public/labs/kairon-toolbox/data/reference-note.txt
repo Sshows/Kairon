@@ -1,0 +1,3 @@
+Harmless training note
+KAIRON-REVIEW-28
+The same marker appears in this ordinary reference text.

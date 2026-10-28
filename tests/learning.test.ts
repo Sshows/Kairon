@@ -15,6 +15,7 @@ import malwareBible from "../content/source-audits/malware-bible.json";
 import awesome from "../content/source-audits/awesome-hacking.json";
 import secret from "../content/source-audits/secret-knowledge.json";
 import labex from "../content/source-audits/labex-kali.json";
+import toolboxExtra from "../content/toolbox-extra.json";
 import toolbox from "../content/toolbox.json";
 import paulCatalog from "../content/source-audits/paul-cybersecurity.json";
 import { directionLessons } from "../src/lib/study-plan";
@@ -22,15 +23,15 @@ import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("publishes seven independent courses with stable lesson IDs", () => {
-    expect(lessons).toHaveLength(80);
+    expect(lessons).toHaveLength(92);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
     const practice = getCourseLessons("kali-practice");
-    expect(practice).toHaveLength(12);
-    expect(getCourseModules("kali-practice")).toHaveLength(2);
-    expect(practice.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1200);
+    expect(practice).toHaveLength(24);
+    expect(getCourseModules("kali-practice")).toHaveLength(4);
+    expect(practice.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2400);
     const diagnostics = getCourseLessons("diagnostics");
     expect(diagnostics).toHaveLength(8);
     expect(getCourseModules("diagnostics")).toHaveLength(2);
@@ -46,7 +47,7 @@ describe("Kali guides and answer checks", () => {
     expect(getCourseModules("kali-tools")).toHaveLength(2);
     expect(getCourseModules("security-basics")).toHaveLength(3);
     expect(getCourseModules("file-analysis")).toHaveLength(2);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(80);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(92);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
@@ -269,5 +270,28 @@ describe("Kali guides and answer checks", () => {
       for (const id of tool.lessonIds)
         expect(ids.has(id), tool.id + ": " + id).toBe(true);
     }
+  });
+  it("connects twelve additional tool guides to ordered, substantial practice", () => {
+    expect(toolboxExtra.tools).toHaveLength(12);
+    const allTools = [...toolbox.tools, ...toolboxExtra.tools];
+    expect(new Set(allTools.map((tool) => tool.id)).size).toBe(19);
+    const ids = new Set(lessons.map((lesson) => lesson.id));
+    for (const tool of toolboxExtra.tools) {
+      expect(tool.howItWorks.length, tool.id).toBeGreaterThan(100);
+      expect(tool.resources.length, tool.id).toBeGreaterThan(0);
+      for (const id of tool.lessonIds)
+        expect(ids.has(id), tool.id + ": " + id).toBe(true);
+    }
+    const previousTwelve = getCourseLessons("kali-practice")
+      .slice(0, 12)
+      .map((lesson) => lesson.id);
+    expect(isUnlocked("tools-curl", new Set(previousTwelve))).toBe(true);
+    expect(isUnlocked("tools-curl", new Set(previousTwelve.slice(0, -1)))).toBe(
+      false,
+    );
+    expect(isUnlocked("tools-jq", new Set(previousTwelve))).toBe(false);
+    expect(
+      isUnlocked("tools-jq", new Set([...previousTwelve, "tools-curl"])),
+    ).toBe(true);
   });
 });

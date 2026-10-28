@@ -1,0 +1,4 @@
+Training invoice
+KAIRON-REVIEW-28
+Contact: review@example.invalid
+This is plain text, not a PDF.

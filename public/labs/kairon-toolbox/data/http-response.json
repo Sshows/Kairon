@@ -1,0 +1,15 @@
+{
+  "case_id": "HTTP-28",
+  "status": "ready",
+  "orders": [
+    {
+      "id": "order-28",
+      "boxes": 3
+    },
+    {
+      "id": "order-29",
+      "boxes": 5
+    }
+  ],
+  "training_only": true
+}

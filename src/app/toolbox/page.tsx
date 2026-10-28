@@ -1,5 +1,5 @@
 import Link from "next/link";
-import data from "../../../content/toolbox.json";
+import { toolboxTools } from "@/lib/toolbox";
 import { ToolboxIndex } from "@/components/toolbox-index";
 import { Button } from "@/components/ui/button";
 
@@ -15,12 +15,13 @@ export default function ToolboxPage() {
         означает вывод.
       </p>
       <section className="tool-course-feature">
-        <h2>Попробуй на своём стенде: 12 уроков</h2>
+        <h2>Попробуй на своём стенде: 24 урока</h2>
         <p>
-          Один маленький сервис внутри Kali, несколько документов и четыре
-          вымышленных пароля. Nmap проверит порт, Netcat передаст сообщение,
-          Hydra и Hashcat покажут два разных способа проверки пароля. OpenSSL
-          поможет разобраться с хешами, шифрованием и подписями.
+          Сначала разберём Nmap, Netcat, проверку паролей и OpenSSL. Затем
+          перейдём к запросам curl, данным jq, своему DNS, записям трафика, Burp
+          Suite, метаданным и правилам YARA. WhatWeb и Gobuster проверят наш
+          локальный учебный сервис. Для каждого инструмента объяснены действия и
+          вывод.
         </p>
         <div className="course-actions">
           <Button asChild>
@@ -32,7 +33,7 @@ export default function ToolboxPage() {
         </div>
       </section>
       <ToolboxIndex
-        tools={data.tools.map(({ id, name, summary, howItWorks }) => ({
+        tools={toolboxTools.map(({ id, name, summary, howItWorks }) => ({
           id,
           name,
           summary,

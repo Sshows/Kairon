@@ -118,7 +118,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <span className="status-dot" />
           <span>{t.foundation}</span>
-          <span className="mono">v0.9</span>
+          <span className="mono">v0.10</span>
         </div>
       </aside>
       <div className="main-shell">

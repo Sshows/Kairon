@@ -2458,6 +2458,39 @@ progress::-webkit-progress-value {
 .lesson-text-section {
   scroll-margin-top: 95px;
 }
+.practice-folder-help {
+  margin: 22px 0;
+  padding: 18px;
+  border: 1px solid #3b4b33;
+  border-radius: 10px;
+  background: #14200f;
+  color: #c4d1bb;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.practice-folder-help strong {
+  color: #e0ead8;
+}
+.practice-folder-help code {
+  color: #d2edb3;
+}
+.practice-folder-help summary {
+  margin-top: 14px;
+  cursor: pointer;
+  color: #d2edb3;
+}
+.practice-folder-help ol {
+  list-style: decimal;
+  padding-left: 22px;
+  margin: 12px 0;
+}
+.practice-folder-help li {
+  margin: 8px 0;
+}
+.practice-folder-help details p {
+  margin-top: 12px;
+}
 .guide-checklist,
 .guide-question {
   margin-top: 35px;

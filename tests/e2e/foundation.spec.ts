@@ -7,7 +7,14 @@ import projects from "../../content/lessons/projects.json" with { type: "json" }
 import basics from "../../content/lessons/basics.json" with { type: "json" };
 import toolsNetwork from "../../content/lessons/kali-practice-network.json" with { type: "json" };
 import toolsCrypto from "../../content/lessons/kali-practice-crypto.json" with { type: "json" };
-const practice = [...toolsNetwork, ...toolsCrypto];
+import toolsExtraNetwork from "../../content/lessons/kali-practice-extra-network.json" with { type: "json" };
+import toolsExtraFiles from "../../content/lessons/kali-practice-extra-files.json" with { type: "json" };
+const practice = [
+  ...toolsNetwork,
+  ...toolsCrypto,
+  ...toolsExtraNetwork,
+  ...toolsExtraFiles,
+];
 import diagnostics from "../../content/lessons/diagnostics.json" with { type: "json" };
 import analysis from "../../content/lessons/analysis.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
@@ -364,15 +371,15 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 81, xp: 8410 });
+    expect(result.rows[0]).toEqual({ count: 93, xp: 9610 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("80/80");
-  await expect(page.locator(".learning-stats")).toContainText("8410");
+  await expect(page.locator(".learning-stats")).toContainText("92/92");
+  await expect(page.locator(".learning-stats")).toContainText("9610");
   await expect(page.locator('[data-course="kali-practice"]')).toContainText(
-    "12/12",
+    "24/24",
   );
   await expect(page.locator('[data-course="diagnostics"]')).toContainText(
     "8/8",
@@ -397,7 +404,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("80/80");
+  await expect(page.locator(".learning-stats")).toContainText("92/92");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -907,10 +914,10 @@ test("tool guides explain mechanisms and link to hands-on local Kali lessons", a
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/toolbox");
-  await expect(page.locator(".tool-card")).toHaveCount(7);
+  await expect(page.locator(".tool-card")).toHaveCount(19);
   await page
     .getByRole("searchbox", { name: "Найти инструмент Kali" })
-    .fill("Nmap");
+    .fill("на каком порту отвечает своя программа");
   await expect(page.locator(".tool-card")).toHaveCount(1);
   await page.getByRole("searchbox", { name: "Найти инструмент Kali" }).fill("");
   const links = await page
@@ -930,8 +937,8 @@ test("tool guides explain mechanisms and link to hands-on local Kali lessons", a
   await page.goto("/sources/labex-kali");
   await expect(page.locator(".reference-source-grid article")).toHaveCount(36);
   await page.goto("/paths/kali-practice");
-  await expect(page.locator(".course-lessons > a")).toHaveCount(12);
-  await expect(page.locator(".course-module")).toHaveCount(2);
+  await expect(page.locator(".course-lessons > a")).toHaveCount(24);
+  await expect(page.locator(".course-module")).toHaveCount(4);
   const download = await page.request.get("/downloads/kairon-toolbox.zip");
   expect(download.status()).toBe(200);
   expect((await download.body()).subarray(0, 2).toString()).toBe("PK");
@@ -1024,4 +1031,61 @@ test("detailed lessons offer usable contents and retain their command walkthroug
   await page.screenshot({
     path: "test-results/public-company-explanation-mobile.png",
   });
+});
+
+test("the additional Kali levels expose full practice and readable tool guides on mobile", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/paths/kali-practice");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(24);
+  await expect(page.locator(".course-module")).toHaveCount(4);
+  await page.locator('a[href="#level-3"]').click();
+  await expect(page.locator("#level-3")).toContainText("curl");
+  await page.screenshot({
+    path: "test-results/public-extra-tools-desktop.png",
+  });
+  for (const lesson of [...toolsExtraNetwork, ...toolsExtraFiles]) {
+    const response = await page.request.get("/learn/" + lesson.id);
+    expect(response.status(), lesson.id).toBe(200);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/toolbox/burpsuite");
+  await expect(page.locator(".tool-mechanism")).toContainText(/./);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/learn/tools-curl");
+  const folderHelp = page.getByRole("complementary", {
+    name: "Как найти свою папку практики",
+  });
+  await expect(folderHelp).toContainText("а не имя компьютера");
+  await folderHelp.locator("summary").click();
+  await expect(folderHelp).toContainText("Открыть терминал здесь");
+  await expect(folderHelp).toContainText("pwd");
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill("200");
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  const section = page.locator(".lesson-text-section").first();
+  const target = await section.getAttribute("id");
+  await page.locator(`a[href="#${target}"]`).click();
+  await expect
+    .poll(() =>
+      section.evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThan(160);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({ path: "test-results/public-extra-tools-mobile.png" });
 });

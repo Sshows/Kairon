@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import data from "../../../../content/toolbox.json";
+import { toolboxTools } from "@/lib/toolbox";
 import { getLesson } from "@/lib/lessons";
 type Props = { params: Promise<{ id: string }> };
 export function generateStaticParams() {
-  return data.tools.map(({ id }) => ({ id }));
+  return toolboxTools.map(({ id }) => ({ id }));
 }
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
   return {
     title:
-      data.tools.find((tool) => tool.id === id)?.name ?? "Инструмент не найден",
+      toolboxTools.find((tool) => tool.id === id)?.name ??
+      "Инструмент не найден",
   };
 }
 export default async function ToolPage({ params }: Props) {
   const { id } = await params;
-  const tool = data.tools.find((tool) => tool.id === id);
+  const tool = toolboxTools.find((tool) => tool.id === id);
   if (!tool) notFound();
   return (
     <div className="page-container document-page library-detail tool-detail">
