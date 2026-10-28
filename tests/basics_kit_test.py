@@ -3,7 +3,13 @@ from pathlib import Path
 from hashlib import sha256
 import csv
 import ipaddress
+import http.client
 import json
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
 import unittest
 import zipfile
 
@@ -15,6 +21,39 @@ def table(name):
         return list(csv.DictReader(source))
 
 class BasicsKit(unittest.TestCase):
+    def test_ports_walkthrough_distinguishes_listener_http_path_and_stopped_server(self):
+        def request(path):
+            client=http.client.HTTPConnection('127.0.0.1',8767,timeout=2)
+            try:
+                client.request('GET',path)
+                response=client.getresponse()
+                return response.status,response.read()
+            finally:
+                client.close()
+        with tempfile.TemporaryDirectory(prefix='kairon-ports-') as folder:
+            server=subprocess.Popen([sys.executable,'-B','-m','http.server','8767','--bind','127.0.0.1','--directory',folder],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            try:
+                for _ in range(50):
+                    try:
+                        status,body=request('/')
+                        break
+                    except OSError:
+                        if server.poll() is not None: self.fail('Own HTTP server could not start')
+                        time.sleep(0.1)
+                else: self.fail('Own HTTP server did not become ready')
+                self.assertEqual(status,200)
+                self.assertIn(b'Directory listing',body)
+                self.assertEqual(request('/missing')[0],404)
+                if sys.platform.startswith('linux'):
+                    self.assertIsNotNone(shutil.which('ss'))
+                    result=subprocess.run(['ss','-ltn','sport = :8767'],capture_output=True,text=True,check=True,timeout=5)
+                    self.assertIn('LISTEN',result.stdout)
+                    self.assertIn('127.0.0.1:8767',result.stdout)
+            finally:
+                server.terminate()
+                server.communicate(timeout=5)
+            with self.assertRaises(OSError): request('/')
+
     def test_download_matches_every_inert_source(self):
         target=ROOT/'public/downloads/kairon-basics.zip'
         manifest=json.loads(target.with_suffix('.json').read_text(encoding='utf-8'))

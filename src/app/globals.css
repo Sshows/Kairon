@@ -2429,6 +2429,35 @@ progress::-webkit-progress-value {
   white-space: pre;
   overflow-x: auto;
 }
+.lesson-outline {
+  margin: 26px 0;
+  padding: 18px;
+  background: #172011;
+  border: 1px solid #3b4b33;
+  border-radius: 10px;
+}
+.lesson-outline summary {
+  cursor: pointer;
+  font-size: 16px;
+  color: #e0ead8;
+}
+.lesson-outline nav {
+  display: grid;
+  gap: 10px;
+  padding-top: 15px;
+}
+.lesson-outline a {
+  color: #c5dfaa;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.lesson-outline a:hover {
+  text-decoration: underline;
+}
+.lesson-text-section {
+  scroll-margin-top: 95px;
+}
 .guide-checklist,
 .guide-question {
   margin-top: 35px;

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import type { PublicLesson } from "@/lib/lessons";
 import type { learningPaths } from "@/lib/learning-paths";
+import { lessonSections } from "@/lib/lesson-outline";
 import { Button } from "./ui/button";
 
 export function LessonWorkspace({
@@ -52,6 +53,7 @@ export function LessonWorkspace({
   const [earned, setEarned] = useState(xp);
   const [checkedSteps, setCheckedSteps] = useState<string[]>([]);
   const canSubmit = !loggedIn || (accepted && unlocked);
+  const sections = lessonSections(lesson.theory);
 
   async function submit(action: "hint" | "check") {
     if (pending) return;
@@ -130,8 +132,28 @@ export function LessonWorkspace({
             {path.kit.label}
           </a>
         )}
+        <details className="lesson-outline" open>
+          <summary>Содержание урока</summary>
+          <nav aria-label="Разделы этого урока">
+            {sections
+              .filter((section) => section.title)
+              .map((section) => (
+                <a href={`#${section.id}`} key={section.id}>
+                  {section.title}
+                </a>
+              ))}
+          </nav>
+        </details>
         <div className="lesson-markdown">
-          <Markdown>{lesson.theory}</Markdown>
+          {sections.map((section) => (
+            <section
+              id={section.id}
+              className="lesson-text-section"
+              key={section.id}
+            >
+              <Markdown>{section.markdown}</Markdown>
+            </section>
+          ))}
         </div>
         <section
           className="guide-checklist"

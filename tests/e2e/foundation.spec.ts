@@ -971,3 +971,43 @@ test("tool guides explain mechanisms and link to hands-on local Kali lessons", a
   await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
   await expect(page).toHaveURL(/tools-nmap/);
 });
+
+test("detailed lessons offer usable contents and retain their command walkthroughs", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/learn/basics-ports");
+  const contents = page.getByRole("navigation", {
+    name: "Разделы этого урока",
+  });
+  const startServer = contents.getByRole("link", {
+    name: "2. Запусти собственный сервер",
+    exact: true,
+  });
+  const target = await startServer.getAttribute("href");
+  await startServer.click();
+  await expect(page.locator(target!)).toContainText("--bind 127.0.0.1");
+  await expect(page).toHaveURL(new RegExp(target! + "$"));
+  await page.screenshot({
+    path: "test-results/public-ports-walkthrough-desktop.png",
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/learn/soc-login-chain");
+  const mobileContents = page.getByRole("navigation", {
+    name: "Разделы этого урока",
+  });
+  const links = mobileContents.getByRole("link");
+  expect(await links.count()).toBeGreaterThan(3);
+  const firstTarget = await links.first().getAttribute("href");
+  await links.first().click();
+  await expect(page.locator(firstTarget!)).toBeVisible();
+  await expect(page.locator(".lesson-markdown")).toContainText("logon_type");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-company-explanation-mobile.png",
+  });
+});
