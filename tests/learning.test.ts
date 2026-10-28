@@ -7,20 +7,25 @@ import {
   getCourseModules,
 } from "../src/lib/lessons";
 import audit from "../content/source-audits/pocket-hacker.json";
+import catalogue from "../content/project-catalog.json";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("publishes twenty independent guides across four levels", () => {
-    expect(lessons).toHaveLength(32);
+    expect(lessons).toHaveLength(40);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
+    const projects = getCourseLessons("kali-tools");
     expect(kali).toHaveLength(20);
     expect(company).toHaveLength(12);
+    expect(projects).toHaveLength(8);
     expect(getCourseModules("from-zero")).toHaveLength(4);
     expect(getCourseModules("blue-team")).toHaveLength(3);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(32);
+    expect(getCourseModules("kali-tools")).toHaveLength(2);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(40);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
+    expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
     for (const lesson of lessons) {
       expect(lesson.theory.length, lesson.id).toBeGreaterThan(1000);
       expect(lesson.checklist).toHaveLength(3);
@@ -66,6 +71,11 @@ describe("Kali guides and answer checks", () => {
       ),
     ).toBe(true);
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
+    expect(isUnlocked("project-start", new Set())).toBe(true);
+    expect(
+      isUnlocked("project-hash", new Set(["soc-first-shift", "kali-install"])),
+    ).toBe(false);
+    expect(isUnlocked("project-hash", new Set(["project-start"]))).toBe(true);
     expect(isUnlocked("soc-login-chain", new Set(["kali-install"]))).toBe(
       false,
     );
@@ -102,5 +112,28 @@ describe("Kali guides and answer checks", () => {
           source.url.startsWith("https://t.me/PocketHackerOne/"),
         ),
       ).toBe(true);
+  });
+  it("covers every source project and distinguishes code from proposals", () => {
+    expect(catalogue.source.commit).toBe(
+      "6a9989cd4858d4c51f0922debcba53668121bea1",
+    );
+    expect(catalogue.projects).toHaveLength(69);
+    expect(new Set(catalogue.projects.map((project) => project.id)).size).toBe(
+      69,
+    );
+    expect(
+      catalogue.projects.filter(
+        (project) => project.implementation === "source",
+      ),
+    ).toHaveLength(43);
+    expect(
+      catalogue.projects.filter((project) => project.implementation === "idea"),
+    ).toHaveLength(26);
+    for (const project of catalogue.projects) {
+      expect(project.summary.length, project.id).toBeGreaterThan(30);
+      expect(project.steps.length, project.id).toBeGreaterThanOrEqual(4);
+      expect(project.prerequisites.length, project.id).toBeGreaterThan(0);
+      expect(project.sourceUrl).toContain(catalogue.source.commit);
+    }
   });
 });

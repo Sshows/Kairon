@@ -81,6 +81,21 @@ export async function StarterPath({
         нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
         медленнее и повторять шаги.
       </p>
+      {pathId === "kali-tools" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Темы взяты из Cybersecurity-Projects. Начинаем с маленьких
+              примеров Kairon: ничего не нужно разворачивать на сервере, все
+              действия показаны по порядку.
+            </p>
+            <Link href="/projects" className="subtle-link">
+              Все проекты с объяснениями →
+            </Link>
+          </div>
+        </section>
+      )}
       {pathId === "blue-team" && (
         <section className="notice source-course-note">
           <BookOpen size={20} />

@@ -3,6 +3,7 @@ import { Client } from "pg";
 import { randomBytes, randomUUID } from "node:crypto";
 import course from "../../content/lessons/kali.json" with { type: "json" };
 import company from "../../content/lessons/company.json" with { type: "json" };
+import projects from "../../content/lessons/projects.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
   { id: randomUUID(), role: "USER", name: "Test learner" },
@@ -80,6 +81,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       headers: { Origin: "http://localhost:3000" },
       data: body,
     });
+  expect(
+    (
+      await submit(projects[1].id, {
+        action: "check",
+        answer: projects[1].answers[0],
+      })
+    ).status(),
+  ).toBe(423);
+  for (const response of await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit(projects[0].id, {
+        action: "check",
+        answer: projects[0].answers[0],
+      }),
+    ),
+  ))
+    expect((await response.json()).status).toBe("passed");
   expect(
     (
       await submit(company[1].id, {
@@ -183,6 +201,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     answer: company[0].answers[0],
   });
   expect((await repeatedCompany.json()).already).toBe(true);
+  for (const lesson of projects.slice(1)) {
+    const result = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await result.json()).status, lesson.id).toBe("passed");
+  }
+  expect(
+    (
+      await (
+        await submit(projects[0].id, {
+          action: "check",
+          answer: projects[0].answers[0],
+        })
+      ).json()
+    ).already,
+  ).toBe(true);
   const progressDb = new Client({ connectionString: process.env.DIRECT_URL });
   try {
     await progressDb.connect();
@@ -190,13 +225,17 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 33, xp: 3510 });
+    expect(result.rows[0]).toEqual({ count: 41, xp: 4410 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("32/32");
-  await expect(page.locator(".learning-stats")).toContainText("3510");
+  await expect(page.locator(".learning-stats")).toContainText("40/40");
+  await expect(page.locator(".learning-stats")).toContainText("4410");
+  await expect(page.locator('[data-course="kali-tools"]')).toContainText("8/8");
+  await expect(
+    page.getByText("Все пути завершены", { exact: true }),
+  ).toBeVisible();
   await expect(page.locator('[data-course="from-zero"]')).toContainText(
     "20/20",
   );
@@ -207,7 +246,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("32/32");
+  await expect(page.locator(".learning-stats")).toContainText("40/40");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -229,7 +268,7 @@ test("public Kali guide has downloads, guest self-check, and no embedded termina
   await expect(page).toHaveURL(/kali-install/);
   await expect(
     page.getByRole("heading", {
-      name: "Готовая Kali: скачать, открыть, запустить",
+      name: course[0].title,
     }),
   ).toBeVisible();
   await expect(
@@ -386,5 +425,91 @@ test("administrator role is accepted after credentials login", async ({
   await page.goto("/admin");
   await expect(
     page.getByRole("heading", { name: "Панель администратора" }),
+  ).toBeVisible();
+});
+
+test("all project references and beginner guide work on desktop and mobile", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/projects");
+  await expect(page.locator(".project-card")).toHaveCount(69);
+  await page
+    .getByLabel("Что есть у автора", { exact: true })
+    .selectOption("idea");
+  await expect(page.locator(".project-card")).toHaveCount(26);
+  await page
+    .getByLabel("Что есть у автора", { exact: true })
+    .selectOption("source");
+  await expect(page.locator(".project-card")).toHaveCount(43);
+  await page
+    .getByLabel("Что есть у автора", { exact: true })
+    .selectOption("all");
+  await page
+    .getByRole("searchbox", { name: "Найти проект", exact: true })
+    .fill("Caesar");
+  await expect(page.locator(".project-card")).toHaveCount(1);
+  await expect(page.locator(".project-card")).toContainText("Цезаря");
+  await page
+    .getByRole("searchbox", { name: "Найти проект", exact: true })
+    .fill("");
+  await page.screenshot({ path: "test-results/public-projects-desktop.png" });
+  const links = await page
+    .locator(".project-card h2 a")
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("href")!));
+  expect(new Set(links).size).toBe(69);
+  for (const href of links)
+    expect((await page.request.get(href)).status(), href).toBe(200);
+  await page.goto("/projects/hash-identifier");
+  await expect(
+    page.getByRole("heading", { name: "План самостоятельного проекта" }),
+  ).toBeVisible();
+  await expect(page.locator(".project-steps li")).toHaveCount(4);
+  await page.goto("/paths/kali-tools");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(8);
+  await expect(page.locator(".course-module")).toHaveCount(2);
+  const zip = await page.request.get("/downloads/kairon-projects.zip");
+  expect(zip.status()).toBe(200);
+  expect((await zip.body()).subarray(0, 2).toString()).toBe("PK");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/projects");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/learn/project-start");
+  await expect(page.locator(".guide-kit-link")).toHaveAttribute(
+    "href",
+    "/downloads/kairon-projects.zip",
+  );
+  await expect(
+    page.getByRole("heading", { name: projects[0].title, exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill(projects[0].answers[0]);
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: "test-results/public-projects-mobile.png",
+    fullPage: true,
+  });
+  await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
+  await expect(page).toHaveURL(/learn\/project-hash/);
+  await page.goto("/sources/carter-projects");
+  await expect(
+    page.getByRole("heading", {
+      name: "Что добавили из Cybersecurity-Projects",
+    }),
   ).toBeVisible();
 });

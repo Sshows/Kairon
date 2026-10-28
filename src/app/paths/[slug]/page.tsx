@@ -20,6 +20,7 @@ export default async function PathPage({
   if (!path) notFound();
   if (slug === "from-zero") return <StarterPath />;
   if (slug === "blue-team") return <StarterPath pathId="blue-team" />;
+  if (slug === "kali-tools") return <StarterPath pathId="kali-tools" />;
   const locale = await getLocale(),
     t = copy[locale];
   return (

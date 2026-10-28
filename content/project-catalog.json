@@ -1,0 +1,2141 @@
+{
+  "source": {
+    "author": "CarterPerez-dev и участники проекта",
+    "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects",
+    "commit": "6a9989cd4858d4c51f0922debcba53668121bea1",
+    "license": "AGPL-3.0",
+    "licenseUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/LICENSE",
+    "reviewedAt": "2026-10-28",
+    "reviewScope": "Проверены главный README, лицензия, структура, обзорные части README или synopsis для всех 69 записей, наличие learn и файлов тестов. Исходные программы и команды установки не запускались. Полный построчный аудит исходного кода не выполнялся.",
+    "projectCount": 69,
+    "sourceCount": 43,
+    "ideaCount": 26,
+    "badgeCount": 70,
+    "scopeNote": "В значке README указано 70, но в таблицах этой версии найдено 69 отдельных проектов. Каталог охватывает все 69 строк без добавления вымышленного семидесятого проекта.",
+    "catalogNote": "Это оригинальные объяснения и планы самостоятельного разбора на русском. Наличие исходников не означает, что проект запущен в Kairon или проверен нами на компьютере ученика. Формулировки шагов — учебный план Kairon, а не отчёт об исполнении.",
+    "contributorNote": "Simple Port Scanner в исходном README отдельно приписан участнику @deniskhud.",
+    "unreviewed": "Полное содержимое 4362 файлов PROJECTS, все внешние ссылки, актуальные цены и требования сертификаций, подмодуль TEMPLATES/fullstack-template и безопасность запуска целиком не проверены."
+  },
+  "projects": [
+    {
+      "id": "hash-identifier",
+      "originalTitle": "Hash Identifier",
+      "level": "beginner",
+      "sourceLevel": "foundations",
+      "sourcePath": "PROJECTS/foundations/hash-identifier",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/foundations/hash-identifier",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/foundations/hash-identifier/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/foundations/hash-identifier/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 1
+      },
+      "title": "Как узнать вид хеша",
+      "summary": "Хеш — короткая строка, которую получают из данных. По её виду попробуем понять, какой способ вычисления использовали.",
+      "why": "Помогает читать отчёт о паролях и не путать хеш с шифрованием.",
+      "prerequisites": ["Что такое текстовый файл", "Как запускать Python"],
+      "steps": [
+        "Возьми только вымышленные строки из примера",
+        "Сравни длину и начало каждой строки",
+        "Запиши несколько возможных видов хеша",
+        "Объясни, почему похожий вид ещё не даёт точного ответа"
+      ],
+      "result": "Таблица: строка, предположение и причина. Настоящие пароли не нужны."
+    },
+    {
+      "id": "http-headers-scanner",
+      "originalTitle": "HTTP Headers Scanner",
+      "level": "beginner",
+      "sourceLevel": "foundations",
+      "sourcePath": "PROJECTS/foundations/http-headers-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/foundations/http-headers-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/foundations/http-headers-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/foundations/http-headers-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 1
+      },
+      "title": "Какие правила сайт передаёт браузеру",
+      "summary": "В ответе сайта есть заголовки: небольшие служебные строки. Часть из них задаёт правила защиты браузера.",
+      "why": "Показывает разницу между отдельной защитной настройкой и общей безопасностью сайта.",
+      "prerequisites": [
+        "Что такое адрес сайта",
+        "Чем запрос отличается от ответа"
+      ],
+      "steps": [
+        "Выбери свой учебный сайт или сохранённый ответ",
+        "Отдели заголовки от текста страницы",
+        "Найди CSP — правило загрузки содержимого — и HSTS — правило перехода на HTTPS; прочитай назначение каждого",
+        "Запиши отсутствие или значение правила без вывода о полном взломе"
+      ],
+      "result": "Понятный список правил с объяснением, что каждое защищает и чего не доказывает."
+    },
+    {
+      "id": "password-manager",
+      "originalTitle": "Password Manager",
+      "level": "beginner",
+      "sourceLevel": "foundations",
+      "sourcePath": "PROJECTS/foundations/password-manager",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/foundations/password-manager",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/foundations/password-manager/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/foundations/password-manager/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 5
+      },
+      "title": "Учебный сейф для паролей",
+      "summary": "Менеджер паролей хранит записи в зашифрованном файле. Один главный пароль открывает этот файл.",
+      "why": "Объясняет, зачем защищать и содержимое файла, и доступ к нему.",
+      "prerequisites": [
+        "Как создавать файлы",
+        "Основы Python",
+        "Разница между паролем и ключом"
+      ],
+      "steps": [
+        "Придумай несколько ненастоящих учётных записей",
+        "Разбери в документации открытие и закрытие хранилища",
+        "Проверь сохранение и повторное чтение учебной записи",
+        "Проверь отказ с неверным главным паролем и отдельную резервную копию"
+      ],
+      "result": "Учебное хранилище с вымышленными записями. Без проверки специалистом не доверяй ему свои пароли."
+    },
+    {
+      "id": "simple-port-scanner",
+      "originalTitle": "Simple Port Scanner",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/simple-port-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/simple-port-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/simple-port-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/simple-port-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 0
+      },
+      "title": "Проверка порта своего компьютера",
+      "summary": "Порт похож на номер двери у сетевой программы. Проверка показывает, принимает ли программа соединение.",
+      "why": "Помогает проверить, запустился ли твой локальный сервер.",
+      "prerequisites": ["Что такое IP-адрес", "Как запустить локальный сайт"],
+      "steps": [
+        "Выбери только 127.0.0.1 — свой компьютер",
+        "Запиши один порт своего учебного сервера",
+        "Сравни результат до запуска и после остановки сервера",
+        "Объясни разницу между доступностью порта и ошибкой защиты"
+      ],
+      "result": "Короткий отчёт об одном своём порте. Чужие адреса и массовый поиск не нужны."
+    },
+    {
+      "id": "keylogger",
+      "originalTitle": "Keylogger",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/keylogger",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/keylogger",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/keylogger/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/keylogger/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 1
+      },
+      "title": "Почему запись клавиш опасна",
+      "summary": "Кейлоггер записывает нажатия клавиш. В таком журнале могут оказаться пароль, переписка и чужие личные данные.",
+      "why": "Помогает понять, какие следы искать и почему нельзя собирать клавиши без согласия.",
+      "prerequisites": [
+        "Что такое разрешение программы",
+        "Как читать учебный журнал"
+      ],
+      "steps": [
+        "Разбери описание угрозы без установки сборщика",
+        "Возьми заранее написанный вымышленный журнал",
+        "Отметь, какие данные нельзя собирать и отправлять",
+        "Составь памятку обнаружения и обращения за помощью"
+      ],
+      "result": "Защитный разбор и памятка. Перехват клавиш и удалённая отправка в задания Kairon не входят."
+    },
+    {
+      "id": "caesar-cipher",
+      "originalTitle": "Caesar Cipher",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/caesar-cipher",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/caesar-cipher",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/caesar-cipher/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/caesar-cipher/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 4
+      },
+      "title": "Сдвигаем буквы: шифр Цезаря",
+      "summary": "Каждую букву заменяем другой на одинаковом расстоянии в алфавите. Это удобная модель для первого знакомства с шифрами.",
+      "why": "Позволяет руками понять ключ, шифрование и обратное преобразование.",
+      "prerequisites": ["Порядок букв в алфавите", "Простая строка в Python"],
+      "steps": [
+        "Выбери короткое вымышленное слово и один алфавит",
+        "Сдвинь буквы на выбранное число",
+        "Сделай обратный сдвиг и сравни исходный текст",
+        "Перебери возможные сдвиги и объясни слабость такого шифра"
+      ],
+      "result": "Слово удалось восстановить. Это учебный шифр, а не способ хранить секреты."
+    },
+    {
+      "id": "dns-lookup",
+      "originalTitle": "DNS Lookup CLI Tool",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/dns-lookup",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/dns-lookup",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/dns-lookup/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/dns-lookup/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 2
+      },
+      "title": "Как имя сайта превращается в адрес",
+      "summary": "DNS — справочник, который связывает имя сайта с сетевыми записями. У имени могут быть разные записи для сайта и почты.",
+      "why": "Помогает разбирать ошибки открытия сайта и доставки почты.",
+      "prerequisites": ["Что такое доменное имя", "Что такое IP-адрес"],
+      "steps": [
+        "Возьми записи своего домена или сохранённый пример",
+        "Найди записи адресов A и AAAA и запись почтового сервера MX; подпиши, для чего нужна каждая",
+        "Сравни имя с адресом и обрати внимание на срок кеширования",
+        "Запиши, чего DNS-ответ не говорит о владельце и безопасности сайта"
+      ],
+      "result": "Таблица из нескольких DNS-записей с простыми объяснениями."
+    },
+    {
+      "id": "simple-vulnerability-scanner",
+      "originalTitle": "Simple Vulnerability Scanner",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/simple-vulnerability-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/simple-vulnerability-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/simple-vulnerability-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/simple-vulnerability-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 8
+      },
+      "title": "Есть ли известная проблема в библиотеке",
+      "summary": "Программа часто использует готовые библиотеки. По имени и версии можно искать опубликованные сообщения об их ошибках.",
+      "why": "Учит выбирать проверяемое обновление вместо установки всего подряд.",
+      "prerequisites": [
+        "Что такое библиотека программы",
+        "Как читать номер версии"
+      ],
+      "steps": [
+        "Возьми учебный список Python-библиотек",
+        "Проверь точное имя и установленную версию",
+        "Сопоставь их с диапазоном версий в сообщении об ошибке",
+        "Предложи обновление и план проверки работоспособности"
+      ],
+      "result": "Список подтверждённых совпадений и непроверенных предположений, без автоматического изменения рабочего проекта."
+    },
+    {
+      "id": "network-traffic-analyzer",
+      "originalTitle": "Network Traffic Analyzer",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/network-traffic-analyzer",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/network-traffic-analyzer",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/network-traffic-analyzer/cpp/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/network-traffic-analyzer/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 3
+      },
+      "title": "Читаем сетевой разговор",
+      "summary": "Сетевой обмен состоит из небольших частей — пакетов. В записи обмена можно посмотреть адреса, время и вид протокола.",
+      "why": "Помогает понять, что именно ушло в сеть и на какой вопрос отвечает запись.",
+      "prerequisites": ["Что такое клиент и сервер", "Что такое IP-адрес"],
+      "steps": [
+        "Открой готовую запись своего учебного обмена",
+        "Выдели один разговор по адресам и портам",
+        "Сравни запрос и ответ и запиши время",
+        "Отдельно укажи, какие данные зашифрованы и недоступны для чтения"
+      ],
+      "result": "Разбор одного разговора. Перехватывать чужую сеть и вводить реальные секреты не нужно."
+    },
+    {
+      "id": "hash-cracker",
+      "originalTitle": "Hash Cracker",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/hash-cracker",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/hash-cracker",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/hash-cracker/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/hash-cracker/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 7
+      },
+      "title": "Почему короткий пароль легче угадать",
+      "summary": "Для учебного хеша можно сравнивать результаты вычисления хеша от заранее выбранных слов. Совпадение помогает понять слабость простого пароля.",
+      "why": "Показывает пользу длинных уникальных паролей и специальных способов их хранения.",
+      "prerequisites": [
+        "Как вычисляют хеш",
+        "Разница между своим примером и чужой учётной записью"
+      ],
+      "steps": [
+        "Придумай свой учебный пароль",
+        "Вычисли его хеш и составь маленький список вымышленных кандидатов",
+        "Сравни вычисленные значения на своём примере",
+        "Запиши, как длина и способ хранения меняют трудность проверки"
+      ],
+      "result": "Объяснение на собственном примере. Чужие хеши и утёкшие базы не используются."
+    },
+    {
+      "id": "steganography-multi-tool",
+      "originalTitle": "Steganography Multi-Tool",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/steganography-multi-tool",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/steganography-multi-tool",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/steganography-multi-tool/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/steganography-multi-tool/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 20
+      },
+      "title": "Данные внутри картинки: защитный разбор",
+      "summary": "Стеганография прячет сообщение в другом файле. Например, картинка может содержать дополнительные данные, которых не видно при обычном просмотре.",
+      "why": "Помогает не считать знакомый вид файла доказательством его безопасности.",
+      "prerequisites": [
+        "Что такое байты файла",
+        "Разница между скрытием и шифрованием"
+      ],
+      "steps": [
+        "Разбери заранее подготовленный безвредный пример",
+        "Сравни размер и хеш исходного и изменённого файла",
+        "Прочитай описание способа хранения в документации",
+        "Запиши, почему необычный размер или хеш сам по себе не доказывает угрозу"
+      ],
+      "result": "Защитная карточка с наблюдениями. Скрытая передача рабочих данных не выполняется."
+    },
+    {
+      "id": "deserialization-gadget-lab",
+      "originalTitle": "Deserialization Gadget Lab",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/deserialization-gadget-lab",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/deserialization-gadget-lab",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/deserialization-gadget-lab/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/deserialization-gadget-lab/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 12
+      },
+      "title": "Почему чтение чужого объекта может запустить код",
+      "summary": "Сериализация сохраняет объект программы как данные. Некоторые способы обратного чтения могут вызвать действия, а не просто вернуть текст.",
+      "why": "Учит не доверять произвольным сохранённым объектам из внешнего источника.",
+      "prerequisites": [
+        "Разница между текстом и программой",
+        "Что такое формат данных"
+      ],
+      "steps": [
+        "Начни с безопасного текстового примера",
+        "Отдели чтение обычных полей от восстановления объекта программы",
+        "Найди в документации ограничения формата и безопасный способ разбора",
+        "Составь правило, какие данные приложение принимает и что отклоняет"
+      ],
+      "result": "Схема безопасного чтения. Уязвимый сервер и готовые вредоносные объекты здесь не запускаются."
+    },
+    {
+      "id": "canary-token-generator",
+      "originalTitle": "Canary Token Generator",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/canary-token-generator",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/canary-token-generator",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/canary-token-generator/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/canary-token-generator/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 39
+      },
+      "title": "Учебная метка, которая подаёт сигнал",
+      "summary": "Canary token — специально созданная метка. Обращение к ней подаёт сигнал, что кто-то открыл или использовал подготовленный объект.",
+      "why": "Помогает понять обнаружение необычного доступа и его ограничения.",
+      "prerequisites": [
+        "Что такое событие и уведомление",
+        "Правила обращения с личными данными"
+      ],
+      "steps": [
+        "Нарисуй схему метка — обращение — уведомление",
+        "Определи, где в своей лаборатории метку можно разместить с согласия",
+        "Разбери вымышленное уведомление и проверь время",
+        "Запиши ложные срабатывания и срок удаления собранных данных"
+      ],
+      "result": "План собственного учебного наблюдения. Не рассылай отслеживающие документы людям."
+    },
+    {
+      "id": "phishing-domain-generator-quishing-scanner",
+      "originalTitle": "Phishing Domain Generator & Quishing Scanner",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "SYNOPSES/beginner/Phishing.Domain.Generator.And.Quishing.Scanner.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/beginner/Phishing.Domain.Generator.And.Quishing.Scanner.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/beginner/Phishing.Domain.Generator.And.Quishing.Scanner.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как заметить поддельный адрес и QR-ссылку",
+      "summary": "Подмена одной буквы или незаметного символа делает адрес похожим на знакомый. QR-код может скрывать такой же адрес за картинкой.",
+      "why": "Помогает проверять ссылку до открытия и ввода пароля.",
+      "prerequisites": ["Как устроен адрес сайта", "Что такое домен"],
+      "steps": [
+        "Возьми вымышленные похожие адреса",
+        "Выдели настоящее доменное имя в каждом",
+        "Посмотри текст QR-ссылки без перехода по ней",
+        "Объясни отличия и безопасный способ открыть нужный сайт вручную"
+      ],
+      "result": "Таблица признаков подделки. Регистрировать похожие домены и отправлять приманки не требуется."
+    },
+    {
+      "id": "ssh-brute-force-detector",
+      "originalTitle": "SSH Brute Force Detector",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "SYNOPSES/beginner/SSH.Brute.Force.Detector.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/beginner/SSH.Brute.Force.Detector.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/beginner/SSH.Brute.Force.Detector.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Считаем неудачные входы",
+      "summary": "Повторяющиеся ошибки входа могут быть попыткой подбора пароля или обычной ошибкой настройки. Журнал помогает увидеть последовательность.",
+      "why": "Учит делать проверяемую тревогу, не блокируя людей по одному событию.",
+      "prerequisites": [
+        "Как читать строки журнала",
+        "Что такое время события и адрес"
+      ],
+      "steps": [
+        "Возьми искусственный журнал входов",
+        "Выдели ошибки за один промежуток времени",
+        "Сгруппируй их по адресу и учётной записи",
+        "Сравни с успешными входами и передай короткую карточку человеку"
+      ],
+      "result": "Проверяемое правило тревоги с ограничениями. Настоящий межсетевой экран не меняем."
+    },
+    {
+      "id": "c2-beacon",
+      "originalTitle": "Simple C2 Beacon",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/c2-beacon",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/c2-beacon",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/c2-beacon/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/c2-beacon/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 7
+      },
+      "title": "Как защита замечает связь с управляющим сервером",
+      "summary": "C2 — связь программы с сервером, который выдаёт ей команды. Похожие периодические обращения бывают и у обычных обновлений.",
+      "why": "Помогает разбирать сетевые следы, не объявляя каждый повторный запрос атакой.",
+      "prerequisites": [
+        "Как читать журнал соединений",
+        "Разница между процессом и сервером"
+      ],
+      "steps": [
+        "Используй готовые вымышленные события",
+        "Найди повторяющиеся обращения одного процесса",
+        "Сравни время, назначение программы и ожидаемый сервис",
+        "Опиши, какие сведения нужно уточнить у владельца системы"
+      ],
+      "result": "Защитный разбор связи. Управляющий агент, команды удалённого доступа и скрытый запуск не устанавливаются."
+    },
+    {
+      "id": "base64-tool",
+      "originalTitle": "Base64 Encoder/Decoder",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/base64-tool",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/base64-tool",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/base64-tool/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/base64-tool/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 6
+      },
+      "title": "Base64: меняем запись текста",
+      "summary": "Base64 записывает байты с помощью набора печатных символов. Это упаковка для передачи, а не шифрование.",
+      "why": "Помогает читать технические данные и не принимать кодирование за защиту секрета.",
+      "prerequisites": [
+        "Что такое текст и байты",
+        "Как запускать небольшой Python-пример"
+      ],
+      "steps": [
+        "Возьми слово без личных данных",
+        "Преобразуй его в Base64",
+        "Верни исходное слово и сравни байты",
+        "Объясни, почему для обратного преобразования не потребовался тайный ключ"
+      ],
+      "result": "Пара исходный текст — кодированная запись и правильное объяснение её ограничений."
+    },
+    {
+      "id": "linux-cis-hardening-auditor",
+      "originalTitle": "Linux CIS Hardening Auditor",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/linux-cis-hardening-auditor",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/linux-cis-hardening-auditor",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/linux-cis-hardening-auditor/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/linux-cis-hardening-auditor/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 12
+      },
+      "title": "Проверяем настройки Linux по списку",
+      "summary": "Аудит настроек сравнивает систему с выбранным набором правил. Несовпадение — повод разобраться, а не приказ немедленно всё изменить.",
+      "why": "Учит читать отчёты проверки без риска сломать компьютер.",
+      "prerequisites": [
+        "Что такое пользователь и служба Linux",
+        "Как читать текстовую настройку"
+      ],
+      "steps": [
+        "Выбери учебный отчёт или тестовый режим с искусственными файлами",
+        "Разбери одну проверку и её ожидаемое значение",
+        "Сравни рекомендацию с назначением машины",
+        "Запиши согласованное исправление и способ возврата"
+      ],
+      "result": "Разбор нескольких настроек. Массовое применение советов к своей основной системе не требуется."
+    },
+    {
+      "id": "systemd-persistence-scanner",
+      "originalTitle": "Systemd Persistence Scanner",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/systemd-persistence-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/systemd-persistence-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/systemd-persistence-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/systemd-persistence-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 21
+      },
+      "title": "Что запускается вместе с Linux",
+      "summary": "Программа может запускаться автоматически через службу, расписание или профиль пользователя. Это полезно, но необычные записи стоит проверить.",
+      "why": "Помогает замечать нежелательный автозапуск и сохранять доказательства.",
+      "prerequisites": ["Что такое процесс", "Что такое служба и расписание"],
+      "steps": [
+        "Возьми копии учебных файлов автозапуска",
+        "Подпиши путь запускаемой программы и владельца записи",
+        "Сравни с заранее известным списком разрешённых программ",
+        "Запиши отличия и вопросы владельцу системы"
+      ],
+      "result": "Список проверяемых отличий. Не удаляй системные службы по одному подозрительному слову."
+    },
+    {
+      "id": "linux-ebpf-security-tracer",
+      "originalTitle": "Linux eBPF Security Tracer",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/linux-ebpf-security-tracer",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/linux-ebpf-security-tracer",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/linux-ebpf-security-tracer/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/linux-ebpf-security-tracer/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 5
+      },
+      "title": "Что программа просит у Linux",
+      "summary": "eBPF позволяет наблюдать некоторые события внутри Linux. Например, можно увидеть запуск процесса или попытку открыть файл.",
+      "why": "Помогает связать действие программы с событием наблюдения.",
+      "prerequisites": [
+        "Что такое ядро Linux",
+        "Что такое процесс",
+        "Основы чтения журналов"
+      ],
+      "steps": [
+        "Сначала прочитай готовый учебный журнал",
+        "Найди одно открытие файла и его процесс",
+        "Свяжи событие с пользователем и временем",
+        "Укажи, какие события выбранный способ наблюдения не собирал"
+      ],
+      "result": "Короткая цепочка действие — событие — ограничение. Изменение ядра и установка наблюдателя здесь не требуются."
+    },
+    {
+      "id": "trojan-application-builder",
+      "originalTitle": "Trojan Application Builder",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "SYNOPSES/beginner/Trojan.Application.Builder.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/beginner/Trojan.Application.Builder.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/beginner/Trojan.Application.Builder.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как распознать приложение с тайными действиями",
+      "summary": "Троян выглядит полезной программой, но делает дополнительные нежелательные действия. Важны поведение и разрешения, а не красивое окно.",
+      "why": "Помогает объяснить риск незнакомого установщика обычному пользователю.",
+      "prerequisites": [
+        "Как различать файл и запущенную программу",
+        "Что такое разрешение доступа"
+      ],
+      "steps": [
+        "Разбери описание вымышленного приложения",
+        "Сопоставь обещанные функции с готовыми событиями доступа",
+        "Отметь чтение лишних данных и непонятные соединения",
+        "Напиши памятку остановки работы и передачи случая ответственному"
+      ],
+      "result": "Защитный разбор. Создание трояна, скрытый сбор данных и шифрование чужих файлов не входят в практику."
+    },
+    {
+      "id": "dns-sinkhole",
+      "originalTitle": "DNS Sinkhole",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "SYNOPSES/beginner/DNS.Sinkhole.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/beginner/DNS.Sinkhole.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/beginner/DNS.Sinkhole.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Учебный список запрещённых доменов",
+      "summary": "DNS-фильтр может не выдавать обычный ответ для имени из списка запрета. Это один из способов уменьшить доступ к нежелательным адресам.",
+      "why": "Объясняет принцип блокировки и причину возможных ошибок.",
+      "prerequisites": ["Что делает DNS", "Что такое доменное имя"],
+      "steps": [
+        "Составь вымышленный список разрешённых и запрещённых имён",
+        "Смоделируй ответы справочника в таблице",
+        "Проверь ошибочный запрет нужного имени",
+        "Опиши исключение и возврат прежних настроек до любого внедрения"
+      ],
+      "result": "Таблица решений и проверка ошибки. Менять DNS всей домашней сети для задания не нужно."
+    },
+    {
+      "id": "firewall-rule-engine",
+      "originalTitle": "Firewall Rule Engine",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/firewall-rule-engine",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/firewall-rule-engine",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/firewall-rule-engine/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/firewall-rule-engine/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 0
+      },
+      "title": "Читаем правила сетевого доступа",
+      "summary": "Межсетевой экран разрешает или запрещает соединения по правилам. Их порядок и условия влияют на результат.",
+      "why": "Помогает заметить правило, которое случайно перекрывает нужный доступ.",
+      "prerequisites": [
+        "Что такое IP-адрес и порт",
+        "Разница между входящим и исходящим соединением"
+      ],
+      "steps": [
+        "Возьми сохранённый учебный набор правил",
+        "Прогони на бумаге один разрешённый и один запрещённый запрос",
+        "Найди повторяющиеся или перекрывающиеся условия",
+        "Предложи изменение и проверку возврата без применения к своему компьютеру"
+      ],
+      "result": "Понятная схема решений. Рабочие правила Kali остаются без изменений."
+    },
+    {
+      "id": "prompt-injection-firewall",
+      "originalTitle": "LLM Prompt Injection Firewall",
+      "level": "beginner",
+      "sourceLevel": "beginner",
+      "sourcePath": "PROJECTS/beginner/prompt-injection-firewall",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/prompt-injection-firewall",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/beginner/prompt-injection-firewall/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/beginner/prompt-injection-firewall/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 25
+      },
+      "title": "Почему текст для ИИ не должен управлять программой",
+      "summary": "В загруженном документе может быть фраза «игнорируй правила». Приложение должно отличать чужой текст от разрешённой команды.",
+      "why": "Помогает проектировать ИИ-помощника с ограниченными действиями.",
+      "prerequisites": [
+        "Разница между данными и инструкцией",
+        "Что такое разрешение инструмента"
+      ],
+      "steps": [
+        "Возьми вымышленный документ и простую задачу пересказа",
+        "Отметь, откуда пришёл каждый фрагмент текста",
+        "Определи, какие действия помощнику разрешены вне зависимости от ответа модели",
+        "Проверь отказ в запрещённом действии и отсутствие демо-секрета в результате"
+      ],
+      "result": "Схема проверок вокруг ИИ. Фильтр по словам не объявляется полной защитой."
+    },
+    {
+      "id": "security-news-scraper",
+      "originalTitle": "Security News Scraper",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/security-news-scraper",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/security-news-scraper",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/security-news-scraper/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/security-news-scraper/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 32
+      },
+      "title": "Собираем новости без лишнего шума",
+      "summary": "Одна новость может повторяться на разных сайтах. Сборщик объединяет записи, сохраняет ссылки и помогает проверить первоисточник.",
+      "why": "Учит отличать сообщение о проблеме от подтверждения её наличия у тебя.",
+      "prerequisites": [
+        "Как читать ссылку и дату",
+        "Что такое версия программы"
+      ],
+      "steps": [
+        "Возьми несколько сохранённых новостей",
+        "Объедини сообщения об одной теме",
+        "Найди ссылку на исходное сообщение разработчика",
+        "Запиши затронутые версии, дату и что осталось неизвестным"
+      ],
+      "result": "Небольшая проверяемая подборка. Автоматическое решение по одному заголовку не принимается."
+    },
+    {
+      "id": "payload-obfuscation-engine",
+      "originalTitle": "Payload Obfuscation Engine",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Payload.Obfuscation.Engine.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Payload.Obfuscation.Engine.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Payload.Obfuscation.Engine.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Почему поиск по строке не видит всё",
+      "summary": "Один и тот же безвредный текст можно записать по-разному. Поэтому правило, ищущее одну точную строку, не заменяет проверку поведения программы.",
+      "why": "Объясняет ограничения простого поиска угроз.",
+      "prerequisites": [
+        "Что такое кодирование",
+        "Как сравнивать текстовые строки"
+      ],
+      "steps": [
+        "Возьми обычное слово без программного кода",
+        "Сравни его текстовую и кодированную запись",
+        "Покажи на бумаге, почему точное совпадение сработает не всегда",
+        "Предложи дополнительные признаки и укажи ложные срабатывания"
+      ],
+      "result": "Защитное объяснение. Маскировка исполняемых файлов и обход антивируса в задания не включены."
+    },
+    {
+      "id": "siem-dashboard",
+      "originalTitle": "SIEM Dashboard",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/siem-dashboard",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/siem-dashboard",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/siem-dashboard/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/siem-dashboard/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 0
+      },
+      "title": "Одна панель для событий защиты",
+      "summary": "SIEM собирает журналы разных систем и помогает связать события. Панель показывает тревоги, но человек всё равно проверяет контекст.",
+      "why": "Позволяет перейти от отдельных строк к понятной карточке случая.",
+      "prerequisites": [
+        "Что такое журнал событий",
+        "Как читать время и имя системы"
+      ],
+      "steps": [
+        "Возьми вымышленные журналы двух систем",
+        "Приведи время и названия полей к понятному виду",
+        "Свяжи события по общему признаку",
+        "Покажи тревогу и отдельно факты, которые её подтверждают или опровергают"
+      ],
+      "result": "Макет панели и одна разобранная тревога с сохранёнными ссылками на события."
+    },
+    {
+      "id": "token-abuse-playground",
+      "originalTitle": "Token Abuse Playground",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Token.Abuse.Playground.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Token.Abuse.Playground.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Token.Abuse.Playground.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как сайт узнаёт вошедшего пользователя",
+      "summary": "Токен и cookie помогают сайту помнить вход. Их нужно проверять, ограничивать по сроку и отзывать при необходимости.",
+      "why": "Помогает понять, почему читаемый токен ещё не означает возможность подделать его.",
+      "prerequisites": [
+        "Что такое вход в аккаунт",
+        "Разница между подтверждением личности и разрешением доступа"
+      ],
+      "steps": [
+        "Нарисуй схему входа на вымышленный сайт",
+        "Отметь, кто выдаёт и кто проверяет токен",
+        "Разбери сохранённые ответы для действующего, истёкшего и отозванного токена",
+        "Составь проверки подписи, срока и доступа к конкретному объекту"
+      ],
+      "result": "Список проверок сеанса. Чужие токены и настоящие аккаунты не используются."
+    },
+    {
+      "id": "supply-chain-attack-simulator",
+      "originalTitle": "Supply Chain Attack Simulator",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Supply.Chain.Attack.Simulator.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Supply.Chain.Attack.Simulator.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Supply.Chain.Attack.Simulator.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как чужая библиотека попадает в программу",
+      "summary": "Приложение доверяет загружаемым зависимостям. Ошибка в имени или источнике пакета может привести к установке другой программы.",
+      "why": "Учит проверять источник и фиксировать нужную версию зависимости.",
+      "prerequisites": ["Что такое библиотека", "Как устроено имя пакета"],
+      "steps": [
+        "Возьми вымышленный список пакетов и два локальных источника на схеме",
+        "Отметь, где выбирается источник загрузки",
+        "Сравни точные имена, версии и контрольные суммы",
+        "Составь правила проверки перед установкой"
+      ],
+      "result": "Разбор цепочки доверия. Пакеты в настоящие каталоги не публикуются и данные не отправляются."
+    },
+    {
+      "id": "ddos-mitigation-tool",
+      "originalTitle": "DDoS Mitigation Tool",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/DDoS.Mitigation.Tool.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/DDoS.Mitigation.Tool.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/DDoS.Mitigation.Tool.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как заметить слишком много запросов",
+      "summary": "Если запросов становится больше, чем сервис может обработать, обычные пользователи ждут или получают ошибки. Сначала нужно понять нормальную нагрузку.",
+      "why": "Помогает выбирать ограничение запросов без блокировки полезной работы.",
+      "prerequisites": ["Что такое запрос", "Что такое промежуток времени"],
+      "steps": [
+        "Возьми искусственную таблицу числа запросов",
+        "Сравни обычный день с всплеском",
+        "Проверь, затронуты ли ответы и задержка сервиса",
+        "Предложи ограничение, проверку полезных запросов и возврат настройки"
+      ],
+      "result": "План реакции по учебным данным. Генерация атаки и нагрузка на настоящий сайт не нужны."
+    },
+    {
+      "id": "secrets-scanner",
+      "originalTitle": "Secrets Scanner",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/secrets-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/secrets-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/secrets-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/secrets-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 11
+      },
+      "title": "Ищем случайно оставленные секреты",
+      "summary": "Ключ доступа или пароль иногда попадает в код, настройки и старые записи Git. Поиск помогает заметить это раньше публикации.",
+      "why": "Учит сначала отзывать раскрытый ключ, а затем устранять источник утечки.",
+      "prerequisites": [
+        "Что такое секрет",
+        "Как читать файл",
+        "Что такое история изменений"
+      ],
+      "steps": [
+        "Создай отдельную папку только с ненастоящими ключами",
+        "Сравни найденные строки с обычными примерами",
+        "Запиши путь и строку без вывода полного секрета",
+        "Опиши отзыв ключа, исправление источника и повторную проверку"
+      ],
+      "result": "Учебный отчёт о находках и ложных тревогах. Реальные ключи в примеры не вставляй."
+    },
+    {
+      "id": "api-security-scanner",
+      "originalTitle": "API Security Scanner",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/api-security-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/api-security-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/api-security-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/api-security-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 2
+      },
+      "title": "Проверяем доступ к данным приложения",
+      "summary": "API — способ, которым программы обращаются друг к другу. Для каждого запроса нужно проверять не только вход, но и право на нужные данные.",
+      "why": "Помогает находить понятные ошибки разграничения доступа.",
+      "prerequisites": [
+        "Что такое запрос и ответ",
+        "Чем свой объект отличается от чужого"
+      ],
+      "steps": [
+        "Используй только свой локальный пример или сохранённые ответы",
+        "Опиши пользователей и владельцев объектов",
+        "Сравни разрешённый и запрещённый запрос",
+        "Проверь содержимое ответа и предложи проверку владельца на сервере"
+      ],
+      "result": "Матрица доступа с доказательствами. Один HTTP-код не считается доказательством утечки."
+    },
+    {
+      "id": "wireless-deauth-detector",
+      "originalTitle": "Wireless Deauth Detector",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Wireless.Deauth.Detector.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Wireless.Deauth.Detector.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Wireless.Deauth.Detector.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Почему устройства теряют связь с Wi-Fi",
+      "summary": "Служебные кадры Wi-Fi могут завершать соединение. Много таких событий — повод проверить причину, а не сразу обвинять соседей.",
+      "why": "Учит разбирать запись отключений без создания помех.",
+      "prerequisites": ["Что такое точка доступа", "Что такое сетевой кадр"],
+      "steps": [
+        "Открой готовую обезличенную запись своей лаборатории",
+        "Найди события разрыва и время",
+        "Сравни их с обычным переподключением и состоянием точки доступа",
+        "Запиши признаки, которые требуют дополнительной проверки"
+      ],
+      "result": "Защитный разбор готовой записи. Отключать чужие устройства и отправлять помехи не нужно."
+    },
+    {
+      "id": "credential-enumeration",
+      "originalTitle": "Credential Enumeration",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/credential-enumeration",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/credential-enumeration",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/credential-enumeration/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/credential-enumeration/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 4
+      },
+      "title": "Где могут случайно остаться ключи",
+      "summary": "Пароли и ключи иногда лежат в истории команд, файлах настроек и лишних копиях. Это риск, даже если программу уже исправили.",
+      "why": "Помогает проверить собственную учебную папку и выбрать безопасное хранение.",
+      "prerequisites": ["Что такое домашняя папка", "Как читать права файла"],
+      "steps": [
+        "Подготовь отдельные копии с вымышленными секретами",
+        "Проверь расположение и права каждой копии",
+        "Составь отчёт без полного содержимого ключей",
+        "Опиши отзыв и перенос секрета в подходящее хранилище"
+      ],
+      "result": "Карта утечек в учебной папке. Чужие каталоги, браузерные пароли и настоящие ключи не собираются."
+    },
+    {
+      "id": "binary-analysis-tool",
+      "originalTitle": "Binary Analysis Tool",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/binary-analysis-tool",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/binary-analysis-tool",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/binary-analysis-tool/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/binary-analysis-tool/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 3
+      },
+      "title": "Смотрим устройство программы без запуска",
+      "summary": "Статический анализ читает содержимое исполняемого файла, не запуская его. Можно увидеть формат, разделы и некоторые строки.",
+      "why": "Помогает собрать первые факты о файле с меньшим риском.",
+      "prerequisites": [
+        "Разница между чтением и запуском файла",
+        "Что такое хеш"
+      ],
+      "steps": [
+        "Возьми собственную безвредную учебную программу",
+        "Сохрани размер и контрольную сумму",
+        "Сравни заголовок, разделы и видимые строки",
+        "Запиши наблюдения отдельно от предположений о назначении"
+      ],
+      "result": "Карточка файла без запуска неизвестного образца. Отсутствие находок не доказывает безопасность."
+    },
+    {
+      "id": "chaos-engineering-tool",
+      "originalTitle": "Chaos Engineering Security Tool",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/chaos-engineering-tool",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/chaos-engineering-tool",
+      "docsUrl": null,
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/chaos-engineering-tool/README.md",
+        "codePresent": true,
+        "learnPresent": false,
+        "testFileCount": 114
+      },
+      "title": "Что будет, если сломается часть защиты",
+      "summary": "Проверка отказа показывает, сохраняет ли приложение нужные правила, когда часть службы недоступна. Это делают по плану с возможностью остановки.",
+      "why": "Учит заранее проверять восстановление и запрет лишнего доступа при сбое.",
+      "prerequisites": [
+        "Что такое учебная среда",
+        "Как сохранять и восстанавливать её состояние"
+      ],
+      "steps": [
+        "Выбери отдельную лабораторию без рабочих данных",
+        "Запиши нормальный разрешённый и запрещённый запрос",
+        "На бумаге выбери один сбой и условие немедленной остановки",
+        "Сравни результаты до, во время и после восстановления"
+      ],
+      "result": "План эксперимента и таблица ожиданий. Рабочие службы и домашнюю сеть не отключаем."
+    },
+    {
+      "id": "credential-rotation-enforcer",
+      "originalTitle": "Credential Rotation Enforcer",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/credential-rotation-enforcer",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/credential-rotation-enforcer",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/credential-rotation-enforcer/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/credential-rotation-enforcer/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 46
+      },
+      "title": "Как заменить ключ и не забыть старый",
+      "summary": "Ротация — выдача нового ключа, перевод программы на него и отзыв прежнего. Просто переписать строку в файле недостаточно.",
+      "why": "Помогает организовать замену секрета и проверить, что старый доступ закрыт.",
+      "prerequisites": [
+        "Что такое ключ доступа",
+        "Что такое проверка работы приложения"
+      ],
+      "steps": [
+        "Используй две вымышленные метки вместо реальных ключей",
+        "Опиши, где используется старый ключ",
+        "Составь порядок выдачи, переключения, проверки и отзыва",
+        "Запиши доказательства отказа старого ключа и действия при ошибке"
+      ],
+      "result": "Проверяемый план замены. Платные сервисы и настоящие ключи для упражнения не нужны."
+    },
+    {
+      "id": "race-condition-exploiter",
+      "originalTitle": "Race Condition Exploiter",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Race.Condition.Exploiter.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Race.Condition.Exploiter.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Race.Condition.Exploiter.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Почему два запроса могут потратить одну сумму дважды",
+      "summary": "Два действия могут одновременно прочитать одно состояние и оба решить, что им всё разрешено. Это ошибка работы с общими данными.",
+      "why": "Помогает понимать повторные списания и необходимость одной общей проверки в базе.",
+      "prerequisites": [
+        "Что такое запрос",
+        "Что такое запись в базе",
+        "Порядок выполнения действий"
+      ],
+      "steps": [
+        "Нарисуй два одновременных заказа на одну вымышленную сумму",
+        "Покажи место, где оба читают старый остаток",
+        "Опиши неделимое изменение с проверкой условия",
+        "Проверь на бумаге повторный запрос и итоговый остаток"
+      ],
+      "result": "Схема ошибки и исправленного порядка. Настоящие магазины и платежи не проверяются."
+    },
+    {
+      "id": "ja3-ja4-tls-fingerprinting",
+      "originalTitle": "JA3/JA4 TLS Fingerprinting Tool",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/ja3-ja4-tls-fingerprinting",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/ja3-ja4-tls-fingerprinting",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/ja3-ja4-tls-fingerprinting/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/ja3-ja4-tls-fingerprinting/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 10
+      },
+      "title": "Сетевой почерк программы",
+      "summary": "При установлении защищённого соединения программа сообщает набор параметров. Их сочетание иногда используют как технический отпечаток.",
+      "why": "Учит понимать полезность и ограничения сетевых отпечатков.",
+      "prerequisites": ["Что такое TLS", "Как читать готовую сетевую запись"],
+      "steps": [
+        "Возьми сохранённые учебные обмены",
+        "Сравни параметры начала TLS-соединения",
+        "Сопоставь отпечаток с известным приложением и контекстом",
+        "Запиши, почему совпадение не устанавливает личность и не доказывает угрозу"
+      ],
+      "result": "Сравнение нескольких отпечатков. Показатели скорости и точности из README не считаются нашей проверкой."
+    },
+    {
+      "id": "mobile-app-security-analyzer",
+      "originalTitle": "Mobile App Security Analyzer",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Mobile.App.Security.Analyzer.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Mobile.App.Security.Analyzer.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Mobile.App.Security.Analyzer.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Что приложение телефона хранит и запрашивает",
+      "summary": "Приложение телефона имеет настройки, разрешения и локальные файлы. Разбор помогает увидеть лишний доступ и случайно открытые данные.",
+      "why": "Помогает разработчику проверять собственное приложение до публикации.",
+      "prerequisites": [
+        "Что такое разрешение Android или iOS",
+        "Основы структуры своего приложения"
+      ],
+      "steps": [
+        "Возьми только своё учебное приложение или открытый демонстрационный пример",
+        "Опиши назначение каждого запрошенного разрешения",
+        "Проверь места хранения вымышленных данных и сетевые настройки",
+        "Запиши находку, подтверждение и план исправления"
+      ],
+      "result": "Карточка проверки собственного приложения. Чужие личные данные и рабочие приложения не извлекаются."
+    },
+    {
+      "id": "dlp-scanner",
+      "originalTitle": "DLP Scanner",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/dlp-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/dlp-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/dlp-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/dlp-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 28
+      },
+      "title": "Какие данные нельзя случайно отправить наружу",
+      "summary": "DLP — поиск данных, распространение которых нужно контролировать. Совпадение с шаблоном ещё надо проверить: оно может быть ошибочным.",
+      "why": "Учит замечать личные данные и уменьшать их попадание в отчёты.",
+      "prerequisites": ["Что такое личные данные", "Как читать таблицу"],
+      "steps": [
+        "Подготовь вымышленные документы с ненастоящими номерами и адресами",
+        "Определи, что именно нужно обнаружить",
+        "Сравни найденное с заранее известным содержимым",
+        "Запиши ошибки и покажи отчёт с замаскированными значениями"
+      ],
+      "result": "Учебный отчёт с понятными ограничениями. Рабочие документы внешним сервисам не отправляются."
+    },
+    {
+      "id": "lua-nginx-edge-backend",
+      "originalTitle": "Lua/Nginx Edge Backend",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Lua.Nginx.Edge.Backend.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Lua.Nginx.Edge.Backend.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Lua.Nginx.Edge.Backend.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Сайт, который проверяет запрос у входа",
+      "summary": "Обратный прокси принимает запрос перед приложением. В Nginx с Lua часть проверок можно выполнять на этом входе.",
+      "why": "Помогает понять, где проверяют доступ, размер запроса и частоту обращений.",
+      "prerequisites": [
+        "Что такое веб-сервер",
+        "Основы HTTP",
+        "Что такое база данных"
+      ],
+      "steps": [
+        "Нарисуй путь браузер — входной сервер — приложение",
+        "Назови проверку, которую должен пройти каждый запрос",
+        "Разбери сохранённые ответы для верного и неверного запроса",
+        "Запиши, какие проверки всё равно нужны внутри приложения"
+      ],
+      "result": "Схема собственного учебного сервиса. Размещение на платном сервере для обзора не требуется."
+    },
+    {
+      "id": "privesc-playground",
+      "originalTitle": "Privesc Playground",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Privesc.Playground.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Privesc.Playground.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Privesc.Playground.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Почему обычный пользователь не должен стать администратором",
+      "summary": "Повышение прав — получение большего доступа, чем было выдано. Ошибка настроек иногда открывает такой путь.",
+      "why": "Помогает замечать избыточные разрешения и предлагать минимальные права.",
+      "prerequisites": [
+        "Кто такой администратор Linux",
+        "Права файла и владелец"
+      ],
+      "steps": [
+        "Возьми статическую таблицу учебных пользователей и прав",
+        "Найди запись с доступом больше необходимого",
+        "Опиши ожидаемый запрет без выполнения команд повышения прав",
+        "Предложи исправление и повторную проверку нужной работы"
+      ],
+      "result": "Разбор модели доступа. Намеренно уязвимая машина и изменение своей системы здесь не нужны."
+    },
+    {
+      "id": "sbom-generator-vulnerability-matcher",
+      "originalTitle": "SBOM Generator & Vulnerability Matcher",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/sbom-generator-vulnerability-matcher",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/sbom-generator-vulnerability-matcher",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/sbom-generator-vulnerability-matcher/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/sbom-generator-vulnerability-matcher/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 14
+      },
+      "title": "Составляем список деталей программы",
+      "summary": "SBOM — перечень библиотек и компонентов программы. Это похоже на список деталей изделия с точными названиями и версиями.",
+      "why": "Помогает понять, затрагивает ли опубликованная проблема конкретную сборку.",
+      "prerequisites": ["Что такое библиотека", "Как читать файл зависимостей"],
+      "steps": [
+        "Возьми небольшой собственный учебный проект",
+        "Выпиши библиотеки самого проекта и библиотеки, которые нужны им",
+        "Сохрани перечень в выбранном стандартном формате",
+        "Сопоставь одну версию с сообщением об ошибке и укажи неопределённость"
+      ],
+      "result": "Проверяемый список компонентов. Наличие списка само по себе не доказывает безопасность."
+    },
+    {
+      "id": "subdomain-takeover-scanner",
+      "originalTitle": "Subdomain Takeover Scanner",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/Subdomain.Takeover.Scanner.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/Subdomain.Takeover.Scanner.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/Subdomain.Takeover.Scanner.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Не осталась ли старая ссылка в DNS",
+      "summary": "Доменная запись может вести на уже удалённый внешний сервис. Такую устаревшую связь нужно проверить и убрать по согласованию.",
+      "why": "Помогает поддерживать карту своих доменов и закрывать забытые настройки.",
+      "prerequisites": ["Что такое DNS и CNAME", "Кто владеет доменом"],
+      "steps": [
+        "Используй сохранённый набор записей вымышленной компании",
+        "Сопоставь каждую ссылку со списком действующих сервисов",
+        "Отметь несоответствие и запроси подтверждение владельца",
+        "Предложи удаление старой записи и проверку после изменения"
+      ],
+      "result": "Отчёт по своим записям. Регистрировать чужой ресурс или забирать чужой поддомен не нужно."
+    },
+    {
+      "id": "graphql-security-tester",
+      "originalTitle": "GraphQL Security Tester",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "SYNOPSES/intermediate/GraphQL.Security.Tester.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/intermediate/GraphQL.Security.Tester.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/intermediate/GraphQL.Security.Tester.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Проверяем права в GraphQL",
+      "summary": "GraphQL позволяет клиенту выбирать поля ответа. Сервер всё равно должен проверять право на каждую доступную часть данных.",
+      "why": "Помогает не путать гибкий запрос с разрешением читать чужую запись.",
+      "prerequisites": [
+        "Что такое API",
+        "Что такое пользователь и владелец записи"
+      ],
+      "steps": [
+        "Нарисуй небольшую учебную схему данных",
+        "Определи разрешённые поля для двух вымышленных пользователей",
+        "Сравни готовые ответы на обычный и запрещённый запрос",
+        "Запиши проверки прав и ограничения сложности запроса"
+      ],
+      "result": "Матрица доступа и ограничений. Глубокие запросы против чужих серверов не выполняются."
+    },
+    {
+      "id": "docker-security-audit",
+      "originalTitle": "Docker Security Audit",
+      "level": "intermediate",
+      "sourceLevel": "intermediate",
+      "sourcePath": "PROJECTS/intermediate/docker-security-audit",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/docker-security-audit",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/intermediate/docker-security-audit/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/intermediate/docker-security-audit/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 21
+      },
+      "title": "Проверяем настройки контейнера",
+      "summary": "Контейнер запускает программу с выбранными ограничениями. Избыточные права и доступ к системным файлам ослабляют эту границу.",
+      "why": "Помогает читать настройки Docker до запуска приложения.",
+      "prerequisites": [
+        "Что такое контейнер",
+        "Что такое пользователь и подключённая папка"
+      ],
+      "steps": [
+        "Возьми копию учебного Dockerfile или compose-файла",
+        "Отметь пользователя, его права, доступные контейнеру папки и открытые сетевые порты",
+        "Проверь наличие ограничений ресурсов",
+        "Запиши исправление и отдельно то, чего статическое чтение не подтверждает"
+      ],
+      "result": "Разбор конфигурации. Название контейнера не означает доказанную изоляцию."
+    },
+    {
+      "id": "api-rate-limiter",
+      "originalTitle": "API Rate Limiter",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/api-rate-limiter",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/api-rate-limiter",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/api-rate-limiter/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/api-rate-limiter/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 8
+      },
+      "title": "Не даём одному клиенту занять весь сервис",
+      "summary": "Ограничитель считает запросы и решает, сколько действий разрешить за время. При превышении клиенту предлагают подождать.",
+      "why": "Помогает сохранять доступность и ограничивать массовые попытки входа.",
+      "prerequisites": [
+        "Что такое запрос",
+        "Как работает счётчик",
+        "Основы Python"
+      ],
+      "steps": [
+        "Запиши лимит для своего учебного действия",
+        "Разбери небольшой ряд вымышленных запросов по времени",
+        "Покажи разрешение, отказ и восстановление после ожидания",
+        "Продумай общий счётчик при нескольких копиях сервера"
+      ],
+      "result": "Проверяемая таблица лимита. Код ответа 420 в исходном проекте не выдаётся за общий HTTP-стандарт."
+    },
+    {
+      "id": "encrypted-p2p-chat",
+      "originalTitle": "Encrypted Chat Application",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/encrypted-p2p-chat",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/encrypted-p2p-chat",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/encrypted-p2p-chat/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/encrypted-p2p-chat/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 7
+      },
+      "title": "Как устроен чат с шифрованием сообщений",
+      "summary": "При сквозном шифровании сообщение читают устройства участников, а сервер передаёт зашифрованные данные. Проверка собеседника остаётся отдельной задачей.",
+      "why": "Помогает различать защиту канала, содержимого и личности участника.",
+      "prerequisites": [
+        "Что такое ключ и шифрование",
+        "Что такое клиент и сервер"
+      ],
+      "steps": [
+        "Нарисуй обмен между двумя вымышленными участниками",
+        "Отметь, у кого находятся ключи",
+        "Сравни защиту доставки с проверкой личности",
+        "Запиши, как меняются ключи и что происходит при потере устройства"
+      ],
+      "result": "Схема доверия и список проверок. Свою учебную реализацию не используй для важных секретов."
+    },
+    {
+      "id": "exploit-development-framework",
+      "originalTitle": "Exploit Development Framework",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Exploit.Development.Framework.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Exploit.Development.Framework.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Exploit.Development.Framework.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как исследователь подтверждает ошибку программы",
+      "summary": "Эксплойт использует конкретную ошибку программы. Для защитного разбора важно доказать причину, ограничить проверку и показать исправление.",
+      "why": "Помогает отличать подтверждённую ошибку от красивого сообщения инструмента.",
+      "prerequisites": [
+        "Как работает программа",
+        "Что такое ошибка памяти",
+        "Правила разрешённого тестирования"
+      ],
+      "steps": [
+        "Возьми описание заранее исправленной учебной ошибки",
+        "Выдели входные данные, ошибку и последствия",
+        "Составь безопасный план подтверждения только для своей лаборатории",
+        "Запиши исправление и проверку, которая должна пройти после него"
+      ],
+      "result": "План защитного исследования. Генерация боевых нагрузок и доступ к чужим системам не входят в каталог."
+    },
+    {
+      "id": "ai-threat-detection",
+      "originalTitle": "AI Threat Detection",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/ai-threat-detection",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/ai-threat-detection",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/ai-threat-detection/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/ai-threat-detection/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 26
+      },
+      "title": "ИИ помогает сортировать тревоги",
+      "summary": "Модель может оценивать признаки запросов и выделять необычные. Её результат — предположение, которое нужно проверять на известных примерах.",
+      "why": "Учит измерять пропуски и ложные тревоги вместо доверия одному красивому проценту.",
+      "prerequisites": [
+        "Что такое журнал запросов",
+        "Что такое обучающие и проверочные данные"
+      ],
+      "steps": [
+        "Возьми размеченные вымышленные записи",
+        "Раздели данные обучения и проверки",
+        "Сравни решение модели с известным результатом",
+        "Посчитай ошибочные тревоги и пропущенные случаи"
+      ],
+      "result": "Небольшой отчёт об ошибках модели. Облачный платный ИИ для этого объяснения не нужен."
+    },
+    {
+      "id": "zig-stateless-scanner",
+      "originalTitle": "Zingela Stateless Scanner",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/zig-stateless-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/zig-stateless-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/zig-stateless-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/zig-stateless-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 0
+      },
+      "title": "Как устроен быстрый сетевой сканер",
+      "summary": "Большой сканер отправляет много сетевых проб и связывает ответы с исходными запросами. Скорость одновременно повышает риск лишней нагрузки.",
+      "why": "Позволяет понять устройство инструмента и необходимость строгих границ проверки.",
+      "prerequisites": [
+        "Как устроен TCP",
+        "Что такое пакет",
+        "Правила сетевого тестирования"
+      ],
+      "steps": [
+        "Разбери схему проба — ответ на бумаге",
+        "Объясни, как ответ связывается с запросом",
+        "Выбери ограничение только для своей отдельной лаборатории",
+        "Запиши причины остановки и ограничения выводов по ответу"
+      ],
+      "result": "Теоретический разбор. Массовое сканирование интернета и чужих сетей не предлагается."
+    },
+    {
+      "id": "bug-bounty-platform",
+      "originalTitle": "Bug Bounty Platform",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/bug-bounty-platform",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/bug-bounty-platform",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/bug-bounty-platform/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/bug-bounty-platform/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 7
+      },
+      "title": "Как принять и разобрать сообщение об ошибке защиты",
+      "summary": "Bug bounty-платформа помогает описать разрешённую область проверки и передать найденную проблему. Важны доказательства и понятный порядок общения.",
+      "why": "Учит писать сообщение, которое другая команда сможет проверить.",
+      "prerequisites": [
+        "Что такое разрешённая область проверки",
+        "Как описывать шаги воспроизведения"
+      ],
+      "steps": [
+        "Создай карточку вымышленной программы",
+        "Перечисли разрешённые системы и запрещённые действия",
+        "Заполни сообщение об учебной ошибке с доказательствами",
+        "Опиши проверку исправления и закрытие карточки"
+      ],
+      "result": "Макет процесса приёма сообщений. Выплата награды и принятие реального отчёта не обещаются."
+    },
+    {
+      "id": "cloud-security-compliance-dashboard",
+      "originalTitle": "Cloud Security Compliance Dashboard",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Cloud.Security.Compliance.Dashboard.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Cloud.Security.Compliance.Dashboard.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Cloud.Security.Compliance.Dashboard.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Проверяем настройки своего облака",
+      "summary": "В облаке доступ задают пользователи, роли, сети и настройки сервисов. Панель помогает собрать эти проверки в одном месте.",
+      "why": "Учит понимать находку вместе с назначением ресурса и владельцем.",
+      "prerequisites": [
+        "Что такое облачный ресурс",
+        "Что такое роль доступа",
+        "Основы сетей"
+      ],
+      "steps": [
+        "Возьми вымышленный список ресурсов и разрешений",
+        "Сравни настройки с выбранным правилом",
+        "Отдели подтверждённую проблему от недоступных данных",
+        "Подготовь исправление, владельца и способ проверки результата"
+      ],
+      "result": "Учебная панель находок. Настоящий облачный аккаунт, оплата и автоматическое исправление не требуются."
+    },
+    {
+      "id": "malware-analysis-platform",
+      "originalTitle": "Malware Analysis Platform",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Malware.Analysis.Platform.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Malware.Analysis.Platform.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Malware.Analysis.Platform.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как подготовить безопасный разбор подозрительного файла",
+      "summary": "Статический разбор читает файл без запуска. Динамический наблюдает поведение при запуске и требует специально проверенной изоляции.",
+      "why": "Помогает выбрать способ анализа и вовремя передать опасный образец специалисту.",
+      "prerequisites": [
+        "Разница между файлом и процессом",
+        "Что такое изоляция и контрольная сумма"
+      ],
+      "steps": [
+        "Начни с собственного безвредного файла и статической карточки",
+        "Опиши, какие наблюдения дал бы запуск",
+        "Составь требования изоляции, сети и возврата лаборатории",
+        "Отметь случаи, когда анализ нужно передать специалисту"
+      ],
+      "result": "План анализа без настоящих вредоносных файлов. Один Docker-контейнер не объявляется достаточной защитой."
+    },
+    {
+      "id": "quantum-resistant-encryption",
+      "originalTitle": "Quantum Resistant Encryption",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Quantum.Resistant.Encryption.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Quantum.Resistant.Encryption.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Quantum.Resistant.Encryption.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Зачем обновляют криптографические алгоритмы",
+      "summary": "Постквантовая криптография изучает защиту от будущих квантовых вычислений. Это не обещание вечной защиты любого способа шифрования.",
+      "why": "Помогает понимать назначение обмена ключами и цифровой подписи.",
+      "prerequisites": [
+        "Что такое открытый и закрытый ключ",
+        "Разница между подписью и шифрованием"
+      ],
+      "steps": [
+        "Раздели задачи обмена ключами и подписи",
+        "Найди современные названия стандартов в первичной документации",
+        "Сравни готовые учебные измерения времени и размера сообщений",
+        "Запиши ограничения и план совместимости старого и нового протоколов"
+      ],
+      "result": "Обзор задач и ограничений. Собственные криптоалгоритмы для реальных секретов не создаются."
+    },
+    {
+      "id": "zero-day-vulnerability-scanner",
+      "originalTitle": "Zero Day Vulnerability Scanner",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/zero-day-vulnerability-scanner",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/zero-day-vulnerability-scanner",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/zero-day-vulnerability-scanner/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/zero-day-vulnerability-scanner/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 33
+      },
+      "title": "Проверяем парсер необычными входными данными",
+      "summary": "Фаззинг автоматически меняет входные данные и наблюдает, не ломается ли программа. Сбой ещё надо воспроизвести и объяснить.",
+      "why": "Помогает находить ошибки в собственной обработке файлов.",
+      "prerequisites": [
+        "Что такое входные данные",
+        "Основы C или C++",
+        "Как читать сообщение о сбое"
+      ],
+      "steps": [
+        "Выбери маленький собственный учебный парсер",
+        "Запиши нормальный пример и ожидаемый результат",
+        "Опиши ограниченный набор необычных входов и предел ресурсов",
+        "Для готового сбоя сохрани минимальный пример и план исправления"
+      ],
+      "result": "План проверки и карточка воспроизводимого сбоя. Название проекта не означает гарантированный поиск неизвестных уязвимостей."
+    },
+    {
+      "id": "distributed-password-cracker",
+      "originalTitle": "Distributed Password Cracker",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Distributed.Password.Cracker.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Distributed.Password.Cracker.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Distributed.Password.Cracker.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Делим учебную проверку пароля между задачами",
+      "summary": "Длинный поиск можно разделить на части между компьютерами. При этом важно не потерять задания и не повторять одну работу.",
+      "why": "Объясняет очереди задач и пределы ускорения на безопасном примере.",
+      "prerequisites": [
+        "Что такое хеш",
+        "Как работает очередь задач",
+        "Основы параллельного выполнения"
+      ],
+      "steps": [
+        "Возьми только свой вымышленный хеш и маленький набор кандидатов",
+        "Раздели список на непересекающиеся части",
+        "На схеме учти результат и повтор после сбоя исполнителя",
+        "Сравни затраты времени без обещания линейного ускорения"
+      ],
+      "result": "План распределённых задач. Чужие пароли, утечки и аренда вычислителей не используются."
+    },
+    {
+      "id": "kernel-rootkit-detection",
+      "originalTitle": "Kernel Rootkit Detection",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Kernel.Rootkit.Detection.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Kernel.Rootkit.Detection.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Kernel.Rootkit.Detection.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Почему системным спискам тоже нужна проверка",
+      "summary": "Руткит может скрывать следы на уровне системы. Поэтому одному списку процессов или одному сканеру нельзя доверять безоговорочно.",
+      "why": "Учит сопоставлять независимые наблюдения и вовремя сохранять данные для специалистов.",
+      "prerequisites": [
+        "Что такое ядро и процесс",
+        "Как работают журналы",
+        "Основы расследования"
+      ],
+      "steps": [
+        "Возьми готовые вымышленные списки процессов и событий",
+        "Найди несоответствия между источниками",
+        "Запиши другие возможные причины различий",
+        "Составь порядок сохранения данных и передачи специалисту"
+      ],
+      "result": "Карточка несоответствий. Установка руткита и изменение ядра не выполняются."
+    },
+    {
+      "id": "blockchain-smart-contract-auditor",
+      "originalTitle": "Blockchain Smart Contract Auditor",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Blockchain.Smart.Contract.Auditor.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Blockchain.Smart.Contract.Auditor.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Blockchain.Smart.Contract.Auditor.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Проверяем правила учебного смарт-контракта",
+      "summary": "Смарт-контракт выполняет записанные правила операций. Ошибка прав или порядка изменения состояния может привести к потере средств.",
+      "why": "Помогает читать ограничения программ, которые распоряжаются ценностями.",
+      "prerequisites": [
+        "Что такое состояние программы",
+        "Основы Solidity",
+        "Разница между тестовой и рабочей сетью"
+      ],
+      "steps": [
+        "Возьми открытый учебный контракт без реальных средств",
+        "Опиши, кто может менять его состояние",
+        "Сравни допустимые и запрещённые переходы",
+        "Запиши находку, ограничение анализа и проверку исправления"
+      ],
+      "result": "План аудита учебного кода. Реальные кошельки, средства и чужие контракты не затрагиваются."
+    },
+    {
+      "id": "adversarial-ml-attacker",
+      "originalTitle": "Adversarial ML Attacker",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Adversarial.ML.Attacker.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Adversarial.ML.Attacker.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Adversarial.ML.Attacker.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Проверяем, когда модель ошибается",
+      "summary": "Модель может менять ответ из-за небольших изменений входных данных. Это повод измерять устойчивость, а не считать модель безошибочной.",
+      "why": "Помогает оценивать ИИ на знакомом наборе задач.",
+      "prerequisites": [
+        "Что такое модель и проверочная выборка",
+        "Как считать правильные и ошибочные ответы"
+      ],
+      "steps": [
+        "Выбери собственную учебную модель и открытые безопасные данные",
+        "Запиши исходные ответы",
+        "Сравни ответы после заранее определённых безвредных изменений",
+        "Объясни ошибки и границы переноса результата на другие модели"
+      ],
+      "result": "Отчёт об устойчивости. Обход рабочих систем распознавания и защиты не выполняется."
+    },
+    {
+      "id": "rveng",
+      "originalTitle": "Reverse-Engineering",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/rveng",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/rveng",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/rveng/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/rveng/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 17
+      },
+      "title": "От готовой программы к её устройству",
+      "summary": "Обратная разработка помогает понять собранную программу по строкам, разделам файла и машинным инструкциям. Начинать удобнее со своей маленькой программы.",
+      "why": "Связывает написанный код с тем, что реально хранится в исполняемом файле.",
+      "prerequisites": [
+        "Как скомпилировать маленькую программу",
+        "Что такое байт и адрес"
+      ],
+      "steps": [
+        "Возьми авторский учебный файл с известным исходным кодом",
+        "Найди строки и разделы без запуска неизвестного файла",
+        "Ответь на один вопрос о поведении",
+        "Сравни наблюдение с исходным кодом и объясни расхождение"
+      ],
+      "result": "Разбор одного безопасного файла. Чужую защиту лицензий и коммерческие ограничения не обходят."
+    },
+    {
+      "id": "hsm-emulator",
+      "originalTitle": "Hardware Security Module Emulator",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/hsm-emulator",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/hsm-emulator",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/hsm-emulator/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/hsm-emulator/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 2
+      },
+      "title": "Почему ключи хранят отдельно от приложения",
+      "summary": "HSM — специальный модуль для операций с ключами. Программная учебная модель помогает понять интерфейс, но не заменяет физическое защищённое устройство.",
+      "why": "Объясняет разницу между использованием ключа и выдачей самого ключа.",
+      "prerequisites": [
+        "Что такое ключ и подпись",
+        "Основы интерфейса программы",
+        "Как работают права доступа"
+      ],
+      "steps": [
+        "Нарисуй приложение и отдельный модуль ключей",
+        "Раздели создание, использование и экспорт ключа",
+        "Разбери готовый пример подписи и проверки",
+        "Запиши ограничения программной модели и требования к реальному хранению"
+      ],
+      "result": "Схема границ доступа к ключам. Гарантии физического HSM учебному эмулятору не приписываются."
+    },
+    {
+      "id": "network-covert-channel",
+      "originalTitle": "Network Covert Channel",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Network.Covert.Channel.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Network.Covert.Channel.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Network.Covert.Channel.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как защита замечает необычную передачу данных",
+      "summary": "Скрытый сетевой канал использует обычный протокол не по назначению. Для защиты полезно искать необычные объёмы, длины и повторения.",
+      "why": "Помогает разбирать возможную утечку по готовым журналам.",
+      "prerequisites": [
+        "Что такое DNS и HTTP",
+        "Как сравнивать объёмы и время событий"
+      ],
+      "steps": [
+        "Возьми вымышленные записи без настоящих секретов",
+        "Найди необычно длинные значения и повторяющиеся обращения",
+        "Сравни с нормальным приложением и возможными ошибками",
+        "Запиши признаки тревоги и сведения для подтверждения"
+      ],
+      "result": "Защитный разбор. Канал скрытой отправки данных и способы обхода наблюдения не создаются."
+    },
+    {
+      "id": "automated-penetration-testing",
+      "originalTitle": "Automated Penetration Testing",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Automated.Penetration.Testing.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Automated.Penetration.Testing.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Automated.Penetration.Testing.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Как организовать разрешённую проверку сайта",
+      "summary": "Автоматизация повторяет заранее выбранные проверки. Она не заменяет разрешение владельца, понимание результата и контроль остановки.",
+      "why": "Помогает подготовить аккуратный план тестирования собственной лаборатории.",
+      "prerequisites": [
+        "Что такое область проверки",
+        "Как читать отчёт",
+        "Основы HTTP"
+      ],
+      "steps": [
+        "Опиши собственную учебную цель и письменные границы",
+        "Выбери небольшие безопасные проверки",
+        "Для каждой запиши ожидаемый результат и условие остановки",
+        "Подготовь шаблон доказательств, исправлений и уборки учебных данных"
+      ],
+      "result": "План проверки с понятными границами. Автоматическое проникновение в чужие системы не предлагается."
+    },
+    {
+      "id": "haskell-reverse-proxy",
+      "originalTitle": "Haskell Reverse Proxy",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/haskell-reverse-proxy",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/haskell-reverse-proxy",
+      "docsUrl": null,
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/haskell-reverse-proxy/README.md",
+        "codePresent": true,
+        "learnPresent": false,
+        "testFileCount": 8
+      },
+      "title": "Входной сервер перед приложением",
+      "summary": "Обратный прокси принимает соединение от клиента и передаёт запрос приложению. Там могут находиться TLS, распределение нагрузки и дополнительные проверки.",
+      "why": "Помогает разобраться, почему сайт состоит из нескольких взаимодействующих программ.",
+      "prerequisites": [
+        "Что такое HTTP и TLS",
+        "Что такое клиент и сервер",
+        "Основы Haskell для чтения исходника"
+      ],
+      "steps": [
+        "Нарисуй путь одного запроса",
+        "Разбери выбор доступного сервера и ответ при отказе",
+        "Отдели правила доступа от предположений модели о боте",
+        "Составь проверки разрешённого запроса и восстановления соединения"
+      ],
+      "result": "Схема входного сервера и ограничений решений. Рабочий сайт и его трафик не меняются."
+    },
+    {
+      "id": "monitor-the-situation-dashboard",
+      "originalTitle": "\"Monitor the Situation\" Dashboard",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/monitor-the-situation-dashboard",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/monitor-the-situation-dashboard",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/monitor-the-situation-dashboard/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/monitor-the-situation-dashboard/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 52
+      },
+      "title": "Панель событий: что действительно относится к компании",
+      "summary": "Панель собирает разные внешние сообщения и показывает их рядом. Наличие события в мире ещё не значит, что оно затронуло твою систему.",
+      "why": "Учит проверять источник, свежесть и связь новости с собственными ресурсами.",
+      "prerequisites": [
+        "Как читать дату и ссылку",
+        "Что такое источник данных",
+        "Что такое версия программы"
+      ],
+      "steps": [
+        "Возьми несколько сохранённых сообщений разных источников",
+        "Запиши время получения и исходную ссылку",
+        "Свяжи сообщение с вымышленным ресурсом или отметь отсутствие связи",
+        "Покажи на панели факт, неопределённость и следующий шаг"
+      ],
+      "result": "Небольшая проверяемая панель. Внешние показатели и карты не выдаются за доказательство атаки на компанию."
+    },
+    {
+      "id": "honeypot-network",
+      "originalTitle": "Honeypot Network",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "PROJECTS/advanced/honeypot-network",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/honeypot-network",
+      "docsUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/tree/6a9989cd4858d4c51f0922debcba53668121bea1/PROJECTS/advanced/honeypot-network/learn",
+      "implementation": "source",
+      "review": {
+        "overviewPath": "PROJECTS/advanced/honeypot-network/README.md",
+        "codePresent": true,
+        "learnPresent": true,
+        "testFileCount": 9
+      },
+      "title": "Учебная приманка для наблюдения",
+      "summary": "Honeypot изображает сервис, к которому обычная работа обращаться не должна. Обращение даёт материал для изучения поведения, но требует строгой изоляции.",
+      "why": "Помогает понять пользу и риск специально наблюдаемой системы.",
+      "prerequisites": [
+        "Что такое сетевой сервис",
+        "Что такое изоляция",
+        "Правила сбора данных"
+      ],
+      "steps": [
+        "Начни с готового вымышленного журнала приманки",
+        "Раздели подключение, введённый текст и попытку действия",
+        "Отметь наблюдения и возможные ложные объяснения",
+        "Составь требования изоляции, хранения и удаления собранных данных"
+      ],
+      "result": "Защитный разбор журнала. Публичная приманка и сбор чужих паролей для упражнения не запускаются."
+    },
+    {
+      "id": "supply-chain-security-analyzer",
+      "originalTitle": "Supply Chain Security Analyzer",
+      "level": "advanced",
+      "sourceLevel": "advanced",
+      "sourcePath": "SYNOPSES/advanced/Supply.Chain.Security.Analyzer.md",
+      "sourceUrl": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/SYNOPSES/advanced/Supply.Chain.Security.Analyzer.md",
+      "docsUrl": null,
+      "implementation": "idea",
+      "review": {
+        "overviewPath": "SYNOPSES/advanced/Supply.Chain.Security.Analyzer.md",
+        "codePresent": false,
+        "learnPresent": false,
+        "testFileCount": 0
+      },
+      "title": "Проверяем цепочку сборки программы",
+      "summary": "На итоговую программу влияют пакеты, источник кода и действия сборки. Проверка цепочки помогает заметить неожиданные изменения.",
+      "why": "Учит смотреть шире одного сообщения об уязвимой библиотеке.",
+      "prerequisites": [
+        "Что такое зависимость",
+        "Что такое Git и сборка",
+        "Основы проверки изменений"
+      ],
+      "steps": [
+        "Возьми схему собственного учебного проекта",
+        "Перечисли источники кода, пакетов и действий сборки",
+        "Сравни имена, версии и разрешения с ожидаемыми",
+        "Запиши контрольные проверки и порядок реакции на несоответствие"
+      ],
+      "result": "Карта доверия и список проверок. Посторонние пакеты и действия CI не запускаются."
+    }
+  ],
+  "roadmaps": [
+    {
+      "title": "Аналитик команды защиты",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/SOC-ANALYST.md",
+      "summary": "Читает события, проверяет тревоги и передаёт понятные карточки случаев."
+    },
+    {
+      "title": "Специалист по расследованию",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/INCIDENT-RESPONDER.md",
+      "summary": "Собирает факты, помогает остановить последствия и проверяет восстановление."
+    },
+    {
+      "title": "Инженер защиты",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/SECURITY-ENGINEER.md",
+      "summary": "Настраивает и проверяет технические средства защиты."
+    },
+    {
+      "title": "Специалист по разрешённым проверкам",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/PENTESTER.md",
+      "summary": "Ищет и подтверждает ошибки только в согласованной области."
+    },
+    {
+      "title": "Защита приложений",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/APPLICATION-SECURITY.md",
+      "summary": "Помогает разработчикам проверять доступ, данные и изменения программы."
+    },
+    {
+      "title": "Архитектор защиты",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/SECURITY-ARCHITECT.md",
+      "summary": "Проектирует общую схему защиты и связи между системами."
+    },
+    {
+      "title": "Риски, правила и проверки",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/GRC-ANALYST.md",
+      "summary": "Связывает требования, реальные риски и подтверждения выполненной работы."
+    },
+    {
+      "title": "Защита облака",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/CLOUD-SECURITY-ENGINEER.md",
+      "summary": "Проверяет роли, сеть, хранение и настройки облачных ресурсов."
+    },
+    {
+      "title": "Аналитик сведений об угрозах",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/THREAT-INTELLIGENCE-ANALYST.md",
+      "summary": "Проверяет внешние сведения и объясняет их связь с конкретной организацией."
+    },
+    {
+      "title": "Сетевой инженер с уклоном в защиту",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/ROADMAPS/NETWORK-ENGINEER.md",
+      "summary": "Разбирает соединения и проектирует разрешённый обмен между системами."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Инструменты",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/RESOURCES/TOOLS.md",
+      "summary": "Указатель средств анализа и проверки. Выбор инструмента не заменяет понимание задачи."
+    },
+    {
+      "title": "Курсы и практика",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/RESOURCES/COURSES.md",
+      "summary": "Подборка внешнего обучения. Условия доступа и цены нужно смотреть у самого поставщика."
+    },
+    {
+      "title": "Сертификации",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/RESOURCES/CERTIFICATIONS.md",
+      "summary": "Указатель экзаменов и подготовки. Сертификат не требуется для прохождения Kairon."
+    },
+    {
+      "title": "Сообщества",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/RESOURCES/COMMUNITIES.md",
+      "summary": "Внешние сообщества и каналы. Личные данные и рабочие материалы публиковать там нельзя."
+    },
+    {
+      "title": "Подходы и стандарты",
+      "url": "https://github.com/CarterPerez-dev/Cybersecurity-Projects/blob/6a9989cd4858d4c51f0922debcba53668121bea1/RESOURCES/FRAMEWORKS.md",
+      "summary": "Указатель моделей и правил, которые помогают организовать защиту и проверки."
+    }
+  ]
+}

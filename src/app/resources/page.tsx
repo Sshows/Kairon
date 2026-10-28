@@ -143,6 +143,23 @@ export default function ResourcesPage() {
         </div>
       </section>
       <h2 className="resources-heading">Нашли на GitHub</h2>
+      <section className="resource-feature">
+        <BookOpen size={25} />
+        <div>
+          <h2>69 проектов: объясняем с нуля</h2>
+          <p>
+            Весь список Cybersecurity-Projects: зачем нужна каждая программа,
+            что сначала понять и с чего начать. Для начинающих — восемь
+            пошаговых уроков с небольшими примерами Python.
+          </p>
+          <Link href="/projects" className="subtle-link">
+            Все проекты с объяснениями →
+          </Link>
+          <Link href="/learn/project-start" className="subtle-link">
+            Написать свою первую программу →
+          </Link>
+        </div>
+      </section>
       <p className="program-note">
         Звёзды проверены 25 октября 2026 года и со временем меняются. Список
         отсортирован по звёздам среди выбранных источников; это не рейтинг всех

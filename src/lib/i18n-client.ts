@@ -35,14 +35,14 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "KALI + BLUE TEAM · 32 УРОКА",
+    stage: "С НУЛЯ · 40 УРОКОВ · 69 ПРОЕКТОВ",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
       "Запусти готовую Kali Linux и попробуй себя в расследовании. Подозрительные письма, следы входа, свой сайт и восстановление файлов — с понятными шагами.",
     heroAction: "Начать обучение",
     heroSecondary: "Как устроено обучение",
     programNote:
-      "Открыты два пути: Kali Linux — 20 уроков и «Безопасность в компании» — 12 дел. Читай здесь, выполняй в своей Kali. Новые темы выбраны после разбора канала «Карманный хакер».",
+      "Три пути: Kali — 20 уроков, работа в компании — 12 дел, свои программы — 8 уроков. Объясняем слова и каждый шаг. Ещё 69 проектов помогут выбрать следующую тему.",
     freeStart: "ТВОЯ ТОЧКА ВХОДА В КИБЕРБЕЗОПАСНОСТЬ",
     learn: "Учебная платформа",
     roadmap: "От запуска Kali до расследования",
@@ -90,14 +90,14 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "KALI + BLUE TEAM · 32 LESSONS",
+    stage: "FROM ZERO · 40 LESSONS · 69 PROJECTS",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
       "Set up a ready-made Kali VM and investigate training cases: suspicious email, login traces, your own website, and file recovery.",
     heroAction: "Start learning",
     heroSecondary: "How learning works",
     programNote:
-      "Two paths are open: 20 Russian Kali guides and 12 company-security cases. Read here, practice in your own Kali. New topics follow a reviewed public Telegram source.",
+      "Three paths: 20 Kali guides, 12 company-security cases, and 8 first-program guides. A catalogue of 69 projects helps you choose what to learn next. Lessons are in Russian.",
     freeStart: "YOUR START IN CYBERSECURITY",
     learn: "Learning platform",
     roadmap: "From Kali setup to investigation",

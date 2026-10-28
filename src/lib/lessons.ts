@@ -1,6 +1,7 @@
 import "server-only";
 import kali from "../../content/lessons/kali.json";
 import company from "../../content/lessons/company.json";
+import projects from "../../content/lessons/projects.json";
 import type { LearningPathId } from "./learning-paths";
 export const lessons = [
   ...kali.map((lesson) => ({
@@ -10,6 +11,10 @@ export const lessons = [
   ...company.map((lesson) => ({
     ...lesson,
     pathId: "blue-team" as LearningPathId,
+  })),
+  ...projects.map((lesson) => ({
+    ...lesson,
+    pathId: "kali-tools" as LearningPathId,
   })),
 ];
 export type Lesson = (typeof lessons)[number];

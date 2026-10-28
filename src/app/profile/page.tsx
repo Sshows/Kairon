@@ -72,12 +72,12 @@ export default async function Profile() {
             <strong>
               {Math.round((completed.size / lessons.length) * 100)}%
             </strong>
-            <span>оба учебных пути</span>
+            <span>все учебные пути</span>
           </article>
         </div>
         <progress max={lessons.length} value={completed.size} />
         {completed.size === lessons.length && (
-          <p className="course-award">🏅 Оба учебных пути завершены</p>
+          <p className="course-award">🏅 Все учебные пути завершены</p>
         )}
       </section>
       <section
@@ -136,10 +136,10 @@ export default async function Profile() {
           {locale === "ru"
             ? next
               ? "Продолжим практику?"
-              : "Оба пути завершены"
+              : "Все пути завершены"
             : next
               ? "Continue your practice"
-              : "Both paths completed"}
+              : "All paths completed"}
         </h2>
         <p>
           {locale === "ru"
