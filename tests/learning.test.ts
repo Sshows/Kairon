@@ -14,17 +14,23 @@ import hamedPlan from "../content/source-audits/hamed-roadmap.json";
 import malwareBible from "../content/source-audits/malware-bible.json";
 import awesome from "../content/source-audits/awesome-hacking.json";
 import secret from "../content/source-audits/secret-knowledge.json";
+import labex from "../content/source-audits/labex-kali.json";
+import toolbox from "../content/toolbox.json";
 import paulCatalog from "../content/source-audits/paul-cybersecurity.json";
 import { directionLessons } from "../src/lib/study-plan";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
-  it("publishes six independent courses with stable lesson IDs", () => {
-    expect(lessons).toHaveLength(68);
+  it("publishes seven independent courses with stable lesson IDs", () => {
+    expect(lessons).toHaveLength(80);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
+    const practice = getCourseLessons("kali-practice");
+    expect(practice).toHaveLength(12);
+    expect(getCourseModules("kali-practice")).toHaveLength(2);
+    expect(practice.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1200);
     const diagnostics = getCourseLessons("diagnostics");
     expect(diagnostics).toHaveLength(8);
     expect(getCourseModules("diagnostics")).toHaveLength(2);
@@ -40,7 +46,7 @@ describe("Kali guides and answer checks", () => {
     expect(getCourseModules("kali-tools")).toHaveLength(2);
     expect(getCourseModules("security-basics")).toHaveLength(3);
     expect(getCourseModules("file-analysis")).toHaveLength(2);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(68);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(80);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
@@ -91,6 +97,9 @@ describe("Kali guides and answer checks", () => {
       ),
     ).toBe(true);
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
+    expect(isUnlocked("tools-start", new Set())).toBe(true);
+    expect(isUnlocked("tools-nmap", new Set(["diag-intake"]))).toBe(false);
+    expect(isUnlocked("tools-nmap", new Set(["tools-start"]))).toBe(true);
     expect(isUnlocked("diag-intake", new Set())).toBe(true);
     expect(isUnlocked("diag-scope", new Set(["analysis-intake"]))).toBe(false);
     expect(isUnlocked("diag-scope", new Set(["diag-intake"]))).toBe(true);
@@ -237,5 +246,28 @@ describe("Kali guides and answer checks", () => {
     }
     for (const section of awesome.sections)
       expect(section.resourceUrl).toMatch(/^https:\/\//);
+  });
+  it("explains each LabEx topic and connects tool mechanisms to real lessons", () => {
+    expect(labex.commit).toBe("b0cde4439727205d1ffdf6e81cb282ea2fc6b553");
+    expect(labex.sections).toHaveLength(36);
+    expect(new Set(labex.sections.map((topic) => topic.id)).size).toBe(36);
+    const ids = new Set(lessons.map((lesson) => lesson.id));
+    for (const topic of labex.sections) {
+      expect(topic.sourceUrl).toContain(labex.commit);
+      expect(topic.resourceUrl).toMatch(/^https:\/\/labex.io\//);
+      expect(topic.example.length, topic.id).toBeGreaterThan(30);
+      for (const id of topic.lessonIds)
+        expect(ids.has(id), topic.id + ": " + id).toBe(true);
+    }
+    expect(toolbox.tools).toHaveLength(7);
+    expect(new Set(toolbox.tools.map((tool) => tool.id)).size).toBe(7);
+    for (const tool of toolbox.tools) {
+      expect(tool.howItWorks.length, tool.id).toBeGreaterThan(100);
+      expect(tool.steps.length, tool.id).toBeGreaterThanOrEqual(3);
+      expect(tool.result.length, tool.id).toBeGreaterThan(30);
+      expect(tool.resources.length, tool.id).toBeGreaterThan(0);
+      for (const id of tool.lessonIds)
+        expect(ids.has(id), tool.id + ": " + id).toBe(true);
+    }
   });
 });

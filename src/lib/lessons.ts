@@ -5,6 +5,8 @@ import projects from "../../content/lessons/projects.json";
 import basics from "../../content/lessons/basics.json";
 import analysis from "../../content/lessons/analysis.json";
 import diagnostics from "../../content/lessons/diagnostics.json";
+import toolsNetwork from "../../content/lessons/kali-practice-network.json";
+import toolsCrypto from "../../content/lessons/kali-practice-crypto.json";
 import type { LearningPathId } from "./learning-paths";
 export const lessons = [
   ...basics.map((lesson) => ({
@@ -30,6 +32,10 @@ export const lessons = [
   ...diagnostics.map((lesson) => ({
     ...lesson,
     pathId: "diagnostics" as LearningPathId,
+  })),
+  ...[...toolsNetwork, ...toolsCrypto].map((lesson) => ({
+    ...lesson,
+    pathId: "kali-practice" as LearningPathId,
   })),
 ];
 export type Lesson = (typeof lessons)[number];

@@ -13,6 +13,24 @@ export type Path = {
 };
 export const paths: Path[] = [
   {
+    slug: "kali-practice",
+    availableLessons: 12,
+    number: "08",
+    color: "lime",
+    category: "beginner",
+    icon: "tool",
+    title: { ru: "Инструменты Kali на практике", en: "Kali tools in practice" },
+    description: {
+      ru: "12 уроков: как работают Nmap, Netcat, Hydra, Hashcat и OpenSSL. Свой локальный сервис, понятные команды и разбор вывода.",
+      en: "12 guides explaining Nmap, Netcat, Hydra, Hashcat and OpenSSL with a local service and original practice files.",
+    },
+    modules: {
+      ru: ["Сеть и проверка доступа", "Файлы, шифрование и итог"],
+      en: ["Network and access checks", "Files, cryptography and reporting"],
+    },
+    tags: ["Nmap", "Netcat", "Hydra", "Hashcat", "OpenSSL", "Kali"],
+  },
+  {
     slug: "diagnostics",
     availableLessons: 8,
     number: "07",

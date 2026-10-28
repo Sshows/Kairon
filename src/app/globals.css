@@ -3102,3 +3102,86 @@ progress::-webkit-progress-value {
 .collection-card a {
   overflow-wrap: anywhere;
 }
+
+/* Tool guides explain mechanisms and keep commands readable on a phone. */
+.tool-card {
+  border: 1px solid #35432c;
+  background: #182013;
+  border-radius: 12px;
+  padding: 23px;
+  min-width: 0;
+}
+.tool-card h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.tool-card p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.tool-card .subtle-link {
+  display: block;
+  margin-top: 18px;
+}
+.tool-course-feature,
+.tool-mechanism {
+  border: 1px solid #35432c;
+  background: #182013;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 28px 0;
+}
+.tool-course-feature h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.tool-course-feature p {
+  line-height: 1.8;
+}
+.tool-mechanism p,
+.tool-detail p {
+  white-space: pre-line;
+}
+.tool-steps {
+  list-style: none;
+  padding: 0 !important;
+}
+.tool-steps > li {
+  margin: 24px 0;
+  border-top: 1px solid #35432c;
+  padding-top: 24px;
+  min-width: 0;
+}
+.tool-steps h3 {
+  margin: 12px 0;
+  font-size: 21px;
+}
+.tool-detail pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #10170d;
+  border: 1px solid #35432c;
+  padding: 18px;
+  border-radius: 8px;
+  color: #dcf2bd;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.toolbox-page .search-box input {
+  min-width: 0;
+  width: 100%;
+}
+@media (max-width: 650px) {
+  .tool-card,
+  .tool-course-feature,
+  .tool-mechanism {
+    padding: 18px;
+  }
+  .tool-course-feature .course-actions {
+    align-items: stretch;
+  }
+  .tool-course-feature .course-actions a {
+    white-space: normal;
+    text-align: center;
+  }
+}

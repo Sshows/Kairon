@@ -5,6 +5,9 @@ import course from "../../content/lessons/kali.json" with { type: "json" };
 import company from "../../content/lessons/company.json" with { type: "json" };
 import projects from "../../content/lessons/projects.json" with { type: "json" };
 import basics from "../../content/lessons/basics.json" with { type: "json" };
+import toolsNetwork from "../../content/lessons/kali-practice-network.json" with { type: "json" };
+import toolsCrypto from "../../content/lessons/kali-practice-crypto.json" with { type: "json" };
+const practice = [...toolsNetwork, ...toolsCrypto];
 import diagnostics from "../../content/lessons/diagnostics.json" with { type: "json" };
 import analysis from "../../content/lessons/analysis.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
@@ -84,6 +87,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       headers: { Origin: "http://localhost:3000" },
       data: body,
     });
+  expect(
+    (
+      await submit(practice[1].id, {
+        action: "check",
+        answer: practice[1].answers[0],
+      })
+    ).status(),
+  ).toBe(423);
+  for (const response of await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit(practice[0].id, {
+        action: "check",
+        answer: practice[0].answers[0],
+      }),
+    ),
+  ))
+    expect((await response.json()).status).toBe("passed");
   expect(
     (
       await submit(diagnostics[1].id, {
@@ -286,6 +306,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       ).json()
     ).already,
   ).toBe(true);
+  for (const lesson of practice.slice(1)) {
+    const response = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await response.json()).status, lesson.id).toBe("passed");
+  }
+  expect(
+    (
+      await (
+        await submit(practice[0].id, {
+          action: "check",
+          answer: practice[0].answers[0],
+        })
+      ).json()
+    ).already,
+  ).toBe(true);
   const progressDb = new Client({ connectionString: process.env.DIRECT_URL });
   for (const lesson of analysis.slice(1)) {
     const result = await submit(lesson.id, {
@@ -327,13 +364,16 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 69, xp: 7210 });
+    expect(result.rows[0]).toEqual({ count: 81, xp: 8410 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("68/68");
-  await expect(page.locator(".learning-stats")).toContainText("7210");
+  await expect(page.locator(".learning-stats")).toContainText("80/80");
+  await expect(page.locator(".learning-stats")).toContainText("8410");
+  await expect(page.locator('[data-course="kali-practice"]')).toContainText(
+    "12/12",
+  );
   await expect(page.locator('[data-course="diagnostics"]')).toContainText(
     "8/8",
   );
@@ -357,7 +397,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("68/68");
+  await expect(page.locator(".learning-stats")).toContainText("80/80");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -630,7 +670,7 @@ test("study map connects all directions and foundation lessons on mobile", async
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  await expect(page.locator(".path-card")).toHaveCount(8);
+  await expect(page.locator(".path-card")).toHaveCount(9);
   await page
     .getByRole("link", { name: "Начать обучение", exact: true })
     .click();
@@ -860,4 +900,74 @@ test("knowledge collections connect both complete indexes to diagnostics practic
   });
   await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
   await expect(page).toHaveURL(/diag-scope/);
+});
+
+test("tool guides explain mechanisms and link to hands-on local Kali lessons", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/toolbox");
+  await expect(page.locator(".tool-card")).toHaveCount(7);
+  await page
+    .getByRole("searchbox", { name: "Найти инструмент Kali" })
+    .fill("Nmap");
+  await expect(page.locator(".tool-card")).toHaveCount(1);
+  await page.getByRole("searchbox", { name: "Найти инструмент Kali" }).fill("");
+  const links = await page
+    .locator(".tool-card h2 a")
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("href")!));
+  await page.screenshot({ path: "test-results/public-toolbox-desktop.png" });
+  for (const link of links) {
+    await page.goto(link);
+    await expect(page.locator(".tool-mechanism")).toContainText(/./);
+    expect(
+      await page.locator(".tool-steps > li").count(),
+    ).toBeGreaterThanOrEqual(3);
+    expect(await page.locator(".study-lesson-links a").count()).toBeGreaterThan(
+      0,
+    );
+  }
+  await page.goto("/sources/labex-kali");
+  await expect(page.locator(".reference-source-grid article")).toHaveCount(36);
+  await page.goto("/paths/kali-practice");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(12);
+  await expect(page.locator(".course-module")).toHaveCount(2);
+  const download = await page.request.get("/downloads/kairon-toolbox.zip");
+  expect(download.status()).toBe(200);
+  expect((await download.body()).subarray(0, 2).toString()).toBe("PK");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(links[0]);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/learn/tools-start");
+  await expect(page.locator(".guide-kit-link")).toHaveAttribute(
+    "href",
+    "/downloads/kairon-toolbox.zip",
+  );
+  await expect(
+    page.getByLabel("Команда терминала", { exact: true }),
+  ).toHaveCount(0);
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill(practice[0].answers[0]);
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-tools-mobile.png",
+    fullPage: true,
+  });
+  await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
+  await expect(page).toHaveURL(/tools-nmap/);
 });

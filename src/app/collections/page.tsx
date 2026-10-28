@@ -30,6 +30,17 @@ export default function CollectionsPage() {
           </Link>
         </div>
       </section>
+      <section className="tool-course-feature">
+        <h2>Как работают инструменты Kali</h2>
+        <p>
+          Выбери инструмент и разберись в его действии: что он отправляет в сеть
+          или делает с файлом, как читать вывод и чего проверка ещё не
+          доказывает. Для практики есть 12 уроков со своим локальным сервисом.
+        </p>
+        <Link href="/toolbox" className="subtle-link">
+          Nmap, Netcat, Hydra, Hashcat и OpenSSL с объяснениями →
+        </Link>
+      </section>
       <KnowledgeCollections
         entries={collections.map(
           ({

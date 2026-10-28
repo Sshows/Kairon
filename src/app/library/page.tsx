@@ -14,6 +14,17 @@ export default function LibraryPage() {
         Здесь каждую область объясняем через задачу и пример, а затем связываем
         с уроками Kairon и источником.
       </p>
+      <section className="tool-course-feature">
+        <h2>Как работают инструменты Kali</h2>
+        <p>
+          Выбери инструмент и разберись в его действии: что он отправляет в сеть
+          или делает с файлом, как читать вывод и чего проверка ещё не
+          доказывает. Для практики есть 12 уроков со своим локальным сервисом.
+        </p>
+        <Link href="/toolbox" className="subtle-link">
+          Nmap, Netcat, Hydra, Hashcat и OpenSSL с объяснениями →
+        </Link>
+      </section>
       <section className="resource-feature">
         <div>
           <h2>Большие подборки — по одной понятной теме</h2>

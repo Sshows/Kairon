@@ -4,9 +4,27 @@ export type LearningPathId =
   | "kali-tools"
   | "security-basics"
   | "file-analysis"
-  | "diagnostics";
+  | "diagnostics"
+  | "kali-practice";
 
 export const learningPaths = [
+  {
+    id: "kali-practice",
+    number: "08",
+    name: "Инструменты Kali на практике",
+    title: "Инструменты Kali: что делают команды и как читать результат",
+    description:
+      "Запустим свой маленький сервис, проверим его Nmap и передадим сообщение через Netcat. Сравним проверку пароля через Hydra и Hashcat. Затем попробуем хеши, шифрование, подписи и сертификаты OpenSSL. Каждый шаг — с объяснением механизма и результата.",
+    startLabel: "Подготовить свой учебный стенд",
+    completionLabel: "Инструменты Kali на практике — путь завершён",
+    kit: {
+      url: "/downloads/kairon-toolbox.zip",
+      label: "Скачать набор: инструменты Kali",
+      description:
+        "Свой сервис на Python, учебные документы и четыре вымышленных пароля. Сервис слушает только 127.0.0.1 внутри твоей Kali. Все команды выполняются на твоём компьютере.",
+      setupLesson: "tools-start",
+    },
+  },
   {
     id: "diagnostics",
     number: "07",

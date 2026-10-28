@@ -59,6 +59,17 @@ export default function ResourcesPage() {
         Сначала пройди короткие дела в своей Kali. Когда захочется глубже —
         здесь официальные загрузки и проверенные исходные проекты.
       </p>
+      <section className="tool-course-feature">
+        <h2>Как работают инструменты Kali</h2>
+        <p>
+          Выбери инструмент и разберись в его действии: что он отправляет в сеть
+          или делает с файлом, как читать вывод и чего проверка ещё не
+          доказывает. Для практики есть 12 уроков со своим локальным сервисом.
+        </p>
+        <Link href="/toolbox" className="subtle-link">
+          Nmap, Netcat, Hydra, Hashcat и OpenSSL с объяснениями →
+        </Link>
+      </section>
       <section className="resource-feature">
         <BookOpen size={25} />
         <div>

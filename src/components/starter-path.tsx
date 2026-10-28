@@ -81,6 +81,24 @@ export async function StarterPath({
         нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
         медленнее и повторять шаги.
       </p>
+      {pathId === "kali-practice" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Темы подсказаны указателем LabEx. Здесь собственный стенд и уроки
+              Kairon: объясняем механизм инструмента, каждую важную опцию и
+              пределы вывода.
+            </p>
+            <Link href="/toolbox" className="subtle-link">
+              Как устроены инструменты и когда их выбирать →
+            </Link>
+            <Link href="/sources/labex-kali" className="subtle-link">
+              Все 36 тем исходного указателя →
+            </Link>
+          </div>
+        </section>
+      )}
       {pathId === "diagnostics" && (
         <section className="notice source-course-note">
           <BookOpen size={20} />
