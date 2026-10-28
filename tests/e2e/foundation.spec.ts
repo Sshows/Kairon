@@ -988,6 +988,13 @@ test("detailed lessons offer usable contents and retain their command walkthroug
   await startServer.click();
   await expect(page.locator(target!)).toContainText("--bind 127.0.0.1");
   await expect(page).toHaveURL(new RegExp(target! + "$"));
+  await expect
+    .poll(() =>
+      page
+        .locator(target!)
+        .evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThan(160);
   await page.screenshot({
     path: "test-results/public-ports-walkthrough-desktop.png",
   });
@@ -1001,6 +1008,13 @@ test("detailed lessons offer usable contents and retain their command walkthroug
   const firstTarget = await links.first().getAttribute("href");
   await links.first().click();
   await expect(page.locator(firstTarget!)).toBeVisible();
+  await expect
+    .poll(() =>
+      page
+        .locator(firstTarget!)
+        .evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThan(160);
   await expect(page.locator(".lesson-markdown")).toContainText("logon_type");
   expect(
     await page.evaluate(
