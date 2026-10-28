@@ -1,0 +1,6 @@
+event_id,time_utc,host,account,process_id,parent_process_id,event,details
+EV-01,2026-10-28T09:10:00Z,OFFICE-PC-7,learner-demo,PROC-01,,browser-open,Открыт учебный браузер
+EV-02,2026-10-28T09:12:00Z,OFFICE-PC-7,learner-demo,PROC-01,,download-record,Записано скачивание файла; выполнение не подтверждено
+EV-03,2026-10-28T09:14:00Z,OFFICE-PC-7,learner-demo,PROC-02,,text-editor-open,Открыт текстовый редактор
+EV-04,2026-10-28T09:15:00Z,OFFICE-PC-7,learner-demo,PROC-03,PROC-01,process-created,Создан неизвестный учебный процесс; командная строка не собрана
+EV-05,2026-10-28T09:20:00Z,OFFICE-PC-7,learner-demo,,,user-report,Пользователь сообщил о неожиданной программе

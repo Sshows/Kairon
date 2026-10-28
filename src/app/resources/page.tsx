@@ -62,6 +62,23 @@ export default function ResourcesPage() {
       <section className="resource-feature">
         <BookOpen size={25} />
         <div>
+          <h2>Разбор файлов и выбор инструментов</h2>
+          <p>
+            Изучили Malware Bible и справочник paulveillard/cybersecurity.
+            Подготовили восемь собственных уроков по проверке подозрительного
+            файла и карту задач с примерами.
+          </p>
+          <Link href="/paths/file-analysis" className="subtle-link">
+            Открыть восемь уроков анализа →
+          </Link>
+          <Link href="/library" className="subtle-link">
+            Выбрать область и инструмент →
+          </Link>
+        </div>
+      </section>
+      <section className="resource-feature">
+        <BookOpen size={25} />
+        <div>
           <h2>Карта обучения: что за чем изучать</h2>
           <p>
             Разобрали планы jassics и Hamed233. Восемь шагов общей базы, 25

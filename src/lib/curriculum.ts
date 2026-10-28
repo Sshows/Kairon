@@ -13,6 +13,27 @@ export type Path = {
 };
 export const paths: Path[] = [
   {
+    slug: "file-analysis",
+    availableLessons: 8,
+    number: "06",
+    color: "blue",
+    category: "defensive",
+    icon: "shield",
+    title: {
+      ru: "Разбор подозрительных файлов",
+      en: "Suspicious file analysis",
+    },
+    description: {
+      ru: "8 учебных дел: тип файла, признаки, тревоги, цепочка событий и понятный отчёт. Без запуска неизвестных программ.",
+      en: "8 cases: file types, observations, alerts, timelines, and reporting. No unknown programs are executed.",
+    },
+    modules: {
+      ru: ["Проверяем файл без запуска", "Собираем факты и передаём случай"],
+      en: ["Inspect without execution", "Correlate events and decide"],
+    },
+    tags: ["Файлы", "Анализ", "Malware", "DFIR"],
+  },
+  {
     slug: "security-basics",
     availableLessons: 12,
     number: "05",

@@ -1,5 +1,9 @@
 export type LearningPathId =
-  "from-zero" | "blue-team" | "kali-tools" | "security-basics";
+  | "from-zero"
+  | "blue-team"
+  | "kali-tools"
+  | "security-basics"
+  | "file-analysis";
 
 export const learningPaths = [
   {
@@ -68,6 +72,23 @@ export const learningPaths = [
       description:
         "Небольшие программы Python и вымышленные данные. Все примеры работают без интернета и дополнительных пакетов. Как распаковать и запустить — в первом уроке.",
       setupLesson: "project-start",
+    },
+  },
+  {
+    id: "file-analysis",
+    number: "06",
+    name: "Разбор подозрительных файлов",
+    title: "Подозрительный файл: от первого сообщения до отчёта",
+    description:
+      "Разберём учебный случай, не запуская неизвестную программу. Проверим тип файла, прочитаем сохранённые результаты и свяжем события. Отделим факты от предположений и выберем следующие действия.",
+    startLabel: "Открыть учебный случай",
+    completionLabel: "Разбор подозрительных файлов — путь завершён",
+    kit: {
+      url: "/downloads/kairon-analysis.zip",
+      label: "Скачать набор: разбор файлов",
+      description:
+        "Вымышленные сообщения, таблицы, текстовые образцы и сохранённые наблюдения. Настоящих вредоносных программ и исполняемых файлов нет. Все действия — в своей Kali.",
+      setupLesson: "analysis-intake",
     },
   },
 ] as const;

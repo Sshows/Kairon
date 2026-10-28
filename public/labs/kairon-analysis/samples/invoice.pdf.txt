@@ -1,0 +1,4 @@
+Учебный счёт CASE-17: 17 коробок бумаги.
+DEMO_REVIEW_MARKER
+Для разбора записан адрес https://updates.example.invalid/status и слово powershell.
+Эти строки не являются командами. Файл содержит только текст Kairon и ничего не запускает.

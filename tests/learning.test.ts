@@ -11,29 +11,35 @@ import catalogue from "../content/project-catalog.json";
 import studyPlan from "../content/study-plan.json";
 import jassicsPlan from "../content/source-audits/jassics-plan.json";
 import hamedPlan from "../content/source-audits/hamed-roadmap.json";
+import malwareBible from "../content/source-audits/malware-bible.json";
+import paulCatalog from "../content/source-audits/paul-cybersecurity.json";
 import { directionLessons } from "../src/lib/study-plan";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("publishes twenty independent guides across four levels", () => {
-    expect(lessons).toHaveLength(52);
+    expect(lessons).toHaveLength(60);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
+    const analysis = getCourseLessons("file-analysis");
     expect(kali).toHaveLength(20);
     expect(company).toHaveLength(12);
     expect(projects).toHaveLength(8);
     expect(basics).toHaveLength(12);
+    expect(analysis).toHaveLength(8);
     expect(getCourseModules("from-zero")).toHaveLength(4);
     expect(getCourseModules("blue-team")).toHaveLength(3);
     expect(getCourseModules("kali-tools")).toHaveLength(2);
     expect(getCourseModules("security-basics")).toHaveLength(3);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(52);
+    expect(getCourseModules("file-analysis")).toHaveLength(2);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(60);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
     expect(basics.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1200);
+    expect(analysis.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(800);
     for (const lesson of lessons) {
       expect(lesson.theory.length, lesson.id).toBeGreaterThan(1000);
       expect(lesson.checklist).toHaveLength(3);
@@ -79,6 +85,16 @@ describe("Kali guides and answer checks", () => {
       ),
     ).toBe(true);
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
+    expect(isUnlocked("analysis-intake", new Set())).toBe(true);
+    expect(
+      isUnlocked(
+        "analysis-filetype",
+        new Set(["basics-cia", "soc-first-shift"]),
+      ),
+    ).toBe(false);
+    expect(isUnlocked("analysis-filetype", new Set(["analysis-intake"]))).toBe(
+      true,
+    );
     expect(isUnlocked("basics-cia", new Set())).toBe(true);
     expect(
       isUnlocked("basics-risk", new Set(["project-start", "soc-first-shift"])),
@@ -165,5 +181,31 @@ describe("Kali guides and answer checks", () => {
     for (const source of [jassicsPlan, hamedPlan])
       for (const section of source.sections)
         expect(section.sourceUrl).toContain(source.commit);
+  });
+  it("distinguishes source chapters from placeholders and connects library areas", () => {
+    expect(malwareBible.commit).toBe(
+      "2d1381b164dc43c23c93e447fd6a30ab3ccc118f",
+    );
+    expect(paulCatalog.commit).toBe("4e2d6e6138dc8ec5eb67cb04619f905b52619532");
+    expect(malwareBible.sections).toHaveLength(25);
+    expect(
+      malwareBible.sections.filter(
+        (section) => section.status === "placeholder",
+      ),
+    ).toHaveLength(6);
+    expect(paulCatalog.sections).toHaveLength(21);
+    const ids = new Set(lessons.map((lesson) => lesson.id));
+    for (const area of paulCatalog.sections) {
+      expect(area.example.length, area.id).toBeGreaterThan(30);
+      for (const lessonId of area.lessonIds)
+        expect(ids.has(lessonId), area.id + ": " + lessonId).toBe(true);
+    }
+    for (const source of [malwareBible, paulCatalog]) {
+      expect(new Set(source.sections.map((section) => section.id)).size).toBe(
+        source.sections.length,
+      );
+      for (const section of source.sections)
+        expect(section.sourceUrl).toContain(source.commit);
+    }
   });
 });

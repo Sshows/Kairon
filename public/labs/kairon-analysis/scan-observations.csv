@@ -1,0 +1,3 @@
+observation_id,file_id,rule_id,matched_text,decision,scope
+SCAN-01,F-01,DemoReviewMarker,DEMO_REVIEW_MARKER,review-context,Подготовленный пример совпадения текста
+SCAN-02,F-02,DemoReviewMarker,DEMO_REVIEW_MARKER,review-context,Подготовленный пример совпадения текста

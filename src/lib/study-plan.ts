@@ -84,6 +84,9 @@ export const directionLessons: Record<string, string[]> = {
     "basics-threat-model",
   ],
   "reverse-engineering-malware-security": [
+    "analysis-intake",
+    "analysis-structure",
+    "analysis-timeline",
     "suspicious-file",
     "verify-download",
     "stop-process",

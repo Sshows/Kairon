@@ -2979,3 +2979,84 @@ progress::-webkit-progress-value {
     padding: 16px;
   }
 }
+
+/* Reference library keeps purposes, examples and lesson links together. */
+.library-page .search-box {
+  margin: 26px 0 15px;
+  max-width: 650px;
+}
+.library-grid,
+.reference-source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.library-card,
+.reference-source-grid article {
+  border: 1px solid #35432c;
+  background: #182013;
+  border-radius: 12px;
+  padding: 23px;
+  min-width: 0;
+}
+.library-card h2 {
+  font-size: 21px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.library-card p,
+.library-detail p,
+.library-detail li,
+.source-detail p,
+.source-detail li {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.library-card .subtle-link {
+  display: block;
+  margin-top: 17px;
+}
+.library-detail section,
+.source-detail section {
+  margin-top: 30px;
+}
+.library-detail ul,
+.source-detail ul {
+  padding-left: 23px;
+}
+.library-detail h2,
+.source-detail h2 {
+  margin-bottom: 14px;
+}
+.source-detail .program-note code {
+  overflow-wrap: anywhere;
+}
+.reference-source-grid h3 {
+  font-size: 20px;
+  margin: 15px 0 12px;
+}
+.reference-source-grid li {
+  font-size: 14px;
+}
+.reference-source-grid a {
+  display: block;
+  margin-top: 15px;
+  color: #c7e8a4;
+}
+.source-detail details {
+  margin-top: 25px;
+}
+.source-detail .subtle-link {
+  display: block;
+  margin: 20px 0;
+}
+@media (max-width: 650px) {
+  .library-grid,
+  .reference-source-grid {
+    grid-template-columns: 1fr;
+  }
+  .library-card,
+  .reference-source-grid article {
+    padding: 19px;
+  }
+}

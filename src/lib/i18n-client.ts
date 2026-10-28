@@ -35,14 +35,14 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "С НУЛЯ · 52 УРОКА · КАРТА ОБУЧЕНИЯ",
+    stage: "С НУЛЯ · 60 УРОКОВ · КАРТА ОБУЧЕНИЯ",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
       "Пойми основы на примерах, запусти Kali и попробуй учебные задачи. Карта поможет выбрать порядок тем: от сети и прав доступа до расследований и своих программ.",
     heroAction: "Начать обучение",
     heroSecondary: "Как устроено обучение",
     programNote:
-      "Четыре пути: основы — 12 уроков, Kali — 20, работа в компании — 12 дел, свои программы — 8 уроков. Карта обучения связывает темы и помогает выбрать следующее направление.",
+      "Пять путей: основы — 12 уроков, Kali — 20, работа в компании — 12, свои программы — 8, разбор файлов — 8. Карта помогает выбрать порядок, а справочник — инструмент под задачу.",
     freeStart: "ТВОЯ ТОЧКА ВХОДА В КИБЕРБЕЗОПАСНОСТЬ",
     learn: "Учебная платформа",
     roadmap: "От запуска Kali до расследования",
@@ -90,14 +90,14 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "FROM ZERO · 52 LESSONS · LEARNING PLAN",
+    stage: "FROM ZERO · 60 LESSONS · LEARNING PLAN",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
       "Set up a ready-made Kali VM and investigate training cases: suspicious email, login traces, your own website, and file recovery.",
     heroAction: "Start learning",
     heroSecondary: "How learning works",
     programNote:
-      "Four paths: 12 foundation guides, 20 Kali guides, 12 company cases, and 8 first-program guides. The learning plan connects topics and helps you choose a specialization. Lessons are in Russian.",
+      "Five paths: 12 foundation guides, 20 Kali guides, 12 company cases, 8 first-program guides, and 8 file-analysis cases. The learning plan connects topics. Lessons are in Russian.",
     freeStart: "YOUR START IN CYBERSECURITY",
     learn: "Learning platform",
     roadmap: "From Kali setup to investigation",

@@ -73,6 +73,10 @@ export function Shell({
           </nav>
           <p className="nav-caption second">{t.resources}</p>
           <nav aria-label={t.resources}>
+            <Link href="/library" className="nav-link">
+              <BookOpen size={18} />
+              {locale === "ru" ? "Задачи и инструменты" : "Tasks and tools"}
+            </Link>
             <Link href="/projects" className="nav-link">
               <Wrench size={18} />
               {locale === "ru" ? "Проекты с нуля" : "Hands-on projects"}
@@ -106,7 +110,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <span className="status-dot" />
           <span>{t.foundation}</span>
-          <span className="mono">v0.6</span>
+          <span className="mono">v0.7</span>
         </div>
       </aside>
       <div className="main-shell">

@@ -5,6 +5,7 @@ import course from "../../content/lessons/kali.json" with { type: "json" };
 import company from "../../content/lessons/company.json" with { type: "json" };
 import projects from "../../content/lessons/projects.json" with { type: "json" };
 import basics from "../../content/lessons/basics.json" with { type: "json" };
+import analysis from "../../content/lessons/analysis.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
   { id: randomUUID(), role: "USER", name: "Test learner" },
@@ -82,6 +83,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       headers: { Origin: "http://localhost:3000" },
       data: body,
     });
+  expect(
+    (
+      await submit(analysis[1].id, {
+        action: "check",
+        answer: analysis[1].answers[0],
+      })
+    ).status(),
+  ).toBe(423);
+  for (const response of await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit(analysis[0].id, {
+        action: "check",
+        answer: analysis[0].answers[0],
+      }),
+    ),
+  ))
+    expect((await response.json()).status).toBe("passed");
   expect(
     (
       await submit(basics[1].id, {
@@ -234,6 +252,23 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     ).already,
   ).toBe(true);
   const progressDb = new Client({ connectionString: process.env.DIRECT_URL });
+  for (const lesson of analysis.slice(1)) {
+    const result = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await result.json()).status, lesson.id).toBe("passed");
+  }
+  expect(
+    (
+      await (
+        await submit(analysis[0].id, {
+          action: "check",
+          answer: analysis[0].answers[0],
+        })
+      ).json()
+    ).already,
+  ).toBe(true);
   for (const lesson of basics.slice(1)) {
     const result = await submit(lesson.id, {
       action: "check",
@@ -257,13 +292,16 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 53, xp: 5610 });
+    expect(result.rows[0]).toEqual({ count: 61, xp: 6410 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("52/52");
-  await expect(page.locator(".learning-stats")).toContainText("5610");
+  await expect(page.locator(".learning-stats")).toContainText("60/60");
+  await expect(page.locator(".learning-stats")).toContainText("6410");
+  await expect(page.locator('[data-course="file-analysis"]')).toContainText(
+    "8/8",
+  );
   await expect(page.locator('[data-course="security-basics"]')).toContainText(
     "12/12",
   );
@@ -281,7 +319,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("52/52");
+  await expect(page.locator(".learning-stats")).toContainText("60/60");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -554,7 +592,7 @@ test("study map connects all directions and foundation lessons on mobile", async
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  await expect(page.locator(".path-card")).toHaveCount(6);
+  await expect(page.locator(".path-card")).toHaveCount(7);
   await page
     .getByRole("link", { name: "Начать обучение", exact: true })
     .click();
@@ -617,4 +655,78 @@ test("study map connects all directions and foundation lessons on mobile", async
   });
   await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
   await expect(page).toHaveURL(/learn\/basics-risk/);
+});
+
+test("reference library and file investigation explain evidence without executable samples", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/library");
+  await expect(page.locator(".library-card")).toHaveCount(21);
+  const firstTitle = (
+    await page.locator(".library-card h2").first().innerText()
+  ).trim();
+  await page
+    .getByRole("searchbox", { name: "Найти задачу или область защиты" })
+    .fill(firstTitle);
+  await expect(page.locator(".library-card")).toHaveCount(1);
+  await page
+    .getByRole("searchbox", { name: "Найти задачу или область защиты" })
+    .fill("");
+  await page.screenshot({ path: "test-results/public-library-desktop.png" });
+  const links = await page
+    .locator(".library-card h2 a")
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("href")!));
+  for (const href of links)
+    expect((await page.request.get(href)).status(), href).toBe(200);
+  await page.goto("/sources/malware-bible");
+  await expect(page.locator(".reference-source-grid article")).toHaveCount(25);
+  await expect(
+    page
+      .locator(".reference-source-grid article")
+      .filter({ hasText: "Пока заготовка" }),
+  ).toHaveCount(6);
+  await page.goto("/sources/paul-cybersecurity");
+  await expect(page.locator(".reference-source-grid article")).toHaveCount(21);
+  await page.goto("/paths/file-analysis");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(8);
+  await expect(page.locator(".course-module")).toHaveCount(2);
+  const download = await page.request.get("/downloads/kairon-analysis.zip");
+  expect(download.status()).toBe(200);
+  expect((await download.body()).subarray(0, 2).toString()).toBe("PK");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/library");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/learn/analysis-intake");
+  await expect(page.locator(".guide-kit-link")).toHaveAttribute(
+    "href",
+    "/downloads/kairon-analysis.zip",
+  );
+  await expect(
+    page.getByLabel("Команда терминала", { exact: true }),
+  ).toHaveCount(0);
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill(analysis[0].answers[0]);
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-analysis-mobile.png",
+    fullPage: true,
+  });
+  await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
+  await expect(page).toHaveURL(/analysis-filetype/);
 });

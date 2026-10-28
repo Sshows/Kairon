@@ -81,6 +81,25 @@ export async function StarterPath({
         нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
         медленнее и повторять шаги.
       </p>
+      {pathId === "file-analysis" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Темы выбраны после разбора Malware Bible и справочника
+              paulveillard. Упражнения и данные Kairon написаны отдельно: учимся
+              читать признаки, не объявляя каждое совпадение доказанным
+              заражением.
+            </p>
+            <Link href="/sources/malware-bible" className="subtle-link">
+              Что есть в Malware Bible →
+            </Link>
+            <Link href="/library" className="subtle-link">
+              Как выбрать инструмент под задачу →
+            </Link>
+          </div>
+        </section>
+      )}
       {pathId === "security-basics" && (
         <section className="notice source-course-note">
           <BookOpen size={20} />

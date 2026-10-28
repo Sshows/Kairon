@@ -3,6 +3,7 @@ import kali from "../../content/lessons/kali.json";
 import company from "../../content/lessons/company.json";
 import projects from "../../content/lessons/projects.json";
 import basics from "../../content/lessons/basics.json";
+import analysis from "../../content/lessons/analysis.json";
 import type { LearningPathId } from "./learning-paths";
 export const lessons = [
   ...basics.map((lesson) => ({
@@ -20,6 +21,10 @@ export const lessons = [
   ...projects.map((lesson) => ({
     ...lesson,
     pathId: "kali-tools" as LearningPathId,
+  })),
+  ...analysis.map((lesson) => ({
+    ...lesson,
+    pathId: "file-analysis" as LearningPathId,
   })),
 ];
 export type Lesson = (typeof lessons)[number];
