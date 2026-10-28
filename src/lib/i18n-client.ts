@@ -35,14 +35,14 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "С НУЛЯ · 40 УРОКОВ · 69 ПРОЕКТОВ",
+    stage: "С НУЛЯ · 52 УРОКА · КАРТА ОБУЧЕНИЯ",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
-      "Запусти готовую Kali Linux и попробуй себя в расследовании. Подозрительные письма, следы входа, свой сайт и восстановление файлов — с понятными шагами.",
+      "Пойми основы на примерах, запусти Kali и попробуй учебные задачи. Карта поможет выбрать порядок тем: от сети и прав доступа до расследований и своих программ.",
     heroAction: "Начать обучение",
     heroSecondary: "Как устроено обучение",
     programNote:
-      "Три пути: Kali — 20 уроков, работа в компании — 12 дел, свои программы — 8 уроков. Объясняем слова и каждый шаг. Ещё 69 проектов помогут выбрать следующую тему.",
+      "Четыре пути: основы — 12 уроков, Kali — 20, работа в компании — 12 дел, свои программы — 8 уроков. Карта обучения связывает темы и помогает выбрать следующее направление.",
     freeStart: "ТВОЯ ТОЧКА ВХОДА В КИБЕРБЕЗОПАСНОСТЬ",
     learn: "Учебная платформа",
     roadmap: "От запуска Kali до расследования",
@@ -90,14 +90,14 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "FROM ZERO · 40 LESSONS · 69 PROJECTS",
+    stage: "FROM ZERO · 52 LESSONS · LEARNING PLAN",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
       "Set up a ready-made Kali VM and investigate training cases: suspicious email, login traces, your own website, and file recovery.",
     heroAction: "Start learning",
     heroSecondary: "How learning works",
     programNote:
-      "Three paths: 20 Kali guides, 12 company-security cases, and 8 first-program guides. A catalogue of 69 projects helps you choose what to learn next. Lessons are in Russian.",
+      "Four paths: 12 foundation guides, 20 Kali guides, 12 company cases, and 8 first-program guides. The learning plan connects topics and helps you choose a specialization. Lessons are in Russian.",
     freeStart: "YOUR START IN CYBERSECURITY",
     learn: "Learning platform",
     roadmap: "From Kali setup to investigation",

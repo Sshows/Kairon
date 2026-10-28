@@ -44,7 +44,9 @@ export function Catalog({ locale }: { locale: Locale }) {
           <span className="eyebrow">LEARNING PATHS</span>
           <h2>
             {t.catalog}
-            <span className="count-badge">05</span>
+            <span className="count-badge">
+              {String(paths.length).padStart(2, "0")}
+            </span>
           </h2>
         </div>
         <label className="search-box">

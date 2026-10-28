@@ -60,6 +60,23 @@ export default function ResourcesPage() {
         здесь официальные загрузки и проверенные исходные проекты.
       </p>
       <section className="resource-feature">
+        <BookOpen size={25} />
+        <div>
+          <h2>Карта обучения: что за чем изучать</h2>
+          <p>
+            Разобрали планы jassics и Hamed233. Восемь шагов общей базы, 25
+            направлений с примерами и 12 новых уроков помогут выбрать следующую
+            задачу.
+          </p>
+          <Link href="/study-plan" className="subtle-link">
+            Открыть карту обучения →
+          </Link>
+          <Link href="/sources/study-plans" className="subtle-link">
+            Как проверены источники →
+          </Link>
+        </div>
+      </section>
+      <section className="resource-feature">
         <Download size={25} />
         <div>
           <h2>Нужна сама Kali?</h2>

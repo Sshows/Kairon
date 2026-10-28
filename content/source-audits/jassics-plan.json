@@ -1,0 +1,854 @@
+{
+  "author": "jassics и участники репозитория",
+  "url": "https://github.com/jassics/security-study-plan",
+  "commit": "85bfb85c2b3f25c9a4fa1247ef4f510450edd493",
+  "license": "Не указана",
+  "reviewedAt": "2026-10-28",
+  "scope": "Проверены README, все 25 файлов планов: структура разделов, обзорные пояснения, темы, недельные вехи и группы ресурсов. Изучение этих планов не означает чтение всех внешних книг, просмотр видео, выполнение лабораторий или проверку каждого актуального утверждения.",
+  "filesReviewed": [
+    "README.md",
+    "api-security-study-plan.md",
+    "application-security-study-plan.md",
+    "aws-security-study-plan.md",
+    "azure-security-study-plan.md",
+    "blue-team-detection-response-study-plan.md",
+    "common-skills-study-plan.md",
+    "cryptography-study-plan.md",
+    "devsecops-study-plan.md",
+    "docker-security-study-plan.md",
+    "gcp-security-study-plan.md",
+    "genai-security-study-plan.md",
+    "grc-study-plan.md",
+    "iam-security-study-plan.md",
+    "kubernetes-security-study-plan.md",
+    "mobile-application-security-study-plan.md",
+    "network-security-study-plan.md",
+    "osint-social-engineering-study-plan.md",
+    "product-security-study-plan.md",
+    "reverse-engineering-malware-security-study-plan.md",
+    "secure-code-review-study-plan.md",
+    "secure-software-development-lifecycle-study-plan.md",
+    "security-architecture-study-plan.md",
+    "software-supply-chain-security-study-plan.md",
+    "threat-modeling-study-plan.md",
+    "web-pentest-study-plan.md",
+    "useful-security-scripts/useful-security-scripts.md"
+  ],
+  "sections": [
+    {
+      "id": "common-skills",
+      "title": "Общая база: Linux, сети, Python и Git",
+      "sourceHeading": "Common Skills for Cybersecurity Study Plan",
+      "summary": "Сначала научись находить файлы, понимать адреса и читать небольшие программы. Эти навыки повторяются в разных направлениях безопасности; выбирать специальность можно после первых опытов.",
+      "topics": [
+        "Linux и команды для файлов",
+        "Адреса, DNS и сетевые соединения",
+        "Небольшие программы Python",
+        "Основы облачных сервисов",
+        "История изменений в Git",
+        "Обмен опытом и понятные заметки"
+      ],
+      "example": "Ты скачал журнал входов. Linux помогает найти файл, Python — посчитать ошибки, а Git — сохранить свою программу и видеть, что в ней изменилось.",
+      "practice": "Пройди запуск Kali и первую программу Kairon. Сохрани рядом заметку: где лежит файл, что программа прочитала и какой результат вывела.",
+      "readyWhen": "Ты можешь открыть нужную папку, запустить свой учебный файл и своими словами объяснить его вывод.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/common-skills-study-plan.md",
+      "sourcePath": "common-skills-study-plan.md",
+      "authorSchedule": [
+        "Week 1: Basic Commands",
+        "Week 2: Security Focused Commands",
+        "Week 3-4: Core Concepts",
+        "Week 5-6: Network Security",
+        "Week 7-10: Basics & Projects",
+        "Week 11-14: Security Focus",
+        "Week 15-18: Cloud Fundamentals",
+        "Week 19: Git Basics"
+      ],
+      "resourceCategories": [
+        "Resources",
+        "Resources",
+        "Resources",
+        "Resources",
+        "Resources"
+      ]
+    },
+    {
+      "id": "aws-security",
+      "title": "Защита сервисов AWS",
+      "sourceHeading": "AWS Security Study Plan",
+      "summary": "AWS предоставляет вычисления, хранилища и другие сервисы. Изучай не только название сервиса, но и кто к нему имеет доступ, где остаются записи действий и как восстановить данные.",
+      "topics": [
+        "Пользователи, роли и права IAM",
+        "Хранилище S3 и сетевые правила",
+        "Вычисления, базы данных и контейнеры",
+        "Шифрование и хранение секретов",
+        "Журналы и сигналы защиты",
+        "Проверка настроек и учебные лаборатории"
+      ],
+      "example": "Компания хранит договоры в облачном хранилище. Требуется разрешить работу нужному отделу, не открывая документы всем пользователям интернета.",
+      "practice": "На бумаге опиши учебное хранилище договоров: владелец, кому можно читать, кому изменять, где журнал и резервная копия. Настоящий облачный аккаунт для этого задания не нужен.",
+      "readyWhen": "Ты отличаешь роль от файла и можешь назвать конкретное разрешение, которое нужно сотруднику для его работы.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/aws-security-study-plan.md",
+      "sourcePath": "aws-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1: IAM Deep Dive",
+        "Week 2-3: Core Services",
+        "Week 4-6: Core Services Security",
+        "Week 7-9: Security Services Hands-on",
+        "Week 10-11: Reading & Analysis",
+        "Week 12-14: Practical Labs"
+      ],
+      "resourceCategories": []
+    },
+    {
+      "id": "gcp-security",
+      "title": "Защита Google Cloud",
+      "sourceHeading": "GCP Security Study Plan",
+      "summary": "В Google Cloud тоже нужно управлять доступом, сетью и данными. Начни с небольшой схемы проекта, а уже потом разбирай, какой сервис помогает выполнить каждую задачу.",
+      "topics": [
+        "Проекты и права IAM",
+        "Хранилище и вычисления",
+        "Сетевые правила и доступ к сервисам",
+        "Секреты и ключи шифрования",
+        "Журналы и обнаружение проблем",
+        "Проверка конфигурации и разрешённая практика"
+      ],
+      "example": "Учебный сайт загружает изображения в хранилище. Программе нужен доступ только к своей папке, а право менять настройки всего проекта ей не требуется.",
+      "practice": "Нарисуй сайт, хранилище и программу загрузки. Для каждой стрелки подпиши, какие данные передаются и какое минимальное право требуется.",
+      "readyWhen": "Ты можешь объяснить, почему программа загрузки не должна получать права администратора всего проекта.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/gcp-security-study-plan.md",
+      "sourcePath": "gcp-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1: IAM Deep Dive",
+        "Week 2-3: Core Services",
+        "Week 4-6: Core Services Security",
+        "Week 7-9: Security Services Hands-on",
+        "Week 10-11: Reading & Analysis",
+        "Week 12-14: Practical Labs"
+      ],
+      "resourceCategories": []
+    },
+    {
+      "id": "web-pentest",
+      "title": "Проверка безопасности своего сайта",
+      "sourceHeading": "Web Application Penetration testing Study Plan",
+      "summary": "Проверка сайта начинается с понимания запросов и правил доступа. Сначала выбери разрешённую учебную цель, затем проверяй одну гипотезу и сохраняй понятное доказательство.",
+      "topics": [
+        "Устройство веб-запроса",
+        "Вход, сессии и права пользователя",
+        "Типовые ошибки веб-приложений",
+        "Инструменты просмотра запросов",
+        "Разрешённые учебные лаборатории",
+        "Проверяемый отчёт о результате"
+      ],
+      "example": "Пользователь вошёл в магазин и видит свой заказ. Нужно убедиться, что простая смена номера не открывает ему заказ другого покупателя.",
+      "practice": "Разбери сохранённые запросы и ответы в уроке Kairon про чужой заказ. Укажи владельца данных и сравни тело ответа до и после исправления.",
+      "readyWhen": "Ты отличаешь успешный HTTP-код от доказательства доступа к чужим данным и можешь описать границы своей проверки.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/web-pentest-study-plan.md",
+      "sourcePath": "web-pentest-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Basics",
+        "Week 3-4: Security Concepts",
+        "Week 5-6: Advance Level of security skill sets",
+        "Week 7-8: Essential Tools",
+        "Week 9-16: Hands-on Practice"
+      ],
+      "resourceCategories": [
+        "Tools of Trade",
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "application-security",
+      "title": "Безопасность приложения во время разработки",
+      "sourceHeading": "Application Security Study Plan",
+      "summary": "Задача AppSec — помогать разработчикам предотвращать ошибки безопасности. Для этого нужно понимать устройство приложения, проверять его код и поведение, а затем проверять исправление.",
+      "topics": [
+        "Запросы, вход и контроль доступа",
+        "Ошибки обработки данных",
+        "Моделирование угроз",
+        "Чтение кода с точки зрения защиты",
+        "Защита на этапах разработки",
+        "Проверка кода и функций с ИИ"
+      ],
+      "example": "Разработчик добавил загрузку документов. Проверка должна учесть не только работу кнопки, но и доступ к загруженному документу, допустимый размер и сообщения об ошибках.",
+      "practice": "Для вымышленной кнопки загрузки составь пять требований: кто загружает, кто читает, какой размер разрешён, что записывается в журнал и как проверить отказ.",
+      "readyWhen": "Ты можешь превратить общее пожелание «сделать безопасно» в несколько конкретных проверок.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/application-security-study-plan.md",
+      "sourcePath": "application-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Basics",
+        "Week 3-4: Security Concepts",
+        "Week 5-6: Advance Level of application security skill sets"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions",
+        "AppSec Tools"
+      ]
+    },
+    {
+      "id": "api-security",
+      "title": "Безопасность API: кто и что может запросить",
+      "sourceHeading": "API Security Study Plan",
+      "summary": "API — способ, которым программы обращаются друг к другу. Защита должна проверять не только факт входа, но и разрешение на конкретные данные и действия.",
+      "topics": [
+        "Адреса запросов и методы API",
+        "Связь нескольких сервисов",
+        "Подтверждение личности",
+        "Проверка доступа к объекту и действию",
+        "Ограничение числа запросов",
+        "Лаборатории и отчёты API"
+      ],
+      "example": "Мобильное приложение просит заказ 105 от имени Алисы. Серверу нужно проверить, принадлежит ли этот заказ Алисе; наличия действительного входа недостаточно.",
+      "practice": "На сохранённых данных Kairon запиши три вещи: кто делает запрос, какой объект просит и почему сервер должен разрешить или запретить ответ.",
+      "readyWhen": "Ты объясняешь разницу между «пользователь вошёл» и «пользователю разрешён этот заказ».",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/api-security-study-plan.md",
+      "sourcePath": "api-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1: Basics of API & Endpoints",
+        "Week 2: Microservices & Cloud Native APIs",
+        "Week 3: Core Security Concepts",
+        "Week 4: Advanced Concepts (AuthN, AuthZ, Rate Limiting)"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "threat-modeling",
+      "title": "Модель угроз: что может пойти не так",
+      "sourceHeading": "Threat Modelling",
+      "summary": "До установки сложных инструментов можно нарисовать систему и разобрать её слабые места. Модель угроз связывает возможную проблему, её последствия, защиту и способ проверки.",
+      "topics": [
+        "Ценные данные и участники",
+        "Потоки данных и границы доверия",
+        "Методы поиска угроз",
+        "Приоритеты и меры защиты",
+        "Проверка предложенной меры",
+        "Угрозы системам с ИИ и инструментами"
+      ],
+      "example": "Сайт принимает документы от клиентов. Отдельно рассмотрим подмену документа, чтение чужого файла и переполнение хранилища: это разные проблемы с разными проверками.",
+      "practice": "Нарисуй пользователя, сайт и хранилище. Выбери одну проблему на каждой стрелке и запиши: что защищаем, что может случиться и как проверим защиту.",
+      "readyWhen": "У тебя есть небольшая схема и три конкретные пары «угроза — проверяемая мера», а не только список названий атак.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/threat-modeling-study-plan.md",
+      "sourcePath": "threat-modeling-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-4: Frameworks",
+        "Week 5-6: Execution",
+        "Week 7-8: Scaling & Integration"
+      ],
+      "resourceCategories": ["Resources to learn and practice", "Books :books:"]
+    },
+    {
+      "id": "grc",
+      "title": "Правила, риски и подтверждение выполнения",
+      "sourceHeading": "GRC Study Plan",
+      "summary": "GRC объединяет управление правилами, рисками и выполнением требований. Здесь важно установить ответственного и получить доказательство работы меры, а не просто поставить галочку.",
+      "topics": [
+        "Кто принимает решения",
+        "Правила и распределение обязанностей",
+        "Описание и обработка рисков",
+        "Проверки и подтверждающие материалы",
+        "Риски поставщиков",
+        "Управление системами ИИ"
+      ],
+      "example": "В правилах написано «делать резервные копии». Для проверки нужны ещё периодичность, ответственный, дата последнего восстановления и его результат.",
+      "practice": "Составь одну учебную карточку риска потери документа: последствия, действующая мера, ответственный и доказательство проверки восстановления.",
+      "readyWhen": "Ты отличаешь написанное правило от подтверждения, что оно действительно выполняется. Применимость законов уточняется отдельно.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/grc-study-plan.md",
+      "sourcePath": "grc-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-4: Establishing Governance",
+        "Week 5-6: Risk Lifecycle",
+        "Week 7-8: Regulatory Landscape"
+      ],
+      "resourceCategories": ["Resources", "Books", "Videos/Tutorials"]
+    },
+    {
+      "id": "azure-security",
+      "title": "Защита Microsoft Azure",
+      "sourceHeading": "Azure Security Study Plan",
+      "summary": "В Azure изучай сервисы вместе с правами пользователей и программ. Отдельно разбирай, кто может менять настройки и кто должен получать сигнал о проблеме.",
+      "topics": [
+        "Группы ресурсов и сервисы Azure",
+        "Учётные записи и роли Entra ID",
+        "Сетевые ограничения",
+        "Хранение ключей и секретов",
+        "Защита вычислений и данных",
+        "Журналы, Defender и Sentinel"
+      ],
+      "example": "Сотруднику нужно читать отчёты, но не создавать новые серверы. Эти задачи требуют разных разрешений, даже если они находятся в одном облачном проекте.",
+      "practice": "Составь таблицу для трёх учебных ролей: читатель отчётов, разработчик и администратор. Напиши разрешённое действие и действие, которое нужно запретить.",
+      "readyWhen": "Ты понимаешь, зачем ограничивать область действия роли и разделять чтение данных с управлением инфраструктурой.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/azure-security-study-plan.md",
+      "sourcePath": "azure-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Cloud Basics (AZ-900 level)",
+        "Week 3-4: Microsoft Entra ID (formerly Azure AD)",
+        "Week 5-6: Network & Compute",
+        "Week 7-8: Defender & Sentinel"
+      ],
+      "resourceCategories": [
+        "Resources",
+        "Certifications",
+        "Learning Paths",
+        "Labs & Practice"
+      ]
+    },
+    {
+      "id": "devsecops",
+      "title": "Проверки безопасности в процессе выпуска",
+      "sourceHeading": "DevSecOps Study Plan",
+      "summary": "DevSecOps связывает разработку, выпуск и эксплуатацию. Маленькие автоматические проверки помогают находить ошибки раньше, но их результаты всё равно нужно понимать и разбирать.",
+      "topics": [
+        "Этапы сборки и выпуска",
+        "Проверки кода и зависимостей",
+        "Поиск случайно записанных секретов",
+        "Проверки работающего приложения",
+        "Защита облачных настроек и контейнеров",
+        "Ответственные, исключения и обратная связь"
+      ],
+      "example": "Команда меняет сайт каждый день. Проверка в процессе выпуска должна заметить ключ, случайно добавленный в код, до того как изменение попадёт на основной сайт.",
+      "practice": "Опиши выпуск своего учебного приложения четырьмя шагами: собрать, проверить, опубликовать, наблюдать. Укажи, что останавливает выпуск и кто разбирает ошибку.",
+      "readyWhen": "Ты можешь объяснить, на каком этапе должна сработать выбранная проверка и кто получает её результат.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/devsecops-study-plan.md",
+      "sourcePath": "devsecops-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Evolution & Goals",
+        "Week 3-4: Responsibilities & Shift Left",
+        "Week 5-6: Platforms & Stages",
+        "Week 7-8: Infrastructure & Practice",
+        "Week 9-11: SAST, SCA & Secrets",
+        "Week 12-14: DAST & Container Scanning",
+        "Week 15-17: Containers & Orchestration",
+        "Week 18-20: IaC & Baselines",
+        "Week 21-24: Guardrails & Governance",
+        "Week 25-27: Metrics & Culture"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "docker-security",
+      "title": "Защита контейнеров Docker",
+      "sourceHeading": "Docker Security Study Plan",
+      "summary": "Контейнер запускает приложение с подготовленным окружением, но остаётся связан с системой хоста. Поэтому проверяют и образ, и права, и доступ к файлам и сети.",
+      "topics": [
+        "Образ и работающий контейнер",
+        "Сборка и происхождение образа",
+        "Пользователь и дополнительные права",
+        "Доступные папки и сеть",
+        "Ограничение ресурсов",
+        "Проверки образов при выпуске"
+      ],
+      "example": "Учебному приложению нужно читать одну папку. Подключать к нему весь домашний каталог и давать полный доступ к хосту для этой задачи незачем.",
+      "practice": "На бумаге перечисли необходимые приложению папки, соединения и объём памяти. Сравни это с вымышленным вариантом «доступно всё» и отметь лишнее.",
+      "readyWhen": "Ты можешь назвать конкретные разрешения контейнера и понимаешь, что слово Docker само по себе не доказывает изоляцию.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/docker-security-study-plan.md",
+      "sourcePath": "docker-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-4: Secure Images",
+        "Week 5-6: Runtime Security",
+        "Week 7-8: Automation & Policies"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "kubernetes-security",
+      "title": "Защита кластера Kubernetes",
+      "sourceHeading": "Kubernetes Security Study Plan",
+      "summary": "Kubernetes управляет группой приложений в контейнерах. Проверка должна охватывать доступ к управлению, права самих приложений и соединения между ними.",
+      "topics": [
+        "Кластер, узлы и приложения",
+        "Права ролей и доступа к API",
+        "Пользователь и права контейнера",
+        "Секреты и служебные учётные записи",
+        "Сетевые ограничения и разделение команд",
+        "Проверка образов и наблюдение при работе"
+      ],
+      "example": "Две команды используют общий кластер. Приложению первой команды не нужен доступ к секретам второй только потому, что они запущены рядом.",
+      "practice": "Нарисуй две учебные команды и их приложения. Отдельно отметь разрешённые соединения и действия управления. Настоящий кластер для этого задания не нужен.",
+      "readyWhen": "Ты различаешь права управления, сетевой доступ и доступ к секретам; одной общей настройки «безопасный кластер» не существует.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/kubernetes-security-study-plan.md",
+      "sourcePath": "kubernetes-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts and Cluster Setup",
+        "Week 3-4: Hardening the Cluster",
+        "Week 5-6: Securing Pods & Deployments",
+        "Week 7-8: Advanced Topics"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "network-security",
+      "title": "Сети: как соединяются устройства и что защищать",
+      "sourceHeading": "Network Security Study Plan",
+      "summary": "Сначала разбери путь одного обращения: имя сайта, адрес, соединение и ответ. Потом станет понятнее, что именно ограничивает сетевое правило и что видно в журнале.",
+      "topics": [
+        "Адреса и сетевые протоколы",
+        "DNS и получение адреса",
+        "Маршруты и разделение сети",
+        "Фильтрация соединений",
+        "Анализ записанного трафика",
+        "Беспроводные сети и защищённый доступ"
+      ],
+      "example": "Браузер обращается к твоему учебному серверу на 127.0.0.1:8000. Адрес указывает компьютер, а порт 8000 — программу, которая принимает обращение.",
+      "practice": "Пройди локальный сайт и запись трафика Kairon. Запиши адрес, порт, запрос и ответ. Не сканируй адреса из чужих журналов.",
+      "readyWhen": "Ты можешь показать в одном учебном обращении адрес, порт и прикладной запрос, не смешивая их.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/network-security-study-plan.md",
+      "sourcePath": "network-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-4: Defensive Technologies",
+        "Week 5-6: Offensive Concepts & Analysis",
+        "Week 7-8: Wireless & Beyond"
+      ],
+      "resourceCategories": []
+    },
+    {
+      "id": "cryptography",
+      "title": "Хеши, шифрование и цифровые подписи",
+      "sourceHeading": "Cryptography Study Plan",
+      "summary": "Эти средства решают разные задачи: заметить изменение, скрыть содержимое или проверить подпись. Начни с назначения, а названия алгоритмов изучай по мере работы.",
+      "topics": [
+        "Ключи и шифрование",
+        "Хеши и сравнение данных",
+        "Сертификаты и подписи",
+        "Защищённые соединения",
+        "Учебные инструменты и задачи",
+        "Переход к новым криптографическим алгоритмам"
+      ],
+      "example": "Хеш замечает изменение договора, шифрование скрывает его текст без ключа, а подпись помогает проверить подписанные данные и соответствующий ключ. Это не одно действие.",
+      "practice": "В наборе Kairon сравни исходный документ и изменённую копию по SHA256. Затем запиши, почему эта проверка не скрывает текст документа.",
+      "readyWhen": "Ты можешь выбрать нужную задачу для хеша, шифрования и подписи. Слабые учебные шифры не предлагаются для настоящих секретов.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/cryptography-study-plan.md",
+      "sourcePath": "cryptography-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-4: Protocols & Implementation",
+        "Week 5-6: Hands-on Tools",
+        "Week 7-8: Breaking Codes",
+        "Week 9: The Standards",
+        "Week 10: Migration & Crypto-Agility"
+      ],
+      "resourceCategories": ["Resources", "Platforms", "Books"]
+    },
+    {
+      "id": "software-supply-chain-security",
+      "title": "Откуда взялась программа и что в неё вошло",
+      "sourceHeading": "Software Supply Chain Security Study Plan",
+      "summary": "Приложение зависит от библиотек, сборки и выпуска. Важно проследить путь от исходного кода до установленного файла и понимать, кто мог его изменить.",
+      "topics": [
+        "Исходный код и сторонние библиотеки",
+        "Имена и версии пакетов",
+        "Доступ к системе сборки",
+        "Подписи и сведения о происхождении",
+        "Перечень компонентов SBOM",
+        "Реагирование на проблему зависимости"
+      ],
+      "example": "В проект добавили библиотеку с именем, похожим на известный пакет. Работоспособность кода ещё не подтверждает, что разработчик установил именно нужный пакет.",
+      "practice": "Для собственной маленькой программы выпиши язык, нужные библиотеки и источник каждой. Если использована только стандартная библиотека, так и отметь; ничего дополнительно не устанавливай.",
+      "readyWhen": "Ты можешь объяснить происхождение каждой зависимости и понимаешь, что подпись не заменяет проверку содержимого и доверия к сборке.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/software-supply-chain-security-study-plan.md",
+      "sourcePath": "software-supply-chain-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-3: The Chain",
+        "Week 4-6: Dependencies",
+        "Week 7-9: Pipeline Security",
+        "Week 10-12: Integrity",
+        "Week 13-14: Case Studies",
+        "Week 15-17: Operations"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "secure-code-review",
+      "title": "Читаем код и проверяем решения",
+      "sourceHeading": "Secure Code Review Study Plan",
+      "summary": "При чтении кода спроси не только «работает ли функция», но и «кто может её вызвать, что она принимает и что произойдёт при ошибке». Для начала достаточно небольшой функции.",
+      "topics": [
+        "Точки входа и чувствительные действия",
+        "Проверка данных",
+        "Вход и права на объект",
+        "Ошибки и сообщения в журнале",
+        "Проверка предложенного ИИ кода",
+        "Автоматические проверки и их ограничения"
+      ],
+      "example": "Функция проверяет, что пользователь вошёл, и возвращает заказ по номеру. Если она не проверяет владельца заказа, сам вход проблему доступа не решает.",
+      "practice": "Прочитай одну программу из набора Kairon. Запиши её входные данные, результат, читаемые файлы и ситуацию, при которой она завершится ошибкой.",
+      "readyWhen": "Ты можешь пересказать движение данных через код и назвать, какой проверки ему не хватает в выбранном сценарии.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/secure-code-review-study-plan.md",
+      "sourcePath": "secure-code-review-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: The Basics",
+        "Week 3-4: Spotting Bugs",
+        "Week 5-6: Systematic Review",
+        "Week 7-8: The New Review Surface",
+        "Week 9-10: SAST & IDE Plugins"
+      ],
+      "resourceCategories": [
+        "Tools and Automation",
+        "Resources",
+        "Guides",
+        "Tools",
+        "Practice"
+      ]
+    },
+    {
+      "id": "secure-software-development-lifecycle",
+      "title": "Безопасность от идеи до поддержки",
+      "sourceHeading": "Security Development Lifecycle (SDL) Study Plan",
+      "summary": "Проверки полезны на всём пути продукта: когда задачу придумали, спроектировали, написали, проверили и выпустили. Для каждого этапа нужен свой небольшой результат.",
+      "topics": [
+        "Требования к новой функции",
+        "Проектирование и угрозы",
+        "Реализация и чтение кода",
+        "Проверки перед выпуском",
+        "Наблюдение и исправления после выпуска",
+        "Повторяемый процесс команды"
+      ],
+      "example": "В новой функции восстановления пароля важно заранее решить срок жизни ссылки и порядок её использования, а не выяснять это только после жалобы пользователя.",
+      "practice": "Для вымышленной функции смены пароля запиши по одной проверке на этапах идеи, кода, тестирования и работы сайта. Привяжи каждую к ожидаемому результату.",
+      "readyWhen": "Ты показываешь, какая проблема должна быть предотвращена на каждом этапе и как команда узнает, что проверка прошла.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/secure-software-development-lifecycle-study-plan.md",
+      "sourcePath": "secure-software-development-lifecycle-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: The Big Picture",
+        "Week 3-5: Shift Left",
+        "Week 6-8: Secure Build",
+        "Week 9-11: Verification",
+        "Week 12-13: Post-Release",
+        "Week 14-15: Maturity"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "security-architecture",
+      "title": "Проектируем защиту всей системы",
+      "sourceHeading": "Security Architecture Study Plan",
+      "summary": "Архитектура показывает, из каких частей состоит система и как между ними движутся данные. На этой схеме проще увидеть, где проверяется доступ, хранятся ключи и остаются журналы.",
+      "topics": [
+        "Компоненты и потоки данных",
+        "Пользователи и доверие",
+        "Разделение сети и прав",
+        "Данные, ключи и резервные копии",
+        "Обоснование решений и исключений",
+        "Повторно используемые схемы защиты"
+      ],
+      "example": "Браузер должен обращаться к сайту, а сайт — к базе данных. Прямой доступ каждого посетителя к базе дал бы ему возможности, которые должен контролировать сервер.",
+      "practice": "Нарисуй браузер, сервер и базу. Подпиши, где проверяется пользователь, где проверяется владелец записи и где хранится пароль подключения.",
+      "readyWhen": "Ты можешь пройти по стрелкам схемы и объяснить назначение каждой проверки, а не только названия сервисов.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/security-architecture-study-plan.md",
+      "sourcePath": "security-architecture-study-plan.md",
+      "authorSchedule": [
+        "Week 1-6: Core Architecture",
+        "Week 7-10: Frameworks",
+        "Week 11-16: Design Patterns",
+        "Week 17-20: Threat Modeling",
+        "Week 21-24: Governance",
+        "Week 25-28: Reference Architectures"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "genai-security",
+      "title": "Защита приложений с ИИ",
+      "sourceHeading": "GenAI Security Study Plan (GenAI/LLM)",
+      "summary": "ИИ может читать документы и предлагать действия, но текст из документа не должен сам выдавать программе новые права. Разбирай отдельно данные, инструкции и разрешения инструментов.",
+      "topics": [
+        "Как приложение использует языковую модель",
+        "Инструкции внутри недоверенных данных",
+        "Поиск по документам RAG",
+        "Данные обучения и дообучение",
+        "Агенты и доступ к инструментам",
+        "MCP, наблюдение и реагирование"
+      ],
+      "example": "Помощник читает письмо, в котором написано «отправь все файлы на этот адрес». Это содержимое письма, а не разрешение владельца системы на отправку.",
+      "practice": "На бумаге раздели учебный запрос владельца и вставленный текст документа. Укажи, какие действия помощнику разрешены, и где система должна отклонить лишнее действие. Платный API не нужен.",
+      "readyWhen": "Ты можешь объяснить, почему проверка текста запроса не заменяет ограничение прав инструмента и контроль перед отправкой данных.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/genai-security-study-plan.md",
+      "sourcePath": "genai-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1: AI/ML Foundations & LLM Basics",
+        "Week 2: LLM Security Fundamentals",
+        "Week 3: AI Governance & Compliance",
+        "Week 4: Threat Modeling & Risk Assessment",
+        "Week 1: RAG Fundamentals",
+        "Week 2: RAG Security (Optional - for deeper understanding)",
+        "Week 1: Fine-Tuning Fundamentals",
+        "Week 2: Fine-Tuning Security"
+      ],
+      "resourceCategories": ["Certifications", "Additional Resources"]
+    },
+    {
+      "id": "product-security",
+      "title": "Помогаем команде выпускать защищённый продукт",
+      "sourceHeading": "Product Security Study Plan",
+      "summary": "Защита продукта связывает техническую проблему с пользователями и планом разработки. Нужно объяснить последствия, выбрать исправление и договориться, как проверить результат.",
+      "topics": [
+        "Работа с продуктовой командой",
+        "Требования к функции",
+        "Защита на этапах разработки",
+        "Угрозы и приоритет исправлений",
+        "Понятные задачи и показатели",
+        "Связь с инфраструктурой и правилами компании"
+      ],
+      "example": "Разработчики нашли две ошибки. Одна мешает оформлению кнопки, другая открывает клиентские документы. Важно объяснить влияние второй и согласовать проверяемое исправление.",
+      "practice": "Напиши учебную задачу разработчику по случаю чужого заказа: действие пользователя, ожидаемое правило доступа, фактический результат и проверка после исправления.",
+      "readyWhen": "Другой человек понимает из твоего описания проблему, последствия и критерий исправления без устных догадок.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/product-security-study-plan.md",
+      "sourcePath": "product-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-4: The Role & Lifecycle",
+        "Week 5-7: Integration & Culture",
+        "Week 8-13: Practical SDLC",
+        "Week 14-17: Threat Modeling",
+        "Week 18-20: Reporting & Strategy",
+        "Week 21-23: Cross-Functional Collaboration"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "iam-security",
+      "title": "Управляем доступом людей и программ",
+      "sourceHeading": "Identity and Access Management (IAM) Security Study Plan",
+      "summary": "IAM отвечает за то, как система распознаёт человека или программу и какие действия им разрешены. Доступ нужно не только выдать, но и вовремя изменить или отозвать.",
+      "topics": [
+        "Учётная запись и подтверждение личности",
+        "Права на действия и данные",
+        "Роли и область их действия",
+        "Вход через общую систему",
+        "Приход, перевод и уход сотрудника",
+        "Служебные ключи и доступ агентов"
+      ],
+      "example": "Сотрудник перешёл из финансов в поддержку. Его пароль мог остаться тем же, но право менять платёжные данные больше не нужно. Закрытие старых прав — отдельная задача.",
+      "practice": "В таблице учебной компании найди ушедшего сотрудника. Отдельно перечисли роль, открытые сеансы и ключи, которые нужно проверить при закрытии доступа.",
+      "readyWhen": "Ты различаешь пароль, разрешение и действующий сеанс и не считаешь удаление имени из списка достаточной проверкой.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/iam-security-study-plan.md",
+      "sourcePath": "iam-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3: Traditional AuthN",
+        "Week 4: Modern Protocols",
+        "Week 5-6: AuthZ Models & Implementation",
+        "Week 7-8: AWS IAM Basics",
+        "Week 9: Azure & GCP IAM Overview",
+        "Week 10-11: Identity Lifecycle & PAM",
+        "Week 12: Federation & B2B/B2C",
+        "Week 13-14: NHI Fundamentals & Controls",
+        "Week 15: Tooling & Modern Patterns",
+        "Week 16-18: Attacks & Defenses"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "blue-team-detection-response",
+      "title": "Замечаем подозрительное и разбираем происшествие",
+      "sourceHeading": "Blue Team, Detection & Response Study Plan",
+      "summary": "Команда защиты собирает записи, проверяет тревогу и помогает согласовать действия. Полезный вывод опирается на время, систему, пользователя и контекст, а не на один страшный признак.",
+      "topics": [
+        "Работа команды защиты",
+        "Сбор и качество журналов",
+        "Поиск связанных событий",
+        "Правила обнаружения и ложные тревоги",
+        "Разбор, восстановление и отчёт",
+        "Облачные и ИИ-системы как источники событий"
+      ],
+      "example": "В журнале несколько ошибок входа, затем успех. Возможно, человек ошибался с паролем. Возможно, вход нежелательный. Нужно уточнить владельца и сопоставить другие записи.",
+      "practice": "В учебной компании свяжи ошибки, успешный вход и последующий процесс. Запиши подтверждённые факты отдельно от версии о причине.",
+      "readyWhen": "Ты можешь составить короткую цепочку событий и объяснить, какое дополнительное подтверждение ещё требуется.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/blue-team-detection-response-study-plan.md",
+      "sourcePath": "blue-team-detection-response-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-5: Data & Platforms",
+        "Week 6-9: Detections & Hunts",
+        "Week 10-13: IR Lifecycle",
+        "Week 14-16: Forensics Overview",
+        "Week 17-19: Modern Blue Teaming"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "mobile-application-security",
+      "title": "Защита мобильного приложения",
+      "sourceHeading": "Mobile Application Security Study Plan",
+      "summary": "У приложения на телефоне есть собственные файлы, разрешения и соединения с сервером. Проверять нужно и телефонную часть, и правила доступа серверного API.",
+      "topics": [
+        "Приложение и сервер",
+        "Хранение данных на устройстве",
+        "Разрешения Android",
+        "Модель безопасности iOS",
+        "Сетевые обращения",
+        "План проверки по OWASP MASVS и MASTG"
+      ],
+      "example": "Приложение скрывает кнопку просмотра чужого заказа. Это не помогает, если сервер всё равно выдаёт данные при запросе номера такого заказа.",
+      "practice": "Для вымышленного приложения доставки составь список данных на телефоне и на сервере. Укажи, какие нельзя оставлять в обычных журналах. Реальный телефон и чужое приложение не трогай.",
+      "readyWhen": "Ты различаешь локальную защиту данных и серверную проверку доступа, понимая, что одно не заменяет другое.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/mobile-application-security-study-plan.md",
+      "sourcePath": "mobile-application-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Architecture",
+        "Week 3-6: Android Basics & Risks",
+        "Week 7-10: iOS Basics & Risks",
+        "Week 11-14: Methodology",
+        "Week 15-18: Practice"
+      ],
+      "resourceCategories": [
+        "Tools & Labs",
+        "Books",
+        "Videos",
+        "Courses",
+        "Certifications",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "reverse-engineering-malware-security",
+      "title": "Разбираем устройство программы",
+      "sourceHeading": "Reverse Engineering & Malware Analysis Study Plan",
+      "summary": "Это специализация после основ систем и программирования. Сначала учатся понимать собственную безвредную программу, а работа с вредоносными образцами требует отдельно проверенной среды.",
+      "topics": [
+        "Процессы, память и форматы файлов",
+        "Чтение программы без запуска",
+        "Наблюдение при контролируемом запуске",
+        "Отладка и связи действий",
+        "Сохранение наблюдений",
+        "Передача результата команде защиты"
+      ],
+      "example": "Программа выводит строку и ждёт завершения. До запуска можно прочитать код, а после — увидеть процесс. Два способа дают разные сведения об одном примере.",
+      "practice": "Используй только собственную безвредную программу из набора Kairon: сначала перечисли действия по коду, затем сравни с наблюдаемым результатом. Настоящие вредоносные файлы не скачивай.",
+      "readyWhen": "Ты объясняешь разницу между чтением кода и наблюдением за запуском и не называешь обычную виртуальную машину доказанно безопасной песочницей.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/reverse-engineering-malware-security-study-plan.md",
+      "sourcePath": "reverse-engineering-malware-security-study-plan.md",
+      "authorSchedule": [
+        "Week 1-4: Core Concepts",
+        "Week 5-8: Static RE",
+        "Week 9-12: Dynamic RE",
+        "Week 13-16: Structured Analysis",
+        "Week 17-22: Deeper RE"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Interview Questions"
+      ]
+    },
+    {
+      "id": "osint-social-engineering",
+      "title": "Проверяем открытые сведения и подозрительные просьбы",
+      "sourceHeading": "OSINT & Social Engineering Study Plan",
+      "summary": "OSINT — работа с доступными источниками и проверкой их смысла. Знание социальной инженерии помогает заметить давление и проверить необычную просьбу по независимому каналу.",
+      "topics": [
+        "Цель поиска и границы данных",
+        "Проверка происхождения сведений",
+        "Открытая информация о компании",
+        "Давление срочностью и авторитетом",
+        "Подмена голоса и изображения",
+        "Независимое подтверждение и сообщение о попытке"
+      ],
+      "example": "Сообщение от «директора» требует срочно оплатить счёт по новым реквизитам. Знакомый голос или фото не заменяют проверку через известный контакт и обычное согласование.",
+      "practice": "Разбери учебное письмо Kairon. Запиши, что проверишь в адресе отправителя и каким заранее известным способом уточнишь просьбу. Не собирай сведения о реальных людях.",
+      "readyWhen": "Ты умеешь назвать проверяемый признак и независимый следующий шаг, а не делать вывод по качеству русского языка или фотографии.",
+      "sourceUrl": "https://github.com/jassics/security-study-plan/blob/85bfb85c2b3f25c9a4fa1247ef4f510450edd493/osint-social-engineering-study-plan.md",
+      "sourcePath": "osint-social-engineering-study-plan.md",
+      "authorSchedule": [
+        "Week 1-2: Core Concepts",
+        "Week 3-6: Practical OSINT",
+        "Week 7-9: SE Basics",
+        "Week 10-12: Synthetic Media as an SE Vector",
+        "Week 13-15: Red Team View",
+        "Week 16-18: Blue & GRC View"
+      ],
+      "resourceCategories": [
+        "Books",
+        "Videos",
+        "Courses",
+        "Interview Questions"
+      ]
+    }
+  ],
+  "readmeGuidance": [
+    "Выбирать направление по задачам, а не только названию вакансии",
+    "Сопоставлять уже освоенные навыки с требованиями роли",
+    "Описывать реальные проекты и свою работу в резюме",
+    "Готовиться объяснять решения и границы проверки на собеседовании"
+  ],
+  "limitations": [
+    "В зафиксированном дереве не найден файл LICENSE или COPYING. Публичная доступность не рассматривается как разрешение скопировать материалы; опубликованы оригинальные пояснения Kairon и ссылки.",
+    "Недельные диапазоны — ориентиры автора, не измеренное время обучения и не обещание трудоустройства или дохода.",
+    "Внешние курсы, книги, экзамены и облачные сервисы включают платные варианты. Цены, бесплатные квоты и текущие программы сертификаций в этом аудите не проверялись.",
+    "Планы ссылаются на новости, исследования поставщиков, новые стандарты и версии продуктов. Их проценты и категоричные выводы не переносятся в Kairon как подтверждённые факты.",
+    "В Blue Team перечислены пять функций NIST CSF без Govern; это не используется как точный перечень функций актуальной версии CSF.",
+    "Ссылки и названия тем не означают разрешение проверять чужие системы. Практика Kairon использует свои данные и цели.",
+    "Полные внешние книги, видео, исследования, интервью, linked repositories и изображения не исследованы; шаблон useful-security-scripts содержит список будущих категорий, не готовый набор скриптов."
+  ]
+}

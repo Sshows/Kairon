@@ -1,6 +1,24 @@
-export type LearningPathId = "from-zero" | "blue-team" | "kali-tools";
+export type LearningPathId =
+  "from-zero" | "blue-team" | "kali-tools" | "security-basics";
 
 export const learningPaths = [
+  {
+    id: "security-basics",
+    number: "05",
+    name: "Основы безопасности",
+    title: "Основы безопасности: понять до запуска инструментов",
+    description:
+      "Разберём на примерах, что защищают в компании, как открывается сайт и почему вход в аккаунт не даёт доступ ко всему. Затем попробуем оценку риска, защиту приложения, облака и данных ИИ. Заранее знать термины не нужно.",
+    startLabel: "Начать с основ",
+    completionLabel: "Основы безопасности — путь завершён",
+    kit: {
+      url: "/downloads/kairon-basics.zip",
+      label: "Скачать набор: основы безопасности",
+      description:
+        "Учебные таблицы, схема движения данных и короткие примеры настроек. Только вымышленные сведения: никаких серверов, подписок и исполняемых программ.",
+      setupLesson: "basics-cia",
+    },
+  },
   {
     id: "from-zero",
     number: "00",

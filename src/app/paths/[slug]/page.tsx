@@ -18,6 +18,8 @@ export default async function PathPage({
   const { slug } = await params;
   const path = paths.find((p) => p.slug === slug);
   if (!path) notFound();
+  if (slug === "security-basics")
+    return <StarterPath pathId="security-basics" />;
   if (slug === "from-zero") return <StarterPath />;
   if (slug === "blue-team") return <StarterPath pathId="blue-team" />;
   if (slug === "kali-tools") return <StarterPath pathId="kali-tools" />;

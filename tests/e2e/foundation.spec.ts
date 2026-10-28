@@ -4,6 +4,7 @@ import { randomBytes, randomUUID } from "node:crypto";
 import course from "../../content/lessons/kali.json" with { type: "json" };
 import company from "../../content/lessons/company.json" with { type: "json" };
 import projects from "../../content/lessons/projects.json" with { type: "json" };
+import basics from "../../content/lessons/basics.json" with { type: "json" };
 import { hashPassword } from "../../src/lib/password";
 const accounts = [
   { id: randomUUID(), role: "USER", name: "Test learner" },
@@ -81,6 +82,20 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       headers: { Origin: "http://localhost:3000" },
       data: body,
     });
+  expect(
+    (
+      await submit(basics[1].id, {
+        action: "check",
+        answer: basics[1].answers[0],
+      })
+    ).status(),
+  ).toBe(423);
+  for (const response of await Promise.all(
+    Array.from({ length: 4 }, () =>
+      submit(basics[0].id, { action: "check", answer: basics[0].answers[0] }),
+    ),
+  ))
+    expect((await response.json()).status).toBe("passed");
   expect(
     (
       await submit(projects[1].id, {
@@ -219,19 +234,39 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     ).already,
   ).toBe(true);
   const progressDb = new Client({ connectionString: process.env.DIRECT_URL });
+  for (const lesson of basics.slice(1)) {
+    const result = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await result.json()).status, lesson.id).toBe("passed");
+  }
+  expect(
+    (
+      await (
+        await submit(basics[0].id, {
+          action: "check",
+          answer: basics[0].answers[0],
+        })
+      ).json()
+    ).already,
+  ).toBe(true);
   try {
     await progressDb.connect();
     const result = await progressDb.query(
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 41, xp: 4410 });
+    expect(result.rows[0]).toEqual({ count: 53, xp: 5610 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("40/40");
-  await expect(page.locator(".learning-stats")).toContainText("4410");
+  await expect(page.locator(".learning-stats")).toContainText("52/52");
+  await expect(page.locator(".learning-stats")).toContainText("5610");
+  await expect(page.locator('[data-course="security-basics"]')).toContainText(
+    "12/12",
+  );
   await expect(page.locator('[data-course="kali-tools"]')).toContainText("8/8");
   await expect(
     page.getByText("Все пути завершены", { exact: true }),
@@ -246,7 +281,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("40/40");
+  await expect(page.locator(".learning-stats")).toContainText("52/52");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -512,4 +547,74 @@ test("all project references and beginner guide work on desktop and mobile", asy
       name: "Что добавили из Cybersecurity-Projects",
     }),
   ).toBeVisible();
+});
+
+test("study map connects all directions and foundation lessons on mobile", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  await expect(page.locator(".path-card")).toHaveCount(6);
+  await page
+    .getByRole("link", { name: "Начать обучение", exact: true })
+    .click();
+  await expect(page).toHaveURL(/study-plan/);
+  await expect(page.locator(".study-stage")).toHaveCount(8);
+  await expect(page.locator(".study-direction-card")).toHaveCount(25);
+  const routeLinks = await page
+    .locator(".study-direction-card h3 a")
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("href")!));
+  for (const href of routeLinks)
+    expect((await page.request.get(href)).status(), href).toBe(200);
+  await page
+    .getByRole("searchbox", { name: "Найти направление обучения" })
+    .fill("Управляем доступом людей");
+  await expect(page.locator(".study-direction-card")).toHaveCount(1);
+  await page
+    .getByRole("searchbox", { name: "Найти направление обучения" })
+    .fill("");
+  await page.screenshot({ path: "test-results/public-study-plan-desktop.png" });
+  await page.goto("/study-plan/iam-security");
+  await expect(page.locator(".study-lesson-links a")).toHaveCount(3);
+  await page.goto("/sources/study-plans");
+  await expect(page.locator(".study-source-block")).toHaveCount(2);
+  await expect(page.locator(".study-source-sections article")).toHaveCount(46);
+  await page.goto("/paths/security-basics");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(12);
+  await expect(page.locator(".course-module")).toHaveCount(3);
+  const download = await page.request.get("/downloads/kairon-basics.zip");
+  expect(download.status()).toBe(200);
+  expect((await download.body()).subarray(0, 2).toString()).toBe("PK");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/study-plan");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/learn/basics-cia");
+  await expect(page.locator(".guide-kit-link")).toHaveAttribute(
+    "href",
+    "/downloads/kairon-basics.zip",
+  );
+  await page
+    .getByLabel("Ответ по результату практики", { exact: true })
+    .fill(basics[0].answers[0]);
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
+  await expect(
+    page.getByText("Самопроверка пройдена", { exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-foundations-mobile.png",
+    fullPage: true,
+  });
+  await page.getByRole("link", { name: "Следующий урок", exact: true }).click();
+  await expect(page).toHaveURL(/learn\/basics-risk/);
 });

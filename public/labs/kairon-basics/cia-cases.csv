@@ -1,0 +1,4 @@
+case_id,situation,primary_property
+case-1,Таблицу зарплат прочитал посторонний,confidentiality
+case-2,В заказе без согласования заменили 17 коробок на 71,integrity
+case-3,Заказы не открываются весь рабочий день хотя данные сохранены,availability

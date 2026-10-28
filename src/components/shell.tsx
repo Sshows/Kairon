@@ -16,6 +16,7 @@ import {
 import { copy, type Locale } from "@/lib/i18n";
 import { changeLocale, logout } from "@/app/actions";
 import { Button } from "./ui/button";
+import { paths } from "@/lib/curriculum";
 type ShellUser = { name: string; role: "ADMIN" | "USER" } | null;
 export function Shell({
   children,
@@ -42,6 +43,10 @@ export function Shell({
         <div className="sidebar-scroll">
           <p className="nav-caption">{t.workspace}</p>
           <nav aria-label={t.workspace}>
+            <Link href="/study-plan" className="nav-link">
+              <Compass size={18} />
+              {locale === "ru" ? "С чего начать" : "Your learning plan"}
+            </Link>
             <Link href="/" className="nav-link">
               <LayoutGrid size={18} />
               {t.overview}
@@ -49,7 +54,7 @@ export function Shell({
             <Link href="/#paths" className="nav-link">
               <Compass size={18} />
               {t.paths}
-              <span className="nav-count">5</span>
+              <span className="nav-count">{paths.length}</span>
             </Link>
             <Link href="/learn/kali-install" className="nav-link">
               <Monitor size={18} />
@@ -101,7 +106,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <span className="status-dot" />
           <span>{t.foundation}</span>
-          <span className="mono">v0.5</span>
+          <span className="mono">v0.6</span>
         </div>
       </aside>
       <div className="main-shell">

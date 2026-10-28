@@ -39,7 +39,7 @@ export default async function Home() {
           <p>{t.heroBody}</p>
           <div className="hero-actions">
             <Button asChild>
-              <Link href="/learn/kali-install">
+              <Link href="/study-plan">
                 {t.heroAction}
                 <ArrowDown size={17} />
               </Link>

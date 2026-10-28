@@ -13,6 +13,31 @@ export type Path = {
 };
 export const paths: Path[] = [
   {
+    slug: "security-basics",
+    availableLessons: 12,
+    number: "05",
+    color: "lime",
+    category: "beginner",
+    icon: "shield",
+    title: {
+      ru: "Основы безопасности на примерах",
+      en: "Security foundations with examples",
+    },
+    description: {
+      ru: "12 уроков: риск, сеть, вход и права, защита приложения, облака и данных ИИ. Сначала смысл, потом действие.",
+      en: "12 guides on risk, networking, identity, access, secure development, cloud and AI data.",
+    },
+    modules: {
+      ru: ["Что и зачем защищаем", "Как устроен доступ", "Защита до инцидента"],
+      en: [
+        "What we protect and why",
+        "How access works",
+        "Protection before an incident",
+      ],
+    },
+    tags: ["Основы", "Сети", "Доступы", "Foundations"],
+  },
+  {
     slug: "from-zero",
     availableLessons: 20,
     number: "00",

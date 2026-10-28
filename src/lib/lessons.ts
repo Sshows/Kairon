@@ -2,8 +2,13 @@ import "server-only";
 import kali from "../../content/lessons/kali.json";
 import company from "../../content/lessons/company.json";
 import projects from "../../content/lessons/projects.json";
+import basics from "../../content/lessons/basics.json";
 import type { LearningPathId } from "./learning-paths";
 export const lessons = [
+  ...basics.map((lesson) => ({
+    ...lesson,
+    pathId: "security-basics" as LearningPathId,
+  })),
   ...kali.map((lesson) => ({
     ...lesson,
     pathId: "from-zero" as LearningPathId,

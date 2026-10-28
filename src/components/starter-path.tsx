@@ -81,6 +81,21 @@ export async function StarterPath({
         нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
         медленнее и повторять шаги.
       </p>
+      {pathId === "security-basics" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Начни с этих понятий, если инструменты пока кажутся набором
+              незнакомых слов. Темы выбраны после разбора двух планов обучения;
+              задания и объяснения написаны для Kairon.
+            </p>
+            <Link href="/study-plan" className="subtle-link">
+              Как связаны темы и что изучать дальше →
+            </Link>
+          </div>
+        </section>
+      )}
       {pathId === "kali-tools" && (
         <section className="notice source-course-note">
           <BookOpen size={20} />

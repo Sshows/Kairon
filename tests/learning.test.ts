@@ -8,24 +8,32 @@ import {
 } from "../src/lib/lessons";
 import audit from "../content/source-audits/pocket-hacker.json";
 import catalogue from "../content/project-catalog.json";
+import studyPlan from "../content/study-plan.json";
+import jassicsPlan from "../content/source-audits/jassics-plan.json";
+import hamedPlan from "../content/source-audits/hamed-roadmap.json";
+import { directionLessons } from "../src/lib/study-plan";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("publishes twenty independent guides across four levels", () => {
-    expect(lessons).toHaveLength(40);
+    expect(lessons).toHaveLength(52);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
+    const basics = getCourseLessons("security-basics");
     expect(kali).toHaveLength(20);
     expect(company).toHaveLength(12);
     expect(projects).toHaveLength(8);
+    expect(basics).toHaveLength(12);
     expect(getCourseModules("from-zero")).toHaveLength(4);
     expect(getCourseModules("blue-team")).toHaveLength(3);
     expect(getCourseModules("kali-tools")).toHaveLength(2);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(40);
+    expect(getCourseModules("security-basics")).toHaveLength(3);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(52);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
+    expect(basics.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1200);
     for (const lesson of lessons) {
       expect(lesson.theory.length, lesson.id).toBeGreaterThan(1000);
       expect(lesson.checklist).toHaveLength(3);
@@ -71,6 +79,11 @@ describe("Kali guides and answer checks", () => {
       ),
     ).toBe(true);
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
+    expect(isUnlocked("basics-cia", new Set())).toBe(true);
+    expect(
+      isUnlocked("basics-risk", new Set(["project-start", "soc-first-shift"])),
+    ).toBe(false);
+    expect(isUnlocked("basics-risk", new Set(["basics-cia"]))).toBe(true);
     expect(isUnlocked("project-start", new Set())).toBe(true);
     expect(
       isUnlocked("project-hash", new Set(["soc-first-shift", "kali-install"])),
@@ -135,5 +148,22 @@ describe("Kali guides and answer checks", () => {
       expect(project.prerequisites.length, project.id).toBeGreaterThan(0);
       expect(project.sourceUrl).toContain(catalogue.source.commit);
     }
+  });
+  it("connects every learning stage and direction to valid published lessons", () => {
+    expect(studyPlan.stages).toHaveLength(8);
+    expect(jassicsPlan.sections).toHaveLength(25);
+    expect(hamedPlan.sections).toHaveLength(21);
+    const publishedIds = new Set(lessons.map((lesson) => lesson.id));
+    for (const stage of studyPlan.stages)
+      for (const id of stage.lessons)
+        expect(publishedIds.has(id), stage.id + ": " + id).toBe(true);
+    expect(new Set(Object.keys(directionLessons))).toEqual(
+      new Set(jassicsPlan.sections.map((section) => section.id)),
+    );
+    for (const ids of Object.values(directionLessons))
+      for (const id of ids) expect(publishedIds.has(id), id).toBe(true);
+    for (const source of [jassicsPlan, hamedPlan])
+      for (const section of source.sections)
+        expect(section.sourceUrl).toContain(source.commit);
   });
 });

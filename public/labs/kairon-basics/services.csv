@@ -1,0 +1,4 @@
+service,protocol,address,port,listener,scope
+training-site,TCP,127.0.0.1,8000,Учебный HTTP-сайт,Только внутри этой Kali
+training-admin,TCP,127.0.0.1,8443,Учебная панель администратора,Только внутри этой Kali
+training-mail,TCP,192.168.56.10,2525,Учебный почтовый сервис,Частная учебная сеть
