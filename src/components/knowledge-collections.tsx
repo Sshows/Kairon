@@ -50,6 +50,7 @@ export function KnowledgeCollections({ entries }: { entries: Entry[] }) {
         <label className="collection-source-filter">
           Источник
           <select
+            aria-label="Источник"
             value={source}
             onChange={(event) => setSource(event.target.value)}
           >
