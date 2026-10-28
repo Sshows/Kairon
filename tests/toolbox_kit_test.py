@@ -24,8 +24,14 @@ LINUX = sys.platform.startswith('linux')
 
 def run(args, cwd, input=None, timeout=30, check=True):
     options = {'umask': 0o077} if LINUX else {}
-    return subprocess.run(args, cwd=cwd, input=input, capture_output=True,
-                          timeout=timeout, check=check, **options)
+    result = subprocess.run(args, cwd=cwd, input=input, capture_output=True,
+                            timeout=timeout, check=False, **options)
+    if check and result.returncode:
+        # Commands here contain only owned demo data; expose their diagnostics.
+        raise AssertionError(f'{args[0]} exited {result.returncode}:\n'
+                             + result.stdout.decode(errors='replace')
+                             + result.stderr.decode(errors='replace'))
+    return result
 
 
 class ToolboxKit(unittest.TestCase):
