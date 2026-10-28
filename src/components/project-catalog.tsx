@@ -46,6 +46,7 @@ export function ProjectCatalog({ projects }: { projects: Project[] }) {
         <label>
           Уровень
           <select
+            aria-label="Уровень"
             value={level}
             onChange={(event) => setLevel(event.target.value)}
           >
@@ -60,6 +61,7 @@ export function ProjectCatalog({ projects }: { projects: Project[] }) {
         <label>
           Что есть у автора
           <select
+            aria-label="Что есть у автора"
             value={status}
             onChange={(event) => setStatus(event.target.value)}
           >
