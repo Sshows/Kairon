@@ -22,7 +22,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Abuse_Case_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Abuse_Case_Cheat_Sheet.html",
       "filename": "Abuse_Case_Cheat_Sheet.md",
-      "sha256": "615ec8f534126df998491591c77da9bf7c009f138f3e06baf30c88bf1398e05e",
+      "sha256": "e840e3b9d772ca9375358ead22deb1a860fbd6c09d3bcec36aabe64d23558365",
       "status": "archived",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -36,7 +36,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Access_Control_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Access_Control_Cheat_Sheet.html",
       "filename": "Access_Control_Cheat_Sheet.md",
-      "sha256": "ecd6c122383235205d9a3d99bd7aa7627991c05c75d00acdd160e5de5895cfaf",
+      "sha256": "4c3f631b959cb88c4aa5b040ec7a6da259fa5a0d01c03c9ce12f5df6face0de7",
       "status": "deprecated",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -50,7 +50,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/AI-Powered_Advertising_Systems_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/AI-Powered_Advertising_Systems_Security_Cheat_Sheet.html",
       "filename": "AI-Powered_Advertising_Systems_Security_Cheat_Sheet.md",
-      "sha256": "cf7e3f109dba3bcf60789092b4f0229e16bf4d901ce2e13f1c00966506ba0f41",
+      "sha256": "400e988bf5c7342120b94e6e9820e4847507a638b4a89135a7138889e946e764",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -64,7 +64,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/AI_Agent_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html",
       "filename": "AI_Agent_Security_Cheat_Sheet.md",
-      "sha256": "beb3f67c824f363dc7a54a88258e122f8590ee477aa0d8cd4934d7287c98bede",
+      "sha256": "61fa0df50f255f10b82965d614ebbd40ec77a9274785109ce9cb5dc90e34ea7a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -78,7 +78,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/AML_Sanctions_AI_Agent_Payments_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/AML_Sanctions_AI_Agent_Payments_Cheat_Sheet.html",
       "filename": "AML_Sanctions_AI_Agent_Payments_Cheat_Sheet.md",
-      "sha256": "3fd1d14e08c11b5eed19b88e2c296867b1dda183a22d90bf871bb301e6448892",
+      "sha256": "d4ba38bee142111bf98fb4877189239f4090e94e8bdb6b5519015771996039fb",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -92,7 +92,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.html",
       "filename": "Attack_Surface_Analysis_Cheat_Sheet.md",
-      "sha256": "cf6a3c88087e33d381afa0dcff1edb9466bc2c362aed8f3580a965d5542e8de4",
+      "sha256": "239f4e4b29db5f8f03632e0ca70d61f1e44bce7dc4e0dbfee32eb0160b47f81b",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -106,7 +106,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authentication_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
       "filename": "Authentication_Cheat_Sheet.md",
-      "sha256": "4478a8cfa1de5196cd4e507a0c4dcd2abd678c9208027101d038d3da9da1f363",
+      "sha256": "92f7483b28548679917a329c7b9be1824f33e934d9eed670aaf3e9a1e7b37e83",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -122,7 +122,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authentication_Patterns_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Patterns_Cheat_Sheet.html",
       "filename": "Authentication_Patterns_Cheat_Sheet.md",
-      "sha256": "75d0901fe32b45281abfcc7b45faa2afd1d85d28a110f99646dc106360d3839a",
+      "sha256": "eea3010f68fca9eaa37e53c5854cde521e17705deedef247b62031e246623d91",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -136,7 +136,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authorization_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
       "filename": "Authorization_Cheat_Sheet.md",
-      "sha256": "e51e0acc22c8636ccef4272fdda603270fb32183478876f06243c4c75f84ad65",
+      "sha256": "fb8b6e5c60ed783025beefb5049142fd9da02d01f5c95de18a19d26479737975",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -152,7 +152,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authorization_Decisions_And_Output_Handling_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Decisions_And_Output_Handling_Cheat_Sheet.html",
       "filename": "Authorization_Decisions_And_Output_Handling_Cheat_Sheet.md",
-      "sha256": "8db0293ac490a375f56a4074bb7c2ae62b6855e0ee448f43fe4b5a5c57029d5f",
+      "sha256": "4b6082b65424b078937875bc1402e54606ec3b51bd3e576dbdff8f6e91388e2c",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -166,7 +166,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authorization_Patterns_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Patterns_Cheat_Sheet.html",
       "filename": "Authorization_Patterns_Cheat_Sheet.md",
-      "sha256": "8f8145ccfb5d6ecf66f5441d74baa872b7f919c6065cb3099b489580d879e8b4",
+      "sha256": "21c44f4373bedc1ae87790f1442996e755a772d57ff38b11b42156fac95dbbd5",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -180,7 +180,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authorization_Policy_And_Data_Distribution_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Policy_And_Data_Distribution_Cheat_Sheet.html",
       "filename": "Authorization_Policy_And_Data_Distribution_Cheat_Sheet.md",
-      "sha256": "7241c1649e6eab54f7b367f2d6f3c1022c18f9021aac13bfc8df16c89eee2092",
+      "sha256": "3bef7efe2175e3fffd4a59c015621e4bdba8998829c6682fbe7114be85179331",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -194,7 +194,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authorization_Regression_Testing_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Regression_Testing_Cheat_Sheet.html",
       "filename": "Authorization_Regression_Testing_Cheat_Sheet.md",
-      "sha256": "6edfa9e69c4370a88844dd489655effcbbfbf4c08e42dcbbb6682aab0d136833",
+      "sha256": "8afd6b7227da00865fbff0819864f4c50654e917393ef38742a06288d9d3f7a8",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -208,7 +208,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Authorization_Testing_Automation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Testing_Automation_Cheat_Sheet.html",
       "filename": "Authorization_Testing_Automation_Cheat_Sheet.md",
-      "sha256": "c8b38b34758cd196b85b1cadaf3aa8a702fbc34567927f11f7bbffdcf4a68c82",
+      "sha256": "7a997a70aa9e46f2e87dde58d00d2fa284ea8a231f2dac7d3630e88999414e80",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -222,7 +222,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Automotive_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Automotive_Security_Cheat_Sheet.html",
       "filename": "Automotive_Security_Cheat_Sheet.md",
-      "sha256": "7b0c0cf8afa880f93b26fbbc1b60f21fee68e6caa367f408a592578b9af8b149",
+      "sha256": "670f5c663a0e65f890c797346b168304c3dc5ad79d4d8000707a9b362aafdaca",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -236,7 +236,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Bean_Validation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Bean_Validation_Cheat_Sheet.html",
       "filename": "Bean_Validation_Cheat_Sheet.md",
-      "sha256": "763a6161217365c4312e3ba845ba721182cbf19007a01773de6e482d54b7f3fb",
+      "sha256": "8e2feed29bcd0d14e8aa883eb06463296a3e647de272d8d192ed988aa7ebed7c",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -250,7 +250,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Bot_Management_and_Anti-Automation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Bot_Management_and_Anti-Automation_Cheat_Sheet.html",
       "filename": "Bot_Management_and_Anti-Automation_Cheat_Sheet.md",
-      "sha256": "0b5fdc9b8441945537599d259498529dcbeee6f846fce801612d4122b3af6815",
+      "sha256": "64af4be09c78ec1bbf60e3bb624257db76ef747b90ac7979eed15c070be75489",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -264,7 +264,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Browser_Extension_Vulnerabilities_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Browser_Extension_Vulnerabilities_Cheat_Sheet.html",
       "filename": "Browser_Extension_Vulnerabilities_Cheat_Sheet.md",
-      "sha256": "df43b7cc8471f23b4eb5ef0085ef3f1f152c8dfaec80f706d503eee6dae33f64",
+      "sha256": "96e6dd421d78c996ba08337dac56f3ba54e65178031751e7e945ff682dbaf6ae",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -278,7 +278,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Business_Logic_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Business_Logic_Security_Cheat_Sheet.html",
       "filename": "Business_Logic_Security_Cheat_Sheet.md",
-      "sha256": "a78a50a9bf7b353bd18ef7e57d18e3916adb340479eb6a5688ba4f4220df9498",
+      "sha256": "5285494a6408050e9d1e4f50902c20386ba8cb450951a851eb4c6290d302012e",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -292,7 +292,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/C-Based_Toolchain_Hardening_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/C-Based_Toolchain_Hardening_Cheat_Sheet.html",
       "filename": "C-Based_Toolchain_Hardening_Cheat_Sheet.md",
-      "sha256": "1ed8418b4530b4a7f5f949d6a6dfa532caaf85ed754943c4d66392c66e83db2b",
+      "sha256": "996bd58f97f18129ea793a4b12aa287eaa1bc49d19a09e4abae13e9ffe3e1151",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -306,7 +306,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Choosing_and_Using_Security_Questions_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Choosing_and_Using_Security_Questions_Cheat_Sheet.html",
       "filename": "Choosing_and_Using_Security_Questions_Cheat_Sheet.md",
-      "sha256": "c62ef0ca115ce6ce1ee65e4900445a6960cb73c6ec146f0fd5e301611d428a52",
+      "sha256": "e191eadd3a0c807af828f4a44b9adf4bd3c199c6cc73641347cf73af258e6886",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -320,7 +320,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/CI_CD_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/CI_CD_Security_Cheat_Sheet.html",
       "filename": "CI_CD_Security_Cheat_Sheet.md",
-      "sha256": "2f28bcaa58ece13ba09428fdcbca44a6159fd3be2f64a3c991779c33aef706e9",
+      "sha256": "25b927dd92a7a0ac1acb821444c3e7df4a3ad69b75edc34c855acb20f973e593",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -334,7 +334,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Clickjacking_Defense_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html",
       "filename": "Clickjacking_Defense_Cheat_Sheet.md",
-      "sha256": "b4060ce7c05aa4d2fc40e893a33fa3827447d7bbe4fd6e48953734b2d6e4d81a",
+      "sha256": "01d29bea979845416ea4ba7b68a4ecfa03da555ede0b6b0084d4c6b9cf2e8518",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -348,7 +348,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Content_Security_Policy_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
       "filename": "Content_Security_Policy_Cheat_Sheet.md",
-      "sha256": "ce5ddd72c7e5dba1a9124d1bb755ecbc9581e787484641ea054493a02e2a3d89",
+      "sha256": "4d5e2f4d1c42ae58672fabb8088b2254ce5e6990432b58e110604942f14b34d0",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -362,7 +362,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Cookie_Theft_Mitigation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Cookie_Theft_Mitigation_Cheat_Sheet.html",
       "filename": "Cookie_Theft_Mitigation_Cheat_Sheet.md",
-      "sha256": "bb8eeb1358f3cd180e61e74d8f06598bb2b560f30d1405c19c09e6638912c691",
+      "sha256": "159b9845f76df328d3ce2b524003fec70bda3b6268fa53ad81c100e36b855782",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -376,7 +376,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html",
       "filename": "Credential_Stuffing_Prevention_Cheat_Sheet.md",
-      "sha256": "5163837f82cbe7174d959ec3d18b58fae407926ab4f49401644cbe6461a0bce1",
+      "sha256": "d3ad6e7fce8b568ef9dd2242dde9c2fe26ba88aa80c274407faec503625acc04",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -390,7 +390,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
       "filename": "Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
-      "sha256": "c5ea8272fc6a9ef49e91d964d1c6d1f5b2621c2bf835c6972c32aa13a4e74ac3",
+      "sha256": "8393658c07a3ec99c8195781a376fde895a9a230ec9fe489743bb6821920ab75",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -406,7 +406,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
       "filename": "Cross_Site_Scripting_Prevention_Cheat_Sheet.md",
-      "sha256": "53c22177acfbc82c20ed2341565c26857a3ccd1369c6a65709bad88450c62bcd",
+      "sha256": "199c484557a3d2e6732daec1d2b8d683645163ce1d7dd58f7e5590d93f5a2719",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -422,7 +422,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html",
       "filename": "Cryptographic_Storage_Cheat_Sheet.md",
-      "sha256": "afe75b9277287a28969a34bde5e0d1cdfbddeec0fe7274398d0b1f5bfdf98109",
+      "sha256": "c706ea15f7adfeba949c7aaf897ae5f834e3d511494afda7ca36b9591942aa59",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -436,7 +436,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Database_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html",
       "filename": "Database_Security_Cheat_Sheet.md",
-      "sha256": "1d936eedb21b1cde11c8f76b4da9052df135197c071b5157f49782be2e3e4915",
+      "sha256": "b5ad6125f2f908949df3a7866daa03a9f8487e94ea84f384eb852948375f15e2",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -450,7 +450,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Denial_of_Service_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html",
       "filename": "Denial_of_Service_Cheat_Sheet.md",
-      "sha256": "77d9069d4b649910693840b4d5788ebab2da6a0514d4bc4406d049b66430306c",
+      "sha256": "429d4f36078a9b26e6d897c911571111bda3d0a7e9bda79dd7bc442935dc3382",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -464,7 +464,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Dependency_Graph_SBOM_Cheat_Sheet.html",
       "filename": "Dependency_Graph_SBOM_Cheat_Sheet.md",
-      "sha256": "b2ae1351e6172e872e4d7d8c985a180b13741b93c063ded51be6d30915717ef5",
+      "sha256": "6a05f465580effc5cb27b8867bc0c89ab7386ff101985f601927409901210f53",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -478,7 +478,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Deserialization_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
       "filename": "Deserialization_Cheat_Sheet.md",
-      "sha256": "11f3823cbb4db6726ce91430b11cad089eb80f0d84bd2c172860742250588d2b",
+      "sha256": "f25441070ffcd5664758dff186c7804b8cb42e81258b4133760af2eee57e5a09",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -506,7 +506,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Django_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Django_Security_Cheat_Sheet.html",
       "filename": "Django_Security_Cheat_Sheet.md",
-      "sha256": "b27686e7280bf3222b0e1f4e6a7e53b1bfaaecfe79f7086dccb456afb62e2060",
+      "sha256": "389ac1f39b21aa9c755df875b637a7bdbc4e6f88540b02db63cff2a72f877745",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -520,7 +520,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Docker_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html",
       "filename": "Docker_Security_Cheat_Sheet.md",
-      "sha256": "faada2c9e6c47051749b4e659f79ff6f905ac111ba7040d91b126c02ca383cb8",
+      "sha256": "81e50e16cbc6a3cc7a4bdb88a495f086db43bf58f518099e08913da79a4909e9",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -534,7 +534,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
       "filename": "DOM_based_XSS_Prevention_Cheat_Sheet.md",
-      "sha256": "9deb028cb53860365bb22e0a1cb4adbfea53d0808667d3263f90de932d9caa62",
+      "sha256": "421639d8a75fb326981a6823b1a1876da00c7ad6ce8f4f32d7ad6cb631313972",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -550,7 +550,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/DOM_Clobbering_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/DOM_Clobbering_Prevention_Cheat_Sheet.html",
       "filename": "DOM_Clobbering_Prevention_Cheat_Sheet.md",
-      "sha256": "43cb624c3c1723fe535b1edad1191bd006ef5bae1a2ae37a13f16e56f744cee4",
+      "sha256": "118a4e2b9b9301b3c8d0e0832bf1450898d4d130c225358d5749fcb8c6c38af3",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -564,7 +564,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/DotNet_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html",
       "filename": "DotNet_Security_Cheat_Sheet.md",
-      "sha256": "a74a096c4080033702f3ff98aa814b9d2ac26313f7fdf6a6d303437b318e03d7",
+      "sha256": "7af692ab5e0bf1d5f3f330fc8791a2593a3640f3d071d44581df6008633bf340",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -578,7 +578,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Drone_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Drone_Security_Cheat_Sheet.html",
       "filename": "Drone_Security_Cheat_Sheet.md",
-      "sha256": "1d1f59890b3fc0b66eb4729f7958ea4038bc08b918e61f21c5a6b438307e85d1",
+      "sha256": "799785c3afcdfa2260100dcd492bb0ee3c1981ccb2e022623ae32ea87d4fe67f",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -592,7 +592,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.html",
       "filename": "Email_Validation_and_Verification_Cheat_Sheet.md",
-      "sha256": "db2d91773a037929980c0336bcfea12515a50d9249bb94369750125cf14e3c09",
+      "sha256": "47df700e20b6e86c1814acde0812402ae92047ea25c918831b7e84d81710d5ed",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -606,7 +606,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Error_Handling_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html",
       "filename": "Error_Handling_Cheat_Sheet.md",
-      "sha256": "888bd2c949d3f64f77dc693041a1b210b3df493d1f678fa91e38c33bc57d6716",
+      "sha256": "237bcae265acbb98434a0c5b544554c83e8a05c2de3e0d12eaf055c460d99aae",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -620,7 +620,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/FastAPI_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/FastAPI_Security_Cheat_Sheet.html",
       "filename": "FastAPI_Security_Cheat_Sheet.md",
-      "sha256": "0d0285c02a51deb6dc4702b324f255d7d359615c1e0e216c74a474be27bf9603",
+      "sha256": "b91e03747d2577d4a8a110775dca0ae2a5147069d21c1d6ffc826fba3ac41de3",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -634,7 +634,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/File_Upload_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
       "filename": "File_Upload_Cheat_Sheet.md",
-      "sha256": "532cd918277ad414fd99202901defbc1abef2591e7781c61295b98ea54351a16",
+      "sha256": "65f9a85b72e016063d1dafdb5b366cd52a94f8e4bf855f3b6bec22afec10bb81",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -648,7 +648,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Forgot_Password_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html",
       "filename": "Forgot_Password_Cheat_Sheet.md",
-      "sha256": "3dfa652f1b09f1986591e5f99fcb129a07896632130d67f81ca51b77f672667e",
+      "sha256": "c3cc207d452c280cfc1a660eecdbc3cc4def29903da1aef10b3095607a4472dc",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -662,7 +662,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/GitHub_Actions_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/GitHub_Actions_Security_Cheat_Sheet.html",
       "filename": "GitHub_Actions_Security_Cheat_Sheet.md",
-      "sha256": "064baa85733c2a48d1b84b2ff441e1fc0d80b1206938396095d153d524f7dd0b",
+      "sha256": "6394f44a8afd6afb8666994848558dc6300f2b4e086afa606a4c2e8002109fd3",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -676,7 +676,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/GraphQL_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html",
       "filename": "GraphQL_Cheat_Sheet.md",
-      "sha256": "dc1c7cd0c77b308fb1ee532d9852bd28a8e14bef967d93f0b30c2f8c4b276d65",
+      "sha256": "4b0b507d99441512b9cdd7a13a00ec96fc37139c4f83a4b15f9ab0a13f2ede45",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -690,7 +690,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/gRPC_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/gRPC_Security_Cheat_Sheet.html",
       "filename": "gRPC_Security_Cheat_Sheet.md",
-      "sha256": "f82a4b02cc011ceb52ff09e11b7dcadfeb7489b0f80a4555d0f39ad0cee7f589",
+      "sha256": "191b3247567026fec757bc18a264b03b37c222f4570100fb684a25f969247c85",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -704,7 +704,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/HTML5_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html",
       "filename": "HTML5_Security_Cheat_Sheet.md",
-      "sha256": "c49540044d2ddb15c8dc4184a63990cfdb29d8d8a20260baf08a696b94389854",
+      "sha256": "e60bd4a55f5233938ffcbb3fdf429f13cdc663b8e659a77aeb633bc1e37d2c96",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -718,7 +718,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/HTTP_Headers_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html",
       "filename": "HTTP_Headers_Cheat_Sheet.md",
-      "sha256": "58571fb5143f23cdd13c0e2e667250ca725225c7bfc9f1f68808fff0049c720d",
+      "sha256": "df04323a8b10ef16cf3a248dc1431fc3d19edde6d905e70754f36ab0f3a045d6",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -732,7 +732,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html",
       "filename": "HTTP_Strict_Transport_Security_Cheat_Sheet.md",
-      "sha256": "258dcc90eebac7facea1f0c0e2104c964ec8c53fd94415ffc764e7a189686d43",
+      "sha256": "5475d02d74e8715c1aec0a641bf1bb0ec05b9cdd4f5754d33d147047f2d00bd5",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -746,7 +746,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Identity_Propagation_Patterns_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Identity_Propagation_Patterns_Cheat_Sheet.html",
       "filename": "Identity_Propagation_Patterns_Cheat_Sheet.md",
-      "sha256": "ecd1b6f0942e4de39b2a85d493d9f72f356acbed2938e8e7931d676c721bc10b",
+      "sha256": "8e1f1aeac4b23bd33cf18a6fe4a106d0cbafc4f151c7666b27794f38b5ad4d4f",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -760,7 +760,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Infrastructure_as_Code_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Infrastructure_as_Code_Security_Cheat_Sheet.html",
       "filename": "Infrastructure_as_Code_Security_Cheat_Sheet.md",
-      "sha256": "09b8de787ec0f7e649513104b28cdc9797055ff67ceddd59536fe54b30da11f6",
+      "sha256": "d1b9bedd6c92cf53609c9283b2793f676e306d88b317d76d7c7835421c2bd4e8",
       "status": "current",
       "license": "CC-BY-SA-3.0",
       "lessonIds": []
@@ -774,7 +774,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Injection_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
       "filename": "Injection_Prevention_Cheat_Sheet.md",
-      "sha256": "cc724b297242c965714d6a276161e4330a81572efa06090124334f3404ba8595",
+      "sha256": "fafcc12af83a78c909a973f7e81af1a661eac709a5a6c9ddad8792c2edda7658",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -788,7 +788,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Injection_Prevention_in_Java_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_in_Java_Cheat_Sheet.html",
       "filename": "Injection_Prevention_in_Java_Cheat_Sheet.md",
-      "sha256": "ec8a21ed639b6f5fc950c8bef2e68f74583c59911a0ee5983e73cefcca056742",
+      "sha256": "9210fc6a001e685ff10892cd90140cd6cab7f4eead641f7b15eab7931894352a",
       "status": "deprecated",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -802,7 +802,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Input_Validation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
       "filename": "Input_Validation_Cheat_Sheet.md",
-      "sha256": "5d92fa9dc82b73fae7801fdd6946992371c99f24cac800166dd65eb222696430",
+      "sha256": "163390e3dcf5cc965aeac5e633692682403c08067a7f2ae54bdb49372e886810",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -816,7 +816,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html",
       "filename": "Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.md",
-      "sha256": "98e78aad96fab294df1b6adc660a505ea3a59254dad3ce1390bb6d46d34090e0",
+      "sha256": "3b0cef632300124beb38ba4169cc163cfce44dd768885e58fb56b4285c42da7f",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -832,7 +832,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/JAAS_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/JAAS_Cheat_Sheet.html",
       "filename": "JAAS_Cheat_Sheet.md",
-      "sha256": "da78076fcf2349b866d4eb3190e5b9a45a6e374c3c3ffbd30434fed48975af93",
+      "sha256": "4389175cd8dff0034b2352efa88325dde9eb0e2e687215d8774b69fb57e99c6e",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -860,7 +860,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/JavaScript_and_TypeScript_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/JavaScript_and_TypeScript_Security_Cheat_Sheet.html",
       "filename": "JavaScript_and_TypeScript_Security_Cheat_Sheet.md",
-      "sha256": "053dfdda2479d20f7052f6b5beac31e1217f4e0da5efa1f15bc1e13e2e58817c",
+      "sha256": "90fd109b5b162f402b867769e2111652d5c59efa74d45d02578dc8f4257992fa",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -874,7 +874,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet.html",
       "filename": "JSON_Web_Token_Cheat_Sheet.md",
-      "sha256": "f209efd757529dbb717fa29df56890441f1d88c754097da05585ba7878a0bc15",
+      "sha256": "a604ef0656402d012870a28e16f8492b2160f7bd084f378855fd55b6e2dac030",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -888,7 +888,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Key_Management_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html",
       "filename": "Key_Management_Cheat_Sheet.md",
-      "sha256": "e10f728b934eeb501f9fbafebf124af1fb7f6bdc3491847088671261f80ef5c9",
+      "sha256": "f0bc89eb98a60966ab985082fed75807ff8f39978ccabf28118fc5a08baab293",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -916,7 +916,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Laravel_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html",
       "filename": "Laravel_Cheat_Sheet.md",
-      "sha256": "ecd92b7fbd80ec7aa7d0e02c1dc748bf5f0762c56d3c25422c25ee4a77ef09e1",
+      "sha256": "a63cdcff46b9e6ad2fff83283ccae3210e78b6b76d984477544696acd5c466fe",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -930,7 +930,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html",
       "filename": "LDAP_Injection_Prevention_Cheat_Sheet.md",
-      "sha256": "3cf99142ad6307509ab7064e04997940f9196737af3cfeb0f030001387e412ca",
+      "sha256": "b3aaa8d67fbf17075644f89f8888a21d0362ff86233fa6c6ee0c6f937b159f80",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -944,7 +944,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Legacy_Application_Management_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Legacy_Application_Management_Cheat_Sheet.html",
       "filename": "Legacy_Application_Management_Cheat_Sheet.md",
-      "sha256": "9c45ef1cec4dfa4cf899a7a7d3c3c2ee78927c2551fefb40d415e45a1bb360b4",
+      "sha256": "f69bd38c624efdc5cd6db973b5a7d5c2c53d71cd660184b605dfcf589495d991",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -958,7 +958,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
       "filename": "LLM_Prompt_Injection_Prevention_Cheat_Sheet.md",
-      "sha256": "ef679f64fb725976eb29d52c423d2f9f930be012e8a06eacc20f1eede5174e0d",
+      "sha256": "ec24a0b4bc7eb63cddb442d3b45276010f0f8c04ee5eee5d7ecfe011109701b8",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -972,7 +972,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Logging_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
       "filename": "Logging_Cheat_Sheet.md",
-      "sha256": "36e2dd4f99758be000685cefcad20332c45cca40cd5c3fae8e9fe86af653d015",
+      "sha256": "55ed0b4e9b2a68dba0f5a26c817a20760632d91b315aa42bb33ecfe36cc7195d",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -986,7 +986,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Logging_Vocabulary_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html",
       "filename": "Logging_Vocabulary_Cheat_Sheet.md",
-      "sha256": "55213fc01b59790d70923740c78a25cffecd3ad21565ad6010dcaf4426f26856",
+      "sha256": "3cf39e97ae23146663d92365442955186f4b4866432ece534dd1a133a124011a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1000,7 +1000,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Mass_Assignment_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html",
       "filename": "Mass_Assignment_Cheat_Sheet.md",
-      "sha256": "d83e79b863f85c3a5e81b79410945199e142f14a0eb18e17a976a55f5f0b7b9b",
+      "sha256": "f325d48b32fd86e2b5450f51ccf773b639263f3c16b6daf6634587c262e5d4ea",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1014,7 +1014,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/MCP_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/MCP_Security_Cheat_Sheet.html",
       "filename": "MCP_Security_Cheat_Sheet.md",
-      "sha256": "1c8aef130d1d362fa54d8b5efa32a85f2258d857af554e5faf598315d64aaf6d",
+      "sha256": "83229129a24899714a0345cb7da2f380c8a3d1ad60902459d9087fcc0036acc5",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1028,7 +1028,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Micro_Frontend_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Micro_Frontend_Security_Cheat_Sheet.html",
       "filename": "Micro_Frontend_Security_Cheat_Sheet.md",
-      "sha256": "60a786566660f1a9c26b5aa836a57a3eee93defb16e15d1134057e939f5539e3",
+      "sha256": "73bba36a2f0361448ae1bc9e865ada98692f3bc5259343b53ac780e2f767077a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1042,7 +1042,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Microservices_based_Security_Arch_Doc_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Microservices_based_Security_Arch_Doc_Cheat_Sheet.html",
       "filename": "Microservices_based_Security_Arch_Doc_Cheat_Sheet.md",
-      "sha256": "330a0ab904ea2bf1df8d6369f96db7d15c0c3c3daad83276dd3b384fe611d5d7",
+      "sha256": "5b1c32dd2b103db5845e964025294a9217ccc27af26ef5748a9e33593facdba8",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1056,7 +1056,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Microservices_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Microservices_Security_Cheat_Sheet.html",
       "filename": "Microservices_Security_Cheat_Sheet.md",
-      "sha256": "37fb53e79882f0664aff1dc4d7e6ef70a19d4b47597771e65e2d5b24641a6f3f",
+      "sha256": "8536aca65d330baad4aae41498b0ee1e8dec4732c71905db73c0786b37cac455",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1070,7 +1070,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Mobile_Application_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Mobile_Application_Security_Cheat_Sheet.html",
       "filename": "Mobile_Application_Security_Cheat_Sheet.md",
-      "sha256": "3ab4b05ddb4608c1f2fcdb8fafbc28cbfd995f18c2fe50469293275c66c06e32",
+      "sha256": "a2d907f30a0001fc0bf58a5b7f435b426dc260297e79bd1a0116cdb2e15060e4",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1084,7 +1084,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html",
       "filename": "Multi_Tenant_Security_Cheat_Sheet.md",
-      "sha256": "828a85877797efcd76cca344fb1707fb2ec548da465ed3a409022c7d0cee49a2",
+      "sha256": "2dfdad6b9701f3023f3a3063435166ddafde144225ba612a5b2ded3f43991cde",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1098,7 +1098,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Multifactor_Authentication_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html",
       "filename": "Multifactor_Authentication_Cheat_Sheet.md",
-      "sha256": "c382abb91bad634b4081aaa5d22aed6eabb3a5b6bf78e25cfd7fc30034dd6b9a",
+      "sha256": "aa0c03c9d10c1facfaef0ace5f61536aab46e2a8ea409cf8527086d0d11132f2",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -1114,7 +1114,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Network_Segmentation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Network_Segmentation_Cheat_Sheet.html",
       "filename": "Network_Segmentation_Cheat_Sheet.md",
-      "sha256": "c450b13a2d06a15a63606646d1aff8dba13f32b1a78eff58017febf3656e6759",
+      "sha256": "dcac7ea438e58fc2959e774e1072f4f3f8995ffd7629238896e4b85653a6e348",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1128,7 +1128,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Nextjs_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Nextjs_Security_Cheat_Sheet.html",
       "filename": "Nextjs_Security_Cheat_Sheet.md",
-      "sha256": "90d0b2e2e012ab0d9aaddf2764781627a1581f2a934e1cd6abe811de5b4560ff",
+      "sha256": "f69020ede46658477769b75a3c184b565ec80fd55ae4b3b9c0f8a50d91f63150",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1142,7 +1142,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/NodeJS_Docker_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/NodeJS_Docker_Cheat_Sheet.html",
       "filename": "NodeJS_Docker_Cheat_Sheet.md",
-      "sha256": "a1f7c12ecbfdf8d790043fa2300eb6f74e653ae32b33b71080e90acc37a4ec8c",
+      "sha256": "6f0bcff1e0ce7a9a310ed3d3182de39ba59c664c7c9a9ec8181b374e00c45616",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1156,7 +1156,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Nodejs_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html",
       "filename": "Nodejs_Security_Cheat_Sheet.md",
-      "sha256": "88c22ab6931636bc987cd4a2229a4d607f0cc7ab331512c4efef76cb98e760ce",
+      "sha256": "276c30e1a83cba331822c0f8f252e2e5b4d1012ffccc63395d31263a3ff9db3a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1170,7 +1170,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/NoSQL_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/NoSQL_Security_Cheat_Sheet.html",
       "filename": "NoSQL_Security_Cheat_Sheet.md",
-      "sha256": "ed24a21267d9fe8c2ee558b3b1af1f979c9cd0005369a889d73df0178fb2edce",
+      "sha256": "01388cb77bda4b3c4930c7a5762d3ab2f9044eee01cd4fb3f236dfb085b2a6e7",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1184,7 +1184,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/NPM_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html",
       "filename": "NPM_Security_Cheat_Sheet.md",
-      "sha256": "06171dc2a51a55c5fe9f49093c0f2ac0ad9a3d17b2e9866777517f3948e671fb",
+      "sha256": "84c744ed3ea2204123fc60c0bc4db46a071b3cfa29d4470a7e86ea06bc803639",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1198,7 +1198,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/OAuth2_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html",
       "filename": "OAuth2_Cheat_Sheet.md",
-      "sha256": "146dc53e71960b257b3aad2abcb409203833426ecd932fe6278573ad5042140a",
+      "sha256": "cd31d4f3adb876949f1b3090862e88437becd740f3e8d54fd9809b892e82a45d",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1212,7 +1212,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html",
       "filename": "OS_Command_Injection_Defense_Cheat_Sheet.md",
-      "sha256": "da78eaa5c346c930d4353b49c0d6d3d41f2ffb5e3fa7ea95954a0eccfdac4e42",
+      "sha256": "b497005071ae30fce01d1e911a4a7ee5375157496b92b8f1a497b3224fb32d6d",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1226,7 +1226,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Passkey_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Passkey_Security_Cheat_Sheet.html",
       "filename": "Passkey_Security_Cheat_Sheet.md",
-      "sha256": "14272a41d90c4d40689a3875a8edc378bf45f4c613cecd0f9f5575c303488c20",
+      "sha256": "09d7dd74c9e931e48cd6864f422530c67ea3d184bbfc035f7e3d09a7a24dd8bc",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1240,7 +1240,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Password_Storage_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
       "filename": "Password_Storage_Cheat_Sheet.md",
-      "sha256": "d0740e0c12fe86bf3ff570a3219a977c3f032cfce71f476af270521c869dce3e",
+      "sha256": "3869a8bf0a5144ef5c741b74fb3739bf10eb16af669c65a60a233aad943a9323",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -1256,7 +1256,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/PHP_Configuration_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/PHP_Configuration_Cheat_Sheet.html",
       "filename": "PHP_Configuration_Cheat_Sheet.md",
-      "sha256": "3ccf487e570228d3c4defa9e1436c86440793a5be57769a5fb7e747e03969e27",
+      "sha256": "e880e38449f27c10f6d679eaeccb1313b11b5104aedaa8ac746c407aad4f5954",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1270,7 +1270,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Pinning_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Pinning_Cheat_Sheet.html",
       "filename": "Pinning_Cheat_Sheet.md",
-      "sha256": "33bceb1dbd44d1e6e5461e4b21b706cb0bbf835efedc8643d25220b022893c1f",
+      "sha256": "b77199d0bc3c983586eae7c44e5212bff925e7d593217a5a95a5e0af211c998c",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1284,7 +1284,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Post_Quantum_Cryptography_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Post_Quantum_Cryptography_Cheat_Sheet.html",
       "filename": "Post_Quantum_Cryptography_Cheat_Sheet.md",
-      "sha256": "bcb32be49fae032a6117e11081b57e9cf5f1b58190075132885cd0c40045ceac",
+      "sha256": "32fe63596ec14694967ea56b7b758d8eebaf52b7043e35387353fac5d50d1bb6",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1298,7 +1298,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Prototype_Pollution_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Prototype_Pollution_Prevention_Cheat_Sheet.html",
       "filename": "Prototype_Pollution_Prevention_Cheat_Sheet.md",
-      "sha256": "9833fccb6ea59a2e297ed1405d3fe628a0d8ca460762ce9295ec74963e072065",
+      "sha256": "468f9279555b7bf3205e7dfa79edf6e2186da27f7f2f24879fe6065fe6e42beb",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1312,7 +1312,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Query_Parameterization_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html",
       "filename": "Query_Parameterization_Cheat_Sheet.md",
-      "sha256": "1e5b29b97ff820e3146f21203b127f4089c306dade6d4fe7a4e1bac9eb718460",
+      "sha256": "d449b1cc14cf0b2ed21d83716eded31e8b155ca1cc5a6cc4c1b2f8acf9ffd4b6",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -1328,7 +1328,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/RAG_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/RAG_Security_Cheat_Sheet.html",
       "filename": "RAG_Security_Cheat_Sheet.md",
-      "sha256": "0571e32fc9c1b3f3ede42047fdc7752e1f039ed4d59eb413cb5780a60989a61a",
+      "sha256": "254b97ab31a706338b3b25d030fc68842edcfe901c52677acae51772d45d546f",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1342,7 +1342,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/REST_Assessment_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Assessment_Cheat_Sheet.html",
       "filename": "REST_Assessment_Cheat_Sheet.md",
-      "sha256": "1ee226dc7813d4a2438583356c67474c0ade824f66cf27573164ebdd69c75bb8",
+      "sha256": "c6fee32563e221b3633a0fe2f2bd6262c412199b7a59f8a8a104db2c35d744da",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1356,7 +1356,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/REST_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html",
       "filename": "REST_Security_Cheat_Sheet.md",
-      "sha256": "473f37c8317afa72b89f5e433806fd7f81e216753ffd4dda912d04b32bda7e5f",
+      "sha256": "3e2959541004f37a28d47ea1f742f30f46d06a331317eb4d9371617f2ad7a704",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1370,7 +1370,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Ruby_on_Rails_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html",
       "filename": "Ruby_on_Rails_Cheat_Sheet.md",
-      "sha256": "11d13bd11136b155b1f35312c3be8149576368f3ddc8f727414737777fa32fe3",
+      "sha256": "6d34c17d19cd9711ffe4caa0352fd9e7b82b37480ba1729113e93dc4756e6a94",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1384,7 +1384,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/SAML_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html",
       "filename": "SAML_Security_Cheat_Sheet.md",
-      "sha256": "4c77227fbb40d049859bbfdb0d1ddb689e85b1aad54518ab52dcc4c57d1d319b",
+      "sha256": "3653eed28e7fd30cddc3d4533d42801d0af5b4f93c3eb36c56f42318a75f16f2",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1398,7 +1398,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Secrets_Management_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
       "filename": "Secrets_Management_Cheat_Sheet.md",
-      "sha256": "d7ca6e998eaad9b2aca721cc68846211e0162c52af5dedfe7f5f72af6ec3b122",
+      "sha256": "14e26fc79fedb7d5dcfb5fc7f42efd9e8b2a4975129c11460125b4c38253e4f6",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1412,7 +1412,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Secure_AI_Model_Ops_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_AI_Model_Ops_Cheat_Sheet.html",
       "filename": "Secure_AI_Model_Ops_Cheat_Sheet.md",
-      "sha256": "5cd6b462e75b0c6841ed47dc26c0956c6d04f2157a8aac9b57837fd39392f318",
+      "sha256": "4d12328a5c39b315382ef22274b2d349a0cc93448497d96b08f5dbe38375fdbb",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1426,7 +1426,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Secure_Cloud_Architecture_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Cloud_Architecture_Cheat_Sheet.html",
       "filename": "Secure_Cloud_Architecture_Cheat_Sheet.md",
-      "sha256": "d25a939be9202f23a29649e430ad83e41c0eed3987b6670a20b03fbed9ef2d37",
+      "sha256": "54412d02c284476cd7f9c103643816284208b8c70729400eecd985ec4b509c0b",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1440,7 +1440,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Secure_Code_Review_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html",
       "filename": "Secure_Code_Review_Cheat_Sheet.md",
-      "sha256": "a79367baa210d14d6b1640d6bdc27a735c9ed4f49ca8ec606d5600aae8edc50e",
+      "sha256": "214194a8b9f2158b3a9282d4e5b9331195800c3812a5ccc0e2ca25f7d8e9258a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1454,7 +1454,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.html",
       "filename": "Secure_Coding_with_AI_Cheat_Sheet.md",
-      "sha256": "1b552d71647b0b68a847184c8dea6d099715c348072a51ccacb32c646aaf273f",
+      "sha256": "35072a4b9c425facfacd16c80d53cc5ad359a7135525a128c203dd30c2a7b231",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1468,7 +1468,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Secure_Product_Design_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Product_Design_Cheat_Sheet.html",
       "filename": "Secure_Product_Design_Cheat_Sheet.md",
-      "sha256": "2f969c21df0d9f5fb658f346b8c93bafa26946808cd21a34722cf045aec8ed51",
+      "sha256": "3a00d4af863adc1badcca14ffb1243daabbd30020364fc09475940414f4e58ff",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1482,7 +1482,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Security_Terminology_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Security_Terminology_Cheat_Sheet.html",
       "filename": "Security_Terminology_Cheat_Sheet.md",
-      "sha256": "0d8239f8b1af577e285fc66dfbcf069e096699ef80abb0f82b964eae86287b5d",
+      "sha256": "d6964d8597adc4c374037bd4cf514024bdd606fd9e538122a3162fad5b023a09",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1496,7 +1496,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
       "filename": "Server_Side_Request_Forgery_Prevention_Cheat_Sheet.md",
-      "sha256": "8f65c06c4c5d0a71a0b2a88ba34a2ce139c8df35ee53fc9ad012e4d634a86809",
+      "sha256": "3ae2f474449eceadd74cc2c28edfdc405d935166550b2bd67965729b7d707652",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1510,7 +1510,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Server_Side_Template_Injection_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Template_Injection_Prevention_Cheat_Sheet.html",
       "filename": "Server_Side_Template_Injection_Prevention_Cheat_Sheet.md",
-      "sha256": "84cec01e09ee6b88e08c3cef1ed02ebe2506071903ead05998237af9e0e68ecd",
+      "sha256": "bc2f45482f97fd76345dc982d770676b9b5a12861aa6b813945ab4efebfaa44d",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1538,7 +1538,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Session_Management_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
       "filename": "Session_Management_Cheat_Sheet.md",
-      "sha256": "afc5ce2d420123dee12dc5fb3cd855084c93cdccae6eed1fe4beb268673f3d97",
+      "sha256": "3c38656e2be6188be4fc31d8c1fadafaaa6f37accc27e411e3345c235d44c051",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -1554,7 +1554,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Software_Supply_Chain_Security_Cheat_Sheet.html",
       "filename": "Software_Supply_Chain_Security_Cheat_Sheet.md",
-      "sha256": "6d23b031d6e87ff1ce98012b63f717bbb18e4911db9450f48c84f9520c1ffe7c",
+      "sha256": "c3235cb8820e1a54f6cc7ec97955fd6288f4d41db3cd3d00b31f7ef29b95ad8d",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1568,7 +1568,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
       "filename": "SQL_Injection_Prevention_Cheat_Sheet.md",
-      "sha256": "1557e25fe5b94785f718eec71175cdb2e08b01997c305d0c6c61b74e9988c0bd",
+      "sha256": "5597b04e2a6f280e1b33a3a01c1f01884fa04fd9679168e2606fab22b6a6058b",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": [
@@ -1584,7 +1584,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Subdomain_Takeover_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Subdomain_Takeover_Prevention_Cheat_Sheet.html",
       "filename": "Subdomain_Takeover_Prevention_Cheat_Sheet.md",
-      "sha256": "dbfb15b44d89511c6fbbd2d90f6c6ff3eeba4e37d05590b380cba3143e1b2107",
+      "sha256": "a5de3b44e98469d7dce5002f05bdc33bc476ba086687a8efdfc4d3bee96dc32a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1598,7 +1598,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Symfony_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Symfony_Cheat_Sheet.html",
       "filename": "Symfony_Cheat_Sheet.md",
-      "sha256": "735395beb9d0407c4d2beb7ae58f8a257bd30ee5948ab4f2c52e2a282e03c08b",
+      "sha256": "5ba4d5ea762084f3390eea23a8ee2f064e7bed1807a093e3a2f045eb5e472abd",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1612,7 +1612,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html",
       "filename": "Third_Party_Javascript_Management_Cheat_Sheet.md",
-      "sha256": "892c2ca108c869bc75e46835a2c24bb43e19259798233f7a92846aade7b652be",
+      "sha256": "57ed3a4f3a515241b3570f76fae9da5314c93e199b726a7acf085b030e643be6",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1626,7 +1626,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Third_Party_Payment_Gateway_Integration_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Payment_Gateway_Integration_Cheat_Sheet.html",
       "filename": "Third_Party_Payment_Gateway_Integration_Cheat_Sheet.md",
-      "sha256": "31d4a6b0f1aa753a252e9aeb4cb72419a91764ecf96d8a03fb8a496c5a7642f7",
+      "sha256": "d87347a74775d8a993a1914dd5c79fa8d36c5144e6a743e05e2c6e842c8a69fc",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1640,7 +1640,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Threat_Modeling_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
       "filename": "Threat_Modeling_Cheat_Sheet.md",
-      "sha256": "bfb7387bb96dbc8acae9b0a1d0a2dbe1a3e31ff0136cff13e4a93ba8ceacd7d6",
+      "sha256": "5102d1557d58fdc184e1cb07dbd796f063e8899318e7d83de5b6242cebf74233",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1654,7 +1654,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/TLS_Cipher_String_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/TLS_Cipher_String_Cheat_Sheet.html",
       "filename": "TLS_Cipher_String_Cheat_Sheet.md",
-      "sha256": "6c9692b3c86edd665cf5a05e135842882ee2a6a5b2b546b571d7ae648f4b8622",
+      "sha256": "7c18cf1cfdb38a87a14a9fc68523b060b76df18f925084dda1ddb112734226a5",
       "status": "deprecated",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1668,7 +1668,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Transaction_Authorization_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
       "filename": "Transaction_Authorization_Cheat_Sheet.md",
-      "sha256": "4b1cf863aa37ff1fa9eb68f3dc2d8a19ce3c06abad2eb2c97a7399460328cd6c",
+      "sha256": "27d1895544522c0185f2d5b91adf45b7d946f015d69b37b1e4d135254752a828",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1682,7 +1682,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html",
       "filename": "Transport_Layer_Protection_Cheat_Sheet.md",
-      "sha256": "1f8c5d95384869ffc1c2a1bc9a13aa2ff420f25bfc970d8bdea8649efc8473cd",
+      "sha256": "86ddfbe1de52c3573d687a8fb0e5d3f72d034038c7650d46984e77d7bbff571d",
       "status": "deprecated",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1696,7 +1696,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html",
       "filename": "Transport_Layer_Security_Cheat_Sheet.md",
-      "sha256": "aa6367842d30cbdfcbc66d3856c950ef3b526f9dc3aa33d520f9daec792f9e3e",
+      "sha256": "58ca776143e80f185ce79182ed4c9bb1fd27a4963efeede2e23afe9836eda8c3",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1710,7 +1710,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html",
       "filename": "Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md",
-      "sha256": "bdb68b7bd887bf23253c18835ef1fcd3c784d2c9d76744b61c929b40d9774298",
+      "sha256": "e9cc4acd0ed7bb9af6f2e4385f707ba2dbdd6e9e77fef281e2bcee8536d8d4b1",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1724,7 +1724,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/User_Privacy_Protection_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/User_Privacy_Protection_Cheat_Sheet.html",
       "filename": "User_Privacy_Protection_Cheat_Sheet.md",
-      "sha256": "f1af350b4ced917348cf6cbf7d1ee1beb1192fb72c77ebad790ceda1faeeb0d8",
+      "sha256": "95ff00890c3b1f1f21cf280f3ae584f292a7fab1a750c022cb66f901e1375816",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1738,7 +1738,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Verifying_Third_Party_Agent_Execution_Evidence_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Verifying_Third_Party_Agent_Execution_Evidence_Cheat_Sheet.html",
       "filename": "Verifying_Third_Party_Agent_Execution_Evidence_Cheat_Sheet.md",
-      "sha256": "747102ec79708347ba087219cb325c41c3672836d4582eb1b24b82fab62101fb",
+      "sha256": "6f55bba3cc85b9a78503aee0dea8644ffa78b264d6fe0b276573637c4a54f151",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1752,7 +1752,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Virtual_Patching_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Virtual_Patching_Cheat_Sheet.html",
       "filename": "Virtual_Patching_Cheat_Sheet.md",
-      "sha256": "b43fb556dac8b3ff9469e8f5810b701c53a0376ffa617cfad6a79a1503a5aa88",
+      "sha256": "6f3d90952b5fa8e4c3548703bc335c1fe30201cdd87822b937c7e84ca8b88b5b",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1766,7 +1766,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Vulnerability_Disclosure_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Vulnerability_Disclosure_Cheat_Sheet.html",
       "filename": "Vulnerability_Disclosure_Cheat_Sheet.md",
-      "sha256": "f4bd5f49323d07c9665f17a07f99a98789c0d61fd49ee8bdc77cb5eff831c444",
+      "sha256": "11c58e683e1cbeae8447dcbcadf6ae7a23ac3d9f24fced746552266f9ab71a4f",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1780,7 +1780,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Vulnerable_Dependency_Management_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Vulnerable_Dependency_Management_Cheat_Sheet.html",
       "filename": "Vulnerable_Dependency_Management_Cheat_Sheet.md",
-      "sha256": "a292667462bbcfb5045dbb3a749fc2520b7620114f9b701b83d5fff1c932a843",
+      "sha256": "77e7a460c4072442d524394109125391317d61961db78c3cdc2dd771c006872a",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1794,7 +1794,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Web_Cache_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Web_Cache_Security_Cheat_Sheet.html",
       "filename": "Web_Cache_Security_Cheat_Sheet.md",
-      "sha256": "6a062ffc4c8fea8ec759f0614cbd7ad770c0c3f2d4e7e9849ff190f9fce770b9",
+      "sha256": "a88a240f071b58d4f9891a6eb44e830ad985192af55d0270ecdb3eaf165859fb",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1808,7 +1808,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Web_Frontend_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Web_Frontend_Security_Cheat_Sheet.html",
       "filename": "Web_Frontend_Security_Cheat_Sheet.md",
-      "sha256": "edb1052deab444c08df6c887f3270e78e6687e4db66db8514bd0f38c27f33c09",
+      "sha256": "ea2a622da639084ba71e8c7e125e65ad7b7e98081360dcc8ad355be1c69d9ec5",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1822,7 +1822,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Web_Service_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Web_Service_Security_Cheat_Sheet.html",
       "filename": "Web_Service_Security_Cheat_Sheet.md",
-      "sha256": "b65aea666fea14340dbe86aae399f021d785995b7f38d59875ca853de21ab79a",
+      "sha256": "0dff0e10cb807bcbef848c98c2c311af9a0296aafffa81d37c18bfba0867fd38",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1836,7 +1836,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Webhook_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Webhook_Security_Cheat_Sheet.html",
       "filename": "Webhook_Security_Cheat_Sheet.md",
-      "sha256": "1c83272fb9eef4e62c7f0f261d1a6108ce1e6e48e89ef306d184df8ba4acbd7a",
+      "sha256": "100fff81950d3e4f0ac82d6d6f11a3a18bbc14d560d3ab9848615bff811be123",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1850,7 +1850,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/WebSocket_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html",
       "filename": "WebSocket_Security_Cheat_Sheet.md",
-      "sha256": "4647e5b83fa76f380a87f6eb9787470e8606734149390c99d64fe25f6766dbdb",
+      "sha256": "f4fb80c64c2e4d9de6af9a5a00b9050bfdfb0df9a18e09f8621da3c136f224f9",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1864,7 +1864,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Workload_Identity_Federation_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Workload_Identity_Federation_Cheat_Sheet.html",
       "filename": "Workload_Identity_Federation_Cheat_Sheet.md",
-      "sha256": "8973d9753896569ce4cf23666b284fb55d6b6aec202c5b83ab514263f56ec626",
+      "sha256": "db5d986c1efb1b7ac8ef0f6a591afca94296ace51ed870b9f531491f5176f257",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1878,7 +1878,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
       "filename": "XML_External_Entity_Prevention_Cheat_Sheet.md",
-      "sha256": "13f5e31049f44801e0c7a840530cb613f0017e0f3b9ad9193f5a1339a89ab227",
+      "sha256": "9363b0048b473dba0b9c3a87bc18b12b3fc910475cf24f6fa63171d1ea9b1afb",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1892,7 +1892,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/XML_Security_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/XML_Security_Cheat_Sheet.html",
       "filename": "XML_Security_Cheat_Sheet.md",
-      "sha256": "94e118117ce131fe42503655fe0aecbb8a130240ea83cd2eac9107dab7b7aa4d",
+      "sha256": "ad0b037f2e92e577240c62f5205a2f41e9162436451fa2614e932186f9b240a6",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1906,7 +1906,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/XPath_Injection_Prevention_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/XPath_Injection_Prevention_Cheat_Sheet.html",
       "filename": "XPath_Injection_Prevention_Cheat_Sheet.md",
-      "sha256": "1c259ce662c78a9b39f9941251d920422dcbcf52c18f798b60fb21fbe3bf2769",
+      "sha256": "8c559909d5d50710d30758f889a200d6e916fbe766ec4dcc22af252fdd93104d",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1920,7 +1920,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/XS_Leaks_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/XS_Leaks_Cheat_Sheet.html",
       "filename": "XS_Leaks_Cheat_Sheet.md",
-      "sha256": "8eb1c78b23e3b783067cf717f76836a18538710e7da49197a58cd36c5e0788eb",
+      "sha256": "6a803ca0245c1c739e765401f447b18a7be6f0e2fe9fd9dc3012faaf6d9d21ea",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1934,7 +1934,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html",
       "filename": "XSS_Filter_Evasion_Cheat_Sheet.md",
-      "sha256": "85ab11c6173fc2a1036f84847a1c8dadc708b867d3f2017be4fc7e3ab8a0df5b",
+      "sha256": "97cccf208eea18f602b662d84be24b026e4cfd227dc5a3d4aec5a4a43e63b3fa",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []
@@ -1948,7 +1948,7 @@
       "sourceUrl": "https://github.com/OWASP/CheatSheetSeries/blob/920293be317721982fa50324a6f26af3f29dc45e/cheatsheets/Zero_Trust_Architecture_Cheat_Sheet.md",
       "officialUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Zero_Trust_Architecture_Cheat_Sheet.html",
       "filename": "Zero_Trust_Architecture_Cheat_Sheet.md",
-      "sha256": "71731335121fa9bdb74e9442ce6db381a91dc6b8abf762aa1e08418b554a372a",
+      "sha256": "b0bf184a6f3107e316fb05a8940304448f1c353af1006a0ac7bc5bf946f83356",
       "status": "current",
       "license": "CC-BY-SA-4.0",
       "lessonIds": []

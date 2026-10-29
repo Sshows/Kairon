@@ -4,3 +4,4 @@
 *.woff2 binary
 *.zip binary
 *.pcap binary
+content/web-originals/** -text
