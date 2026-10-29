@@ -1,15 +1,18 @@
 import Link from "next/link";
 import { getLocale } from "@/lib/i18n";
-import { getCurrentUser } from "@/lib/access";
-import { acceptRules } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 export const metadata = { title: "Этика и правила" };
 export default async function Ethics() {
-  const [locale, user] = await Promise.all([getLocale(), getCurrentUser()]);
+  const locale = await getLocale();
   const ru = locale === "ru";
   return (
     <div className="page-container document-page">
-      <span className="eyebrow">WHITE HAT / RULES V1</span>
+      <Link href="/study-plan" className="back-link">
+        {ru ? "← К маршруту по дням" : "← Back to the daily route"}
+      </Link>
+      <span className="eyebrow">
+        {ru ? "ПРАВИЛА УЧЕБНОЙ ПРАКТИКИ" : "TRAINING PRACTICE RULES"}
+      </span>
       <h1>
         {ru
           ? "Навыки — с ответственностью."
@@ -18,14 +21,14 @@ export default async function Ethics() {
       <div className="prose-content">
         <p>
           {ru
-            ? "Kairon создаётся для обучения защите систем. Перед первой практикой каждый участник принимает эти правила."
-            : "Kairon is being built to teach system security. Every learner accepts these rules before starting practical work."}
+            ? "На Kairon учимся понимать и защищать системы. Все уроки бесплатны и открыты без аккаунта. Перед первым опытом прочитай, где проходит практика и какие у неё границы."
+            : "Kairon teaches how to understand and protect systems. All lessons are free and open without an account. Before your first exercise, read where practice takes place and what its boundaries are."}
         </p>
         <h2>{ru ? "Только с разрешением" : "Only with permission"}</h2>
         <p>
           {ru
-            ? "Проверяй только свои учебные цели в лаборатории Kairon. Для любой другой системы заранее получи явное разрешение владельца с понятными границами проверки. Доступность сайта в Интернете не означает разрешение на тестирование."
-            : "Test only your assigned Kairon training targets. For any other system, obtain explicit owner permission and an agreed testing scope first. A website being publicly accessible is not permission to test it."}
+            ? "Выполняй опыты только на своих учебных файлах и локальных приложениях из урока. Например, запущенный тобой Juice Shop — учебная цель, а настоящий интернет-магазин в соседней вкладке — нет. Для любой другой системы заранее получи явное разрешение владельца с понятными границами проверки. Доступность сайта в Интернете не означает разрешение на тестирование."
+            : "Use only your own training files and the local applications specified in the lesson. Your local Juice Shop is a training target; a real online shop in another tab is not. For other systems, obtain explicit owner permission and an agreed scope first. Public access does not imply permission to test."}
         </p>
         <h2>
           {ru
@@ -40,8 +43,8 @@ export default async function Ethics() {
           </li>
           <li>
             {ru
-              ? "Не пытайся выйти из учебного окружения, попасть на хост или в чужую сессию."
-              : "Do not attempt to escape the lab, access its host, or enter another learner's session."}
+              ? "Если опыт запущен внутри Kali, не меняй сетевой режим и не открывай его в Интернет без указания урока. Не используй чужие сессии и устройства."
+              : "When an exercise runs inside Kali, do not change its network mode or expose it to the Internet outside the lesson instructions. Do not access other people’s sessions or devices."}
           </li>
           <li>
             {ru
@@ -50,8 +53,8 @@ export default async function Ethics() {
           </li>
           <li>
             {ru
-              ? "Используй только выданные синтетические данные и разрешённые учебные инструменты."
-              : "Use only assigned synthetic data and approved training tools."}
+              ? "Используй учебные данные из набора. Если создаёшь свои примеры, придумывай имена, адреса и пароли специально для практики."
+              : "Use the provided training data. When making your own examples, invent names, addresses and passwords specifically for practice."}
           </li>
         </ul>
         <h2>
@@ -61,8 +64,8 @@ export default async function Ethics() {
         </h2>
         <p>
           {ru
-            ? "Если заметил ошибку самой платформы, остановись и сообщи администратору через канал, по которому получил аккаунт. Опиши шаги без публикации чужих данных."
-            : "If you find a problem in Kairon itself, stop and contact the administrator through the channel that provided your account. Describe the steps without publishing anyone else's data."}
+            ? "Если заметил ошибку самой платформы, остановись и сообщи о ней в репозитории проекта. Укажи адрес страницы, своё действие и полученный результат. Не публикуй чужие данные, пароли или другие секреты."
+            : "If you find a problem in Kairon, stop and report it in the project repository. Include the page, your action and the result. Do not publish other people’s data, passwords or secrets."}
         </p>
         <h2>{ru ? "Этика и закон" : "Ethics and the law"}</h2>
         <p>
@@ -71,42 +74,11 @@ export default async function Ethics() {
             : "These rules define the scope of platform use. Before working elsewhere, check your jurisdiction's requirements using official sources or a legal professional. Permission for a training lab applies only within its assignment."}
         </p>
       </div>
-      {user ? (
-        user.ethicsAcceptedAt ? (
-          <div className="notice">
-            <p>
-              {ru
-                ? "Ты уже принял правила версии 1."
-                : "You have accepted version 1 of the rules."}
-            </p>
-          </div>
-        ) : (
-          <form action={acceptRules} className="rules-form">
-            <label>
-              <input type="checkbox" name="accept" required />
-              <span>
-                {ru
-                  ? "Я прочитал правила и обязуюсь практиковаться только в разрешённых учебных средах."
-                  : "I have read the rules and agree to practice only in authorized training environments."}
-              </span>
-            </label>
-            <Button type="submit">
-              {ru ? "Принять правила" : "Accept the rules"}
-            </Button>
-          </form>
-        )
-      ) : (
-        <div className="notice">
-          <p>
-            {ru
-              ? "Чтобы сохранить принятие правил, "
-              : "To save your acceptance, "}
-            <Link className="subtle-link" href="/login">
-              {ru ? "войди в аккаунт" : "sign in"} →
-            </Link>
-          </p>
-        </div>
-      )}
+      <Button asChild>
+        <Link href="/study-plan">
+          {ru ? "Вернуться к маршруту по дням" : "Return to the daily route"} →
+        </Link>
+      </Button>
     </div>
   );
 }

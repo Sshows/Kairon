@@ -3324,3 +3324,756 @@ progress::-webkit-progress-value {
     text-align: center;
   }
 }
+
+/* One beginner route: a day, its task, and the next step. */
+.focused-shell .simple-sidebar-help {
+  margin: 28px 8px;
+  padding: 16px 12px;
+  border-left: 2px solid #526d35;
+  color: #a2afa0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.simple-sidebar-help p {
+  color: #dbe8cf;
+  margin: 0 0 7px;
+  font-weight: 600;
+}
+.focused-shell .quiet-nav {
+  margin-top: 32px;
+}
+.focused-shell .quiet-nav a {
+  color: #909e8d;
+  font-size: 12px;
+}
+.focused-shell .nav-link {
+  white-space: normal;
+}
+.free-learning-label {
+  color: #b8d49e;
+  background: #202b1b;
+  border: 1px solid #35472a;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.focused-shell .sidebar-bottom {
+  gap: 8px;
+  font-size: 11px;
+}
+.simple-footer-actions {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.simple-footer-actions button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 11px;
+}
+.day-home,
+.daily-plan-page,
+.daily-page {
+  max-width: 1130px;
+  margin: 0 auto;
+}
+.first-visit-hero {
+  margin: 4px 0 34px;
+  max-width: 790px;
+}
+.first-visit-hero h1 {
+  margin: 16px 0 22px;
+  font-size: clamp(32px, 3.7vw, 50px);
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+}
+.first-visit-hero h1 span {
+  color: var(--lime);
+}
+.first-visit-hero > p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #aab4a5;
+  max-width: 710px;
+}
+.route-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  color: #b9c6ad;
+  font-size: 12px;
+  margin-top: 24px;
+}
+.route-facts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.continue-learning {
+  border: 1px solid #4c6635;
+  background: linear-gradient(115deg, #22301a, #192117);
+  padding: 28px 30px;
+  border-radius: 14px;
+  margin: 25px 0 15px;
+  max-width: 850px;
+}
+.continue-learning h2 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 10px 0 12px;
+  letter-spacing: -0.4px;
+}
+.continue-learning > p {
+  color: #bccab3;
+  line-height: 1.9;
+  max-width: 710px;
+}
+.continue-learning [data-slot="button"] {
+  margin-top: 20px;
+}
+.day-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a5b599;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.day-time svg {
+  flex-shrink: 0;
+}
+.device-progress-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #acbaa0;
+  margin: 18px 0 0;
+}
+.home-plan-link {
+  font-size: 13px;
+  color: #bfda9f;
+  margin: 18px 4px 42px;
+}
+.how-to-study {
+  margin: 40px 0;
+  max-width: 850px;
+}
+.how-to-study h2,
+.day-plan-heading {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+.how-to-study ol {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+  display: grid;
+  gap: 22px;
+}
+.how-to-study li {
+  position: relative;
+  padding-left: 44px;
+  counter-increment: step;
+  line-height: 1.8;
+}
+.how-to-study li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid #435435;
+  color: var(--lime);
+  width: 29px;
+  height: 29px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 13px;
+}
+.how-to-study strong {
+  font-size: 15px;
+  font-weight: 500;
+}
+.how-to-study li p {
+  margin: 5px 0;
+  color: #a6b09e;
+}
+.route-preview {
+  max-width: 850px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.route-preview summary,
+.device-progress-settings summary,
+.legacy-course-index summary {
+  cursor: pointer;
+  color: #d4e2c7;
+  font-size: 14px;
+}
+.route-preview ol {
+  padding-left: 23px;
+}
+.route-preview li {
+  padding: 15px 0 15px 8px;
+  color: #a8b49e;
+}
+.route-preview li span {
+  display: block;
+  font-size: 11px;
+  color: #a4b391;
+}
+.route-preview li strong {
+  display: block;
+  font-size: 15px;
+  color: #d4e2c7;
+  font-weight: 500;
+  margin: 4px 0;
+}
+.route-preview li p {
+  margin: 0;
+}
+.home-materials-note {
+  font-size: 12px;
+  color: #909e88;
+  max-width: 790px;
+  line-height: 1.9;
+  margin-top: 30px;
+}
+.home-materials-note a,
+.day-preparation a,
+.first-day-downloads a {
+  color: #c3e89e;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.daily-plan-page > .lead,
+.daily-page > .lead {
+  max-width: 810px;
+}
+.daily-plan-page > .program-note {
+  max-width: 820px;
+}
+.continue-compact h2 {
+  font-size: 20px;
+}
+.day-plan-heading {
+  margin-top: 42px;
+  margin-bottom: 10px;
+}
+.day-plan-help {
+  color: #9eae92;
+  margin-bottom: 24px;
+}
+.day-progress-overview {
+  margin: 20px 0 28px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #b2c1a7;
+  font-size: 12px;
+}
+.day-progress-overview progress {
+  width: 240px;
+  max-width: 100%;
+  height: 6px;
+  accent-color: #c5f277;
+}
+.day-stage {
+  border: 1px solid #303a2c;
+  border-radius: 12px;
+  margin: 14px 0;
+  background: #171c16;
+  overflow: hidden;
+}
+.day-stage > summary {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 22px 24px;
+  cursor: pointer;
+  list-style: none;
+}
+.day-stage > summary::-webkit-details-marker {
+  display: none;
+}
+.stage-index {
+  color: #92b26a;
+  font:
+    17px Consolas,
+    monospace;
+}
+.day-stage summary strong {
+  display: block;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.day-stage summary small {
+  display: block;
+  color: #99aa8c;
+  margin-top: 3px;
+  font-size: 11px;
+}
+.stage-toggle {
+  margin-left: auto;
+  font-size: 22px;
+  color: #a8bc92;
+}
+.day-stage[open] .stage-toggle {
+  transform: rotate(45deg);
+}
+.day-stage > p {
+  margin: 0 24px 22px 61px;
+  color: #a8b69d;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.day-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #303a2c;
+}
+.day-card {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  gap: 20px;
+  border-bottom: 1px solid #283224;
+  transition: background 0.15s;
+}
+.day-cards li:last-child .day-card {
+  border-bottom: 0;
+}
+.day-card:hover {
+  background: #202c1b;
+}
+.day-card[aria-current="step"] {
+  border-left: 3px solid #b1dc75;
+  padding-left: 21px;
+  background: #202a1a;
+}
+.day-card-number {
+  color: #c4dcb0;
+  font:
+    12px Consolas,
+    monospace;
+  width: 58px;
+  flex-shrink: 0;
+}
+.day-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.day-card-body strong {
+  display: block;
+  color: #d9e6ce;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.day-card-body small {
+  display: block;
+  font-size: 12px;
+  color: #99a890;
+  margin-top: 5px;
+  line-height: 1.9;
+}
+.day-card-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #a4b592;
+  white-space: nowrap;
+  font-size: 11px;
+}
+.day-card.done {
+  background: #1b2817;
+}
+.device-progress-settings {
+  border-top: 1px solid var(--line);
+  padding-top: 23px;
+  margin-top: 36px;
+}
+.device-progress-settings p {
+  color: #9cab90;
+  line-height: 1.9;
+  font-size: 12px;
+  max-width: 760px;
+}
+.device-progress-settings button {
+  font-size: 12px;
+}
+.reset-progress-confirm {
+  border-left: 2px solid #708354;
+  padding-left: 18px;
+}
+.daily-page > h1 {
+  max-width: 840px;
+}
+.day-goal {
+  display: flex;
+  gap: 17px;
+  border: 1px solid #415932;
+  background: #202c1a;
+  border-radius: 12px;
+  padding: 21px 24px;
+  margin: 30px 0;
+}
+.day-goal > svg {
+  color: #bbdb98;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.day-goal h2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #dcebd1;
+  margin: 0 0 8px;
+}
+.day-goal p {
+  color: #bdcdb1;
+  line-height: 1.9;
+  margin: 0;
+}
+.day-preparation,
+.first-day-downloads,
+.day-outcome {
+  margin: 32px 0;
+  max-width: 850px;
+}
+.daily-page section h2 {
+  font-size: 21px;
+  font-weight: 500;
+  margin: 0 0 17px;
+}
+.day-preparation ul,
+.first-day-downloads ol {
+  padding-left: 23px;
+  color: #b3c1a7;
+  line-height: 2;
+}
+.day-preparation li,
+.first-day-downloads li {
+  margin: 9px 0;
+}
+.first-day-downloads {
+  border-top: 1px solid #303a2c;
+  padding-top: 27px;
+}
+.first-day-downloads > p,
+.first-day-downloads li p,
+.day-outcome p {
+  line-height: 1.95;
+  color: #aaba9d;
+}
+.first-day-downloads li p {
+  font-size: 12px;
+  margin: 4px 0 17px;
+}
+.daily-lesson-list {
+  margin: 40px 0;
+}
+.daily-lesson-list > ol {
+  padding: 0;
+  list-style: none;
+  margin: 22px 0;
+}
+.daily-lesson-list li {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid #35432b;
+  background: #1a2117;
+  border-radius: 12px;
+  margin: 12px 0;
+}
+.daily-lesson-number {
+  font:
+    20px Consolas,
+    monospace;
+  color: #b4d591;
+  flex-shrink: 0;
+}
+.daily-lesson-list h3 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.daily-lesson-list h3 a:hover {
+  color: #c5f277;
+}
+.daily-lesson-list li p {
+  margin: 10px 0;
+  color: #9faf90;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.daily-lesson-list .is-complete {
+  border-color: #58793e;
+}
+.day-outcome {
+  border-left: 2px solid #6f8f4d;
+  padding-left: 23px;
+}
+.day-outcome p:last-child {
+  font-size: 12px;
+}
+.day-navigation {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  border-top: 1px solid #303a2c;
+  padding-top: 25px;
+  margin-top: 45px;
+  color: #bfdaa0;
+  font-size: 13px;
+}
+.day-navigation a {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.materials-start-link {
+  display: inline-flex;
+  gap: 10px;
+  color: #c8e9a4;
+  margin: 8px 0 25px;
+}
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 22px 0 40px;
+}
+.materials-grid article {
+  border: 1px solid #30392b;
+  background: #181e16;
+  padding: 25px;
+  border-radius: 12px;
+}
+.materials-grid article > svg {
+  color: #9cbf75;
+}
+.materials-grid h2 {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 15px 0;
+}
+.materials-grid p {
+  color: #a8b69d;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.materials-grid .subtle-link {
+  margin-top: 12px;
+}
+.legacy-course-index {
+  padding-top: 25px;
+  border-top: 1px solid #30392b;
+}
+.legacy-course-index > p {
+  color: #a5b397;
+  margin: 20px 0;
+}
+.guide-resources > summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: #d2e6bd;
+  font-weight: 500;
+}
+.guide-resources[open] > summary {
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .focused-shell .sidebar-scroll {
+    display: block;
+  }
+  .focused-shell .sidebar-scroll > nav:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .focused-shell .sidebar-scroll .quiet-nav,
+  .focused-shell .simple-sidebar-help {
+    display: none;
+  }
+  .focused-shell .sidebar-scroll .nav-link {
+    white-space: normal;
+    font-size: 12px;
+    text-align: left;
+    line-height: 1.5;
+  }
+  .focused-shell .topbar {
+    height: 52px;
+  }
+  .focused-shell .breadcrumb {
+    font-size: 10px;
+  }
+  .first-visit-hero {
+    margin-top: 0;
+  }
+  .first-visit-hero h1 {
+    font-size: 36px;
+  }
+  .first-visit-hero > p {
+    font-size: 14px;
+  }
+  .continue-learning {
+    padding: 22px;
+  }
+  .continue-learning h2 {
+    font-size: 21px;
+  }
+  .day-stage summary strong {
+    font-size: 17px;
+  }
+  .day-card {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .day-card-number {
+    width: auto;
+  }
+  .day-card-body {
+    flex-basis: calc(100% - 88px);
+  }
+  .day-card-time {
+    margin-left: 68px;
+  }
+  .materials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .focused-shell .sidebar {
+    padding: 0 14px;
+  }
+  .focused-shell .nav-link svg {
+    width: 16px;
+    min-width: 16px;
+  }
+  .focused-shell .sidebar-scroll .nav-link {
+    font-size: 10px;
+    padding: 11px 5px;
+    gap: 6px;
+  }
+  .focused-shell .topbar {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
+  .free-learning-label {
+    padding: 3px 8px;
+    font-size: 9px;
+  }
+  .day-home,
+  .daily-plan-page,
+  .daily-page {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
+  .first-visit-hero h1 {
+    font-size: 32px;
+    letter-spacing: -0.9px;
+  }
+  .route-facts {
+    flex-direction: column;
+    gap: 9px;
+    font-size: 11px;
+  }
+  .continue-learning {
+    padding: 22px 18px;
+  }
+  .continue-learning h2 {
+    font-size: 19px;
+  }
+  .continue-learning [data-slot="button"] {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    min-height: 44px;
+    height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .day-time {
+    font-size: 11px;
+  }
+  .day-stage > summary {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+  .day-stage > p {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .day-card {
+    padding: 17px 16px;
+  }
+  .day-card[aria-current="step"] {
+    padding-left: 13px;
+  }
+  .day-card-body {
+    flex-basis: 100%;
+  }
+  .day-card-body strong {
+    font-size: 14px;
+  }
+  .day-card-time {
+    margin-left: 0;
+  }
+  .daily-lesson-list li {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+  .daily-lesson-list h3 {
+    font-size: 16px;
+  }
+  .daily-lesson-list > a {
+    white-space: normal;
+    height: auto;
+    min-height: 44px;
+    text-align: center;
+  }
+  .day-goal {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+  .day-navigation {
+    font-size: 11px;
+    gap: 12px;
+  }
+  .device-progress-settings summary {
+    font-size: 12px;
+  }
+}
+.day-notes {
+  margin: 22px 0;
+  border: 1px solid #323f2b;
+  padding: 16px 20px;
+  border-radius: 10px;
+  color: #aabb9b;
+  font-size: 12px;
+  line-height: 1.9;
+}
+.day-notes summary {
+  cursor: pointer;
+  color: #c9deb5;
+  font-size: 13px;
+}
+.day-notes ul {
+  padding-left: 20px;
+  margin: 18px 0 4px;
+}
+.daily-page .day-notes h2 {
+  font-size: 14px;
+  margin: 0 0 12px;
+  color: #c9deb5;
+}

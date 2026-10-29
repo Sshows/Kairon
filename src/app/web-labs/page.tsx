@@ -1,3 +1,4 @@
+import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { webSources, webTopics } from "@/lib/web-sources";
 import { WebTopicCatalog } from "@/components/web-topic-catalog";
@@ -8,9 +9,10 @@ export const metadata = {
 export default function WebLabsPage() {
   return (
     <div className="page-container document-page source-detail web-labs-page">
-      <Link href="/#paths" className="back-link">
-        ← Все направления
+      <Link href="/study-plan" className="back-link">
+        ← К маршруту по дням
       </Link>
+      <ReferenceRouteNote />
       <span className="eyebrow">БЕСПЛАТНАЯ ПРАКТИКА И ПОНЯТНЫЕ ОБЪЯСНЕНИЯ</span>
       <h1>Разберись, как работает сайт и откуда берутся уязвимости</h1>
       <p className="lead">
@@ -21,7 +23,7 @@ export default function WebLabsPage() {
         кнопки до решения, кому показать данные.
       </p>
       <section className="tool-course-feature">
-        <span className="eyebrow">НАЧНИ ЗДЕСЬ · 14 ПОДРОБНЫХ УРОКОВ</span>
+        <span className="eyebrow">СПРАВОЧНИК К ВЕБ-ПРАКТИКЕ · 14 УРОКОВ</span>
         <h2>Свой Juice Shop → наблюдение → причина → исправление</h2>
         <p>
           Juice Shop — настоящий работающий учебный магазин с намеренными
@@ -33,7 +35,7 @@ export default function WebLabsPage() {
         </p>
         <div className="study-lesson-links">
           <Link href="/learn/web-shop-start">
-            Начать: куда нажать и что запустить →
+            Открыть инструкцию запуска магазина →
           </Link>
           <Link href="/paths/web-security">Посмотреть все 14 уроков →</Link>
         </div>

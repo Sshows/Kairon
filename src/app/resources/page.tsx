@@ -1,3 +1,4 @@
+import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,10 +50,11 @@ const repositories = [
 export default function ResourcesPage() {
   return (
     <div className="page-container document-page resources-page">
-      <Link href="/paths/from-zero" className="back-link">
+      <Link href="/study-plan" className="back-link">
         <ArrowLeft size={16} />
-        Курс Kali Linux
+        Маршрут по дням
       </Link>
+      <ReferenceRouteNote />
       <span className="eyebrow">ЧТО СКАЧАТЬ И ЧТО ЧИТАТЬ</span>
       <h1>Книги, инструменты и следующие проекты</h1>
       <p className="lead">
@@ -118,14 +120,15 @@ export default function ResourcesPage() {
       <section className="resource-feature">
         <BookOpen size={25} />
         <div>
-          <h2>Карта обучения: что за чем изучать</h2>
+          <h2>Маршрут по дням: что делать следующим</h2>
           <p>
-            Разобрали планы jassics и Hamed233. Восемь шагов общей базы, 25
-            направлений с примерами и 12 новых уроков помогут выбрать следующую
-            задачу.
+            Все уроки Kairon собраны в одну последовательность: от установки
+            Kali до разбора учебных случаев и веб-безопасности. Дополнительные
+            планы jassics и Hamed233 оставлены в источниках для дальнейшего
+            изучения.
           </p>
           <Link href="/study-plan" className="subtle-link">
-            Открыть карту обучения →
+            Открыть маршрут по дням →
           </Link>
           <Link href="/sources/study-plans" className="subtle-link">
             Как проверены источники →

@@ -56,10 +56,11 @@ export function getLesson(id: string) {
   return lessons.find((l) => l.id === id);
 }
 export function publicLesson(lesson: Lesson) {
-  const { hints, debrief, answers, ...visible } = lesson;
+  const { hints, debrief, answers, xp, ...visible } = lesson;
   void hints;
   void debrief;
   void answers;
+  void xp;
   return visible;
 }
 export type PublicLesson = ReturnType<typeof publicLesson>;

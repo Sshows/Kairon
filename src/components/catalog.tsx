@@ -23,29 +23,29 @@ const icons = {
 export function Catalog({ locale }: { locale: Locale }) {
   const t = copy[locale];
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("all");
-  const filtered = paths.filter(
-    (path) =>
-      (category === "all" || path.category === category) &&
-      [
-        path.title[locale],
-        path.description[locale],
-        ...path.tags,
-        ...path.modules[locale],
-      ]
-        .join(" ")
-        .toLocaleLowerCase(locale)
-        .includes(query.trim().toLocaleLowerCase(locale)),
+  const available = paths.filter((path) => path.availableLessons);
+  const filtered = available.filter((path) =>
+    [
+      path.title[locale],
+      path.description[locale],
+      ...path.tags,
+      ...path.modules[locale],
+    ]
+      .join(" ")
+      .toLocaleLowerCase(locale)
+      .includes(query.trim().toLocaleLowerCase(locale)),
   );
   return (
     <section id="paths" className="catalog-section">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">LEARNING PATHS</span>
+          <span className="eyebrow">
+            {locale === "ru" ? "СПРАВОЧНИК ПО ТЕМАМ" : "TOPIC REFERENCE"}
+          </span>
           <h2>
             {t.catalog}
             <span className="count-badge">
-              {String(paths.length).padStart(2, "0")}
+              {String(available.length).padStart(2, "0")}
             </span>
           </h2>
         </div>
@@ -60,21 +60,13 @@ export function Catalog({ locale }: { locale: Locale }) {
           />
         </label>
       </div>
-      <div className="filters" aria-label={t.paths}>
-        {(["all", "beginner", "offensive", "defensive", "ai"] as const).map(
-          (key) => (
-            <button
-              key={key}
-              className={category === key ? "filter active" : "filter"}
-              aria-pressed={category === key}
-              onClick={() => setCategory(key)}
-            >
-              {t[key]}
-            </button>
-          ),
-        )}
-      </div>
       <p className="program-note">{t.programNote}</p>
+      <Link href="/study-plan" className="subtle-link">
+        {locale === "ru"
+          ? "Вернуться к маршруту по дням"
+          : "Return to the daily route"}{" "}
+        →
+      </Link>
       <div className="path-grid">
         {filtered.map((path) => {
           const Icon = icons[path.icon];
@@ -91,13 +83,9 @@ export function Catalog({ locale }: { locale: Locale }) {
                 <span className="path-number">/{path.number}</span>
               </div>
               <div className="path-meta">
-                <span>PATH {path.number}</span>
-                <span className="draft-dot" />
-                {path.availableLessons
-                  ? locale === "ru"
-                    ? "Можно начать"
-                    : "Start learning"
-                  : t.planned}
+                <span>
+                  {locale === "ru" ? "ОГЛАВЛЕНИЕ РАЗДЕЛА" : "SECTION CONTENTS"}
+                </span>
               </div>
               <h3>{path.title[locale]}</h3>
               <p>{path.description[locale]}</p>
@@ -108,14 +96,10 @@ export function Catalog({ locale }: { locale: Locale }) {
               </div>
               <div className="path-bottom">
                 <span>
-                  {path.availableLessons ?? path.modules[locale].length}{" "}
-                  {path.availableLessons
-                    ? locale === "ru"
-                      ? "уроков с практикой"
-                      : "practice lessons (RU)"
-                    : locale === "ru"
-                      ? "тем в программе"
-                      : "planned topics"}
+                  {path.availableLessons}{" "}
+                  {locale === "ru"
+                    ? "уроков с практикой"
+                    : "practice lessons (RU)"}
                 </span>
                 <span className="path-open">
                   <ArrowUpRight size={19} />
@@ -131,7 +115,6 @@ export function Catalog({ locale }: { locale: Locale }) {
             <button
               onClick={() => {
                 setQuery("");
-                setCategory("all");
               }}
             >
               {t.reset}

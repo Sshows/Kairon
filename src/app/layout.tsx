@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/shell";
 import { getLocale } from "@/lib/i18n";
-import { getCurrentUser } from "@/lib/access";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
-    default: "Kairon — кибербезопасность с нуля",
+    default: "Kairon — кибербезопасность по дням",
     template: "%s · Kairon",
   },
   description:
@@ -16,16 +15,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [locale, user] = await Promise.all([getLocale(), getCurrentUser()]);
+  const locale = await getLocale();
   return (
     <html lang={locale} className="dark">
       <body>
         <a className="skip-link" href="#main-content">
           {locale === "ru" ? "Перейти к содержимому" : "Skip to content"}
         </a>
-        <Shell locale={locale} user={user}>
-          {children}
-        </Shell>
+        <Shell>{children}</Shell>
       </body>
     </html>
   );

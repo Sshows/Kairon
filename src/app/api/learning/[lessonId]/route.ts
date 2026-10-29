@@ -1,9 +1,7 @@
 import { NextRequest } from "next/server";
 import { z } from "zod";
-import { getCurrentUser } from "@/lib/access";
 import { getLesson } from "@/lib/lessons";
 import { checkLesson } from "@/lib/lesson-checks";
-import { updateLearning } from "@/lib/learning";
 const schema = z.strictObject({
   action: z.enum(["check", "hint"]),
   answer: z.string().max(150).default(""),
@@ -40,37 +38,17 @@ export async function POST(
     return respond({ error: "Проверь формат и длину ответа." }, 400);
   const data = input.data;
   const correct = data.action === "check" && checkLesson(lessonId, data.answer);
-  const user = await getCurrentUser();
-  // Открытая самопроверка не пишет в БД и не выдаёт XP.
-  if (!user) {
-    if (data.action === "hint")
-      return respond({
-        status: "hint",
-        hint: lesson.hints[data.hintIndex],
-        hintsUsed: data.hintIndex + 1,
-        guest: true,
-      });
+  // Learning is public and stateless. Existing account cookies are ignored.
+  if (data.action === "hint")
     return respond({
-      status: correct ? "passed" : "failed",
+      status: "hint",
+      hint: lesson.hints[data.hintIndex],
+      hintsUsed: data.hintIndex + 1,
       guest: true,
-      xp: 0,
-      ...(correct ? { debrief: lesson.debrief } : {}),
     });
-  }
-  if (!user.ethicsAcceptedAt)
-    return respond(
-      {
-        error: "Для сохранения прогресса прими правила практики.",
-        needsEthics: true,
-      },
-      403,
-    );
-  const result = await updateLearning(user.id, lessonId, data.action, correct);
-  return respond(
-    {
-      ...result,
-      ...(result.status === "passed" ? { debrief: lesson.debrief } : {}),
-    },
-    result.status === "locked" ? 423 : result.status === "limited" ? 429 : 200,
-  );
+  return respond({
+    status: correct ? "passed" : "failed",
+    guest: true,
+    ...(correct ? { debrief: lesson.debrief } : {}),
+  });
 }

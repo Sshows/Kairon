@@ -1,3 +1,4 @@
+import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
 import catalog from "../../../content/project-catalog.json";
@@ -13,6 +14,7 @@ export default function ProjectsPage() {
         <ArrowLeft size={16} />
         Книги и материалы
       </Link>
+      <ReferenceRouteNote />
       <span className="eyebrow">СДЕЛАЙ ЧТО-ТО СВОИМИ РУКАМИ</span>
       <h1>Проекты по безопасности — с понятного первого шага</h1>
       <p className="lead">

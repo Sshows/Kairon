@@ -1,3 +1,4 @@
+import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { collections } from "@/lib/collections";
 import { KnowledgeCollections } from "@/components/knowledge-collections";
@@ -7,6 +8,7 @@ export const metadata = { title: "Подборки знаний: объясне�
 export default function CollectionsPage() {
   return (
     <div className="page-container document-page library-page">
+      <ReferenceRouteNote />
       <span className="eyebrow">ЧТО ИЗУЧАТЬ И ЗАЧЕМ</span>
       <h1>Разбираемся в больших подборках</h1>
       <p className="lead">

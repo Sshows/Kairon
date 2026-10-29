@@ -80,7 +80,7 @@ export default async function WebTopicPage({ params }: Props) {
         <p>
           {entry.lessonIds.length
             ? "Эти подробные уроки объясняют связанные основы. Начни с первого, если тема новая; затем вернись к материалу ниже для деталей."
-            : "Самостоятельного урока по этой узкой теме пока нет. Сначала можно пройти общий курс ниже, затем вернуться к материалу автора."}
+            : "Самостоятельного урока по этой узкой теме пока нет. Сначала можно пройти маршрут по дням, затем вернуться к материалу автора."}
         </p>
         <div className="study-lesson-links">
           {entry.lessonIds.map((lessonId) => {
@@ -91,9 +91,7 @@ export default async function WebTopicPage({ params }: Props) {
               </Link>
             ) : null;
           })}
-          <Link href="/paths/web-security">
-            Вся последовательность уроков →
-          </Link>
+          <Link href="/study-plan">Вернуться к маршруту по дням →</Link>
         </div>
       </section>
       {original && (

@@ -1,15 +1,7 @@
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-  BookOpen,
-  CheckCircle2,
-  LockKeyhole,
-  Monitor,
-} from "lucide-react";
-import { getCurrentUser } from "@/lib/access";
-import { getProgress, isUnlocked } from "@/lib/learning";
+import { ArrowLeft, ArrowRight, BookOpen, Monitor } from "lucide-react";
 import { getCourseLessons, getCourseModules } from "@/lib/lessons";
+import { getLessonDay } from "@/lib/day-plan";
 import { getLearningPath, type LearningPathId } from "@/lib/learning-paths";
 import { Button } from "./ui/button";
 
@@ -21,25 +13,14 @@ export async function StarterPath({
   const path = getLearningPath(pathId)!;
   const lessons = getCourseLessons(pathId);
   const courseModules = getCourseModules(pathId);
-  const lessonIds = new Set(lessons.map((lesson) => lesson.id));
-  const user = await getCurrentUser();
-  const progress = user ? await getProgress(user.id) : [];
-  const completed = new Set(
-    progress
-      .filter((item) => item.completedAt && lessonIds.has(item.lessonId))
-      .map((item) => item.lessonId),
-  );
-  const next =
-    lessons.find((lesson) => !completed.has(lesson.id)) ?? lessons[0];
+  const firstDay = getLessonDay(lessons[0].id)!;
   return (
     <div className="page-container document-page starter-path">
-      <Link href="/#paths" className="back-link">
+      <Link href="/study-plan" className="back-link">
         <ArrowLeft size={16} />
-        Все направления
+        План по дням
       </Link>
-      <span className="eyebrow">
-        PATH {path.number} · {path.name}
-      </span>
+      <span className="eyebrow">ТЕМАТИЧЕСКАЯ ПОДБОРКА · {path.name}</span>
       <h1>{path.title}</h1>
       <p className="lead">{path.description}</p>
       <div className="course-summary">
@@ -53,12 +34,11 @@ export async function StarterPath({
           <BookOpen size={18} />
           {lessons.length} уроков · {courseModules.length} уровня
         </span>
-        <span>До {lessons.reduce((sum, lesson) => sum + lesson.xp, 0)} XP</span>
       </div>
       <div className="course-actions">
         <Button asChild>
-          <Link href={`/learn/${next.id}`}>
-            {completed.size ? "Продолжить обучение" : path.startLabel}
+          <Link href={`/days/${firstDay.day}`}>
+            Открыть день {firstDay.day}
             <ArrowRight size={17} />
           </Link>
         </Button>
@@ -66,22 +46,11 @@ export async function StarterPath({
           <Link href="/resources">Книги и проекты</Link>
         </Button>
       </div>
-      {user && (
-        <div className="course-progress">
-          <span>
-            Пройдено {completed.size} из {lessons.length}
-          </span>
-          <progress
-            aria-label={"Прогресс: " + path.name}
-            value={completed.size}
-            max={lessons.length}
-          />
-        </div>
-      )}
       <p className="program-note">
-        Уроки, файлы и самопроверка открыты без регистрации. Для сохранения XP
-        нужен аккаунт и принятие правил. Время — примерный ориентир: можно идти
-        медленнее и повторять шаги.
+        Все эти уроки уже распределены по дням общего плана. Здесь удобно
+        вернуться к знакомой теме. Уроки и самопроверка бесплатны; отметки
+        сохраняются в твоём браузере. Время — ориентир, можно заниматься
+        медленнее.
       </p>
       {pathId === "kali-practice" && (
         <section className="notice source-course-note">
@@ -108,8 +77,9 @@ export async function StarterPath({
             <p>
               Магазин работает на твоём компьютере. Открывай адрес из урока в
               том же Windows или Kali, где запущен магазин: localhost у Windows
-              и у виртуальной машины — разные места. Kairon хранит объяснения и
-              прогресс, а твоя практика не нагружает сервер сайта.
+              и у виртуальной машины — разные места. Kairon показывает
+              объяснения; отметки о прохождении сохраняются в твоём браузере.
+              Практика выполняется на своём компьютере.
             </p>
             <Link href="/web-labs" className="subtle-link">
               Juice Shop, весь указатель Hacker101 и шпаргалки OWASP →
@@ -194,8 +164,8 @@ export async function StarterPath({
               Что проверили в канале →
             </Link>
             <p>
-              Начать можно независимо от курса Kali. Для практики распакуй
-              отдельный набор из первого урока.
+              В плане по дням эта практика идёт после подготовки Kali. Для неё
+              нужен отдельный набор из первого урока подборки.
             </p>
           </div>
         </section>
@@ -221,33 +191,19 @@ export async function StarterPath({
             {lessons
               .filter((lesson) => lesson.module === module)
               .map((lesson) => (
-                <Link
-                  key={lesson.id}
-                  href={`/learn/${lesson.id}`}
-                  className={completed.has(lesson.id) ? "completed" : ""}
-                >
+                <Link key={lesson.id} href={`/learn/${lesson.id}`}>
                   <span className="course-lesson-number">
-                    {completed.has(lesson.id) ? (
-                      <CheckCircle2 size={20} />
-                    ) : (
-                      String(lessons.indexOf(lesson) + 1).padStart(2, "0")
-                    )}
+                    {String(lessons.indexOf(lesson) + 1).padStart(2, "0")}
                   </span>
                   <div>
                     <h3>{lesson.title}</h3>
                     <p>{lesson.summary}</p>
                     <span className="course-lesson-meta">
-                      {lesson.minutes} мин · {lesson.xp} XP · {lesson.level}
+                      {lesson.minutes} мин · день {getLessonDay(lesson.id)!.day}{" "}
+                      общего плана
                     </span>
                   </div>
-                  {user && !isUnlocked(lesson.id, completed) ? (
-                    <LockKeyhole
-                      size={17}
-                      aria-label="Зачёт после предыдущих уроков"
-                    />
-                  ) : (
-                    <ArrowRight size={17} />
-                  )}
+                  <ArrowRight size={17} />
                 </Link>
               ))}
           </div>

@@ -1,19 +1,11 @@
-import { handlers, isAuthConfigured } from "@/lib/auth";
-import type { NextRequest } from "next/server";
-
-export const runtime = "nodejs";
-
-function unavailable() {
+function retired() {
   return Response.json(
-    { error: "Авторизация ещё не настроена." },
-    { status: 503 },
+    {
+      error: "Вход отключён. Все уроки открыты бесплатно.",
+      next: "/study-plan",
+    },
+    { status: 410, headers: { "Cache-Control": "no-store" } },
   );
 }
-
-export function GET(request: NextRequest) {
-  return isAuthConfigured() ? handlers.GET(request) : unavailable();
-}
-
-export function POST(request: NextRequest) {
-  return isAuthConfigured() ? handlers.POST(request) : unavailable();
-}
+export const GET = retired;
+export const POST = retired;

@@ -1,3 +1,4 @@
+import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import paul from "../../../content/source-audits/paul-cybersecurity.json";
 import { SecurityLibrary } from "@/components/security-library";
@@ -7,6 +8,7 @@ export const metadata = { title: "Как выбрать инструмент п�
 export default function LibraryPage() {
   return (
     <div className="page-container document-page library-page">
+      <ReferenceRouteNote />
       <span className="eyebrow">ЗАДАЧИ И ИНСТРУМЕНТЫ</span>
       <h1>Сначала вопрос, потом инструмент</h1>
       <p className="lead">

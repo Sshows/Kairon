@@ -29,12 +29,17 @@ export default async function DirectionPage({
   if (!section) notFound();
   return (
     <div className="page-container document-page study-direction-detail">
-      <Link href="/study-plan#directions" className="back-link">
-        ← Все направления
+      <Link href="/study-plan" className="back-link">
+        ← К маршруту по дням
       </Link>
-      <span className="eyebrow">ВЫБИРАЕМ СЛЕДУЮЩУЮ ТЕМУ</span>
+      <span className="eyebrow">ДОПОЛНИТЕЛЬНЫЙ СПРАВОЧНИК</span>
       <h1>{section.title}</h1>
       <p className="lead">{section.summary}</p>
+      <p className="program-note">
+        Это описание отдельного направления для дальнейшего изучения. Если
+        только начинаешь, следуй маршруту по дням: все начальные уроки уже
+        распределены по сложности.
+      </p>
       <section>
         <h2>Как это выглядит в работе</h2>
         <p>{section.example}</p>

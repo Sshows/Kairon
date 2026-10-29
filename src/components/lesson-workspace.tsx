@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Markdown from "react-markdown";
 import {
   ArrowLeft,
@@ -17,6 +16,7 @@ import {
 import type { PublicLesson } from "@/lib/lessons";
 import type { learningPaths } from "@/lib/learning-paths";
 import { lessonSections } from "@/lib/lesson-outline";
+import { useLocalProgress } from "@/lib/local-progress";
 import { PracticeFolderHelp } from "./practice-folder-help";
 import { Button } from "./ui/button";
 
@@ -25,35 +25,29 @@ export function LessonWorkspace({
   path,
   previous,
   next,
-  loggedIn,
-  accepted,
-  completed,
-  xp,
-  initialDebrief,
-  unlocked,
+  dayNumber,
+  dayTitle,
+  nextDay,
 }: {
   lesson: PublicLesson;
   path: (typeof learningPaths)[number];
   previous: string | null;
   next: string | null;
-  loggedIn: boolean;
-  accepted: boolean;
-  completed: boolean;
-  xp: number;
-  initialDebrief?: string;
-  unlocked: boolean;
+  dayNumber: number;
+  dayTitle: string;
+  nextDay: number | null;
 }) {
-  const router = useRouter();
+  const { completedLessonIds, storageAvailable, markComplete } =
+    useLocalProgress();
+  const completedHere = completedLessonIds.includes(lesson.id);
   const [answer, setAnswer] = useState("");
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState("");
   const [hint, setHint] = useState("");
   const [hintsUsed, setHintsUsed] = useState(0);
-  const [passed, setPassed] = useState(completed);
-  const [debrief, setDebrief] = useState(initialDebrief ?? "");
-  const [earned, setEarned] = useState(xp);
+  const [passed, setPassed] = useState(false);
+  const [debrief, setDebrief] = useState("");
   const [checkedSteps, setCheckedSteps] = useState<string[]>([]);
-  const canSubmit = !loggedIn || (accepted && unlocked);
   const sections = lessonSections(lesson.theory);
 
   async function submit(action: "hint" | "check") {
@@ -77,19 +71,14 @@ export function LessonWorkspace({
       }
       if (data.status === "passed") {
         setPassed(true);
-        setEarned(data.xp);
         setDebrief(data.debrief);
-        if (!data.guest) router.refresh();
+        markComplete(lesson.id);
       } else if (data.status === "hint") {
         setHintsUsed(data.hintsUsed);
         setHint(`Подсказка ${data.hintsUsed}/3: ${data.hint}`);
       } else
         setMessage(
-          data.status === "locked"
-            ? "Для зачёта в аккаунте сначала заверши предыдущие уроки."
-            : data.status === "limited"
-              ? "Подожди минуту перед следующей проверкой."
-              : "Пока не совпало. Посмотри результат практики и попробуй ещё раз.",
+          "Пока не совпало. Посмотри результат практики и попробуй ещё раз.",
         );
     } catch {
       setMessage(
@@ -104,7 +93,7 @@ export function LessonWorkspace({
     <div className="guide-layout">
       <article className="lesson-theory guide-article">
         <span className="eyebrow">
-          {lesson.module} · {lesson.minutes} мин · {lesson.level}
+          День {dayNumber} · примерно {lesson.minutes} мин
         </span>
         <h1>{lesson.title}</h1>
         <p className="guide-summary">{lesson.summary}</p>
@@ -116,19 +105,12 @@ export function LessonWorkspace({
               : "Делай шаги в своей Kali Linux. На сайте — объяснение и самопроверка."}
           </span>
         </div>
-        <div className="guide-quick-links" aria-label="Ссылки для этого урока">
-          {lesson.resources.map((resource) => (
-            <a
-              href={resource.url}
-              key={resource.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {resource.label}
-              <ExternalLink size={13} />
-            </a>
-          ))}
-        </div>
+        {completedHere && !passed && (
+          <p className="program-note" role="status">
+            Самопроверка этого урока уже пройдена в этом браузере. Можно
+            перечитать объяснение или ещё раз проверить ответ и открыть разбор.
+          </p>
+        )}
         {lesson.kit && (
           <a className="guide-kit-link" href={path.kit.url} download>
             <Download size={17} />
@@ -143,7 +125,7 @@ export function LessonWorkspace({
               .replace(/\.zip$/, "")}
           />
         )}
-        <details className="lesson-outline" open>
+        <details className="lesson-outline">
           <summary>Содержание урока</summary>
           <nav aria-label="Разделы этого урока">
             {sections
@@ -236,27 +218,10 @@ export function LessonWorkspace({
                 />
               </label>
             )}
-            {loggedIn && !accepted ? (
-              <p className="learning-gate">
-                Для сохранения прогресса{" "}
-                <Link href="/ethics">прими правила практики</Link>.
-              </p>
-            ) : loggedIn && !unlocked ? (
-              <p className="learning-gate">
-                Читай и выполняй любой урок. Для XP заверши предыдущие уроки по
-                порядку.
-              </p>
-            ) : !loggedIn ? (
-              <p className="learning-gate">
-                Самопроверка доступна без входа.{" "}
-                <Link href="/login">Аккаунт</Link> сохраняет прогресс и XP;
-                гостевой результат действует до обновления страницы.
-              </p>
-            ) : null}
             <div className="lesson-controls">
               <Button
                 type="submit"
-                disabled={pending || passed || !canSubmit || !answer.trim()}
+                disabled={pending || passed || !answer.trim()}
               >
                 {pending ? (
                   <LoaderCircle size={16} className="spin" />
@@ -269,14 +234,10 @@ export function LessonWorkspace({
                 type="button"
                 variant="outline"
                 onClick={() => void submit("hint")}
-                disabled={pending || passed || !canSubmit || hintsUsed >= 3}
+                disabled={pending || passed || hintsUsed >= 3}
               >
                 <Lightbulb size={16} />
-                {hintsUsed >= 3
-                  ? "Все подсказки открыты"
-                  : loggedIn
-                    ? "Подсказка · −10 XP"
-                    : "Нужна подсказка"}
+                {hintsUsed >= 3 ? "Все подсказки открыты" : "Нужна подсказка"}
               </Button>
             </div>
           </form>
@@ -299,11 +260,12 @@ export function LessonWorkspace({
               <div className="lesson-markdown">
                 <Markdown>{debrief}</Markdown>
               </div>
-              <strong>
-                {loggedIn
-                  ? `Сохранено · ${earned} XP`
-                  : "Самопроверка пройдена"}
-              </strong>
+              <strong>Самопроверка пройдена</strong>
+              <p>
+                {storageAvailable === false
+                  ? "Браузер не разрешает сохранить отметку. Урок пройден в этой вкладке; после её закрытия результат может исчезнуть."
+                  : "Отметка сохранена только в этом браузере. Она помогает продолжить обучение с нужного дня и не подтверждает выполнение действий в Kali."}
+              </p>
             </section>
           )}
         </section>
@@ -314,13 +276,28 @@ export function LessonWorkspace({
               Предыдущий урок
             </Link>
           ) : (
-            <Link href={"/paths/" + path.id} className="subtle-link">
-              Вся программа
+            <Link href={`/days/${dayNumber}`} className="subtle-link">
+              Вернуться к дню {dayNumber}
             </Link>
           )}
-          <Button asChild>
-            <Link href={next ? `/learn/${next}` : "/paths/" + path.id}>
-              {next ? "Следующий урок" : "Вернуться к программе"}
+          <Button
+            asChild
+            variant={passed || completedHere ? "default" : "outline"}
+          >
+            <Link
+              href={
+                nextDay
+                  ? `/days/${nextDay}`
+                  : next
+                    ? `/learn/${next}`
+                    : "/study-plan"
+              }
+            >
+              {nextDay
+                ? `Дальше: день ${nextDay}`
+                : next
+                  ? "Следующий урок"
+                  : "Вернуться к плану"}
               <ArrowRight size={16} />
             </Link>
           </Button>
@@ -330,12 +307,12 @@ export function LessonWorkspace({
         <section className="practice-goal">
           <span className="eyebrow">ТВОЯ ЗАДАЧА</span>
           <p>{lesson.goal}</p>
-          <span className="guide-level">
-            {lesson.level} · до {lesson.xp} XP
-          </span>
+          <Link href={`/days/${dayNumber}`} className="subtle-link">
+            День {dayNumber}: {dayTitle}
+          </Link>
         </section>
-        <section className="guide-resources">
-          <h2>Открыть рядом</h2>
+        <details className="guide-resources">
+          <summary>Ссылки и источники урока</summary>
           {lesson.resources.map((resource) => (
             <a
               key={resource.url}
@@ -350,29 +327,19 @@ export function LessonWorkspace({
               <ExternalLink size={16} />
             </a>
           ))}
-        </section>
+        </details>
         {lesson.kit && (
-          <section className="guide-download">
-            <Download size={22} />
-            <h2>Файлы для практики</h2>
+          <details className="guide-download">
+            <summary>Что входит в учебный набор</summary>
             <p>{path.kit.description}</p>
-            <Button asChild variant="outline">
-              <a href={path.kit.url} download>
-                Скачать учебный набор
-              </a>
-            </Button>
             <Link
               className="subtle-link"
               href={"/learn/" + path.kit.setupLesson}
             >
               Как открыть набор →
             </Link>
-          </section>
+          </details>
         )}
-        <Link href="/resources" className="subtle-link">
-          Книги и проекты с GitHub
-          <ArrowRight size={16} />
-        </Link>
         <Link href="/glossary" className="subtle-link">
           Непонятное слово? Словарь
           <ArrowRight size={16} />
