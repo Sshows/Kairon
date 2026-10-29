@@ -705,7 +705,7 @@ test("study map connects all directions and foundation lessons on mobile", async
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  await expect(page.locator(".path-card")).toHaveCount(9);
+  await expect(page.locator(".path-card")).toHaveCount(10);
   await page
     .getByRole("link", { name: "Начать обучение", exact: true })
     .click();
