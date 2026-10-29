@@ -35,7 +35,7 @@ export const copy = {
     mentorBody:
       "Объяснит ошибку и направит к решению. Запланирован локальный режим Ollama.",
     mentorStatus: "Появится на этапе 6",
-    stage: "С НУЛЯ · 92 УРОКА · КАРТА ОБУЧЕНИЯ",
+    stage: "С НУЛЯ · 106 УРОКОВ · КАРТА ОБУЧЕНИЯ",
     heroTitle: "Большой путь начинается\nс любопытства.",
     heroBody:
       "Пойми основы на примерах, запусти Kali и попробуй учебные задачи. Карта поможет выбрать порядок тем: от сети и прав доступа до расследований и своих программ.",
@@ -90,7 +90,7 @@ export const copy = {
     mentorBody:
       "Understand errors and find your own solution. Local Ollama support is planned.",
     mentorStatus: "Planned for stage 6",
-    stage: "FROM ZERO · 92 LESSONS · LEARNING PLAN",
+    stage: "FROM ZERO · 106 LESSONS · LEARNING PLAN",
     heroTitle: "Every great journey\nstarts with curiosity.",
     heroBody:
       "Set up a ready-made Kali VM and investigate training cases: suspicious email, login traces, your own website, and file recovery.",

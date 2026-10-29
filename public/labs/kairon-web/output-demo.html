@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; form-action 'none'; base-uri 'none'">
+<title>Kairon: текст и разметка</title>
+<style>body{font:18px/1.6 system-ui;max-width:50rem;margin:2rem auto;padding:1rem;background:#141820;color:#e8edf5}button{font:inherit;padding:.6rem}section{border:1px solid #738496;padding:1rem;margin:1rem 0}code{white-space:pre-wrap}</style>
+<h1>Одни данные, два способа вывода</h1>
+<p>Здесь нет формы для произвольного кода, сети и настоящих аккаунтов. Сравниваем только фиксированную строку <code>&lt;b&gt;Проверка&lt;/b&gt;</code>.</p>
+<button id="show">Показать фиксированный пример</button>
+<section><h2>textContent: показать текст</h2><div id="text-output"></div></section>
+<section><h2>innerHTML: разобрать как HTML</h2><div id="html-output"></div></section>
+<p id="result">Нажми кнопку. Затем открой инструменты разработчика и сравни дочерние узлы обоих div.</p>
+<script>
+document.getElementById('show').addEventListener('click',()=>{
+ const value='<b>Проверка</b>';
+ document.getElementById('text-output').textContent=value;
+ document.getElementById('html-output').innerHTML=value;
+ document.getElementById('result').textContent='Для обычного пользовательского текста выбираем textContent. Это демонстрация интерпретации разметки, а не проверка защищённости всего сайта.';
+});
+</script>
+</html>

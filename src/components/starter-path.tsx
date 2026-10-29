@@ -45,7 +45,9 @@ export async function StarterPath({
       <div className="course-summary">
         <span>
           <Monitor size={18} />
-          Практика в своей Kali
+          {pathId === "web-security"
+            ? "Свой компьютер и браузер"
+            : "Практика в своей Kali"}
         </span>
         <span>
           <BookOpen size={18} />
@@ -95,6 +97,22 @@ export async function StarterPath({
             </Link>
             <Link href="/sources/labex-kali" className="subtle-link">
               Все 36 тем исходного указателя →
+            </Link>
+          </div>
+        </section>
+      )}
+      {pathId === "web-security" && (
+        <section className="notice source-course-note">
+          <BookOpen size={20} />
+          <div>
+            <p>
+              Магазин работает на твоём компьютере. Открывай адрес из урока в
+              том же Windows или Kali, где запущен магазин: localhost у Windows
+              и у виртуальной машины — разные места. Kairon хранит объяснения и
+              прогресс, а твоя практика не нагружает сервер сайта.
+            </p>
+            <Link href="/web-labs" className="subtle-link">
+              Juice Shop, весь указатель Hacker101 и шпаргалки OWASP →
             </Link>
           </div>
         </section>

@@ -5,9 +5,27 @@ export type LearningPathId =
   | "security-basics"
   | "file-analysis"
   | "diagnostics"
-  | "kali-practice";
+  | "kali-practice"
+  | "web-security";
 
 export const learningPaths = [
+  {
+    id: "web-security",
+    number: "09",
+    name: "Веб-безопасность и Juice Shop",
+    title: "Как устроены уязвимости сайта: свой Juice Shop и защита",
+    description:
+      "14 подробных уроков. Запустим учебный магазин на своём компьютере, проследим запросы, проверим два своих аккаунта и разберём XSS и SQL-инъекцию. Затем объясним, как исправляют вход, права доступа, SQL, вывод текста и защиту запросов. С бытовыми примерами и разбором каждого шага.",
+    startLabel: "Запустить свой Juice Shop",
+    completionLabel: "Веб-безопасность и Juice Shop — путь завершён",
+    kit: {
+      url: "/downloads/kairon-web.zip",
+      label: "Скачать набор: как защищают сайт",
+      description:
+        "Собственные автономные примеры Kairon для второй половины курса: сессии, права, SQL, текст в браузере и CSRF. Juice Shop скачивается отдельно из официального проекта по инструкции первого урока.",
+      setupLesson: "web-session",
+    },
+  },
   {
     id: "kali-practice",
     number: "08",

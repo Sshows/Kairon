@@ -22,8 +22,12 @@ import { directionLessons } from "../src/lib/study-plan";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
-  it("publishes seven independent courses with stable lesson IDs", () => {
-    expect(lessons).toHaveLength(92);
+  it("publishes eight independent courses with stable lesson IDs", () => {
+    expect(lessons).toHaveLength(106);
+    const web = getCourseLessons("web-security");
+    expect(web).toHaveLength(14);
+    expect(getCourseModules("web-security")).toHaveLength(4);
+    expect(web.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1400);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
@@ -47,7 +51,7 @@ describe("Kali guides and answer checks", () => {
     expect(getCourseModules("kali-tools")).toHaveLength(2);
     expect(getCourseModules("security-basics")).toHaveLength(3);
     expect(getCourseModules("file-analysis")).toHaveLength(2);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(92);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(106);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
@@ -99,6 +103,9 @@ describe("Kali guides and answer checks", () => {
     ).toBe(true);
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
     expect(isUnlocked("tools-start", new Set())).toBe(true);
+    expect(isUnlocked("web-shop-start", new Set())).toBe(true);
+    expect(isUnlocked("web-shop-progress", new Set(["kali-install"]))).toBe(false);
+    expect(isUnlocked("web-shop-progress", new Set(["web-shop-start"]))).toBe(true);
     expect(isUnlocked("tools-nmap", new Set(["diag-intake"]))).toBe(false);
     expect(isUnlocked("tools-nmap", new Set(["tools-start"]))).toBe(true);
     expect(isUnlocked("diag-intake", new Set())).toBe(true);

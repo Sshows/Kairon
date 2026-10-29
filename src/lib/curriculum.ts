@@ -13,6 +13,37 @@ export type Path = {
 };
 export const paths: Path[] = [
   {
+    slug: "web-security",
+    availableLessons: 14,
+    number: "09",
+    color: "blue",
+    category: "beginner",
+    icon: "shield",
+    title: {
+      ru: "Веб-безопасность и Juice Shop",
+      en: "Web security and Juice Shop",
+    },
+    description: {
+      ru: "14 подробных уроков: свой учебный магазин, запросы, два аккаунта, XSS, SQL и исправление уязвимостей. Все действия объяснены с нуля.",
+      en: "14 detailed guides: run a local training shop, follow requests, compare two owned accounts, understand XSS and SQL, then fix the causes.",
+    },
+    modules: {
+      ru: [
+        "Свой магазин для практики",
+        "От наблюдения к исправлению",
+        "Вход, сессия и права",
+        "Данные, код и поддельные действия",
+      ],
+      en: [
+        "Your local training shop",
+        "From observation to a fix",
+        "Accounts, sessions and access",
+        "Data, code and forged requests",
+      ],
+    },
+    tags: ["Juice Shop", "Hacker101", "OWASP", "Веб", "XSS", "SQL", "Cookies"],
+  },
+  {
     slug: "kali-practice",
     availableLessons: 24,
     number: "08",

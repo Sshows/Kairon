@@ -111,7 +111,9 @@ export function LessonWorkspace({
         <div className="practice-location">
           <Monitor size={19} />
           <span>
-            Делай шаги в своей Kali Linux. На сайте — объяснение и самопроверка.
+            {path.id === "web-security"
+              ? "Практика — на своём компьютере, в Windows или Kali по инструкции урока. Здесь — объяснение и самопроверка."
+              : "Делай шаги в своей Kali Linux. На сайте — объяснение и самопроверка."}
           </span>
         </div>
         <div className="guide-quick-links" aria-label="Ссылки для этого урока">

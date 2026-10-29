@@ -9,6 +9,12 @@ import toolsNetwork from "../../content/lessons/kali-practice-network.json" with
 import toolsCrypto from "../../content/lessons/kali-practice-crypto.json" with { type: "json" };
 import toolsExtraNetwork from "../../content/lessons/kali-practice-extra-network.json" with { type: "json" };
 import toolsExtraFiles from "../../content/lessons/kali-practice-extra-files.json" with { type: "json" };
+import webJuice from "../../content/lessons/web-juice.json" with { type: "json" };
+import webDefense from "../../content/lessons/web-defense.json" with { type: "json" };
+import cheats from "../../content/source-audits/cheat-sheets.json" with { type: "json" };
+import hacker101 from "../../content/source-audits/hacker101.json" with { type: "json" };
+import juiceAudit from "../../content/source-audits/juice-shop.json" with { type: "json" };
+const web = [...webJuice, ...webDefense];
 const practice = [
   ...toolsNetwork,
   ...toolsCrypto,
@@ -94,6 +100,25 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       headers: { Origin: "http://localhost:3000" },
       data: body,
     });
+  expect(
+    (
+      await submit(web[1].id, { action: "check", answer: web[1].answers[0] })
+    ).status(),
+  ).toBe(423);
+  for (const lesson of web) {
+    const response = await submit(lesson.id, {
+      action: "check",
+      answer: lesson.answers[0],
+    });
+    expect((await response.json()).status, lesson.id).toBe("passed");
+  }
+  expect(
+    (
+      await (
+        await submit(web[0].id, { action: "check", answer: web[0].answers[0] })
+      ).json()
+    ).already,
+  ).toBe(true);
   expect(
     (
       await submit(practice[1].id, {
@@ -371,13 +396,16 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
       'SELECT count(*)::int AS count,sum("awardedXp")::int AS xp FROM "LessonProgress" WHERE "userId"=$1 AND "completedAt" IS NOT NULL',
       [learner.id],
     );
-    expect(result.rows[0]).toEqual({ count: 93, xp: 9610 });
+    expect(result.rows[0]).toEqual({ count: 107, xp: 11010 });
   } finally {
     await progressDb.end();
   }
   await page.goto("/profile");
-  await expect(page.locator(".learning-stats")).toContainText("92/92");
-  await expect(page.locator(".learning-stats")).toContainText("9610");
+  await expect(page.locator(".learning-stats")).toContainText("106/106");
+  await expect(page.locator(".learning-stats")).toContainText("11010");
+  await expect(page.locator('[data-course="web-security"]')).toContainText(
+    "14/14",
+  );
   await expect(page.locator('[data-course="kali-practice"]')).toContainText(
     "24/24",
   );
@@ -404,7 +432,7 @@ test("learner can accept ethics, cannot enter admin, and blocking revokes their 
     page.getByText("XP за прежние уроки сохранены", { exact: false }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.locator(".learning-stats")).toContainText("92/92");
+  await expect(page.locator(".learning-stats")).toContainText("106/106");
   await page.goto("/admin");
   await expect(page).toHaveURL("/");
   const db = new Client({ connectionString: process.env.DIRECT_URL });
@@ -988,7 +1016,7 @@ test("detailed lessons offer usable contents and retain their command walkthroug
     name: "Разделы этого урока",
   });
   const startServer = contents.getByRole("link", {
-    name: "2. Запусти собственный сервер",
+    name: "2. Подготовь отдельную пустую папку для своего сайта",
     exact: true,
   });
   const target = await startServer.getAttribute("href");
@@ -1088,4 +1116,99 @@ test("the additional Kali levels expose full practice and readable tool guides o
     ),
   ).toBe(true);
   await page.screenshot({ path: "test-results/public-extra-tools-mobile.png" });
+});
+
+test("web learning offers complete source texts and a usable local-shop course", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/paths/web-security");
+  await expect(page.locator(".course-lessons > a")).toHaveCount(14);
+  await expect(page.locator(".course-module")).toHaveCount(4);
+  await expect(page.locator(".source-course-note")).toContainText("localhost");
+  await page.screenshot({ path: "test-results/public-web-course-desktop.png" });
+  await page.goto("/web-labs");
+  const total =
+    cheats.sections.length +
+    hacker101.sections.length +
+    juiceAudit.sections.length;
+  await expect(page.locator(".web-topic-card")).toHaveCount(total);
+  await page.getByLabel("Источник веб-материалов").selectOption("cheat-sheets");
+  await expect(page.locator(".web-topic-card")).toHaveCount(
+    cheats.sections.length,
+  );
+  await page
+    .getByRole("searchbox", { name: "Найти тему веб-безопасности" })
+    .fill("SQL");
+  expect(await page.locator(".web-topic-card").count()).toBeGreaterThan(0);
+  const sql = cheats.sections.find((entry) =>
+    entry.sourceUrl.endsWith("/SQL_Injection_Prevention_Cheat_Sheet.md"),
+  )!;
+  await page.goto("/web-labs/cheat-sheets/" + sql.id);
+  const original = page.getByRole("region", {
+    name: "Полный оригинал шпаргалки OWASP",
+  });
+  await expect(original).toContainText("Primary Defenses");
+  await expect(original).toContainText("CC BY-SA 4.0");
+  await expect(original.locator("pre").first()).toBeVisible();
+  expect(await original.locator("h2[id],h3[id]").count()).toBeGreaterThan(3);
+  await page.locator(".web-original").scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: "test-results/public-owasp-original-desktop.png",
+  });
+  for (const lesson of web) {
+    const response = await page.request.get("/learn/" + lesson.id);
+    expect(response.status(), lesson.id).toBe(200);
+    const answer = await page.request.post("/api/learning/" + lesson.id, {
+      headers: { Origin: "http://localhost:3000" },
+      data: { action: "check", answer: lesson.answers[0] },
+    });
+    const result = await answer.json();
+    expect(result.status, lesson.id).toBe("passed");
+    expect(result.guest).toBe(true);
+  }
+  const download = await page.request.get("/downloads/kairon-web.zip");
+  expect(download.status()).toBe(200);
+  await page.goto("/labs/kairon-web/output-demo.html");
+  const requests: string[] = [];
+  page.on("request", (request) => requests.push(request.url()));
+  await page
+    .getByRole("button", { name: "Показать фиксированный пример" })
+    .click();
+  await expect(page.locator("#text-output")).toHaveText("<b>Проверка</b>");
+  await expect(page.locator("#text-output b")).toHaveCount(0);
+  await expect(page.locator("#html-output b")).toHaveText("Проверка");
+  expect(
+    requests.filter((url) => !url.startsWith("http://localhost:3000")),
+  ).toHaveLength(0);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/learn/web-shop-start");
+  await expect(page.locator(".lesson-markdown")).toContainText(
+    "127.0.0.1:3000",
+  );
+  await expect(page.locator(".practice-folder-help")).toHaveCount(0);
+  const contents = page.getByRole("navigation", {
+    name: "Разделы этого урока",
+  });
+  const target = await contents.getByRole("link").first().getAttribute("href");
+  await contents.getByRole("link").first().click();
+  await expect
+    .poll(() =>
+      page
+        .locator(target!)
+        .evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThan(160);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({ path: "test-results/public-juice-guide-mobile.png" });
+  await page.goto("/web-labs/cheat-sheets/" + sql.id);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });

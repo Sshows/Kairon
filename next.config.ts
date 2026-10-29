@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    "/web-labs/**": ["./content/web-originals/cheat-sheets/*.md"],
+  },
   async headers() {
     return [
       {

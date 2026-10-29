@@ -9,8 +9,14 @@ import toolsNetwork from "../../content/lessons/kali-practice-network.json";
 import toolsCrypto from "../../content/lessons/kali-practice-crypto.json";
 import toolsExtraNetwork from "../../content/lessons/kali-practice-extra-network.json";
 import toolsExtraFiles from "../../content/lessons/kali-practice-extra-files.json";
+import webJuice from "../../content/lessons/web-juice.json";
+import webDefense from "../../content/lessons/web-defense.json";
 import type { LearningPathId } from "./learning-paths";
 export const lessons = [
+  ...[...webJuice, ...webDefense].map((lesson) => ({
+    ...lesson,
+    pathId: "web-security" as LearningPathId,
+  })),
   ...basics.map((lesson) => ({
     ...lesson,
     pathId: "security-basics" as LearningPathId,

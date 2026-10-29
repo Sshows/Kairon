@@ -52,6 +52,8 @@ jobs:
         run: python3 -B tests/analysis_kit_test.py -v
       - name: Service diagnostics case files
         run: python3 -B tests/diagnostics_kit_test.py -v
+      - name: Offline web-defense examples
+        run: python3 -B tests/web_kit_test.py -v
       - name: Install tools for actual loopback exercises
         run: |
           sudo apt-get update -qq
@@ -85,8 +87,42 @@ jobs:
           path: test-results/public-*.png
           if-no-files-found: ignore
           retention-days: 3
+  juice-shop:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Run the pinned disposable training shop
+        run: |
+          docker run -d --name kairon-juice-ci -p 127.0.0.1:3001:3000 bkimminich/juice-shop:v20.3.0@sha256:590a451634fe564eff575ecb353a0e67ed6b3abef77005b223281663abda867e
+          docker inspect --format '{{json .HostConfig.PortBindings}}' kairon-juice-ci
+      - name: Verify actual shop instructions in browser and API
+        run: node scripts/verify-juice-shop.mjs
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+          KAIRON_JUICE_CI: "1"
+      - name: Training shop evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: local-juice-shop
+          path: |
+            test-results/public-juice-*.png
+            test-results/juice-shop-verification.json
+          if-no-files-found: ignore
+          retention-days: 3
+      - name: Remove disposable shop
+        if: always()
+        run: docker rm -f kairon-juice-ci
   deploy:
-    needs: verify
+    needs: [verify, juice-shop]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15

@@ -73,6 +73,10 @@ export function Shell({
           </nav>
           <p className="nav-caption second">{t.resources}</p>
           <nav aria-label={t.resources}>
+            <Link href="/web-labs" className="nav-link">
+              <Globe size={18} />
+              {locale === "ru" ? "Веб-безопасность и OWASP" : "Web security and OWASP"}
+            </Link>
             <Link href="/toolbox" className="nav-link">
               <Wrench size={18} />
               {locale === "ru" ? "Как работают инструменты" : "How tools work"}
@@ -118,7 +122,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <span className="status-dot" />
           <span>{t.foundation}</span>
-          <span className="mono">v0.10</span>
+          <span className="mono">v0.11</span>
         </div>
       </aside>
       <div className="main-shell">

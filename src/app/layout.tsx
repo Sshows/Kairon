@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s · Kairon",
   },
   description:
-    "Учебная платформа по кибербезопасности: Linux, Red Team, Blue Team и безопасность ИИ. Короткие объяснения и безопасная практика.",
+    "Учебная платформа по кибербезопасности: Kali Linux, сети, веб-безопасность и расследования. Подробные объяснения с примерами и практика на своём компьютере.",
 };
 export default async function RootLayout({
   children,

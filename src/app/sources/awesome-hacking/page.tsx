@@ -16,6 +16,16 @@ export default function AwesomeSourcePage() {
         Kairon. Это помогает выбрать тему для следующего шага.
       </p>
       <SourceReview source={source} />
+      <section className="tool-course-feature">
+        <h2>Попробовать веб-безопасность на своём магазине</h2>
+        <p>
+          В отдельном курсе запускаем Juice Shop, разбираем запросы и проверяем
+          причины ошибок. Рядом — указатель Hacker101 и полные шпаргалки OWASP.
+        </p>
+        <Link href="/web-labs" className="subtle-link">
+          Перейти к подробным урокам →
+        </Link>
+      </section>
     </div>
   );
 }
