@@ -2023,5 +2023,12 @@
       "mitigationUrl": "https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html",
       "sourceUrl": "https://github.com/juice-shop/juice-shop/blob/f189f521266f42c6bd05884468292000cee852ed/data/static/challenges.yml#L1593"
     }
-  ]
+  ],
+  "challengeCounts": {
+    "hacking": 116,
+    "codingExercises": 35,
+    "codingStages": 70,
+    "totalStages": 186,
+    "explanation": "У 35 основных задач есть два этапа Coding: Find It и Fix It. Это 70 этапов, а не 70 дополнительных строк challenges.yml."
+  }
 }

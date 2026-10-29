@@ -104,9 +104,7 @@ try {
     .getByRole("button", { name: "Close Welcome Banner", exact: true })
     .click();
   await page.locator(".cc-dismiss").click();
-  await page
-    .getByRole("button", { name: "Open search", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Open search", exact: true }).click();
   const search = page.locator("#searchQuery input");
   await search.waitFor();
   let alertSeen = false;
@@ -141,6 +139,18 @@ try {
     assert.equal(byKey.get(key)?.name, name);
     assert.equal(byKey.get(key)?.solved, true, `${name} must be persisted`);
   }
+  const allChallenges = [...byKey.values()];
+  assert.equal(allChallenges.length, 116);
+  const codingExercises = allChallenges.filter(
+    (challenge) => challenge.hasCodingChallenge,
+  ).length;
+  assert.equal(codingExercises, 35);
+  report.challengeCounts = {
+    hacking: allChallenges.length,
+    codingExercises,
+    codingStages: codingExercises * 2,
+    total: allChallenges.length + codingExercises * 2,
+  };
   await page.goto(origin + "/#/score-board");
   await page
     .locator("challenge-card .name")
