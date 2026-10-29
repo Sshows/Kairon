@@ -291,6 +291,9 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
   await expect(
     page.getByRole("link", { name: "Начать первый день", exact: true }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Начать первый день", exact: true }),
+  ).toBeInViewport();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,

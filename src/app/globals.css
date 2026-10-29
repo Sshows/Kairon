@@ -4077,3 +4077,8 @@ progress::-webkit-progress-value {
   margin: 0 0 12px;
   color: #c9deb5;
 }
+@media (max-width: 480px) {
+  .day-home .route-facts span:nth-child(n + 2) {
+    display: none;
+  }
+}
