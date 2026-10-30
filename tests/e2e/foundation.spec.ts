@@ -315,6 +315,44 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
     path: "test-results/public-day-plan-mobile.png",
     fullPage: true,
   });
+  const studyMethod = page.locator(".study-method");
+  await studyMethod.locator("summary").focus();
+  await page.keyboard.press("Enter");
+  await expect(studyMethod.locator("ol")).toBeVisible();
+  await studyMethod.scrollIntoViewIfNeeded();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-study-method-mobile.png",
+  });
+  await page.goto("/learn/project-start");
+  await page
+    .getByText("Как отличить команду от примера результата", { exact: true })
+    .click();
+  await expect(page.locator(".practice-folder-help")).toContainText(
+    "код Python вводят в разных местах",
+  );
+  await page.locator(".lesson-outline summary").click();
+  const pythonSection = page
+    .getByRole("navigation", { name: "Разделы этого урока" })
+    .getByRole("link", {
+      name: "Самостоятельный опыт без изменения исходника",
+      exact: true,
+    });
+  const pythonTarget = await pythonSection.getAttribute("href");
+  await pythonSection.click();
+  await expect(page.locator(pythonTarget!)).toContainText("hello_practice.py");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-python-explanation-mobile.png",
+  });
   await page.goto("/learn/basics-ports");
   await page.locator(".lesson-outline summary").click();
   const anchor = page

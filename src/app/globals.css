@@ -4063,6 +4063,56 @@ progress::-webkit-progress-value {
   font-size: 12px;
   line-height: 1.9;
 }
+.study-method {
+  margin: 30px 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.study-method h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+.study-method h3 {
+  margin: 24px 0 8px;
+  font-size: 16px;
+}
+.study-method p,
+.study-method li {
+  color: #b9bec2;
+  font-size: 14px;
+}
+.study-method p {
+  margin: 0 0 14px;
+}
+.study-method summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 0;
+}
+.study-method summary:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 4px;
+}
+.study-method ol {
+  margin: 16px 0 0;
+  padding-left: 22px;
+}
+.study-method li + li {
+  margin-top: 16px;
+}
+.study-method strong {
+  color: #e9eaec;
+}
+@media (max-width: 480px) {
+  .study-method {
+    padding: 18px 16px;
+  }
+}
 .day-notes summary {
   cursor: pointer;
   color: #c9deb5;
