@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
@@ -16,7 +16,8 @@ type Entry = {
 export function KnowledgeCollections({ entries }: { entries: Entry[] }) {
   const [query, setQuery] = useState("");
   const [source, setSource] = useState("");
-  const needle = query.trim().toLocaleLowerCase("ru");
+  const deferredQuery = useDeferredValue(query);
+  const needle = deferredQuery.trim().toLocaleLowerCase("ru");
   const sources = [
     ...new Map(entries.map((entry) => [entry.source, entry.sourceName])),
   ];

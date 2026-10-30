@@ -1,17 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 236" role="img" aria-labelledby="title desc">
   <title id="title">Два файла готовой машины Kali</title>
   <desc id="desc">vbox — настройки машины, открыть в VirtualBox. vdi — её диск, оставить рядом. Это схема, не снимок экрана.</desc>
-  <rect width="720" height="236" rx="16" fill="#141e16"/>
-  <g font-family="Arial, sans-serif">
-    <text x="24" y="34" fill="#aabc9e" font-size="13">СХЕМА · ВНУТРИ РАСПАКОВАННОЙ ПАПКИ</text>
-    <rect x="22" y="54" width="328" height="156" rx="12" fill="#202f1b" stroke="#a8d46b"/>
-    <rect x="370" y="54" width="328" height="156" rx="12" fill="#1b262d" stroke="#7d9fae"/>
-    <path d="M44 78h33l14 14v47H44z" fill="#bde781"/><path d="M413 78h33l14 14v47h-47z" fill="#81b5c6"/>
-    <text x="110" y="115" fill="#e2f0d8" font-size="29" font-weight="bold">.vbox</text>
-    <text x="479" y="115" fill="#e2f0d8" font-size="29" font-weight="bold">.vdi</text>
-    <text x="44" y="167" fill="#d9e9c9" font-size="16">Открыть в VirtualBox</text>
-    <text x="44" y="192" fill="#aabc9e" font-size="13">Настройки готовой машины</text>
-    <text x="392" y="167" fill="#d3e5e9" font-size="16">Оставить в этой папке</text>
-    <text x="392" y="192" fill="#a8bac2" font-size="13">Виртуальный диск с Kali</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="720" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a131c"/>
+      <stop offset="100%" stop-color="#070d14"/>
+    </linearGradient>
+    <linearGradient id="cardL" x1="22" y1="54" x2="350" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#132920" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0c1a16" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="cardR" x1="370" y1="54" x2="698" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#112230" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0b1622" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="accentL" x1="44" y1="78" x2="91" y2="139" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d9ff7a"/>
+      <stop offset="100%" stop-color="#4be89b"/>
+    </linearGradient>
+    <linearGradient id="accentR" x1="413" y1="78" x2="460" y2="139" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="236" rx="18" fill="url(#bg)" stroke="#1e3340"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <text x="26" y="35" fill="#8fb8a8" font-size="12" font-weight="600" letter-spacing="1.4">СХЕМА · ВНУТРИ РАСПАКОВАННОЙ ПАПКИ</text>
+    <rect x="22" y="54" width="328" height="156" rx="14" fill="url(#cardL)" stroke="#4be89b" stroke-opacity="0.55"/>
+    <rect x="370" y="54" width="328" height="156" rx="14" fill="url(#cardR)" stroke="#38bdf8" stroke-opacity="0.45"/>
+    <path d="M44 78h33l14 14v47H44z" rx="4" fill="url(#accentL)"/>
+    <path d="M413 78h33l14 14v47h-47z" rx="4" fill="url(#accentR)"/>
+    <text x="110" y="116" fill="#ecfdf5" font-size="30" font-weight="700">.vbox</text>
+    <text x="479" y="116" fill="#f0f9ff" font-size="30" font-weight="700">.vdi</text>
+    <text x="44" y="167" fill="#d9fbe8" font-size="16" font-weight="600">Открыть в VirtualBox</text>
+    <text x="44" y="192" fill="#95b8a6" font-size="13">Настройки готовой машины</text>
+    <text x="392" y="167" fill="#dbf0fa" font-size="16" font-weight="600">Оставить в этой папке</text>
+    <text x="392" y="192" fill="#90b0c2" font-size="13">Виртуальный диск с Kali</text>
   </g>
 </svg>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -23,6 +23,7 @@ const icons = {
 export function Catalog({ locale }: { locale: Locale }) {
   const t = copy[locale];
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const available = paths.filter((path) => path.availableLessons);
   const filtered = available.filter((path) =>
     [
@@ -33,7 +34,7 @@ export function Catalog({ locale }: { locale: Locale }) {
     ]
       .join(" ")
       .toLocaleLowerCase(locale)
-      .includes(query.trim().toLocaleLowerCase(locale)),
+      .includes(deferredQuery.trim().toLocaleLowerCase(locale)),
   );
   return (
     <section id="paths" className="catalog-section">

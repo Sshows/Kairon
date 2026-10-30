@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
@@ -15,7 +15,8 @@ type Topic = {
 export function WebTopicCatalog({ topics }: { topics: Topic[] }) {
   const [query, setQuery] = useState("");
   const [source, setSource] = useState("");
-  const needle = query.trim().toLocaleLowerCase("ru");
+  const deferredQuery = useDeferredValue(query);
+  const needle = deferredQuery.trim().toLocaleLowerCase("ru");
   const sources = [
     ...new Map(topics.map((topic) => [topic.source, topic.sourceName])),
   ];

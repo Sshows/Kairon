@@ -144,7 +144,22 @@ export function LessonWorkspace({
               className="lesson-text-section"
               key={section.id}
             >
-              <Markdown>{section.markdown}</Markdown>
+              <Markdown
+                components={{
+                  img: ({ src, alt }) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={typeof src === "string" ? src : undefined}
+                      alt={alt ?? ""}
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                    />
+                  ),
+                }}
+              >
+                {section.markdown}
+              </Markdown>
             </section>
           ))}
         </div>

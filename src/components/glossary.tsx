@@ -1,12 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import { terms } from "@/lib/glossary";
 export function Glossary({ locale }: { locale: "ru" | "en" }) {
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const filtered = terms.filter((item) =>
     `${item.term} ${item[locale]}`
       .toLowerCase()
-      .includes(query.trim().toLowerCase()),
+      .includes(deferredQuery.trim().toLowerCase()),
   );
   return (
     <>

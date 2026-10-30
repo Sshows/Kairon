@@ -1,12 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
 type Area = { id: string; title: string; summary: string; topics: string[] };
 export function SecurityLibrary({ areas }: { areas: Area[] }) {
   const [query, setQuery] = useState("");
-  const needle = query.trim().toLocaleLowerCase("ru");
+  const deferredQuery = useDeferredValue(query);
+  const needle = deferredQuery.trim().toLocaleLowerCase("ru");
   const shown = areas.filter((area) =>
     [area.title, area.summary, ...area.topics]
       .join(" ")

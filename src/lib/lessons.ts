@@ -52,8 +52,30 @@ export const lessons = [
   })),
 ];
 export type Lesson = (typeof lessons)[number];
+
+const lessonById = new Map<string, Lesson>();
+const lessonsByPath = new Map<string, Lesson[]>();
+const modulesByPath = new Map<string, string[]>();
+
+for (const lesson of lessons) {
+  lessonById.set(lesson.id, lesson);
+  const pathList = lessonsByPath.get(lesson.pathId);
+  if (pathList) {
+    pathList.push(lesson);
+  } else {
+    lessonsByPath.set(lesson.pathId, [lesson]);
+  }
+}
+
+for (const [pathId, pathLessons] of lessonsByPath.entries()) {
+  modulesByPath.set(
+    pathId,
+    [...new Set(pathLessons.map((lesson) => lesson.module))],
+  );
+}
+
 export function getLesson(id: string) {
-  return lessons.find((l) => l.id === id);
+  return lessonById.get(id);
 }
 export function publicLesson(lesson: Lesson) {
   const { hints, debrief, answers, xp, ...visible } = lesson;
@@ -65,9 +87,9 @@ export function publicLesson(lesson: Lesson) {
 }
 export type PublicLesson = ReturnType<typeof publicLesson>;
 export function getCourseLessons(pathId: string) {
-  return lessons.filter((lesson) => lesson.pathId === pathId);
+  return lessonsByPath.get(pathId) ?? [];
 }
 export function getCourseModules(pathId: string) {
-  return [...new Set(getCourseLessons(pathId).map((lesson) => lesson.module))];
+  return modulesByPath.get(pathId) ?? [];
 }
-export const lessonIds = new Set(lessons.map((lesson) => lesson.id));
+export const lessonIds = new Set(lessonById.keys());

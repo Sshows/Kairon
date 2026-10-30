@@ -47,8 +47,11 @@ export const webTopics = webSources.flatMap(({ id, audit }) =>
   })),
 );
 
+const webSourceById = new Map(webSources.map((source) => [source.id, source]));
+const cheatSheetCache = new Map<string, Promise<string>>();
+
 export function getWebSource(id: string) {
-  return webSources.find((source) => source.id === id);
+  return webSourceById.get(id);
 }
 
 export async function getCheatSheet(entry: WebTopic) {
@@ -61,8 +64,13 @@ export async function getCheatSheet(entry: WebTopic) {
   );
   if (!/^[A-Za-z0-9_.+-]+\.md$/.test(filename))
     throw new Error("Unexpected filename");
-  return readFile(
-    join(process.cwd(), "content", "web-originals", "cheat-sheets", filename),
-    "utf8",
-  );
+  let cached = cheatSheetCache.get(filename);
+  if (!cached) {
+    cached = readFile(
+      join(process.cwd(), "content", "web-originals", "cheat-sheets", filename),
+      "utf8",
+    );
+    cheatSheetCache.set(filename, cached);
+  }
+  return cached;
 }

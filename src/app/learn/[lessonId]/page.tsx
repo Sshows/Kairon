@@ -1,10 +1,27 @@
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { getLesson, publicLesson } from "@/lib/lessons";
-import { getLessonDay, learningDays } from "@/lib/day-plan";
+import { getLesson, lessons, publicLesson } from "@/lib/lessons";
+import { getLessonDay, orderedLessonIds } from "@/lib/day-plan";
 import { getLearningPath } from "@/lib/learning-paths";
 import { LessonWorkspace } from "@/components/lesson-workspace";
+
+export function generateStaticParams() {
+  return lessons.map((lesson) => ({ lessonId: lesson.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lessonId: string }>;
+}) {
+  const { lessonId } = await params;
+  const lesson = getLesson(lessonId);
+  return {
+    title: lesson ? lesson.title : "Урок не найден",
+  };
+}
+
 export default async function LessonPage({
   params,
 }: {
@@ -30,7 +47,6 @@ export default async function LessonPage({
   const path = getLearningPath(lesson.pathId)!;
   const day = getLessonDay(lessonId);
   if (!day) notFound();
-  const orderedLessonIds = learningDays.flatMap((entry) => entry.lessonIds);
   const index = orderedLessonIds.indexOf(lessonId);
   const next = orderedLessonIds[index + 1] ?? null;
   const followingDay = next ? getLessonDay(next) : null;

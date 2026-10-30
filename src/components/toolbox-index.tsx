@@ -1,12 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
 type Tool = { id: string; name: string; summary: string; howItWorks: string };
 export function ToolboxIndex({ tools }: { tools: Tool[] }) {
   const [query, setQuery] = useState("");
-  const needle = query.trim().toLocaleLowerCase("ru");
+  const deferredQuery = useDeferredValue(query);
+  const needle = deferredQuery.trim().toLocaleLowerCase("ru");
   const shown = tools.filter((tool) =>
     [tool.name, tool.summary, tool.howItWorks]
       .join(" ")

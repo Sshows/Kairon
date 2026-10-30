@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
@@ -11,7 +11,8 @@ type Direction = {
 };
 export function StudyDirections({ directions }: { directions: Direction[] }) {
   const [query, setQuery] = useState("");
-  const needle = query.trim().toLocaleLowerCase("ru");
+  const deferredQuery = useDeferredValue(query);
+  const needle = deferredQuery.trim().toLocaleLowerCase("ru");
   const filtered = directions.filter((item) =>
     [item.title, item.summary, ...item.topics]
       .join(" ")

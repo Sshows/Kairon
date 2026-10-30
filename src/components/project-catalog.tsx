@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import type catalog from "../../content/project-catalog.json";
@@ -21,7 +21,8 @@ export function ProjectCatalog({ projects }: { projects: Project[] }) {
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("all");
   const [status, setStatus] = useState("all");
-  const needle = query.toLocaleLowerCase("ru").trim();
+  const deferredQuery = useDeferredValue(query);
+  const needle = deferredQuery.toLocaleLowerCase("ru").trim();
   const visible = projects.filter(
     (project) =>
       (level === "all" || level === project.level) &&

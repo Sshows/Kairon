@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="kairon-bg" x1="6" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d1b24"/>
+      <stop offset="50%" stop-color="#081219"/>
+      <stop offset="100%" stop-color="#050a0f"/>
+    </linearGradient>
+    <linearGradient id="kairon-liquid" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d4fc79"/>
+      <stop offset="45%" stop-color="#56f09f"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="kairon-glass" x1="16" y1="10" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#56f09f" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#kairon-bg)" stroke="url(#kairon-liquid)" stroke-width="2"/>
+  <path d="M16 14C24 10 40 10 48 14C42 22 22 22 16 14Z" fill="url(#kairon-glass)"/>
+  <path d="M21 18V46M21 32L37 18M27 27L43 46" stroke="url(#kairon-liquid)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="43" cy="19" r="3.5" fill="#d4fc79"/>
+</svg>

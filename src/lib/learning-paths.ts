@@ -147,6 +147,8 @@ export const learningPaths = [
   },
 ] as const;
 
+const learningPathById = new Map(learningPaths.map((path) => [path.id, path]));
+
 export function getLearningPath(id: string) {
-  return learningPaths.find((path) => path.id === id);
+  return learningPathById.get(id as LearningPathId);
 }
