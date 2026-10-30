@@ -4101,6 +4101,11 @@ progress::-webkit-progress-value {
 .study-method ol {
   margin: 16px 0 0;
   padding-left: 22px;
+  list-style: decimal;
+}
+.study-method li::marker {
+  color: var(--lime);
+  font-weight: 600;
 }
 .study-method li + li {
   margin-top: 16px;

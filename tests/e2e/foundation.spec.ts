@@ -345,6 +345,13 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
   const pythonTarget = await pythonSection.getAttribute("href");
   await pythonSection.click();
   await expect(page.locator(pythonTarget!)).toContainText("hello_practice.py");
+  await expect
+    .poll(() =>
+      page
+        .locator(pythonTarget!)
+        .evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThan(160);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
