@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Clock3 } from "lucide-react";
-import { useLocalProgress } from "@/lib/local-progress";
+import { useLearningProgress, ProgressFeedback } from "./learning-account";
+import { StudyBookmark } from "./study-bookmark";
 import { Button } from "./ui/button";
 
 export type DayOverview = {
@@ -28,14 +29,26 @@ export function ContinueLearning({
   days: DayOverview[];
   compact?: boolean;
 }) {
-  const { completedLessonIds, ready, storageAvailable } = useLocalProgress();
+  const {
+    completedLessonIds,
+    completedDays,
+    bookmark,
+    user,
+    ready,
+    storageAvailable,
+  } = useLearningProgress();
   const completed = new Set(completedLessonIds);
-  const current = days.find((day) =>
-    day.lessonIds.some((id) => !completed.has(id)),
+  const current = days.find(
+    (day) =>
+      !completedDays.includes(day.day) &&
+      day.lessonIds.some((id) => !completed.has(id)),
   );
-  const day = current ?? days[0];
-  const started = ready && completed.size > 0;
-  const finished = ready && !current;
+  const day =
+    days.find((item) => item.day === bookmark?.day) ?? current ?? days[0];
+  const started =
+    ready &&
+    (completed.size > 0 || completedDays.length > 0 || Boolean(bookmark));
+  const finished = ready && !current && !bookmark;
   return (
     <section
       className={`continue-learning ${compact ? "continue-compact" : ""}`}
@@ -69,22 +82,43 @@ export function ContinueLearning({
         </div>
       )}
       <Button asChild>
-        <Link href={finished ? "/study-plan" : `/days/${day.day}`}>
+        <Link
+          href={
+            finished
+              ? "/study-plan"
+              : bookmark?.lessonId
+                ? `/learn/${bookmark.lessonId}`
+                : `/days/${day.day}`
+          }
+        >
           {finished
             ? "Открыть весь план"
-            : started
-              ? `Продолжить день ${day.day}`
-              : "Начать первый день"}
+            : bookmark
+              ? "Вернуться к закладке"
+              : started
+                ? `Продолжить день ${day.day}`
+                : "Начать первый день"}
           <ArrowRight size={17} />
         </Link>
       </Button>
       {started && (
         <p className="device-progress-note">
           Отмечено {completed.size} из{" "}
-          {days.flatMap((item) => item.lessonIds).length} уроков на этом
-          устройстве.
+          {days.flatMap((item) => item.lessonIds).length} самопроверок{" "}
+          {user ? "в аккаунте" : "на этом устройстве"}.
         </p>
       )}
+      {bookmark?.note && (
+        <p className="bookmark-note">Моя заметка: {bookmark.note}</p>
+      )}
+      {!user && ready && (
+        <p className="device-progress-note">
+          <Link href="/login">
+            Войти и сохранять прогресс между устройствами
+          </Link>
+        </p>
+      )}
+      <ProgressFeedback />
       {ready && storageAvailable === false && (
         <p className="device-progress-note" role="status">
           Браузер не разрешил сохранять отметки. Уроки работают; после закрытия
@@ -104,10 +138,10 @@ export function DayLessonList({
   finalDay: number;
   lessons: { id: string; title: string; minutes: number; summary: string }[];
 }) {
-  const { completedLessonIds, ready } = useLocalProgress();
+  const { completedLessonIds, completedDays, ready } = useLearningProgress();
   const complete = new Set(completedLessonIds);
   const next = lessons.find((lesson) => !complete.has(lesson.id));
-  const finished = ready && !next;
+  const finished = ready && (!next || completedDays.includes(day.day));
   return (
     <section aria-label="Уроки этого дня" className="daily-lesson-list">
       <h2>Делай по порядку</h2>
@@ -156,10 +190,11 @@ export function DayLessonList({
       </Button>
       {finished && (
         <p className="device-progress-note" role="status">
-          Самопроверки этого дня пройдены. Перед следующим занятием сверь свой
-          результат с целью дня.
+          День отмечен. Перед следующим занятием сверь свой результат с целью
+          дня.
         </p>
       )}
+      <StudyBookmark day={day.day} />
     </section>
   );
 }
@@ -171,15 +206,26 @@ export function DayPlanList({
   days: DayOverview[];
   stages: StageOverview[];
 }) {
-  const { completedLessonIds, ready, storageAvailable, resetProgress } =
-    useLocalProgress();
+  const {
+    completedLessonIds,
+    completedDays,
+    user,
+    ready,
+    saving,
+    storageAvailable,
+    resetProgress,
+  } = useLearningProgress();
   const [confirmReset, setConfirmReset] = useState(false);
   const complete = new Set(completedLessonIds);
-  const current = days.find((day) =>
-    day.lessonIds.some((id) => !complete.has(id)),
+  const current = days.find(
+    (day) =>
+      !completedDays.includes(day.day) &&
+      day.lessonIds.some((id) => !complete.has(id)),
   );
-  const finishedDays = days.filter((day) =>
-    day.lessonIds.every((id) => complete.has(id)),
+  const finishedDays = days.filter(
+    (day) =>
+      completedDays.includes(day.day) ||
+      day.lessonIds.every((id) => complete.has(id)),
   ).length;
   return (
     <div className="day-plan-list">
@@ -220,7 +266,9 @@ export function DayPlanList({
               .filter((day) => day.stageId === stage.id)
               .map((day) => {
                 const done =
-                  ready && day.lessonIds.every((id) => complete.has(id));
+                  ready &&
+                  (completedDays.includes(day.day) ||
+                    day.lessonIds.every((id) => complete.has(id)));
                 return (
                   <li key={day.day}>
                     <Link
@@ -255,10 +303,11 @@ export function DayPlanList({
       <details className="device-progress-settings">
         <summary>Как сохраняются отметки</summary>
         <p>
-          После правильной самопроверки урок отмечается в этом браузере. Данные
-          не отправляются в аккаунт. Очистка данных сайта, другой браузер или
-          устройство не переносят отметки. Это отметки самопроверки, а не оценка
-          выполнения практики.
+          {user
+            ? "Вы вошли в аккаунт. Пройденные самопроверки, личные отметки дней и закладка сохраняются на сервере. Войдите с той же почтой на другом устройстве — они появятся там. Гостевые отметки можно отдельно перенести в разделе «Мой прогресс»."
+            : "Без входа самопроверки сохраняются только в этом браузере. Чтобы видеть их на другом устройстве, создайте бесплатный аккаунт. После входа вы сами выбираете, переносить ли прежние отметки."}{" "}
+          Отметки помогают вести обучение и не подтверждают выполнение практики
+          в Kali.
         </p>
         {ready && storageAvailable === false && (
           <p>
@@ -268,18 +317,22 @@ export function DayPlanList({
         )}
         {!confirmReset ? (
           <button className="subtle-link" onClick={() => setConfirmReset(true)}>
-            Сбросить отметки на этом устройстве
+            {user
+              ? "Сбросить мои отметки в аккаунте"
+              : "Сбросить отметки на этом устройстве"}
           </button>
         ) : (
           <div className="reset-progress-confirm">
             <p>
-              Удалить все местные отметки? Уроки и скачанные файлы останутся.
+              {user
+                ? "Сбросить отметки дней и самопроверок в вашем аккаунте на всех устройствах? Закладка и заметка останутся."
+                : "Удалить все местные отметки? Уроки и скачанные файлы останутся."}
             </p>
             <Button
               variant="outline"
-              onClick={() => {
-                resetProgress();
-                setConfirmReset(false);
+              disabled={saving}
+              onClick={async () => {
+                if (await resetProgress()) setConfirmReset(false);
               }}
             >
               Да, сбросить отметки
@@ -290,6 +343,7 @@ export function DayPlanList({
           </div>
         )}
       </details>
+      <ProgressFeedback />
     </div>
   );
 }

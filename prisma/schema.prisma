@@ -20,11 +20,47 @@ model User {
   role             Role       @default(USER)
   blocked          Boolean    @default(false)
   sessionVersion   Int        @default(1)
+  emailVerifiedAt  DateTime?  @db.Timestamptz(3)
   ethicsAcceptedAt DateTime?  @db.Timestamptz(3)
   createdAt        DateTime   @default(now()) @db.Timestamptz(3)
   updatedAt        DateTime   @updatedAt @db.Timestamptz(3)
   auditLogs        AuditLog[]
   lessonProgress   LessonProgress[]
+  studyDays        StudyDayProgress[]
+  bookmark         StudyBookmark?
+}
+
+model EmailChallenge {
+  id           String    @id
+  email        String
+  purpose      String
+  codeHash     String
+  name         String?
+  passwordHash String?
+  attempts     Int       @default(0)
+  expiresAt    DateTime  @db.Timestamptz(3)
+  createdAt    DateTime  @default(now()) @db.Timestamptz(3)
+
+  @@unique([email, purpose])
+  @@index([expiresAt])
+}
+
+model StudyDayProgress {
+  userId      String
+  day         Int
+  completedAt DateTime @default(now()) @db.Timestamptz(3)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, day])
+}
+
+model StudyBookmark {
+  userId    String   @id
+  day       Int
+  lessonId  String?
+  note      String   @default("")
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model AuditLog {

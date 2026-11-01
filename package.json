@@ -1,6 +1,6 @@
 {
   "name": "kairon",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,8 @@
     "db:provision": "tsx scripts/provision-runtime.ts",
     "db:check": "tsx scripts/check-db.ts",
     "account": "tsx scripts/account.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:accounts": "node scripts/check-accounts.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "7.10.1",
@@ -30,6 +31,7 @@
     "lucide-react": "^0.577.0",
     "next": "16.4.3",
     "next-auth": "5.0.0-beta.32",
+    "nodemailer": "10.3.1",
     "pg": "^8.16.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",
@@ -43,13 +45,16 @@
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "^24.10.0",
+    "@types/nodemailer": "^8.0.2",
     "@types/pg": "^8.15.6",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/smtp-server": "^3.5.13",
     "eslint": "^9.39.1",
     "eslint-config-next": "16.4.3",
     "prettier": "^3.9.10",
     "prisma": "7.10.1",
+    "smtp-server": "^3.21.3",
     "tailwindcss": "4.3.3",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
@@ -57,5 +62,8 @@
   },
   "engines": {
     "node": ">=22.12.0 <25"
+  },
+  "overrides": {
+    "nodemailer": "$nodemailer"
   }
 }

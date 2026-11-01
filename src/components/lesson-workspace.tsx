@@ -16,7 +16,8 @@ import {
 import type { PublicLesson } from "@/lib/lessons";
 import type { learningPaths } from "@/lib/learning-paths";
 import { lessonSections } from "@/lib/lesson-outline";
-import { useLocalProgress } from "@/lib/local-progress";
+import { useLearningProgress, ProgressFeedback } from "./learning-account";
+import { StudyBookmark } from "./study-bookmark";
 import { PracticeFolderHelp } from "./practice-folder-help";
 import { Button } from "./ui/button";
 
@@ -37,8 +38,8 @@ export function LessonWorkspace({
   dayTitle: string;
   nextDay: number | null;
 }) {
-  const { completedLessonIds, storageAvailable, markComplete } =
-    useLocalProgress();
+  const { completedLessonIds, storageAvailable, user, ready, markComplete } =
+    useLearningProgress();
   const completedHere = completedLessonIds.includes(lesson.id);
   const [answer, setAnswer] = useState("");
   const [pending, setPending] = useState(false);
@@ -72,7 +73,11 @@ export function LessonWorkspace({
       if (data.status === "passed") {
         setPassed(true);
         setDebrief(data.debrief);
-        markComplete(lesson.id);
+        const saved = await markComplete(lesson.id);
+        if (!saved)
+          setMessage(
+            "Ответ правильный, но отметка не сохранена. Восстановите соединение или войдите снова и повторите проверку.",
+          );
       } else if (data.status === "hint") {
         setHintsUsed(data.hintsUsed);
         setHint(`Подсказка ${data.hintsUsed}/3: ${data.hint}`);
@@ -107,10 +112,13 @@ export function LessonWorkspace({
         </div>
         {completedHere && !passed && (
           <p className="program-note" role="status">
-            Самопроверка этого урока уже пройдена в этом браузере. Можно
-            перечитать объяснение или ещё раз проверить ответ и открыть разбор.
+            Самопроверка этого урока уже отмечена{" "}
+            {user ? "в вашем аккаунте" : "в этом браузере"}. Можно перечитать
+            объяснение или ещё раз проверить ответ и открыть разбор.
           </p>
         )}
+        <StudyBookmark day={dayNumber} lessonId={lesson.id} />
+        <ProgressFeedback />
         {lesson.kit && (
           <a className="guide-kit-link" href={path.kit.url} download>
             <Download size={17} />
@@ -236,7 +244,7 @@ export function LessonWorkspace({
             <div className="lesson-controls">
               <Button
                 type="submit"
-                disabled={pending || passed || !answer.trim()}
+                disabled={pending || passed || !answer.trim() || !ready}
               >
                 {pending ? (
                   <LoaderCircle size={16} className="spin" />
@@ -279,8 +287,25 @@ export function LessonWorkspace({
               <p>
                 {storageAvailable === false
                   ? "Браузер не разрешает сохранить отметку. Урок пройден в этой вкладке; после её закрытия результат может исчезнуть."
-                  : "Отметка сохранена только в этом браузере. Она помогает продолжить обучение с нужного дня и не подтверждает выполнение действий в Kali."}
+                  : completedHere
+                    ? user
+                      ? "Отметка сохранена в аккаунте и будет доступна на другом устройстве после входа."
+                      : "Отметка сохранена только в этом браузере. Она помогает продолжить обучение с нужного дня и не подтверждает выполнение действий в Kali."
+                    : "Самопроверка пройдена. Сохранение отметки пока не подтверждено."}
               </p>
+              {!completedHere && ready && (
+                <Button
+                  variant="outline"
+                  disabled={pending}
+                  onClick={async () => {
+                    setPending(true);
+                    if (await markComplete(lesson.id)) setMessage("");
+                    setPending(false);
+                  }}
+                >
+                  Повторить сохранение отметки
+                </Button>
+              )}
             </section>
           )}
         </section>

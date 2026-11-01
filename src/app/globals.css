@@ -1,5 +1,46 @@
 @import "tailwindcss";
 
+/* Optional account: free lessons stay public. */
+.account-nav { padding: 8px 14px; border: 1px solid #6ee7b744; border-radius: 10px; color: #b8f7d6; white-space: nowrap; }
+.account-page { width: min(100%, 820px); margin: 0 auto; padding: 32px 24px 64px; }
+.account-card { padding: clamp(20px, 4vw, 40px); background: #0c171ddd; border: 1px solid #a7e6ca26; border-radius: 24px; }
+.account-card h1 { font-size: clamp(26px, 4vw, 36px); line-height: 1.2; margin: 12px 0 20px; font-weight: 700; }
+.account-card h2 { font-size: 20px; margin: 24px 0 12px; font-weight: 650; }
+.account-card p { color: #b7c8c6; line-height: 1.65; margin: 12px 0 20px; overflow-wrap: anywhere; }
+.account-card a:not([data-slot]), .account-inline a { color: #b1eaa8; text-decoration: underline; text-underline-offset: 3px; }
+.account-form { display: grid; gap: 20px; margin: 26px 0; }
+.account-form label, .study-bookmark label:not(.day-completion) { display: grid; gap: 9px; font-size: 15px; }
+.account-form input, .study-bookmark textarea { width: 100%; min-width: 0; padding: 12px 14px; border-radius: 10px; border: 1px solid #8ba89d55; background: #071014; color: #edf8f1; font: inherit; }
+.account-form input:focus, .study-bookmark textarea:focus { outline: 2px solid #9beaab; outline-offset: 2px; }
+.account-form small, .account-help { font-size: 13px; line-height: 1.6; color: #a7bdb4; }
+.account-feedback { padding: 12px 16px; border-left: 3px solid #f4ba74; color: #ffdcad; background: #51301433; margin: 16px 0; overflow-wrap: anywhere; }
+.account-feedback p { color: inherit; margin: 0; }
+.account-message { padding: 12px 16px; background: #50b49018; border-left: 3px solid #87edb7; }
+.account-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 24px 0; }
+.account-actions button { text-align: left; }
+.profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 26px 0; }
+.profile-stats > div { padding: 20px; background: #84ddb00a; border: 1px solid #92e6ba22; border-radius: 14px; }
+.profile-stats strong { display: block; font-size: 28px; color: #c5f59b; }
+.profile-stats span { font-size: 13px; color: #b0c5bb; }
+.profile-section { padding: 8px 0 20px; border-bottom: 1px solid #91a99c33; }
+.profile-section > button.subtle-link { display: block; margin-top: 16px; }
+.bookmark-note { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; }
+.study-bookmark { padding: 18px 20px; margin: 22px 0; border: 1px solid #a7dfb52b; border-radius: 14px; background: #10251b44; }
+.study-bookmark summary { cursor: pointer; color: #c0f2ac; }
+.study-bookmark p { font-size: 14px; line-height: 1.65; color: #bdcfc7; }
+.study-bookmark textarea { resize: vertical; min-height: 90px; margin-bottom: 14px; }
+.day-completion { display: flex; gap: 12px; align-items: center; font-weight: 600; }
+.day-completion input { width: 20px; height: 20px; accent-color: #b0ed80; }
+.account-inline { font-size: 14px; line-height: 1.6; margin: 16px 0; }
+@media (max-width: 520px) {
+  .account-page { padding: 20px 12px 48px; }
+  .account-card { padding: 22px 18px; }
+  .account-nav { font-size: 13px; padding: 7px 10px; }
+  .profile-stats { gap: 8px; }
+  .profile-stats > div { padding: 14px 10px; }
+  .account-form button { height: auto; min-height: 44px; white-space: normal; }
+}
+
 @theme inline {
   --color-background: #070b10;
   --color-foreground: #eef4f8;
@@ -147,6 +188,14 @@ summary:focus-visible {
 
 .skip-link:focus {
   top: 12px;
+}
+
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* Ambient Liquid Mesh Orbs */

@@ -8,13 +8,21 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     trace: "off",
+    actionTimeout: 15000,
     channel: process.env.PLAYWRIGHT_CHANNEL || undefined,
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
-  webServer: {
-    command: "npm run start",
-    url: "http://localhost:3000/api/health",
-    reuseExistingServer: !process.env.CI,
-    timeout: 60000,
-  },
+  webServer: [
+    {
+      command: "node scripts/test-mailbox.mjs",
+      url: "http://127.0.0.1:8026/health",
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: "npm run start",
+      url: "http://localhost:3000/api/health",
+      reuseExistingServer: !process.env.CI,
+      timeout: 60000,
+    },
+  ],
 });

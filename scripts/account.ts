@@ -30,7 +30,9 @@ async function main() {
         'INSERT INTO "User" (id,email,name,"passwordHash",role) VALUES ($1,$2,$3,$4,$5::"Role")',
         [randomUUID(), email, name, passwordHash, role],
       );
-      console.log("Аккаунт создан. Пароль и данные пользователя не выводятся.");
+      console.log(
+        "Аккаунт создан без подтверждения почты. Владелец должен пройти восстановление через письмо, чтобы войти. Пароль и данные пользователя не выводятся.",
+      );
     } else if (action === "block" || action === "unblock") {
       const result = await client.query(
         'UPDATE "User" SET blocked=$1,"sessionVersion"="sessionVersion"+1,"updatedAt"=now() WHERE email=$2',

@@ -12,6 +12,7 @@ export const getCurrentUser = cache(async () => {
   if (
     !user ||
     user.blocked ||
+    !user.emailVerifiedAt ||
     user.sessionVersion !== session.user.sessionVersion
   )
     return null;

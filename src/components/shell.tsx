@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AccountNav } from "./learning-account";
 import {
   ArrowUpRight,
   BookOpen,
@@ -135,7 +136,7 @@ export function Shell({ children }: Props) {
       <div className="main-shell">
         <header className="topbar">
           <span className="breadcrumb">Кибербезопасность с первого дня</span>
-          <span className="free-learning-label">Без регистрации</span>
+          <AccountNav />
         </header>
         <main id="main-content">{children}</main>
         <footer className="footer">

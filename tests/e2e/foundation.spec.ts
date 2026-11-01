@@ -55,12 +55,8 @@ test("first visit has one clear starting action and the actual installation day"
     page.locator(".continue-learning a[data-slot=button]"),
   ).toHaveCount(1);
   await expect(page.locator(".path-card")).toHaveCount(0);
-  await expect(
-    page.locator('a[href="/login"],a[href="/profile"],a[href="/admin"]'),
-  ).toHaveCount(0);
-  await expect(page.locator("body")).not.toContainText(
-    /\bXP\b|Войти|Зарегистрироваться|AI-наставник/,
-  );
+  await expect(page.locator('a[href="/admin"]')).toHaveCount(0);
+  await expect(page.locator("body")).not.toContainText(/\bXP\b|AI-наставник/);
   await page.screenshot({ path: "test-results/public-day-home-desktop.png" });
   await page
     .getByRole("link", { name: "Начать первый день", exact: true })
@@ -141,23 +137,21 @@ test("all 60 days and 106 lessons are public and source material remains readabl
   await expect(page.locator(".path-card")).toHaveCount(8);
 });
 
-test("former account routes do not expose sign-in and self-check ignores old cookies", async ({
+test("accounts are optional and public self-check remains available", async ({
   page,
 }) => {
-  for (const path of ["/login", "/profile", "/admin"]) {
-    await page.goto(path);
-    await expect(page).toHaveURL(/\/study-plan$/);
-    await expect(page.locator('input[type="password"]')).toHaveCount(0);
-  }
-  for (const path of ["/api/me", "/api/auth/session", "/api/auth/csrf"])
-    expect((await page.request.get(path)).status()).toBe(410);
-  expect(
-    (
-      await page.request.post("/api/auth/callback/credentials", {
-        data: { email: "unused@example.invalid", password: "unused" },
-      })
-    ).status(),
-  ).toBe(410);
+  await page.goto("/login");
+  await expect(
+    page.getByRole("heading", { name: "Войти в Kairon" }),
+  ).toBeVisible();
+  await expect(page.locator('input[type="password"]')).toHaveCount(1);
+  await page.goto("/profile");
+  await expect(
+    page.getByRole("heading", { name: "Сохраните своё место" }),
+  ).toBeVisible();
+  expect((await page.request.get("/api/me")).status()).toBe(200);
+  expect((await (await page.request.get("/api/me")).json()).user).toBeNull();
+  expect((await page.request.get("/api/auth/csrf")).status()).toBe(200);
   const lesson = byId.get(plan.days.at(-1)!.lessonIds.at(-1)!)!;
   const checked = await page.request.post("/api/learning/" + lesson.id, {
     headers: {
@@ -212,7 +206,7 @@ test("correct self-checks persist locally, choose the next day and can be reset"
   expect(persisted).toEqual({ version: 1, completedLessonIds: [first.id] });
   await page.reload();
   await expect(
-    page.getByText("Самопроверка этого урока уже пройдена", { exact: false }),
+    page.getByText("Самопроверка этого урока уже отмечена", { exact: false }),
   ).toBeVisible();
   await answerInPage(page, first);
   expect(

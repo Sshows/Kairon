@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/shell";
 import { getLocale } from "@/lib/i18n";
+import { LearningAccountProvider } from "@/components/learning-account";
 import "./globals.css";
 export const metadata: Metadata = {
   title: {
@@ -22,7 +23,9 @@ export default async function RootLayout({
         <a className="skip-link" href="#main-content">
           {locale === "ru" ? "Перейти к содержимому" : "Skip to content"}
         </a>
-        <Shell>{children}</Shell>
+        <LearningAccountProvider>
+          <Shell>{children}</Shell>
+        </LearningAccountProvider>
       </body>
     </html>
   );

@@ -3,9 +3,13 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { hash } from "bcryptjs";
 import { z } from "zod";
-import { findSessionUser, getDatabase, withUser } from "@/lib/db";
+import { getDatabase, withUser } from "@/lib/db";
 import { isValidPassword, verifyPassword } from "@/lib/password";
-import { consumeLoginAttempt } from "@/lib/rate-limit";
+import {
+  consumeLoginAttempt,
+  consumeLimit,
+  requestAddress,
+} from "@/lib/rate-limit";
 
 export function isAuthConfigured(): boolean {
   return Boolean(
@@ -39,11 +43,13 @@ const nextAuth = NextAuth({
   providers: [
     Credentials({
       credentials: { email: { type: "email" }, password: { type: "password" } },
-      async authorize(input) {
+      async authorize(input, request) {
         if (!isAuthConfigured()) return null;
         const parsed = credentialsSchema.safeParse(input);
         if (!parsed.success) return null;
         const { email, password } = parsed.data;
+        if (!(await consumeLimit("login-ip", requestAddress(request), 30, 900)))
+          return null;
         if (!(await consumeLoginAttempt(email))) return null;
         const rows = await getDatabase().$queryRaw<
           LoginUser[]
@@ -75,18 +81,12 @@ const nextAuth = NextAuth({
       if (user) {
         token.sub = user.id;
         token.sessionVersion = user.sessionVersion;
+        token.role = user.role;
       }
       if (!token.sub || !isAuthConfigured()) return null;
-      const current = await findSessionUser(token.sub);
-      if (
-        !current ||
-        current.blocked ||
-        current.sessionVersion !== token.sessionVersion
-      )
-        return null;
-      token.role = current.role;
-      token.name = current.name;
-      token.email = current.email;
+      // Database revalidation belongs in getCurrentUser, outside Auth.js.
+      // Auth.js catches callback failures as a missing session; a DB outage
+      // must instead reach /api/me as 503, never turn an account into a guest.
       return token;
     },
     session({ session, token }) {

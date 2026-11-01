@@ -10,8 +10,25 @@ jobs:
   verify:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: kairon
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: kairon-ci-owner-only
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d kairon"
+          --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       NEXT_TELEMETRY_DISABLED: "1"
+      DIRECT_URL: postgresql://postgres:kairon-ci-owner-only@localhost:5432/kairon
+      DATABASE_URL: postgresql://kairon_runtime:kairon-ci-only@localhost:5432/kairon
+      AUTH_SECRET: ci-only-secret-not-for-production-at-least-32-characters
+      AUTH_URL: http://localhost:3000
+      AUTH_TRUST_HOST: "true"
+      KAIRON_TEST_MAIL: "1"
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -22,6 +39,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run db:generate
+      - run: npm run db:migrate
+      - run: node scripts/prepare-ci-auth.mjs
+      - run: npm run test:accounts
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
