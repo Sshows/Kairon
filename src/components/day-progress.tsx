@@ -77,21 +77,6 @@ export function ContinueLearning({
           ? "Все занятия отмечены. Можно вернуться к любому дню."
           : `День ${day.day}. ${day.title}`}
       </h2>
-      {!compact && (
-        <p>
-          {finished
-            ? "Повтори трудную тему или выбери следующий проект в дополнительных материалах."
-            : day.summary}
-        </p>
-      )}
-      {!finished && (
-        <div className="day-time">
-          <Clock3 size={16} />
-          <span>
-            Ориентир: {day.minutes} мин · можно разделить на несколько подходов
-          </span>
-        </div>
-      )}
       <Button asChild>
         <Link
           href={
@@ -112,6 +97,21 @@ export function ContinueLearning({
           <ArrowRight size={17} />
         </Link>
       </Button>
+      {!compact && (
+        <p>
+          {finished
+            ? "Повтори трудную тему или выбери следующий проект в дополнительных материалах."
+            : day.summary}
+        </p>
+      )}
+      {!finished && (
+        <div className="day-time">
+          <Clock3 size={16} />
+          <span>
+            Ориентир: {day.minutes} мин · можно разделить на несколько подходов
+          </span>
+        </div>
+      )}
       {started && (
         <p className="device-progress-note">
           Отмечено {completed.size} из {totalLessons} самопроверок{" "}

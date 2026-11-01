@@ -1025,7 +1025,7 @@ summary:focus-visible {
 }
 
 .continue-learning [data-slot="button"] {
-  margin-top: 20px;
+  margin: 8px 0 16px;
 }
 
 .continue-compact h2 {
