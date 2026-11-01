@@ -202,20 +202,41 @@ export default function ResourcesPage() {
       <section className="resource-feature">
         <BookOpen size={25} />
         <div>
-          <h2>«Карманный хакер»: темы для работы в компании</h2>
+          <h2>«Карманный хакер»: темы для работы в компании и свежие кейсы</h2>
           <p>
-            Изучили доступную текстовую историю канала. На её темы подготовлен
-            отдельный курс с собственными учебными данными. На странице разбора
-            есть ссылки на посты, первичные источники и ограничения просмотра.
+            Изучили историю канала, видеоразборы и новые материалы октября 2026
+            года (цепочка эксплойтов BlueMoon для Chrome V8 и Windows, разбор
+            квиза про IDOR и статус 200 OK, бытовая приватность против мифа о
+            полной анонимности, базовая разведка сайта в PortSwigger и обзор 50
+            вакансий на рынке ИБ). На их основе подготовлены практические дела и
+            пошаговые разборы внутри уроков курса.
           </p>
           <Link href="/sources/pocket-hacker" className="subtle-link">
-            Открыть разбор канала
+            Открыть разбор канала и кейса BlueMoon
             <ArrowUpRight size={15} />
           </Link>
           <Link href="/paths/blue-team" className="subtle-link">
-            Перейти к 12 новым делам
+            Перейти к 12 делам в компании
             <ArrowUpRight size={15} />
           </Link>
+          <a
+            href="https://t.me/+WkwxUkuswtY2ZTQ6"
+            target="_blank"
+            rel="noreferrer"
+            className="subtle-link"
+          >
+            Telegram-канал «Карманный хакер»
+            <ArrowUpRight size={15} />
+          </a>
+          <a
+            href="https://youtu.be/3Pal2X7mXqc"
+            target="_blank"
+            rel="noreferrer"
+            className="subtle-link"
+          >
+            YouTube: базовая разведка сайта и лаба PortSwigger
+            <ArrowUpRight size={15} />
+          </a>
         </div>
       </section>
       <h2 className="resources-heading">Нашли на GitHub</h2>
