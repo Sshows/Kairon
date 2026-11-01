@@ -1,5 +1,8 @@
 import "server-only";
-import nodemailer from "nodemailer";
+import nodemailer, { type Transporter } from "nodemailer";
+
+let localTransporter: Transporter | undefined;
+let smtpTransporter: Transporter | undefined;
 
 function localMailTest() {
   return (
@@ -14,31 +17,40 @@ export function isMailConfigured() {
     Boolean(process.env.SMTP_USER && process.env.SMTP_PASSWORD)
   );
 }
+function getTransporter(): Transporter {
+  if (localMailTest()) {
+    localTransporter ??= nodemailer.createTransport({
+      host: "127.0.0.1",
+      port: 2526,
+      secure: false,
+      ignoreTLS: true,
+    });
+    return localTransporter;
+  }
+  smtpTransporter ??= nodemailer.createTransport({
+    pool: true,
+    maxConnections: 3,
+    maxMessages: 50,
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD?.replace(/\s/g, ""),
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
+  });
+  return smtpTransporter;
+}
 export async function sendAccountCode(
   to: string,
   code: string,
   purpose: "register" | "reset",
 ) {
   if (!isMailConfigured()) throw new Error("Mail is not configured");
-  const transporter = localMailTest()
-    ? nodemailer.createTransport({
-        host: "127.0.0.1",
-        port: 2526,
-        secure: false,
-        ignoreTLS: true,
-      })
-    : nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASSWORD?.replace(/\s/g, ""),
-        },
-        connectionTimeout: 10000,
-        greetingTimeout: 10000,
-        socketTimeout: 15000,
-      });
+  const transporter = getTransporter();
   const action =
     purpose === "register" ? "подтверждения почты" : "восстановления пароля";
   await transporter.sendMail({

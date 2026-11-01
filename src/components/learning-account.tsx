@@ -4,6 +4,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -78,6 +79,8 @@ export function LearningAccountProvider({
   const generation = useRef(0);
   const readSequence = useRef(0);
   const busy = useRef(false);
+  const refreshInFlight = useRef(false);
+  const lastRefreshAt = useRef(0);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [registrationAvailable, setRegistrationAvailable] = useState(false);
@@ -88,6 +91,7 @@ export function LearningAccountProvider({
 
   const refresh = useCallback(async () => {
     const requestId = ++readSequence.current;
+    refreshInFlight.current = true;
     try {
       const response = await fetch("/api/me", { cache: "no-store" });
       const data = await response.json();
@@ -96,6 +100,7 @@ export function LearningAccountProvider({
         throw new Error(
           "Не удалось загрузить аккаунт. Проверьте соединение и повторите.",
         );
+      lastRefreshAt.current = Date.now();
       if (stateRef.current.user?.id !== data.user?.id) generation.current++;
       if (stateRef.current.status === "error") setError("");
       replace({
@@ -111,6 +116,10 @@ export function LearningAccountProvider({
       setError(
         "Не удалось загрузить аккаунт. Отметки не изменены; попробуйте подключиться снова.",
       );
+    } finally {
+      if (requestId === readSequence.current) {
+        refreshInFlight.current = false;
+      }
     }
   }, [replace]);
 
@@ -134,7 +143,16 @@ export function LearningAccountProvider({
         else void refresh();
       };
     const visible = () => {
-      if (document.visibilityState === "visible") void refresh();
+      if (
+        document.visibilityState === "visible" &&
+        !refreshInFlight.current &&
+        !busy.current &&
+        (stateRef.current.status === "account" ||
+          stateRef.current.status === "error") &&
+        Date.now() - lastRefreshAt.current >= 15000
+      ) {
+        void refresh();
+      }
     };
     window.addEventListener("focus", visible);
     document.addEventListener("visibilitychange", visible);
@@ -149,68 +167,75 @@ export function LearningAccountProvider({
     };
   }, [refresh, replace]);
 
-  const mutate = async (data: Mutation) => {
-    const owner = stateRef.current.user;
-    if (!owner || stateRef.current.status !== "account" || busy.current)
-      return false;
-    const version = generation.current;
-    busy.current = true;
-    setSaving(true);
-    setError("");
-    // Any read started before this write must not replace its newer result.
-    readSequence.current++;
-    try {
-      const response = await fetch("/api/progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, accountId: owner.id }),
-      });
-      const result = await response.json();
-      if (!response.ok) {
-        if (response.status === 401 || response.status === 409) {
-          generation.current++;
-          replace(initial);
-          await refresh();
-        }
-        throw new Error(result.error || "Не удалось сохранить изменения.");
-      }
-      if (
-        version !== generation.current ||
-        stateRef.current.user?.id !== owner.id ||
-        result.accountId !== owner.id
-      )
+  const mutate = useCallback(
+    async (data: Mutation) => {
+      const owner = stateRef.current.user;
+      if (!owner || stateRef.current.status !== "account" || busy.current)
         return false;
+      const version = generation.current;
+      busy.current = true;
+      setSaving(true);
+      setError("");
+      // Any read started before this write must not replace its newer result.
       readSequence.current++;
-      replace({ status: "account", user: owner, progress: result.progress });
-      if (typeof BroadcastChannel !== "undefined") {
-        const channel = new BroadcastChannel(channelName);
-        channel.postMessage("progress");
-        channel.close();
+      try {
+        const response = await fetch("/api/progress", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...data, accountId: owner.id }),
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 409) {
+            generation.current++;
+            replace(initial);
+            await refresh();
+          }
+          throw new Error(result.error || "Не удалось сохранить изменения.");
+        }
+        if (
+          version !== generation.current ||
+          stateRef.current.user?.id !== owner.id ||
+          result.accountId !== owner.id
+        )
+          return false;
+        readSequence.current++;
+        lastRefreshAt.current = Date.now();
+        replace({ status: "account", user: owner, progress: result.progress });
+        if (typeof BroadcastChannel !== "undefined") {
+          const channel = new BroadcastChannel(channelName);
+          channel.postMessage("progress");
+          channel.close();
+        }
+        return true;
+      } catch (failure) {
+        setError(
+          failure instanceof Error
+            ? failure.message
+            : "Не удалось сохранить. Повторите действие после восстановления соединения.",
+        );
+        return false;
+      } finally {
+        busy.current = false;
+        setSaving(false);
       }
-      return true;
-    } catch (failure) {
-      setError(
-        failure instanceof Error
-          ? failure.message
-          : "Не удалось сохранить. Повторите действие после восстановления соединения.",
-      );
-      return false;
-    } finally {
-      busy.current = false;
-      setSaving(false);
-    }
-  };
+    },
+    [refresh, replace],
+  );
   const guest = state.status === "guest";
-  const markComplete = async (id: string) => {
-    if ((stateRef.current.user?.id ?? null) !== (state.user?.id ?? null))
-      return false;
-    if (stateRef.current.status === "guest") {
-      local.markComplete(id);
-      return true;
-    }
-    return mutate({ action: "lesson", lessonId: id });
-  };
-  const resetProgress = async () => {
+  const markComplete = useCallback(
+    async (id: string) => {
+      if ((stateRef.current.user?.id ?? null) !== (state.user?.id ?? null))
+        return false;
+      if (stateRef.current.status === "guest") {
+        local.markComplete(id);
+        return true;
+      }
+      return mutate({ action: "lesson", lessonId: id });
+    },
+    [local, mutate, state.user?.id],
+  );
+  const resetProgress = useCallback(async () => {
     if ((stateRef.current.user?.id ?? null) !== (state.user?.id ?? null))
       return false;
     if (stateRef.current.status === "guest") {
@@ -218,41 +243,55 @@ export function LearningAccountProvider({
       return true;
     }
     return mutate({ action: "reset" });
-  };
-  const importGuest = async () => {
+  }, [local, mutate, state.user?.id]);
+  const importGuest = useCallback(async () => {
     const ok = await mutate({
       action: "import",
       lessonIds: [...local.completedLessonIds],
     });
     if (ok) local.resetProgress();
     return ok;
-  };
-  return (
-    <Context.Provider
-      value={{
-        user: state.user,
-        status: state.status,
-        ready: guest ? local.ready : state.status === "account",
-        completedLessonIds: guest
-          ? local.completedLessonIds
-          : state.progress.completedLessonIds,
-        completedDays: state.progress.completedDays,
-        bookmark: state.progress.bookmark,
-        storageAvailable: guest ? local.storageAvailable : null,
-        guestLessonIds: local.completedLessonIds,
-        registrationAvailable,
-        saving,
-        error,
-        refresh,
-        mutate,
-        markComplete,
-        resetProgress,
-        importGuest,
-      }}
-    >
-      {children}
-    </Context.Provider>
+  }, [local, mutate]);
+  const contextValue = useMemo<Value>(
+    () => ({
+      user: state.user,
+      status: state.status,
+      ready: guest ? local.ready : state.status === "account",
+      completedLessonIds: guest
+        ? local.completedLessonIds
+        : state.progress.completedLessonIds,
+      completedDays: state.progress.completedDays,
+      bookmark: state.progress.bookmark,
+      storageAvailable: guest ? local.storageAvailable : null,
+      guestLessonIds: local.completedLessonIds,
+      registrationAvailable,
+      saving,
+      error,
+      refresh,
+      mutate,
+      markComplete,
+      resetProgress,
+      importGuest,
+    }),
+    [
+      state.user,
+      state.status,
+      state.progress,
+      guest,
+      local.ready,
+      local.completedLessonIds,
+      local.storageAvailable,
+      registrationAvailable,
+      saving,
+      error,
+      refresh,
+      mutate,
+      markComplete,
+      resetProgress,
+      importGuest,
+    ],
   );
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 }
 
 export function useLearningProgress() {

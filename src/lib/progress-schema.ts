@@ -1,6 +1,9 @@
 import { z } from "zod";
 import plan from "../../content/day-plan.json";
 const allowedIds = new Set(plan.days.flatMap((day) => day.lessonIds));
+const lessonsByDay = new Map<number, ReadonlySet<string>>(
+  plan.days.map((item) => [item.day, new Set(item.lessonIds)]),
+);
 const lessonId = z.string().refine((id) => allowedIds.has(id));
 const day = z.number().int().min(1).max(plan.days.length);
 const identity = { accountId: z.uuid() };
@@ -32,9 +35,7 @@ export const progressRequestSchema = z
     (data) =>
       data.action !== "bookmark" ||
       data.lessonId === null ||
-      plan.days
-        .find((item) => item.day === data.day)
-        ?.lessonIds.includes(data.lessonId),
+      Boolean(lessonsByDay.get(data.day)?.has(data.lessonId)),
     "Урок не относится к выбранному дню.",
   );
 

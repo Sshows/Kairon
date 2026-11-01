@@ -40,18 +40,17 @@ export async function POST(request: NextRequest) {
           data.action === "lesson"
             ? [data.lessonId]
             : [...new Set(data.lessonIds)];
-        await tx.lessonProgress.createMany({
-          data: ids.map((lessonId) => ({
-            userId: user.id,
-            lessonId,
-            completedAt: new Date(),
-          })),
-          skipDuplicates: true,
-        });
-        await tx.lessonProgress.updateMany({
-          where: { userId: user.id, lessonId: { in: ids }, completedAt: null },
-          data: { completedAt: new Date() },
-        });
+        if (ids.length > 0) {
+          await tx.$executeRaw`
+            INSERT INTO public."LessonProgress" ("id", "userId", "lessonId", "completedAt", "updatedAt")
+            SELECT gen_random_uuid()::text, ${user.id}, item, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+            FROM unnest(${ids}::text[]) AS item
+            ON CONFLICT ("userId", "lessonId")
+            DO UPDATE SET
+              "completedAt" = COALESCE(public."LessonProgress"."completedAt", EXCLUDED."completedAt"),
+              "updatedAt" = CURRENT_TIMESTAMP
+          `;
+        }
       } else if (data.action === "day") {
         if (data.complete)
           await tx.studyDayProgress.upsert({

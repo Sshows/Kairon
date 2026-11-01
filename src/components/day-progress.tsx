@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Clock3 } from "lucide-react";
 import { useLearningProgress, ProgressFeedback } from "./learning-account";
@@ -37,17 +37,28 @@ export function ContinueLearning({
     ready,
     storageAvailable,
   } = useLearningProgress();
-  const completed = new Set(completedLessonIds);
+  const completed = useMemo(
+    () => new Set(completedLessonIds),
+    [completedLessonIds],
+  );
+  const completedDaySet = useMemo(
+    () => new Set(completedDays),
+    [completedDays],
+  );
+  const totalLessons = useMemo(
+    () => days.reduce((sum, item) => sum + item.lessonIds.length, 0),
+    [days],
+  );
   const current = days.find(
     (day) =>
-      !completedDays.includes(day.day) &&
+      !completedDaySet.has(day.day) &&
       day.lessonIds.some((id) => !completed.has(id)),
   );
   const day =
     days.find((item) => item.day === bookmark?.day) ?? current ?? days[0];
   const started =
     ready &&
-    (completed.size > 0 || completedDays.length > 0 || Boolean(bookmark));
+    (completed.size > 0 || completedDaySet.size > 0 || Boolean(bookmark));
   const finished = ready && !current && !bookmark;
   return (
     <section
@@ -103,8 +114,7 @@ export function ContinueLearning({
       </Button>
       {started && (
         <p className="device-progress-note">
-          Отмечено {completed.size} из{" "}
-          {days.flatMap((item) => item.lessonIds).length} самопроверок{" "}
+          Отмечено {completed.size} из {totalLessons} самопроверок{" "}
           {user ? "в аккаунте" : "на этом устройстве"}.
         </p>
       )}
@@ -216,15 +226,31 @@ export function DayPlanList({
     resetProgress,
   } = useLearningProgress();
   const [confirmReset, setConfirmReset] = useState(false);
-  const complete = new Set(completedLessonIds);
+  const complete = useMemo(
+    () => new Set(completedLessonIds),
+    [completedLessonIds],
+  );
+  const completedDaySet = useMemo(
+    () => new Set(completedDays),
+    [completedDays],
+  );
+  const daysByStage = useMemo(() => {
+    const map = new Map<string, DayOverview[]>();
+    for (const day of days) {
+      const list = map.get(day.stageId);
+      if (list) list.push(day);
+      else map.set(day.stageId, [day]);
+    }
+    return map;
+  }, [days]);
   const current = days.find(
     (day) =>
-      !completedDays.includes(day.day) &&
+      !completedDaySet.has(day.day) &&
       day.lessonIds.some((id) => !complete.has(id)),
   );
   const finishedDays = days.filter(
     (day) =>
-      completedDays.includes(day.day) ||
+      completedDaySet.has(day.day) ||
       day.lessonIds.every((id) => complete.has(id)),
   ).length;
   return (
@@ -262,41 +288,39 @@ export function DayPlanList({
           </summary>
           <p>{stage.summary}</p>
           <ol className="day-cards">
-            {days
-              .filter((day) => day.stageId === stage.id)
-              .map((day) => {
-                const done =
-                  ready &&
-                  (completedDays.includes(day.day) ||
-                    day.lessonIds.every((id) => complete.has(id)));
-                return (
-                  <li key={day.day}>
-                    <Link
-                      href={`/days/${day.day}`}
-                      aria-current={
-                        current?.day === day.day ? "step" : undefined
-                      }
-                      className={done ? "day-card done" : "day-card"}
-                    >
-                      <span className="day-card-number">День {day.day}</span>
-                      <span className="day-card-body">
-                        <strong>{day.title}</strong>
-                        <small>{day.summary}</small>
-                      </span>
-                      <span className="day-card-time">
-                        {done ? (
-                          <>
-                            <CheckCircle2 size={16} />
-                            Пройден
-                          </>
-                        ) : (
-                          `${day.minutes} мин`
-                        )}
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
+            {(daysByStage.get(stage.id) ?? []).map((day) => {
+              const done =
+                ready &&
+                (completedDaySet.has(day.day) ||
+                  day.lessonIds.every((id) => complete.has(id)));
+              return (
+                <li key={day.day}>
+                  <Link
+                    href={`/days/${day.day}`}
+                    aria-current={
+                      current?.day === day.day ? "step" : undefined
+                    }
+                    className={done ? "day-card done" : "day-card"}
+                  >
+                    <span className="day-card-number">День {day.day}</span>
+                    <span className="day-card-body">
+                      <strong>{day.title}</strong>
+                      <small>{day.summary}</small>
+                    </span>
+                    <span className="day-card-time">
+                      {done ? (
+                        <>
+                          <CheckCircle2 size={16} />
+                          Пройден
+                        </>
+                      ) : (
+                        `${day.minutes} мин`
+                      )}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ol>
         </details>
       ))}

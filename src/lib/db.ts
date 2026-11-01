@@ -47,7 +47,9 @@ export function getDatabase() {
     const adapter = new PrismaPg({
       connectionString: process.env.DATABASE_URL,
       max: 5,
-      connectionTimeoutMillis: 5000,
+      idleTimeoutMillis: 15000,
+      connectionTimeoutMillis: 8000,
+      keepAlive: true,
     });
     globalDatabase.kaironDb = new PrismaClient({ adapter });
   }

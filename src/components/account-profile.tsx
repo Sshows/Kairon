@@ -8,7 +8,7 @@ import {
   ProgressFeedback,
 } from "./learning-account";
 import { Button } from "./ui/button";
-import { learningDays } from "@/lib/day-plan";
+import { getLearningDay, learningDays } from "@/lib/day-plan";
 
 export function AccountProfile() {
   const {
@@ -45,10 +45,12 @@ export function AccountProfile() {
         <ProgressFeedback />
       </section>
     );
+  const completedDaySet = new Set(completedDays);
+  const completedLessonSet = new Set(completedLessonIds);
   const doneDays = learningDays.filter(
     (day) =>
-      completedDays.includes(day.day) ||
-      day.lessonIds.every((id) => completedLessonIds.includes(id)),
+      completedDaySet.has(day.day) ||
+      day.lessonIds.every((id) => completedLessonSet.has(id)),
   ).length;
   return (
     <section className="account-card profile-card">
@@ -80,8 +82,7 @@ export function AccountProfile() {
         {bookmark ? (
           <>
             <p>
-              День {bookmark.day}.{" "}
-              {learningDays.find((day) => day.day === bookmark.day)?.title}
+              День {bookmark.day}. {getLearningDay(bookmark.day)?.title}
             </p>
             <p className="bookmark-note">
               {bookmark.note || "Заметка не добавлена."}
