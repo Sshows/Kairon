@@ -1,15 +1,15 @@
 {
   "name": "kairon",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/build-progress-index.mjs && prisma generate && next build && node scripts/check-client-content.mjs",
+    "build": "node scripts/build-continuation-lessons.mjs && node scripts/build-progress-index.mjs && prisma generate && next build && node scripts/check-client-content.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "prisma generate && next typegen && tsc --noEmit",
-    "test": "vitest run",
+    "test": "node scripts/build-continuation-lessons.mjs --check && vitest run",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "env:init": "node scripts/init-env.mjs",

@@ -1,5 +1,4 @@
 import { requireUser } from "@/lib/access";
-import Link from "next/link";
 import { ContinueLearning, DayPlanList } from "@/components/day-progress";
 import {
   learningDays,
@@ -17,16 +16,18 @@ export default async function StudyPlanPage() {
       <h1>{totalDays} учебных дней: от первого запуска до практики</h1>
       <p className="lead">
         Курс начинается с установки Kali Linux и постепенно переходит к сети,
-        работе с инструментами и разбору учебных случаев. Все{" "}
+        работе с инструментами, автоматизации, bug bounty, криптографии и
+        разбору программ. Все{" "}
         {learningDays.flatMap((day) => day.lessonIds).length} уроков расположены
         по порядку: сначала необходимые понятия, затем действия, для которых они
         понадобятся. Предварительный опыт не требуется.
       </p>
       <p className="program-note">
         Около {Math.round(totalPlannedMinutes / 60)} часов по оценкам уроков,
-        обычно 1–2 часа за занятие. Это 12 недель при пяти занятиях в неделю.
-        Установка, повторение и собственная практика могут занять больше
-        времени. Здесь нет сроков сдачи: любой день можно открыть и повторить.
+        обычно 1–2 часа за занятие. Это около {Math.ceil(totalDays / 5)} недель
+        при пяти занятиях в неделю. Установка, повторение и собственная практика
+        могут занять больше времени. Здесь нет сроков сдачи: любой день можно
+        открыть и повторить.
       </p>
       <ContinueLearning days={learningDays} compact />
       <section className="study-method" aria-labelledby="study-method-title">
@@ -108,17 +109,6 @@ export default async function StudyPlanPage() {
         Открой этап, затем нужный день. Текущий этап уже раскрыт.
       </p>
       <DayPlanList days={learningDays} stages={learningStages} />
-      <section className="reading-panel">
-        <h2>Что изучать после базовых 60 дней</h2>
-        <p>
-          Выбери одно продолжение: автоматизация на Python, bug bounty, анализ
-          программ или криптография. Для каждого направления есть подготовка,
-          порядок занятий, практика и разбор результатов.
-        </p>
-        <Link className="subtle-link" href="/reading">
-          Продолжить обучение по выбранному направлению →
-        </Link>
-      </section>
     </div>
   );
 }

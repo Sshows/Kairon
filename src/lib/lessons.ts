@@ -11,6 +11,7 @@ import toolsExtraNetwork from "../../content/lessons/kali-practice-extra-network
 import toolsExtraFiles from "../../content/lessons/kali-practice-extra-files.json";
 import webJuice from "../../content/lessons/web-juice.json";
 import webDefense from "../../content/lessons/web-defense.json";
+import continuation from "../../content/lessons/continuation.json";
 import type { LearningPathId } from "./learning-paths";
 export const lessons = [
   ...[...webJuice, ...webDefense].map((lesson) => ({
@@ -50,6 +51,10 @@ export const lessons = [
     ...lesson,
     pathId: "kali-practice" as LearningPathId,
   })),
+  ...continuation.map((lesson) => ({
+    ...lesson,
+    pathId: lesson.pathId as LearningPathId,
+  })),
 ];
 export type Lesson = (typeof lessons)[number];
 
@@ -68,10 +73,9 @@ for (const lesson of lessons) {
 }
 
 for (const [pathId, pathLessons] of lessonsByPath.entries()) {
-  modulesByPath.set(
-    pathId,
-    [...new Set(pathLessons.map((lesson) => lesson.module))],
-  );
+  modulesByPath.set(pathId, [
+    ...new Set(pathLessons.map((lesson) => lesson.module)),
+  ]);
 }
 
 export function getLesson(id: string) {

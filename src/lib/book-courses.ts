@@ -23,22 +23,3 @@ export async function readBookLesson(courseId: string, lessonId: string) {
     "utf8",
   );
 }
-export const bookConnections: Record<string, string> = {
-  "tools-hashcat": "security-language",
-  "basics-https": "security-language",
-  "basics-ports": "security-language",
-  "project-start": "automation",
-  "project-log": "automation",
-  "project-hash": "automation",
-  "company-idor-evidence": "bug-bounty",
-  "web-idor": "bug-bounty",
-  "web-xss": "bug-bounty",
-  "tools-hash": "cryptography",
-  "tools-hmac": "cryptography",
-  "tools-openssl": "cryptography",
-  "analysis-intake": "malware",
-  "analysis-strings": "malware",
-  "analysis-report": "malware",
-  "tools-file": "zero-day",
-  "tools-readelf": "zero-day",
-};

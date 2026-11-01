@@ -63,11 +63,16 @@ export function AccountProfile({
       </p>
       <div className="profile-stats">
         <div>
-          <strong>{doneDays} / 60</strong>
+          <strong>
+            {doneDays} / {learningDays.length}
+          </strong>
           <span>дней отмечено</span>
         </div>
         <div>
-          <strong>{completedLessonIds.length} / 106</strong>
+          <strong>
+            {completedLessonIds.length} /{" "}
+            {learningDays.reduce((sum, day) => sum + day.lessonIds.length, 0)}
+          </strong>
           <span>самопроверок</span>
         </div>
       </div>

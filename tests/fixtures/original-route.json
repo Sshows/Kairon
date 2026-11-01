@@ -1,0 +1,408 @@
+[
+  {
+    "day": 1,
+    "lessonIds": [
+      "kali-install"
+    ]
+  },
+  {
+    "day": 2,
+    "lessonIds": [
+      "kali-first-boot"
+    ]
+  },
+  {
+    "day": 3,
+    "lessonIds": [
+      "kali-snapshot"
+    ]
+  },
+  {
+    "day": 4,
+    "lessonIds": [
+      "kali-browsers"
+    ]
+  },
+  {
+    "day": 5,
+    "lessonIds": [
+      "tor-browser"
+    ]
+  },
+  {
+    "day": 6,
+    "lessonIds": [
+      "lab-files"
+    ]
+  },
+  {
+    "day": 7,
+    "lessonIds": [
+      "basics-cia",
+      "basics-risk"
+    ]
+  },
+  {
+    "day": 8,
+    "lessonIds": [
+      "basics-ip",
+      "basics-dns"
+    ]
+  },
+  {
+    "day": 9,
+    "lessonIds": [
+      "basics-ports",
+      "basics-https"
+    ]
+  },
+  {
+    "day": 10,
+    "lessonIds": [
+      "basics-mfa",
+      "basics-access"
+    ]
+  },
+  {
+    "day": 11,
+    "lessonIds": [
+      "basics-threat-model",
+      "basics-safe-release"
+    ]
+  },
+  {
+    "day": 12,
+    "lessonIds": [
+      "basics-cloud",
+      "basics-ai-boundary"
+    ]
+  },
+  {
+    "day": 13,
+    "lessonIds": [
+      "suspicious-file",
+      "verify-download"
+    ]
+  },
+  {
+    "day": 14,
+    "lessonIds": [
+      "phishing-mail",
+      "login-investigation"
+    ]
+  },
+  {
+    "day": 15,
+    "lessonIds": [
+      "file-access",
+      "local-web"
+    ]
+  },
+  {
+    "day": 16,
+    "lessonIds": [
+      "find-port",
+      "web-logs"
+    ]
+  },
+  {
+    "day": 17,
+    "lessonIds": [
+      "inspect-traffic",
+      "stop-process"
+    ]
+  },
+  {
+    "day": 18,
+    "lessonIds": [
+      "antivirus-test",
+      "restore-backup"
+    ]
+  },
+  {
+    "day": 19,
+    "lessonIds": [
+      "incident-report",
+      "final-case"
+    ]
+  },
+  {
+    "day": 20,
+    "lessonIds": [
+      "tools-start",
+      "tools-file"
+    ]
+  },
+  {
+    "day": 21,
+    "lessonIds": [
+      "tools-strings",
+      "tools-exiftool"
+    ]
+  },
+  {
+    "day": 22,
+    "lessonIds": [
+      "tools-hash",
+      "tools-yara"
+    ]
+  },
+  {
+    "day": 23,
+    "lessonIds": [
+      "tools-curl",
+      "tools-jq"
+    ]
+  },
+  {
+    "day": 24,
+    "lessonIds": [
+      "tools-dig",
+      "tools-nmap"
+    ]
+  },
+  {
+    "day": 25,
+    "lessonIds": [
+      "tools-netcat",
+      "tools-nmap-xml"
+    ]
+  },
+  {
+    "day": 26,
+    "lessonIds": [
+      "tools-tcpdump",
+      "tools-tshark"
+    ]
+  },
+  {
+    "day": 27,
+    "lessonIds": [
+      "tools-burp",
+      "tools-whatweb"
+    ]
+  },
+  {
+    "day": 28,
+    "lessonIds": [
+      "tools-gobuster",
+      "tools-hydra"
+    ]
+  },
+  {
+    "day": 29,
+    "lessonIds": [
+      "tools-hashcat",
+      "tools-encrypt"
+    ]
+  },
+  {
+    "day": 30,
+    "lessonIds": [
+      "tools-sign",
+      "tools-cert"
+    ]
+  },
+  {
+    "day": 31,
+    "lessonIds": [
+      "tools-hmac",
+      "tools-report"
+    ]
+  },
+  {
+    "day": 32,
+    "lessonIds": [
+      "diag-intake",
+      "diag-scope"
+    ]
+  },
+  {
+    "day": 33,
+    "lessonIds": [
+      "diag-dns",
+      "diag-tls"
+    ]
+  },
+  {
+    "day": 34,
+    "lessonIds": [
+      "diag-logs",
+      "diag-capacity"
+    ]
+  },
+  {
+    "day": 35,
+    "lessonIds": [
+      "diag-change",
+      "diag-handover"
+    ]
+  },
+  {
+    "day": 36,
+    "lessonIds": [
+      "soc-first-shift",
+      "soc-login-chain"
+    ]
+  },
+  {
+    "day": 37,
+    "lessonIds": [
+      "soc-alert-context",
+      "soc-telemetry-gap"
+    ]
+  },
+  {
+    "day": 38,
+    "lessonIds": [
+      "company-patch-priority",
+      "company-secret-logs"
+    ]
+  },
+  {
+    "day": 39,
+    "lessonIds": [
+      "company-access-review",
+      "company-backup-check"
+    ]
+  },
+  {
+    "day": 40,
+    "lessonIds": [
+      "company-ssh-review",
+      "company-idor-evidence"
+    ]
+  },
+  {
+    "day": 41,
+    "lessonIds": [
+      "company-incident-report",
+      "company-final-case"
+    ]
+  },
+  {
+    "day": 42,
+    "lessonIds": [
+      "analysis-intake",
+      "analysis-filetype"
+    ]
+  },
+  {
+    "day": 43,
+    "lessonIds": [
+      "analysis-structure",
+      "analysis-strings"
+    ]
+  },
+  {
+    "day": 44,
+    "lessonIds": [
+      "analysis-alert",
+      "analysis-timeline"
+    ]
+  },
+  {
+    "day": 45,
+    "lessonIds": [
+      "analysis-containment",
+      "analysis-report"
+    ]
+  },
+  {
+    "day": 46,
+    "lessonIds": [
+      "project-start",
+      "project-hash"
+    ]
+  },
+  {
+    "day": 47,
+    "lessonIds": [
+      "project-base64",
+      "project-cipher"
+    ]
+  },
+  {
+    "day": 48,
+    "lessonIds": [
+      "project-headers",
+      "project-log"
+    ]
+  },
+  {
+    "day": 49,
+    "lessonIds": [
+      "project-integrity",
+      "project-final"
+    ]
+  },
+  {
+    "day": 50,
+    "lessonIds": [
+      "web-shop-start"
+    ]
+  },
+  {
+    "day": 51,
+    "lessonIds": [
+      "web-shop-progress"
+    ]
+  },
+  {
+    "day": 52,
+    "lessonIds": [
+      "web-shop-http"
+    ]
+  },
+  {
+    "day": 53,
+    "lessonIds": [
+      "web-shop-accounts"
+    ]
+  },
+  {
+    "day": 54,
+    "lessonIds": [
+      "web-shop-xss"
+    ]
+  },
+  {
+    "day": 55,
+    "lessonIds": [
+      "web-shop-baskets"
+    ]
+  },
+  {
+    "day": 56,
+    "lessonIds": [
+      "web-shop-sqli"
+    ]
+  },
+  {
+    "day": 57,
+    "lessonIds": [
+      "web-shop-report"
+    ]
+  },
+  {
+    "day": 58,
+    "lessonIds": [
+      "web-session",
+      "web-authentication"
+    ]
+  },
+  {
+    "day": 59,
+    "lessonIds": [
+      "web-authorization",
+      "web-sql"
+    ]
+  },
+  {
+    "day": 60,
+    "lessonIds": [
+      "web-xss-defense",
+      "web-csrf"
+    ]
+  }
+]

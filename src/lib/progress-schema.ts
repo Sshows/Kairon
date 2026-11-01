@@ -28,7 +28,7 @@ export const progressRequestSchema = z
     z.strictObject({
       ...identity,
       action: z.literal("import"),
-      lessonIds: z.array(lessonId).max(106),
+      lessonIds: z.array(lessonId).max(allowedIds.size),
     }),
   ])
   .refine(

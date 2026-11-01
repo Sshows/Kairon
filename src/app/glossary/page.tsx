@@ -21,7 +21,7 @@ export default async function GlossaryPage() {
           : "Open a term to see its meaning and an everyday example."}
       </p>
       <p>
-        <Link className="subtle-link" href="/reading/security-language">
+        <Link className="subtle-link" href="/days/61">
           Подробно: John the Ripper, MITM, Metasploit и инъекции →
         </Link>
       </p>

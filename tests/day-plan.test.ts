@@ -9,14 +9,20 @@ import {
   totalDays,
   totalPlannedMinutes,
 } from "../src/lib/day-plan";
+import originalRoute from "./fixtures/original-route.json";
 import { lessons, getLesson } from "../src/lib/lessons";
 
 describe("one complete beginner route", () => {
-  it("places every published lesson exactly once in a continuous 60-day sequence", () => {
-    expect(learningDays).toHaveLength(60);
+  it("places every published lesson exactly once in a continuous 76-day sequence", () => {
+    expect(learningDays).toHaveLength(76);
     expect(learningDays.map((day) => day.day)).toEqual(
-      Array.from({ length: 60 }, (_, index) => index + 1),
+      Array.from({ length: 76 }, (_, index) => index + 1),
     );
+    expect(
+      learningDays
+        .slice(0, 60)
+        .map(({ day, lessonIds }) => ({ day, lessonIds })),
+    ).toEqual(originalRoute);
     const ids = learningDays.flatMap((day) => day.lessonIds);
     expect(ids).toHaveLength(lessons.length);
     expect(new Set(ids).size).toBe(ids.length);
@@ -68,13 +74,13 @@ describe("one complete beginner route", () => {
     expect(totalPlannedMinutes).toBe(
       lessons.reduce((sum, lesson) => sum + lesson.minutes, 0),
     );
-    expect(totalPlannedMinutes).toBe(4218);
+    expect(totalPlannedMinutes).toBe(5733);
     expect(dayPlan.dailyGuidance).toContain("перерывы");
-    expect(dayPlan.calendarGuidance).toContain("12 недель");
+    expect(dayPlan.calendarGuidance).toContain("16 недель");
   });
 
-  it("partitions the route into eight stages without gaps and rejects unknown lookups", () => {
-    expect(learningStages).toHaveLength(8);
+  it("partitions the route into thirteen stages without gaps and rejects unknown lookups", () => {
+    expect(learningStages).toHaveLength(13);
     const stageDays = learningStages.flatMap((stage) => {
       const days = learningDays.filter((day) => day.stageId === stage.id);
       expect(days[0].day).toBe(stage.firstDay);
@@ -83,7 +89,7 @@ describe("one complete beginner route", () => {
     });
     expect(stageDays).toEqual(learningDays.map((day) => day.day));
     expect(getLearningDay(0)).toBeUndefined();
-    expect(getLearningDay(61)).toBeUndefined();
+    expect(getLearningDay(77)).toBeUndefined();
     expect(getLearningDay(1.5)).toBeUndefined();
     expect(getLearningDay(Number.NaN)).toBeUndefined();
     expect(getLessonDay("unknown")).toBeUndefined();

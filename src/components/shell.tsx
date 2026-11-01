@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AccountNav } from "./learning-account";
 import {
-  ArrowUpRight,
   BookOpen,
   CalendarDays,
   Home,
@@ -119,7 +118,7 @@ export function Shell({ children }: Props) {
               </Link>
               <Link href="/materials" className="nav-link">
                 <BookOpen size={18} />
-                Дополнительные материалы
+                Справочники и загрузки
               </Link>
             </nav>
             <div className="simple-sidebar-help">
@@ -157,15 +156,6 @@ export function Shell({ children }: Props) {
         <main id="main-content">{children}</main>
         <footer className="footer">
           <span>© {new Date().getFullYear()} Kairon · Бесплатные уроки</span>
-          <div className="simple-footer-actions">
-            <a
-              href="https://github.com/Sshows/Kairon"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub <ArrowUpRight size={13} />
-            </a>
-          </div>
         </footer>
       </div>
     </div>

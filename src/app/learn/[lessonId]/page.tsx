@@ -7,7 +7,6 @@ import { getLessonDay, orderedLessonIds } from "@/lib/day-plan";
 import { getLearningPath } from "@/lib/learning-paths";
 import { LessonWorkspace } from "@/components/lesson-workspace";
 import { PracticeFolderHelp } from "@/components/practice-folder-help";
-import { bookConnections, getBookCourse } from "@/lib/book-courses";
 
 export function generateStaticParams() {
   return lessons.map((lesson) => ({ lessonId: lesson.id }));
@@ -105,21 +104,6 @@ export default async function LessonPage({
           followingDay && followingDay.day !== day.day ? followingDay.day : null
         }
       />
-      {bookConnections[lessonId] && (
-        <aside className="reading-panel">
-          <h2>Разобраться глубже</h2>
-          <p>
-            После этого урока можно перейти к подробному продолжению с
-            дополнительными объяснениями и практикой.
-          </p>
-          <Link
-            href={`/reading/${bookConnections[lessonId]}`}
-            className="subtle-link"
-          >
-            {getBookCourse(bookConnections[lessonId])?.title} →
-          </Link>
-        </aside>
-      )}
     </div>
   );
 }

@@ -57,6 +57,7 @@ test("first visit has one clear starting action and the actual installation day"
   await expect(page.locator(".path-card")).toHaveCount(0);
   await expect(page.locator('a[href="/admin"]')).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText(/\bXP\b|AI-наставник/);
+  await expect(page.locator('footer a[href*="github.com"]')).toHaveCount(0);
   await page.screenshot({ path: "test-results/public-day-home-desktop.png" });
   await page
     .getByRole("link", { name: "Начать первый день", exact: true })
@@ -89,12 +90,12 @@ test("first visit has one clear starting action and the actual installation day"
   await expect(page.locator(".lesson-top")).toContainText("День 1");
 });
 
-test("all 60 days and 106 lessons are readable after login", async ({
+test("all 76 days and 129 lessons are readable after login", async ({
   page,
 }) => {
   await page.goto("/study-plan");
   await expect(page.locator(".day-stage")).toHaveCount(plan.stages.length);
-  await expect(page.locator(".day-card")).toHaveCount(60);
+  await expect(page.locator(".day-card")).toHaveCount(plan.totalDays);
   await expect(page.locator(".day-stage").first()).toHaveAttribute("open", "");
   for (let offset = 0; offset < plan.days.length; offset += 6)
     await Promise.all(
@@ -123,7 +124,7 @@ test("all 60 days and 106 lessons are readable after login", async ({
         expect(data.xp).toBeUndefined();
       }),
     );
-  for (const value of ["0", "61", "01", "1e1", "-1", "missing"])
+  for (const value of ["0", "77", "01", "1e1", "-1", "missing"])
     expect((await page.request.get("/days/" + value)).status()).toBe(404);
   const sql = cheats.sections.find(
     (entry) => entry.filename === "SQL_Injection_Prevention_Cheat_Sheet.md",
@@ -214,7 +215,9 @@ test("correct self-checks persist in the account, choose the next day and can be
     page.getByRole("link", { name: "Продолжить день 2", exact: true }),
   ).toHaveAttribute("href", "/days/2");
   await page.goto("/study-plan");
-  await expect(page.locator(".day-progress-overview")).toContainText("1 из 60");
+  await expect(page.locator(".day-progress-overview")).toContainText(
+    `1 из ${plan.totalDays}`,
+  );
   await page.screenshot({
     path: "test-results/public-daily-progress-desktop.png",
   });
@@ -239,7 +242,9 @@ test("correct self-checks persist in the account, choose the next day and can be
   await page
     .getByRole("button", { name: "Да, сбросить отметки", exact: true })
     .click();
-  await expect(page.locator(".day-progress-overview")).toContainText("0 из 60");
+  await expect(page.locator(".day-progress-overview")).toContainText(
+    `0 из ${plan.totalDays}`,
+  );
   expect(
     await page.evaluate((key) => localStorage.getItem(key), storageKey),
   ).toBeNull();
@@ -288,7 +293,9 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
   });
   await page.goto("/study-plan");
   await page.locator(".day-stage").last().locator("summary").click();
-  await expect(page.locator('a.day-card[href="/days/60"]')).toBeVisible();
+  await expect(
+    page.locator(`a.day-card[href="/days/${plan.totalDays}"]`),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -380,7 +387,7 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
   ).toBe(true);
 });
 
-test("the final day and an already completed route never point to day 61", async ({
+test("the final published day completes the route without a nonexistent next day", async ({
   page,
 }) => {
   await page.goto("/");
@@ -398,14 +405,16 @@ test("the final day and an already completed route never point to day 61", async
     "МАРШРУТ ПРОЙДЕН",
   );
   await expect(page.locator(".continue-learning .day-time")).toHaveCount(0);
-  await page.goto("/days/60");
+  await page.goto(`/days/${plan.totalDays}`);
   await expect(
     page.getByRole("link", { name: "Посмотреть свой маршрут", exact: true }),
   ).toHaveAttribute("href", "/study-plan");
-  await expect(page.locator('a[href="/days/61"]')).toHaveCount(0);
+  await expect(
+    page.locator(`a[href="/days/${plan.totalDays + 1}"]`),
+  ).toHaveCount(0);
   await page.goto("/study-plan");
   await expect(page.locator(".day-progress-overview")).toContainText(
-    "60 из 60",
+    `${plan.totalDays} из ${plan.totalDays}`,
   );
   await page.screenshot({ path: "test-results/public-route-completed.png" });
 });

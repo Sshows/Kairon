@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   outputFileTracingIncludes: {
-    "/reading/**": ["./content/book-courses/**/*.md"],
     "/web-labs/**": ["./content/web-originals/cheat-sheets/*.md"],
     "/downloads/**": ["./private-materials/downloads/**/*"],
     "/labs/**": ["./private-materials/labs/**/*"],

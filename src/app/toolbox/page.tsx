@@ -4,6 +4,7 @@ import Link from "next/link";
 import { toolboxTools } from "@/lib/toolbox";
 import { ToolboxIndex } from "@/components/toolbox-index";
 import { Button } from "@/components/ui/button";
+import { getCourseLessons } from "@/lib/lessons";
 
 export const metadata = { title: "Как работают инструменты Kali" };
 export default async function ToolboxPage() {
@@ -19,7 +20,10 @@ export default async function ToolboxPage() {
         означает вывод.
       </p>
       <section className="tool-course-feature">
-        <h2>Попробуй на своём стенде: 24 урока</h2>
+        <h2>
+          Инструменты и криптография: {getCourseLessons("kali-practice").length}{" "}
+          урока
+        </h2>
         <p>
           Сначала разберём Nmap, Netcat, проверку паролей и OpenSSL. Затем
           перейдём к запросам curl, данным jq, своему DNS, записям трафика, Burp
@@ -49,9 +53,10 @@ export default async function ToolboxPage() {
         <p>
           Разбери знакомые названия по смыслу: какую задачу решает инструмент,
           где возникает ошибка, какие параметры задавать и что означает
-          результат. Четыре подробных занятия с практикой на собственных данных.
+          результат. Четыре подробных занятия в днях 61–64 с практикой на
+          собственных данных.
         </p>
-        <Link className="subtle-link" href="/reading/security-language">
+        <Link className="subtle-link" href="/days/61">
           Открыть объяснения и практику →
         </Link>
       </section>

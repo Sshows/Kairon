@@ -405,6 +405,109 @@
         "web-xss-defense",
         "web-csrf"
       ]
+    },
+    {
+      "day": 61,
+      "lessonIds": [
+        "john-ripper"
+      ]
+    },
+    {
+      "day": 62,
+      "lessonIds": [
+        "mitm"
+      ]
+    },
+    {
+      "day": 63,
+      "lessonIds": [
+        "metasploit"
+      ]
+    },
+    {
+      "day": 64,
+      "lessonIds": [
+        "injections"
+      ]
+    },
+    {
+      "day": 65,
+      "lessonIds": [
+        "log-report"
+      ]
+    },
+    {
+      "day": 66,
+      "lessonIds": [
+        "local-http",
+        "auto-baseline-diff"
+      ]
+    },
+    {
+      "day": 67,
+      "lessonIds": [
+        "scope-report"
+      ]
+    },
+    {
+      "day": 68,
+      "lessonIds": [
+        "two-accounts"
+      ]
+    },
+    {
+      "day": 69,
+      "lessonIds": [
+        "bug-redirect-hpp-crlf",
+        "bug-ssrf-xxe-ssti"
+      ]
+    },
+    {
+      "day": 70,
+      "lessonIds": [
+        "bug-race-oauth-logic"
+      ]
+    },
+    {
+      "day": 71,
+      "lessonIds": [
+        "crypto-randomness-models",
+        "crypto-block-stream-modes"
+      ]
+    },
+    {
+      "day": 72,
+      "lessonIds": [
+        "hash-mac"
+      ]
+    },
+    {
+      "day": 73,
+      "lessonIds": [
+        "aead-tls",
+        "crypto-public-key-pqc"
+      ]
+    },
+    {
+      "day": 74,
+      "lessonIds": [
+        "static-triage",
+        "behavior-timeline"
+      ]
+    },
+    {
+      "day": 75,
+      "lessonIds": [
+        "malware-x86-encoding",
+        "malware-packers-anti"
+      ]
+    },
+    {
+      "day": 76,
+      "lessonIds": [
+        "binary-map",
+        "source-sink"
+      ]
     }
   ]
 }

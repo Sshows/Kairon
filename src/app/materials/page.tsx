@@ -5,7 +5,7 @@ import { Catalog } from "@/components/catalog";
 import { getLocale } from "@/lib/i18n";
 import { paths } from "@/lib/curriculum";
 
-export const metadata = { title: "Дополнительные материалы" };
+export const metadata = { title: "Справочники и загрузки" };
 const resources = [
   {
     href: "/glossary",
@@ -20,7 +20,7 @@ const resources = [
   {
     href: "/web-labs",
     title: "Углубиться в безопасность сайтов",
-    body: "Juice Shop, материалы Hacker101 и полные шпаргалки OWASP. Основные занятия уже включены в последние дни плана.",
+    body: "Juice Shop, материалы Hacker101 и полные шпаргалки OWASP. Основные занятия уже включены в дни 50–60 и 67–70.",
   },
   {
     href: "/projects",
@@ -52,7 +52,7 @@ export default async function MaterialsPage() {
         ← К плану по дням
       </Link>
       <span className="eyebrow">КОГДА НУЖНО ПОВТОРИТЬ ИЛИ УЗНАТЬ БОЛЬШЕ</span>
-      <h1>Дополнительные материалы</h1>
+      <h1>Справочники и загрузки</h1>
       <p className="lead">
         Здесь можно найти отдельную тему, справку или следующий проект. Если ты
         только пришёл, начни с первого дня: там уже выбран порядок обучения.
@@ -76,14 +76,14 @@ export default async function MaterialsPage() {
         ))}
       </div>
       <section className="reading-panel">
-        <h2>Продолжение по книгам: объяснения и проекты</h2>
+        <h2>Все занятия — в общем плане</h2>
         <p>
           Автоматизация на Python, bug bounty, анализ программ и криптография.
-          Внутри каждого направления — последовательные занятия с подробным
-          разбором команд и результатов.
+          Все эти занятия идут по порядку в днях 61–76, с практикой и
+          сохранением отметок в аккаунте.
         </p>
-        <Link className="subtle-link" href="/reading">
-          Выбрать направление →
+        <Link className="subtle-link" href="/days/61">
+          Перейти к дню 61 →
         </Link>
       </section>
       <details className="legacy-course-index" id="topics">

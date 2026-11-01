@@ -1,4 +1,5 @@
 import "server-only";
+import { getCourseLessons } from "./lessons";
 import type { Locale } from "./i18n";
 export type Path = {
   slug: string;
@@ -12,7 +13,7 @@ export type Path = {
   tags: string[];
   availableLessons?: number;
 };
-export const paths: Path[] = [
+const pathDefinitions: Path[] = [
   {
     slug: "web-security",
     availableLessons: 14,
@@ -25,8 +26,8 @@ export const paths: Path[] = [
       en: "Web security and Juice Shop",
     },
     description: {
-      ru: "14 подробных уроков: свой учебный магазин, запросы, два аккаунта, XSS, SQL и исправление уязвимостей. Все действия объяснены с нуля.",
-      en: "14 detailed guides: run a local training shop, follow requests, compare two owned accounts, understand XSS and SQL, then fix the causes.",
+      ru: "Свой учебный магазин, запросы, два аккаунта, XSS, SQL и исправление уязвимостей. Затем методика bug bounty, обработка запросов и ошибки порядка действий. Все занятия есть в плане по дням.",
+      en: "A local training shop, requests, access checks, XSS, SQL and fixes, followed by bug bounty methods and workflow checks. All lessons belong to the daily plan.",
     },
     modules: {
       ru: [
@@ -53,8 +54,8 @@ export const paths: Path[] = [
     icon: "tool",
     title: { ru: "Инструменты Kali на практике", en: "Kali tools in practice" },
     description: {
-      ru: "24 урока: от Nmap и OpenSSL до Burp Suite, своего DNS, трафика, метаданных, YARA и проверки путей сайта.",
-      en: "24 guides covering network tools, cryptography, HTTP, DNS, traffic, file metadata and local web checks.",
+      ru: "От Nmap и Burp Suite до своего DNS, трафика и файлов. Продолжение: John, Metasploit, границы команд и прикладная криптография; смотри номера дней у уроков.",
+      en: "Network, traffic and file tools, followed by John, Metasploit, interpreter boundaries and applied cryptography. Lessons link to their position in the daily plan.",
     },
     modules: {
       ru: [
@@ -119,8 +120,8 @@ export const paths: Path[] = [
       en: "Suspicious file analysis",
     },
     description: {
-      ru: "8 учебных дел: тип файла, признаки, тревоги, цепочка событий и понятный отчёт. Без запуска неизвестных программ.",
-      en: "8 cases: file types, observations, alerts, timelines, and reporting. No unknown programs are executed.",
+      ru: "Тип файла, признаки, цепочка событий и понятный отчёт. Затем x86, кодирование, упаковка и путь данных до операции. Без запуска неизвестных программ.",
+      en: "File types, observations, timelines and reporting, followed by x86, encoding, packing and source-to-sink reasoning. No unknown programs are executed.",
     },
     modules: {
       ru: ["Проверяем файл без запуска", "Собираем факты и передаём случай"],
@@ -250,8 +251,8 @@ export const paths: Path[] = [
     icon: "tool",
     title: { ru: "Свои первые инструменты", en: "Build your first tools" },
     description: {
-      ru: "8 уроков с нуля: первая строка Python, отпечатки файлов, Base64, шифр букв, журналы входа и свой отчёт.",
-      en: "8 beginner guides: Python, file hashes, Base64, a toy cipher, login logs, and a report.",
+      ru: "Первая строка Python, отпечатки файлов, Base64 и журналы входа. Затем полноценный JSONL-отчёт, проверка своего HTTP и сравнение с эталоном.",
+      en: "Python basics, file hashes and logs, followed by JSONL reporting, controlled HTTP checks and baseline comparison.",
     },
     modules: {
       ru: [
@@ -295,3 +296,7 @@ export const paths: Path[] = [
     tags: ["Ollama", "RAG", "RLS", "DLP"],
   },
 ];
+export const paths: Path[] = pathDefinitions.map((path) => ({
+  ...path,
+  availableLessons: getCourseLessons(path.slug).length || undefined,
+}));

@@ -22,19 +22,19 @@ import { directionLessons } from "../src/lib/study-plan";
 import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
-  it("publishes eight independent courses with stable lesson IDs", () => {
-    expect(lessons).toHaveLength(106);
+  it("preserves the original courses and integrates follow-on lessons with stable IDs", () => {
+    expect(lessons).toHaveLength(129);
     const web = getCourseLessons("web-security");
-    expect(web).toHaveLength(14);
-    expect(getCourseModules("web-security")).toHaveLength(4);
+    expect(web).toHaveLength(19);
+    expect(getCourseModules("web-security")).toHaveLength(5);
     expect(web.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1400);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
     const practice = getCourseLessons("kali-practice");
-    expect(practice).toHaveLength(24);
-    expect(getCourseModules("kali-practice")).toHaveLength(4);
+    expect(practice).toHaveLength(33);
+    expect(getCourseModules("kali-practice")).toHaveLength(6);
     expect(practice.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2400);
     const diagnostics = getCourseLessons("diagnostics");
     expect(diagnostics).toHaveLength(8);
@@ -43,15 +43,15 @@ describe("Kali guides and answer checks", () => {
     const analysis = getCourseLessons("file-analysis");
     expect(kali).toHaveLength(20);
     expect(company).toHaveLength(12);
-    expect(projects).toHaveLength(8);
+    expect(projects).toHaveLength(11);
     expect(basics).toHaveLength(12);
-    expect(analysis).toHaveLength(8);
+    expect(analysis).toHaveLength(14);
     expect(getCourseModules("from-zero")).toHaveLength(4);
     expect(getCourseModules("blue-team")).toHaveLength(3);
-    expect(getCourseModules("kali-tools")).toHaveLength(2);
+    expect(getCourseModules("kali-tools")).toHaveLength(3);
     expect(getCourseModules("security-basics")).toHaveLength(3);
-    expect(getCourseModules("file-analysis")).toHaveLength(2);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(106);
+    expect(getCourseModules("file-analysis")).toHaveLength(3);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(129);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
@@ -104,8 +104,12 @@ describe("Kali guides and answer checks", () => {
     expect(isUnlocked("soc-first-shift", new Set())).toBe(true);
     expect(isUnlocked("tools-start", new Set())).toBe(true);
     expect(isUnlocked("web-shop-start", new Set())).toBe(true);
-    expect(isUnlocked("web-shop-progress", new Set(["kali-install"]))).toBe(false);
-    expect(isUnlocked("web-shop-progress", new Set(["web-shop-start"]))).toBe(true);
+    expect(isUnlocked("web-shop-progress", new Set(["kali-install"]))).toBe(
+      false,
+    );
+    expect(isUnlocked("web-shop-progress", new Set(["web-shop-start"]))).toBe(
+      true,
+    );
     expect(isUnlocked("tools-nmap", new Set(["diag-intake"]))).toBe(false);
     expect(isUnlocked("tools-nmap", new Set(["tools-start"]))).toBe(true);
     expect(isUnlocked("diag-intake", new Set())).toBe(true);

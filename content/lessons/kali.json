@@ -351,8 +351,8 @@
         "note": "Официальная инструкция"
       },
       {
-        "label": "Исходники набора",
-        "url": "https://github.com/Sshows/Kairon/tree/main/public/labs/kairon-kali-lab",
+        "label": "Учебный набор Kairon",
+        "url": "/downloads/kairon-kali-lab.zip",
         "note": "Авторские учебные материалы Kairon"
       }
     ],

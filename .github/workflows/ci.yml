@@ -41,6 +41,8 @@ jobs:
       - run: npm run db:generate
       - run: npm run db:migrate
       - run: node scripts/prepare-ci-auth.mjs
+      - name: Preserve existing accounts when extending the day range
+        run: node scripts/check-day-migration.mjs
       - run: npm run test:accounts
       - run: npm run lint
       - run: npm run typecheck
@@ -73,6 +75,7 @@ jobs:
         run: |
           sudo apt-get install -y --no-install-recommends python3-cryptography
           python3 -B tests/book_practice_test.py -v
+          python3 -B tests/continuation_practice_test.py -v
       - name: Real local tool exercises and archive
         run: python3 -B tests/toolbox_kit_test.py -v
         env:

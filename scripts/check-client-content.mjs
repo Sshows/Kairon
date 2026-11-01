@@ -25,6 +25,19 @@ const probes = [
   "Путь в командах — это папка, а не имя компьютера.",
 ];
 const courseCatalogue = json("content/book-courses/catalogue.json");
+for (const lesson of json("content/lessons/continuation.json")) {
+  const paragraphs = lesson.theory
+    .split(/\n\n/)
+    .filter(
+      (p) => p.length > 120 && !p.startsWith("#") && !p.startsWith("```"),
+    );
+  assert.ok(paragraphs.length, `Missing integrated lesson text: ${lesson.id}`);
+  probes.push(
+    paragraphs[0].slice(0, 120),
+    lesson.question.slice(0, 100),
+    lesson.debrief.slice(0, 100),
+  );
+}
 for (const course of courseCatalogue.courses) {
   for (const lesson of course.lessons) {
     const text = readFileSync(
