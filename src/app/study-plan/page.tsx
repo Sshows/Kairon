@@ -1,4 +1,5 @@
 import { requireUser } from "@/lib/access";
+import Link from "next/link";
 import { ContinueLearning, DayPlanList } from "@/components/day-progress";
 import {
   learningDays,
@@ -107,6 +108,17 @@ export default async function StudyPlanPage() {
         Открой этап, затем нужный день. Текущий этап уже раскрыт.
       </p>
       <DayPlanList days={learningDays} stages={learningStages} />
+      <section className="reading-panel">
+        <h2>Что изучать после базовых 60 дней</h2>
+        <p>
+          Выбери одно продолжение: автоматизация на Python, bug bounty, анализ
+          программ или криптография. Для каждого направления есть подготовка,
+          порядок занятий, практика и разбор результатов.
+        </p>
+        <Link className="subtle-link" href="/reading">
+          Продолжить обучение по выбранному направлению →
+        </Link>
+      </section>
     </div>
   );
 }

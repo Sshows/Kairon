@@ -20,6 +20,9 @@ test("anonymous and forged sessions cannot read pages, RSC, self-checks or files
     "/sources/awesome-hacking",
     "/collections",
     "/glossary",
+    "/reading",
+    "/reading/malware",
+    "/reading/cryptography/aead-tls",
   ]) {
     const response = await page.request.get(route, { maxRedirects: 0 });
     expect(response.status(), route).toBe(307);

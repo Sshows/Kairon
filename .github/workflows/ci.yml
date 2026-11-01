@@ -69,6 +69,10 @@ jobs:
           hashcat -I
         env:
           POCL_MAX_PTHREAD_COUNT: "2"
+      - name: Detailed book-course examples
+        run: |
+          sudo apt-get install -y --no-install-recommends python3-cryptography
+          python3 -B tests/book_practice_test.py -v
       - name: Real local tool exercises and archive
         run: python3 -B tests/toolbox_kit_test.py -v
         env:

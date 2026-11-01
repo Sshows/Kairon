@@ -3706,3 +3706,111 @@ progress::-webkit-progress-value {
 .auth-shell .account-page {
   min-height: calc(100dvh - 180px);
 }
+/* Detailed follow-on reading uses server-rendered text and native disclosure. */
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 32px 0;
+}
+.reading-card,
+.reading-panel,
+.reading-lessons > li {
+  padding: 26px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  background: rgba(14, 28, 35, 0.72);
+  margin: 24px 0;
+}
+.reading-card {
+  margin: 0;
+}
+.reading-card h2 {
+  font-size: 23px;
+  line-height: 1.45;
+  margin: 12px 0;
+}
+.reading-card p,
+.reading-panel p,
+.reading-lessons p {
+  line-height: 1.9;
+  color: #bed0db;
+}
+.reading-source,
+.reading-sources {
+  color: #9eb5c4;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.reading-panel h2 {
+  margin-top: 0;
+}
+.reading-panel ul {
+  padding-left: 22px;
+  line-height: 1.95;
+}
+.reading-panel a,
+.reading-sources a,
+.reading-next a {
+  color: #7ef29d;
+}
+.reading-panel summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 0;
+}
+.reading-lessons {
+  padding-left: 24px;
+}
+.reading-lesson {
+  max-width: 1010px;
+}
+.reading-lesson .lesson-markdown {
+  font-size: 16px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+.reading-lesson .lesson-markdown section {
+  scroll-margin-top: 90px;
+}
+.reading-lesson .lesson-markdown pre {
+  white-space: pre;
+  overflow-x: auto;
+  overflow-wrap: normal;
+  max-width: 100%;
+}
+.reading-lesson .lesson-markdown table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.reading-sources {
+  margin: 32px 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.reading-next {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: space-between;
+  margin: 34px 0;
+  line-height: 1.8;
+}
+.learning-page > .reading-panel {
+  max-width: 980px;
+  margin: 24px auto;
+}
+@media (max-width: 700px) {
+  .reading-grid {
+    grid-template-columns: 1fr;
+  }
+  .reading-card,
+  .reading-panel,
+  .reading-lessons > li {
+    padding: 20px;
+  }
+  .reading-lesson .lesson-markdown {
+    font-size: 15px;
+  }
+}

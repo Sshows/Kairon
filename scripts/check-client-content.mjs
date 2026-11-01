@@ -24,6 +24,22 @@ const probes = [
     .map((text) => text.slice(0, 100)),
   "Путь в командах — это папка, а не имя компьютера.",
 ];
+const courseCatalogue = json("content/book-courses/catalogue.json");
+for (const course of courseCatalogue.courses) {
+  for (const lesson of course.lessons) {
+    const text = readFileSync(
+      new URL(`content/book-courses/${course.id}/${lesson.id}.md`, root),
+      "utf8",
+    );
+    const paragraph = text
+      .split(/\n\n/)
+      .find(
+        (p) => p.length > 120 && !p.startsWith("#") && !p.startsWith("```"),
+      );
+    assert.ok(paragraph, `Missing course text in ${course.id}/${lesson.id}`);
+    probes.push(paragraph.slice(0, 120));
+  }
+}
 assert.ok(
   probes.length > 60,
   "Expected representative private course content probes",

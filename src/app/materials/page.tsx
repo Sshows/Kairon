@@ -75,6 +75,17 @@ export default async function MaterialsPage() {
           </article>
         ))}
       </div>
+      <section className="reading-panel">
+        <h2>Продолжение по книгам: объяснения и проекты</h2>
+        <p>
+          Автоматизация на Python, bug bounty, анализ программ и криптография.
+          Внутри каждого направления — последовательные занятия с подробным
+          разбором команд и результатов.
+        </p>
+        <Link className="subtle-link" href="/reading">
+          Выбрать направление →
+        </Link>
+      </section>
       <details className="legacy-course-index" id="topics">
         <summary>Найти уроки по прежним разделам</summary>
         <p>
