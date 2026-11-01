@@ -55,10 +55,23 @@ test("login returns to the requested lesson and authenticated glossary still wor
   await context.clearCookies();
   await page.goto("/learn/kali-install");
   await expect(page).toHaveURL(/\/login\?next=/);
-  await page.getByLabel("Электронная почта", { exact: true }).fill(learner.email);
+  await page
+    .getByLabel("Электронная почта", { exact: true })
+    .fill(learner.email);
   await page.getByLabel("Пароль", { exact: true }).fill(learner.password);
   await page.getByRole("button", { name: "Войти", exact: true }).click();
   await expect(page).toHaveURL(/\/learn\/kali-install$/);
+  const diagram = page.locator('img[src="/images/kali-files.svg"]');
+  await expect(async () => {
+    // Hydration/progress can replace the Markdown image before its lazy load.
+    await diagram.scrollIntoViewIfNeeded();
+    expect(
+      await diagram.evaluate(
+        (element: HTMLImageElement) =>
+          element.complete && element.naturalWidth > 0,
+      ),
+    ).toBe(true);
+  }).toPass({ timeout: 15000, intervals: [200, 400, 800] });
   await page.goto("/glossary");
   await page.getByRole("searchbox").fill("Код и программа");
   await page.locator(".glossary-list summary").click();
