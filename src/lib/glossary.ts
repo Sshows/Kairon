@@ -1,6 +1,34 @@
 import "server-only";
 export const terms = [
   {
+    term: "John the Ripper",
+    ru: "Программа для проверки кандидатов пароля по имеющемуся хешу. В словарном режиме вычисляет значение для каждого кандидата в выбранном формате и ищет совпадение. Такая офлайн-проверка отличается от попыток входа на сайт и не является обычным расшифрованием хеша.",
+    en: "A password auditing tool that tests candidates against hashes using the selected format. Offline checking is distinct from logging into a website.",
+    exampleRu: "Мы сами выбрали учебный пароль, сохранили его SHA-256 и три кандидата. John находит вариант из нашего списка; неудача на этом списке не доказывает стойкость против всех других вариантов.",
+    exampleEn: "Create a known training hash and three candidates, then check which candidate matches.",
+  },
+  {
+    term: "MITM / Man-in-the-Middle",
+    ru: "Посредник получает положение на пути общения сторон и возможность наблюдать или изменять доступные ему данные. При оценке важно отдельно проверить маршрут, протокол и доверие конечных устройств: видимость пакетов не означает автоматический обход корректного TLS.",
+    en: "An intermediary on the communication path may observe or alter data, subject to the protocol and endpoint trust checks.",
+    exampleRu: "Открытая записка передаётся через человека, который может заменить текст. Защищённый обмен требует также удостовериться, с кем именно установлен канал, а не только скрыть буквы от наблюдателя.",
+    exampleEn: "An intermediary can replace an open note; encryption must be paired with authentication of the intended endpoint.",
+  },
+  {
+    term: "Metasploit Framework",
+    ru: "Среда с отдельными модулями исследования и проверки. В msfconsole выбирают модуль, читают описание и условия, задают параметры и оценивают результат. Exploit, payload, auxiliary и session обозначают разные части работы; найденная версия сервера сама по себе не доказывает его взлом.",
+    en: "A modular testing framework. A module, exploit, payload and session have different roles; a detected banner alone does not establish a vulnerability.",
+    exampleRu: "Как мастерская: сначала выбираешь подходящий инструмент и читаешь его назначение. HTTP-модуль на своём локальном сервере может показать сведения из ответа, не получая доступ к системе.",
+    exampleEn: "An HTTP auxiliary module can describe the response of a local server without compromising it.",
+  },
+  {
+    term: "Инъекция / Injection",
+    ru: "Недоверенное значение меняет инструкции, которые разбирает SQL-движок, оболочка, браузер или другой интерпретатор. Чтобы подтвердить ошибку, нужно показать путь от ввода до действия и изменение поведения. Способ защиты зависит от конкретного языка и места использования.",
+    en: "Untrusted data changes instructions interpreted by a database, shell, browser or other component. The defense depends on the context.",
+    exampleRu: "Поле должно содержать имя клиента, но программа вклеивает его прямо в текст SQL. Специальное значение меняет условие выборки. Передача значения через параметр сохраняет его роль данных в показанном запросе.",
+    exampleEn: "A concatenated name changes SQL structure; binding the value as a parameter preserves its role as data in the query.",
+  },
+  {
     term: "Код и программа / Code & Program",
     ru: "Пошаговая письменная инструкция для компьютера, написанная по строгим правилам понятного ему языка. Сам по себе компьютер не умеет «догадываться» по намёкам: он выполняет ровно те действия и ровно в том порядке, которые записал автор кода в текстовом файле (скрипте).",
     en: "A step-by-step written instruction for a computer following strict language rules. The computer executes the exact steps written in the script without guessing.",

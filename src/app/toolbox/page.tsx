@@ -44,6 +44,17 @@ export default async function ToolboxPage() {
           howItWorks,
         }))}
       />
+      <section className="reading-panel">
+        <h2>John the Ripper, MITM, Metasploit и инъекции</h2>
+        <p>
+          Разбери знакомые названия по смыслу: какую задачу решает инструмент,
+          где возникает ошибка, какие параметры задавать и что означает
+          результат. Четыре подробных занятия с практикой на собственных данных.
+        </p>
+        <Link className="subtle-link" href="/reading/security-language">
+          Открыть объяснения и практику →
+        </Link>
+      </section>
       <section className="project-source-note">
         <h2>Материалы LabEx</h2>
         <p>

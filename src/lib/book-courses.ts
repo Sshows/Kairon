@@ -24,6 +24,9 @@ export async function readBookLesson(courseId: string, lessonId: string) {
   );
 }
 export const bookConnections: Record<string, string> = {
+  "tools-hashcat": "security-language",
+  "basics-https": "security-language",
+  "basics-ports": "security-language",
   "project-start": "automation",
   "project-log": "automation",
   "project-hash": "automation",

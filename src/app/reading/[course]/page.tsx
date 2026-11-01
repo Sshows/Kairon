@@ -60,7 +60,7 @@ export default async function BookCourse({ params }: Props) {
         ))}
       </ol>
       <section className="reading-panel">
-        <h2>Книга и границы этого разбора</h2>
+        <h2>Источники и объём разбора</h2>
         <p>
           <a href={course.book.officialUrl} target="_blank" rel="noreferrer">
             {course.book.title}

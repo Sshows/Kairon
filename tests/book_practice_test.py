@@ -21,6 +21,19 @@ def run(text, directory):
     return result.stdout
 
 class BookPractice(unittest.TestCase):
+    def test_injection_boundaries_in_the_visible_sql_html_and_argument_examples(self):
+        with TemporaryDirectory() as directory:
+            sql,html,args=code('security-language','injections')
+            output=run(sql,directory)
+            self.assertIn("before: [('anna',), ('boris',)]",output)
+            self.assertIn('after:  []',output)
+            self.assertIn("after:  [('anna',)]",output)
+            run(html,directory)
+            page=(Path(directory)/'output.html').read_text(encoding='utf8')
+            self.assertIn('<div><b>TRAINING-MARKER</b></div>',page)
+            self.assertIn('&lt;b&gt;TRAINING-MARKER&lt;/b&gt;',page)
+            self.assertEqual(run(args,directory).strip(),'hello; THIS_IS_ONLY_TEXT')
+
     def test_log_report_and_rejection_of_malformed_input(self):
         with TemporaryDirectory() as directory:
             folder=Path(directory)

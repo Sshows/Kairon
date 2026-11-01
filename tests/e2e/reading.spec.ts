@@ -10,7 +10,9 @@ test("book directions provide protected explanations, navigation and mobile prac
     })
     .click();
   await expect(page).toHaveURL(/\/reading$/);
-  await expect(page.locator(".reading-card")).toHaveCount(5);
+  await expect(page.locator(".reading-card")).toHaveCount(
+    catalogue.courses.length,
+  );
   for (const course of catalogue.courses) {
     const index = await page.request.get(`/reading/${course.id}`);
     expect(index.status()).toBe(200);
@@ -58,4 +60,19 @@ test("book directions provide protected explanations, navigation and mobile prac
   expect((await page.request.get("/reading/malware/missing")).status()).toBe(
     404,
   );
+  await page.goto("/reading/security-language/injections");
+  await expect(page.locator(".lesson-markdown pre")).toHaveCount(3);
+  await page.locator(".reading-sources").scrollIntoViewIfNeeded();
+  await expect(
+    page.getByRole("link", { name: "Официальная справка", exact: true }),
+  ).toHaveAttribute("href", "https://docs.python.org/3/library/sqlite3.html");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/public-security-language-mobile.png",
+    fullPage: false,
+  });
 });

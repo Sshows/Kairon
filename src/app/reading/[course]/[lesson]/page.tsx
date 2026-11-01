@@ -89,13 +89,22 @@ export default async function ReadingLesson({ params }: Props) {
         <ul>
           {lesson.sources.map((s) => (
             <li key={s.chapter}>
-              {s.chapter} · {s.pages}
+              {s.chapter} ·{" "}
+              {s.pages.startsWith("https://") ? (
+                <a href={s.pages} target="_blank" rel="noreferrer">
+                  Официальная справка
+                </a>
+              ) : (
+                s.pages
+              )}
             </li>
           ))}
         </ul>
-        <p>
-          Для PDF указаны номера страниц файла, а не печатная нумерация книги.
-        </p>
+        {course.book.pdfPages > 0 && (
+          <p>
+            Для PDF указаны номера страниц файла, а не печатная нумерация книги.
+          </p>
+        )}
       </section>
       <nav className="reading-next" aria-label="Порядок чтения">
         {index > 0 && (
