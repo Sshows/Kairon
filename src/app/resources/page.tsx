@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen, Download } from "lucide-react";
@@ -47,7 +48,8 @@ const repositories = [
   },
 ];
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  await requireUser();
   return (
     <div className="page-container document-page resources-page">
       <Link href="/study-plan" className="back-link">

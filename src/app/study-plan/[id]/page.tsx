@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import jassics from "../../../../content/source-audits/jassics-plan.json";
@@ -12,6 +13,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireUser();
   const { id } = await params;
   return {
     title:
@@ -24,6 +26,7 @@ export default async function DirectionPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireUser();
   const { id } = await params;
   const section = jassics.sections.find((item) => item.id === id);
   if (!section) notFound();

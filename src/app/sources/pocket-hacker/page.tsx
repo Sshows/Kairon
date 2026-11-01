@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ExternalLink, ShieldCheck } from "lucide-react";
 import audit from "../../../../content/source-audits/pocket-hacker.json";
@@ -61,7 +62,8 @@ const corrections = [
   },
 ];
 
-export default function PocketHackerSourcePage() {
+export default async function PocketHackerSourcePage() {
+  await requireUser();
   const course = getCourseLessons("blue-team");
   return (
     <div className="page-container document-page source-review-page">

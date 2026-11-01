@@ -16,7 +16,7 @@ import unittest
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-kali-lab"
+KIT = ROOT / "private-materials/labs/kairon-kali-lab"
 
 
 def internet_checksum(data):
@@ -30,7 +30,7 @@ def internet_checksum(data):
 
 class KaliKitTest(unittest.TestCase):
     def test_archive_and_manifest_match_every_source(self):
-        target = ROOT / "public/downloads/kairon-kali-lab.zip"
+        target = ROOT / "private-materials/downloads/kairon-kali-lab.zip"
         manifest = json.loads((target.parent / "kairon-kali-lab.json").read_text())
         self.assertEqual(manifest["sha256"], sha256(target.read_bytes()).hexdigest())
         with zipfile.ZipFile(target) as archive:

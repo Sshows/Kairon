@@ -5,11 +5,11 @@ import json
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-projects"
+KIT = ROOT / "private-materials/labs/kairon-projects"
 baseline_hash = sha256((KIT / "samples/original.txt").read_bytes()).hexdigest()
 (KIT / "samples/baseline.json").write_text(json.dumps({"copy-a.txt": baseline_hash, "copy-b.txt": baseline_hash}, indent=2) + "\n", encoding="utf-8", newline="\n")
 files = sorted(path for path in KIT.rglob("*") if path.is_file() and "__pycache__" not in path.parts)
-target = ROOT / "public/downloads/kairon-projects.zip"
+target = ROOT / "private-materials/downloads/kairon-projects.zip"
 with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         if path.suffix not in {".py", ".md", ".txt", ".csv", ".json"}:

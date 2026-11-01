@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { toolboxTools } from "@/lib/toolbox";
@@ -7,6 +8,7 @@ export function generateStaticParams() {
   return toolboxTools.map(({ id }) => ({ id }));
 }
 export async function generateMetadata({ params }: Props) {
+  await requireUser();
   const { id } = await params;
   return {
     title:
@@ -15,6 +17,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 export default async function ToolPage({ params }: Props) {
+  await requireUser();
   const { id } = await params;
   const tool = toolboxTools.find((tool) => tool.id === id);
   if (!tool) notFound();
@@ -65,7 +68,7 @@ export default async function ToolPage({ params }: Props) {
         <h2>Попробуй сам</h2>
         <p>
           В уроках есть подготовка, учебные файлы, объяснения опций и
-          самопроверка. Читать можно без регистрации.
+          самопроверка. Материалы доступны после входа.
         </p>
         <div className="study-lesson-links">
           {tool.lessonIds.map((lessonId) => (

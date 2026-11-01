@@ -1,8 +1,10 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import source from "../../../../content/source-audits/paul-cybersecurity.json";
 import { SourceReview } from "@/components/source-review";
 export const metadata = { title: "Разбор справочника Paul Veillard" };
-export default function PaulSourcePage() {
+export default async function PaulSourcePage() {
+  await requireUser();
   return (
     <div className="page-container document-page source-detail">
       <Link href="/library" className="back-link">

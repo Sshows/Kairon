@@ -5,11 +5,11 @@ import json
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / 'public/labs/kairon-web'
+KIT = ROOT / 'private-materials/labs/kairon-web'
 files = sorted(p for p in KIT.rglob('*') if p.is_file() and '__pycache__' not in p.parts)
 if not files:
     raise RuntimeError('Web exercise files are missing')
-target = ROOT / 'public/downloads/kairon-web.zip'
+target = ROOT / 'private-materials/downloads/kairon-web.zip'
 with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         if path.suffix not in {'.md', '.txt', '.py', '.html'}:

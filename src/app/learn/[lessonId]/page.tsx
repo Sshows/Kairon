@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -5,6 +6,7 @@ import { getLesson, lessons, publicLesson } from "@/lib/lessons";
 import { getLessonDay, orderedLessonIds } from "@/lib/day-plan";
 import { getLearningPath } from "@/lib/learning-paths";
 import { LessonWorkspace } from "@/components/lesson-workspace";
+import { PracticeFolderHelp } from "@/components/practice-folder-help";
 
 export function generateStaticParams() {
   return lessons.map((lesson) => ({ lessonId: lesson.id }));
@@ -15,6 +17,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lessonId: string }>;
 }) {
+  await requireUser();
   const { lessonId } = await params;
   const lesson = getLesson(lessonId);
   return {
@@ -27,6 +30,7 @@ export default async function LessonPage({
 }: {
   params: Promise<{ lessonId: string }>;
 }) {
+  await requireUser();
   const { lessonId } = await params;
   const legacyLessons: Record<string, string> = {
     permission: "kali-install",
@@ -82,6 +86,16 @@ export default async function LessonPage({
         key={lessonId}
         lesson={publicLesson(lesson)}
         path={path}
+        practiceHelp={
+          lesson.kit ? (
+            <PracticeFolderHelp
+              folder={path.kit.url
+                .split("/")
+                .at(-1)!
+                .replace(/\.zip$/, "")}
+            />
+          ) : null
+        }
         previous={orderedLessonIds[index - 1] ?? null}
         next={next}
         dayNumber={day.day}

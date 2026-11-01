@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpen } from "lucide-react";
@@ -7,7 +8,8 @@ import { Button } from "@/components/ui/button";
 
 export const metadata = { title: "Проекты по безопасности — простыми словами" };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  await requireUser();
   return (
     <div className="page-container document-page projects-page">
       <Link className="back-link" href="/resources">

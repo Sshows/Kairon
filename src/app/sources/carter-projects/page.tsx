@@ -1,8 +1,10 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import catalog from "../../../../content/project-catalog.json";
 
 export const metadata = { title: "Разбор Cybersecurity-Projects" };
-export default function CarterSourcePage() {
+export default async function CarterSourcePage() {
+  await requireUser();
   const code = catalog.projects.filter(
     (project) => project.implementation === "source",
   ).length;

@@ -1,8 +1,10 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { getLocale } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 export const metadata = { title: "Этика и правила" };
 export default async function Ethics() {
+  await requireUser();
   const locale = await getLocale();
   const ru = locale === "ru";
   return (
@@ -21,8 +23,8 @@ export default async function Ethics() {
       <div className="prose-content">
         <p>
           {ru
-            ? "На Kairon учимся понимать и защищать системы. Все уроки бесплатны и открыты без аккаунта. Перед первым опытом прочитай, где проходит практика и какие у неё границы."
-            : "Kairon teaches how to understand and protect systems. All lessons are free and open without an account. Before your first exercise, read where practice takes place and what its boundaries are."}
+            ? "На Kairon учимся понимать и защищать системы. Все уроки бесплатны и доступны после регистрации. Перед первым опытом прочитай, где проходит практика и какие у неё границы."
+            : "Kairon teaches how to understand and protect systems. All lessons are free after registration. Before your first exercise, read where practice takes place and what its boundaries are."}
         </p>
         <h2>{ru ? "Только с разрешением" : "Only with permission"}</h2>
         <p>

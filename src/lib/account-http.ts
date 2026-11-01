@@ -13,7 +13,16 @@ export async function readAccountInput(request: NextRequest): Promise<unknown> {
     throw new InputError("Недопустимый источник запроса.", 403);
   if (!request.headers.get("content-type")?.startsWith("application/json"))
     throw new InputError("Нужен запрос в формате JSON.", 415);
-  if (Number(request.headers.get("content-length") ?? 0) > 16000)
+  const text = await readBoundedText(request, 16000);
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new InputError("Не удалось прочитать запрос.", 400);
+  }
+}
+
+export async function readBoundedText(request: Request, maxBytes: number) {
+  if (Number(request.headers.get("content-length") ?? 0) > maxBytes)
     throw new InputError("Слишком большой запрос.", 413);
   const reader = request.body?.getReader();
   if (!reader) throw new InputError("Пустой запрос.", 400);
@@ -23,17 +32,14 @@ export async function readAccountInput(request: NextRequest): Promise<unknown> {
     const { done, value } = await reader.read();
     if (done) break;
     length += value.length;
-    if (length > 16000) {
-      await reader.cancel();
+    if (length > maxBytes) {
+      // Cancellation is best effort: an error must not replace the intended 413.
+      await reader.cancel().catch(() => {});
       throw new InputError("Слишком большой запрос.", 413);
     }
     chunks.push(value);
   }
-  try {
-    return JSON.parse(Buffer.concat(chunks).toString("utf8"));
-  } catch {
-    throw new InputError("Не удалось прочитать запрос.", 400);
-  }
+  return Buffer.concat(chunks).toString("utf8");
 }
 
 export class InputError extends Error {

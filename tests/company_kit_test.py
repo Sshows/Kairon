@@ -10,7 +10,7 @@ import unittest
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-company-lab"
+KIT = ROOT / "private-materials/labs/kairon-company-lab"
 
 
 def table(name):
@@ -29,7 +29,7 @@ def payload(name):
 
 class CompanyKitTest(unittest.TestCase):
     def test_download_matches_every_inert_source(self):
-        target = ROOT / "public/downloads/kairon-company-lab.zip"
+        target = ROOT / "private-materials/downloads/kairon-company-lab.zip"
         manifest = json.loads(target.with_suffix(".json").read_text())
         self.assertEqual(manifest["sha256"], sha256(target.read_bytes()).hexdigest())
         sources = [path for path in KIT.rglob("*") if path.is_file()]

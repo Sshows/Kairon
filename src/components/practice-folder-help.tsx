@@ -1,3 +1,4 @@
+import "server-only";
 export function PracticeFolderHelp({ folder }: { folder: string }) {
   return (
     <aside

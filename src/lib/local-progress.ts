@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import plan from "../../content/day-plan.json";
+import plan from "../../content/progress-index.json";
 
 export const PROGRESS_STORAGE_KEY = "kairon-learning-progress-v1";
 const validLessonIds = new Set(plan.days.flatMap((day) => day.lessonIds));

@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import Markdown, { defaultUrlTransform } from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -14,6 +15,7 @@ export function generateStaticParams() {
   return webTopics.map(({ source, id }) => ({ source, id }));
 }
 export async function generateMetadata({ params }: Props) {
+  await requireUser();
   const { source, id } = await params;
   return {
     title:
@@ -22,6 +24,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 export default async function WebTopicPage({ params }: Props) {
+  await requireUser();
   const { source, id } = await params;
   const entry = webTopics.find(
     (topic) => topic.source === source && topic.id === id,

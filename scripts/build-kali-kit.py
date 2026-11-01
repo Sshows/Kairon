@@ -7,8 +7,8 @@ import struct
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-kali-lab"
-DOWNLOADS = ROOT / "public/downloads"
+KIT = ROOT / "private-materials/labs/kairon-kali-lab"
+DOWNLOADS = ROOT / "private-materials/downloads"
 
 
 def checksum(data):

@@ -1,6 +1,6 @@
 export async function GET() {
   return Response.json(
-    { status: "ok", service: "kairon-web", stage: 1, version: "0.14.0" },
+    { status: "ok", service: "kairon-web", stage: 1, version: "0.15.0" },
     { headers: { "Cache-Control": "no-store" } },
   );
 }

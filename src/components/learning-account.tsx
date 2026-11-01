@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import Link from "next/link";
+import { isPublicRoute, safeReturnTo } from "@/lib/access-policy";
 import { useLocalProgress } from "@/lib/local-progress";
 import {
   emptyAccountProgress,
@@ -61,11 +62,10 @@ export function announceAccountChange() {
   }
 }
 
-export function reloadAfterAccountChange() {
+export function reloadAfterAccountChange(destination = "/study-plan") {
   announceAccountChange();
   // A full document navigation clears all user-owned React state on sign-in/out.
-  // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-  window.location.assign("/study-plan");
+  window.location.assign(safeReturnTo(destination));
 }
 
 export function LearningAccountProvider({
@@ -100,6 +100,12 @@ export function LearningAccountProvider({
         throw new Error(
           "Не удалось загрузить аккаунт. Проверьте соединение и повторите.",
         );
+      if (!data.user && !isPublicRoute(window.location.pathname)) {
+        window.location.replace(
+          `/login?next=${encodeURIComponent(safeReturnTo(window.location.pathname))}`,
+        );
+        return;
+      }
       lastRefreshAt.current = Date.now();
       if (stateRef.current.user?.id !== data.user?.id) generation.current++;
       if (stateRef.current.status === "error") setError("");
@@ -222,18 +228,16 @@ export function LearningAccountProvider({
     },
     [refresh, replace],
   );
-  const guest = state.status === "guest";
   const markComplete = useCallback(
     async (id: string) => {
       if ((stateRef.current.user?.id ?? null) !== (state.user?.id ?? null))
         return false;
       if (stateRef.current.status === "guest") {
-        local.markComplete(id);
-        return true;
+        return false;
       }
       return mutate({ action: "lesson", lessonId: id });
     },
-    [local, mutate, state.user?.id],
+    [mutate, state.user?.id],
   );
   const resetProgress = useCallback(async () => {
     if ((stateRef.current.user?.id ?? null) !== (state.user?.id ?? null))
@@ -256,13 +260,11 @@ export function LearningAccountProvider({
     () => ({
       user: state.user,
       status: state.status,
-      ready: guest ? local.ready : state.status === "account",
-      completedLessonIds: guest
-        ? local.completedLessonIds
-        : state.progress.completedLessonIds,
+      ready: state.status === "account",
+      completedLessonIds: state.progress.completedLessonIds,
       completedDays: state.progress.completedDays,
       bookmark: state.progress.bookmark,
-      storageAvailable: guest ? local.storageAvailable : null,
+      storageAvailable: null,
       guestLessonIds: local.completedLessonIds,
       registrationAvailable,
       saving,
@@ -277,10 +279,7 @@ export function LearningAccountProvider({
       state.user,
       state.status,
       state.progress,
-      guest,
-      local.ready,
       local.completedLessonIds,
-      local.storageAvailable,
       registrationAvailable,
       saving,
       error,

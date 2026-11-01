@@ -1,3 +1,4 @@
+import "server-only";
 import type { Locale } from "./i18n";
 export type Path = {
   slug: string;

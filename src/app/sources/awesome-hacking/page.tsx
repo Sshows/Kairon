@@ -1,8 +1,10 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import source from "../../../../content/source-audits/awesome-hacking.json";
 import { SourceReview } from "@/components/source-review";
 export const metadata = { title: "Разбор Awesome-Hacking" };
-export default function AwesomeSourcePage() {
+export default async function AwesomeSourcePage() {
+  await requireUser();
   return (
     <div className="page-container document-page source-detail">
       <Link href="/collections" className="back-link">

@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getWebSource, webSources } from "@/lib/web-sources";
@@ -8,6 +9,7 @@ export function generateStaticParams() {
   return webSources.map(({ id }) => ({ source: id }));
 }
 export async function generateMetadata({ params }: Props) {
+  await requireUser();
   const project = getWebSource((await params).source);
   return {
     title: project
@@ -16,6 +18,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 export default async function WebSourcePage({ params }: Props) {
+  await requireUser();
   const { source } = await params;
   const project = getWebSource(source);
   if (!project) notFound();

@@ -62,14 +62,14 @@ def make_png():
             + chunk(b'IEND', b''))
 
 ROOT=Path(__file__).resolve().parents[1]
-KIT=ROOT/'public/labs/kairon-toolbox'
+KIT=ROOT/'private-materials/labs/kairon-toolbox'
 (KIT/'data').mkdir(parents=True,exist_ok=True)
 (KIT/'traffic').mkdir(exist_ok=True)
 (KIT/'data/metadata.png').write_bytes(make_png())
 (KIT/'traffic/local-http.pcap').write_bytes(make_pcap())
 files=sorted(path for path in KIT.rglob('*') if path.is_file() and '__pycache__' not in path.parts and 'work' not in path.relative_to(KIT).parts)
 if not files: raise RuntimeError('Toolbox teaching files missing')
-target=ROOT/'public/downloads/kairon-toolbox.zip'
+target=ROOT/'private-materials/downloads/kairon-toolbox.zip'
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         if path.suffix not in {'.md','.txt','.csv','.html','.py','.sha256','.json','.yar','.png','.pcap'}: raise ValueError('Unexpected sample type: '+path.name)

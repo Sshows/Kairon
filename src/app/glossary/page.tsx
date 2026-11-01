@@ -1,7 +1,10 @@
+import { requireUser } from "@/lib/access";
 import { getLocale } from "@/lib/i18n";
 import { Glossary } from "@/components/glossary";
+import { terms } from "@/lib/glossary";
 export const metadata = { title: "Словарь" };
 export default async function GlossaryPage() {
+  await requireUser();
   const locale = await getLocale();
   return (
     <div className="page-container document-page">
@@ -16,7 +19,7 @@ export default async function GlossaryPage() {
           ? "Нажми на термин, чтобы увидеть объяснение и пример из жизни."
           : "Open a term to see its meaning and an everyday example."}
       </p>
-      <Glossary locale={locale} />
+      <Glossary locale={locale} terms={terms} />
     </div>
   );
 }

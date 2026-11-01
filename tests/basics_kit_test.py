@@ -14,7 +14,7 @@ import unittest
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-KIT=ROOT/'public/labs/kairon-basics'
+KIT=ROOT/'private-materials/labs/kairon-basics'
 
 def table(name):
     with (KIT/name).open(encoding='utf-8',newline='') as source:
@@ -55,7 +55,7 @@ class BasicsKit(unittest.TestCase):
             with self.assertRaises(OSError): request('/')
 
     def test_download_matches_every_inert_source(self):
-        target=ROOT/'public/downloads/kairon-basics.zip'
+        target=ROOT/'private-materials/downloads/kairon-basics.zip'
         manifest=json.loads(target.with_suffix('.json').read_text(encoding='utf-8'))
         self.assertEqual(sha256(target.read_bytes()).hexdigest(),manifest['sha256'])
         files=sorted(p for p in KIT.rglob('*') if p.is_file())

@@ -1,9 +1,11 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import jassics from "../../../../content/source-audits/jassics-plan.json";
 import hamed from "../../../../content/source-audits/hamed-roadmap.json";
 
 export const metadata = { title: "Как проверили два плана по безопасности" };
-export default function StudyPlanSources() {
+export default async function StudyPlanSources() {
+  await requireUser();
   return (
     <div className="page-container document-page study-plan-source">
       <Link href="/study-plan" className="back-link">

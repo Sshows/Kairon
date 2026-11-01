@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { collections } from "@/lib/collections";
@@ -5,7 +6,8 @@ import { KnowledgeCollections } from "@/components/knowledge-collections";
 import { Button } from "@/components/ui/button";
 
 export const metadata = { title: "Подборки знаний: объяснения и примеры" };
-export default function CollectionsPage() {
+export default async function CollectionsPage() {
+  await requireUser();
   return (
     <div className="page-container document-page library-page">
       <ReferenceRouteNote />

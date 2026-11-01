@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { toolboxTools } from "@/lib/toolbox";
@@ -5,7 +6,8 @@ import { ToolboxIndex } from "@/components/toolbox-index";
 import { Button } from "@/components/ui/button";
 
 export const metadata = { title: "Как работают инструменты Kali" };
-export default function ToolboxPage() {
+export default async function ToolboxPage() {
+  await requireUser();
   return (
     <div className="page-container document-page library-page toolbox-page">
       <ReferenceRouteNote />

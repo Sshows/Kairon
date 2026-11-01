@@ -5,10 +5,10 @@ import json
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-KIT=ROOT/'public/labs/kairon-diagnostics'
+KIT=ROOT/'private-materials/labs/kairon-diagnostics'
 files=sorted(path for path in KIT.rglob('*') if path.is_file())
 if not files: raise RuntimeError('Diagnostics teaching files missing')
-target=ROOT/'public/downloads/kairon-diagnostics.zip'
+target=ROOT/'private-materials/downloads/kairon-diagnostics.zip'
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         if path.suffix not in {'.md','.txt','.csv'}: raise ValueError('Unexpected sample type: '+path.name)

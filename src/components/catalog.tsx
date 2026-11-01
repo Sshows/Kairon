@@ -11,7 +11,7 @@ import {
   Wrench,
   ArrowRight,
 } from "lucide-react";
-import { paths } from "@/lib/curriculum";
+import type { Path } from "@/lib/curriculum";
 import { copy, type Locale } from "@/lib/i18n-client";
 const icons = {
   terminal: Terminal,
@@ -20,7 +20,7 @@ const icons = {
   tool: Wrench,
   brain: BrainCircuit,
 };
-export function Catalog({ locale }: { locale: Locale }) {
+export function Catalog({ locale, paths }: { locale: Locale; paths: Path[] }) {
   const t = copy[locale];
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);

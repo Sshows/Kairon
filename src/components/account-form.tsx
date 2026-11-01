@@ -17,7 +17,11 @@ const titles: Record<Mode, string> = {
   verify: "Подтвердить почту",
   recover: "Установить новый пароль",
 };
-export function AccountForm() {
+export function AccountForm({
+  returnTo = "/study-plan",
+}: {
+  returnTo?: string;
+}) {
   const { user, registrationAvailable, status } = useLearningProgress();
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
@@ -53,7 +57,7 @@ export function AccountForm() {
           throw new Error(
             "Не удалось войти. Проверьте почту и пароль. Если почта ещё не подтверждена или пароль забыт, воспользуйтесь восстановлением. После нескольких попыток подождите 15 минут.",
           );
-        reloadAfterAccountChange();
+        reloadAfterAccountChange(returnTo);
         return;
       }
       const input =
@@ -99,7 +103,7 @@ export function AccountForm() {
         <h1>Вы уже вошли</h1>
         <p>{user.email}</p>
         <Button asChild>
-          <Link href="/profile">Открыть мой прогресс</Link>
+          <Link href={returnTo}>Продолжить обучение</Link>
         </Button>
       </section>
     );
@@ -111,11 +115,12 @@ export function AccountForm() {
       <p>
         {codeMode
           ? `Код отправляется на ${email}. Введите 6 цифр из самого нового письма. Он действует 10 минут.`
-          : "Сохраняйте пройденные дни, место остановки и заметку. После входа с другого устройства вы увидите свои отметки."}
+          : "Для доступа к урокам войдите в аккаунт или зарегистрируйтесь. Регистрация бесплатная: укажите почту, придумайте пароль и подтвердите адрес кодом из письма. Ваши отметки и заметки сохраняются между устройствами."}
       </p>
       {status !== "loading" && !registrationAvailable && (
         <p className="account-feedback">
-          Отправка новых кодов сейчас недоступна. Уроки остаются открытыми.
+          Отправка новых кодов сейчас недоступна. Попробуйте позже. Если аккаунт
+          уже подтверждён, можно войти по почте и паролю.
         </p>
       )}
       <form onSubmit={submit} className="account-form">
@@ -246,7 +251,6 @@ export function AccountForm() {
               : "Забыли пароль?"}
           </button>
         )}
-        <Link href="/study-plan">Учиться без входа</Link>
       </div>
       <p className="account-help">
         Почта нужна для входа и восстановления доступа. Пароль хранится в виде

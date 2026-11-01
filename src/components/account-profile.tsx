@@ -8,9 +8,11 @@ import {
   ProgressFeedback,
 } from "./learning-account";
 import { Button } from "./ui/button";
-import { getLearningDay, learningDays } from "@/lib/day-plan";
-
-export function AccountProfile() {
+export function AccountProfile({
+  learningDays,
+}: {
+  learningDays: { day: number; title: string; lessonIds: string[] }[];
+}) {
   const {
     user,
     status,
@@ -37,7 +39,7 @@ export function AccountProfile() {
         <h1>Сохраните своё место</h1>
         <p>
           Войдите, чтобы открыть личные отметки и закладку с любого устройства.
-          Учиться можно и без аккаунта.
+          Для доступа к урокам нужен подтверждённый аккаунт.
         </p>
         <Button asChild>
           <Link href="/login">Войти или создать аккаунт</Link>
@@ -82,7 +84,8 @@ export function AccountProfile() {
         {bookmark ? (
           <>
             <p>
-              День {bookmark.day}. {getLearningDay(bookmark.day)?.title}
+              День {bookmark.day}.{" "}
+              {learningDays.find((day) => day.day === bookmark.day)?.title}
             </p>
             <p className="bookmark-note">
               {bookmark.note || "Заметка не добавлена."}

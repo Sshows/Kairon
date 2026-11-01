@@ -1,7 +1,7 @@
+import "server-only";
 import plan from "../../content/day-plan.json";
 
-// Contains only route descriptions and public IDs; no answers or account data.
-// It can be imported by the browser's local progress helpers.
+// Course descriptions are sent as props only after the page checks the account.
 export const dayPlan = plan;
 export const learningDays = plan.days;
 export const learningStages = plan.stages;

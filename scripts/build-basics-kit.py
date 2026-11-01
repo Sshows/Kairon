@@ -5,11 +5,11 @@ import json
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-KIT=ROOT/'public/labs/kairon-basics'
+KIT=ROOT/'private-materials/labs/kairon-basics'
 files=sorted(path for path in KIT.rglob('*') if path.is_file())
 if not files:
     raise RuntimeError('Foundation exercise files are missing')
-target=ROOT/'public/downloads/kairon-basics.zip'
+target=ROOT/'private-materials/downloads/kairon-basics.zip'
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         if path.suffix not in {'.md','.txt','.csv','.json','.jsonl'}:

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import plan from "../../content/day-plan.json";
+import plan from "../../content/progress-index.json";
 const allowedIds = new Set(plan.days.flatMap((day) => day.lessonIds));
 const lessonsByDay = new Map<number, ReadonlySet<string>>(
   plan.days.map((item) => [item.day, new Set(item.lessonIds)]),

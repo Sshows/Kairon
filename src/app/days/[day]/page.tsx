@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock3, CheckCircle2 } from "lucide-react";
@@ -18,10 +19,12 @@ function parseDay(value: string) {
   return /^[1-9]\d*$/.test(value) ? getLearningDay(Number(value)) : undefined;
 }
 export async function generateMetadata({ params }: Props) {
+  await requireUser();
   const day = parseDay((await params).day);
   return { title: day ? `День ${day.day}. ${day.title}` : "День не найден" };
 }
 export default async function LearningDayPage({ params }: Props) {
+  await requireUser();
   const day = parseDay((await params).day);
   if (!day) notFound();
   const stage = learningStages.find((item) => item.id === day.stageId)!;

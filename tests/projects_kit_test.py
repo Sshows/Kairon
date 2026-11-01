@@ -10,7 +10,7 @@ import unittest
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-projects"
+KIT = ROOT / "private-materials/labs/kairon-projects"
 
 
 def run(folder, name):
@@ -20,7 +20,7 @@ def run(folder, name):
 
 class ProjectsKit(unittest.TestCase):
     def test_archive_reproduces_every_utf8_source_file(self):
-        archive = ROOT / "public/downloads/kairon-projects.zip"
+        archive = ROOT / "private-materials/downloads/kairon-projects.zip"
         manifest = json.loads(archive.with_suffix(".json").read_text(encoding="utf-8"))
         self.assertEqual(sha256(archive.read_bytes()).hexdigest(), manifest["sha256"])
         files = sorted(path for path in KIT.rglob("*") if path.is_file())

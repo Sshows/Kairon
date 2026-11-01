@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / 'public/labs/kairon-toolbox'
+KIT = ROOT / 'private-materials/labs/kairon-toolbox'
 LINUX = sys.platform.startswith('linux')
 
 
@@ -81,7 +81,7 @@ class ToolboxKit(unittest.TestCase):
         files = {p.relative_to(KIT).as_posix(): p for p in KIT.rglob('*')
                  if p.is_file() and '__pycache__' not in p.parts}
         self.assertEqual(set(files), expected)
-        target = ROOT / 'public/downloads/kairon-toolbox.zip'
+        target = ROOT / 'private-materials/downloads/kairon-toolbox.zip'
         manifest = json.loads(target.with_suffix('.json').read_text(encoding='utf-8'))
         self.assertEqual(manifest['files'], 25)
         self.assertEqual(manifest['sha256'], sha256(target.read_bytes()).hexdigest())

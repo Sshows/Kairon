@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import paul from "../../../content/source-audits/paul-cybersecurity.json";
@@ -5,7 +6,8 @@ import { SecurityLibrary } from "@/components/security-library";
 import { Button } from "@/components/ui/button";
 
 export const metadata = { title: "Как выбрать инструмент под задачу" };
-export default function LibraryPage() {
+export default async function LibraryPage() {
+  await requireUser();
   return (
     <div className="page-container document-page library-page">
       <ReferenceRouteNote />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import {
@@ -18,7 +18,6 @@ import type { learningPaths } from "@/lib/learning-paths";
 import { lessonSections } from "@/lib/lesson-outline";
 import { useLearningProgress, ProgressFeedback } from "./learning-account";
 import { StudyBookmark } from "./study-bookmark";
-import { PracticeFolderHelp } from "./practice-folder-help";
 import { Button } from "./ui/button";
 
 export function LessonWorkspace({
@@ -29,6 +28,7 @@ export function LessonWorkspace({
   dayNumber,
   dayTitle,
   nextDay,
+  practiceHelp,
 }: {
   lesson: PublicLesson;
   path: (typeof learningPaths)[number];
@@ -37,6 +37,7 @@ export function LessonWorkspace({
   dayNumber: number;
   dayTitle: string;
   nextDay: number | null;
+  practiceHelp: ReactNode;
 }) {
   const { completedLessonIds, storageAvailable, user, ready, markComplete } =
     useLearningProgress();
@@ -125,14 +126,7 @@ export function LessonWorkspace({
             {path.kit.label}
           </a>
         )}
-        {lesson.kit && (
-          <PracticeFolderHelp
-            folder={path.kit.url
-              .split("/")
-              .at(-1)!
-              .replace(/\.zip$/, "")}
-          />
-        )}
+        {practiceHelp}
         <details className="lesson-outline">
           <summary>Содержание урока</summary>
           <nav aria-label="Разделы этого урока">

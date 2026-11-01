@@ -1,7 +1,9 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { Catalog } from "@/components/catalog";
 import { getLocale } from "@/lib/i18n";
+import { paths } from "@/lib/curriculum";
 
 export const metadata = { title: "Дополнительные материалы" };
 const resources = [
@@ -42,6 +44,7 @@ const resources = [
   },
 ];
 export default async function MaterialsPage() {
+  await requireUser();
   const locale = await getLocale();
   return (
     <div className="page-container document-page materials-page">
@@ -78,7 +81,7 @@ export default async function MaterialsPage() {
           Все эти уроки уже есть в плане по дням. Этот указатель удобен, когда
           хочешь повторить одну тему.
         </p>
-        <Catalog locale={locale} />
+        <Catalog locale={locale} paths={paths} />
       </details>
     </div>
   );

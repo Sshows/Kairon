@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import paul from "../../../../content/source-audits/paul-cybersecurity.json";
@@ -11,6 +12,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireUser();
   const { id } = await params;
   return {
     title:
@@ -22,6 +24,7 @@ export default async function LibraryArea({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireUser();
   const { id } = await params;
   const area = paul.sections.find((item) => item.id === id);
   if (!area) notFound();
@@ -49,8 +52,8 @@ export default async function LibraryArea({
         <h2>Что можно попробовать на Kairon</h2>
         <p>
           Начни с небольшого случая, результат которого можешь объяснить. Всё
-          доступно без входа. Порядок прохождения уже указан в маршруте по дням;
-          эту страницу удобно использовать как справку к своей задаче.
+          доступно после входа. Порядок прохождения уже указан в маршруте по
+          дням; эту страницу удобно использовать как справку к своей задаче.
         </p>
         <div className="study-lesson-links">
           {area.lessonIds.map((lessonId) => (

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       );
     if (!isAuthConfigured() || !isMailConfigured())
       throw new InputError(
-        "Отправка кодов пока недоступна. Все уроки можно читать без входа.",
+        "Отправка кодов пока недоступна. Попробуйте позже; если аккаунт подтверждён, войдите по почте и паролю.",
         503,
       );
     return privateJson(await handleAccountCode(input.data, request));

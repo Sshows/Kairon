@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./member-fixture";
 import { readFileSync, readdirSync } from "node:fs";
 import plan from "../../content/day-plan.json" with { type: "json" };
 import cheats from "../../content/source-audits/cheat-sheets.json" with { type: "json" };
@@ -89,7 +89,7 @@ test("first visit has one clear starting action and the actual installation day"
   await expect(page.locator(".lesson-top")).toContainText("День 1");
 });
 
-test("all 60 days and 106 lessons are public and source material remains readable", async ({
+test("all 60 days and 106 lessons are readable after login", async ({
   page,
 }) => {
   await page.goto("/study-plan");
@@ -119,7 +119,7 @@ test("all 60 days and 106 lessons are public and source material remains readabl
         });
         const data = await checked.json();
         expect(data.status, lesson.id).toBe("passed");
-        expect(data.guest).toBe(true);
+        expect(data.guest).toBe(false);
         expect(data.xp).toBeUndefined();
       }),
     );
@@ -137,37 +137,32 @@ test("all 60 days and 106 lessons are public and source material remains readabl
   await expect(page.locator(".path-card")).toHaveCount(8);
 });
 
-test("accounts are optional and public self-check remains available", async ({
+test("members can download unchanged exercises and invalid API input is rejected", async ({
   page,
 }) => {
-  await page.goto("/login");
-  await expect(
-    page.getByRole("heading", { name: "Войти в Kairon" }),
-  ).toBeVisible();
-  await expect(page.locator('input[type="password"]')).toHaveCount(1);
-  await page.goto("/profile");
-  await expect(
-    page.getByRole("heading", { name: "Сохраните своё место" }),
-  ).toBeVisible();
-  expect((await page.request.get("/api/me")).status()).toBe(200);
-  expect((await (await page.request.get("/api/me")).json()).user).toBeNull();
-  expect((await page.request.get("/api/auth/csrf")).status()).toBe(200);
-  const lesson = byId.get(plan.days.at(-1)!.lessonIds.at(-1)!)!;
-  const checked = await page.request.post("/api/learning/" + lesson.id, {
-    headers: {
-      Origin: origin,
-      Cookie: "authjs.session-token=obsolete-example",
-    },
-    data: { action: "check", answer: lesson.answers[0] },
-  });
-  expect(checked.status()).toBe(200);
-  expect((await checked.json()).status).toBe("passed");
-  expect(checked.headers()["set-cookie"]).toBeUndefined();
+  const zip = await page.request.get("/downloads/kairon-kali-lab.zip");
+  expect(zip.status()).toBe(200);
+  expect(zip.headers()["cache-control"]).toContain("no-store");
+  expect(zip.headers()["content-type"]).toBe("application/zip");
+  expect((await zip.body()).subarray(0, 2).toString()).toBe("PK");
+  expect(
+    (await page.request.get("/labs/kairon-web/practice.py")).status(),
+  ).toBe(200);
+  expect((await page.request.get("/downloads/not-listed.zip")).status()).toBe(
+    404,
+  );
+  expect(
+    (
+      await page.request.get(
+        "/_next/image?url=%2Flabs%2Fkairon-toolbox%2Fdata%2Fmetadata.png&w=640&q=75",
+      )
+    ).status(),
+  ).toBe(400);
   expect(
     (
       await page.request.post("/api/learning/kali-install", {
-        headers: { Origin: "https://example.com" },
-        data: { action: "check", answer: "vbox" },
+        headers: { Origin: "https://other.example" },
+        data: { action: "hint" },
       })
     ).status(),
   ).toBe(403);
@@ -181,7 +176,7 @@ test("accounts are optional and public self-check remains available", async ({
   ).toBe(400);
 });
 
-test("correct self-checks persist locally, choose the next day and can be reset", async ({
+test("correct self-checks persist in the account, choose the next day and can be reset", async ({
   page,
 }) => {
   const day = plan.days[0];
@@ -199,22 +194,17 @@ test("correct self-checks persist locally, choose the next day and can be reset"
     page.getByRole("button", { name: "Все подсказки открыты", exact: true }),
   ).toBeDisabled();
   await answerInPage(page, first);
-  const persisted = await page.evaluate(
-    (key) => JSON.parse(localStorage.getItem(key)!),
-    storageKey,
-  );
-  expect(persisted).toEqual({ version: 1, completedLessonIds: [first.id] });
+  const persisted = await (await page.request.get("/api/me")).json();
+  expect(persisted.progress.completedLessonIds).toEqual([first.id]);
   await page.reload();
   await expect(
     page.getByText("Самопроверка этого урока уже отмечена", { exact: false }),
   ).toBeVisible();
   await answerInPage(page, first);
   expect(
-    await page.evaluate(
-      (key) => JSON.parse(localStorage.getItem(key)!).completedLessonIds.length,
-      storageKey,
-    ),
-  ).toBe(1);
+    (await (await page.request.get("/api/me")).json()).progress
+      .completedLessonIds,
+  ).toEqual([first.id]);
   for (const id of day.lessonIds.slice(1)) {
     await page.goto("/learn/" + id);
     await answerInPage(page, byId.get(id)!);
@@ -231,17 +221,18 @@ test("correct self-checks persist locally, choose the next day and can be reset"
   await page.locator(".device-progress-settings summary").click();
   await page
     .getByRole("button", {
-      name: "Сбросить отметки на этом устройстве",
+      name: "Сбросить мои отметки в аккаунте",
       exact: true,
     })
     .click();
   await page.getByRole("button", { name: "Отмена", exact: true }).click();
   expect(
-    await page.evaluate((key) => localStorage.getItem(key), storageKey),
-  ).not.toBeNull();
+    (await (await page.request.get("/api/me")).json()).progress
+      .completedLessonIds.length,
+  ).toBeGreaterThan(0);
   await page
     .getByRole("button", {
-      name: "Сбросить отметки на этом устройстве",
+      name: "Сбросить мои отметки в аккаунте",
       exact: true,
     })
     .click();
@@ -266,15 +257,13 @@ test("blocked browser storage keeps lessons usable", async ({
     }),
   );
   await page.goto("/");
-  await expect(
-    page.getByText("Браузер не разрешил сохранять отметки", { exact: false }),
-  ).toBeVisible();
   const first = byId.get(plan.days[0].lessonIds[0])!;
   await page.goto("/learn/" + first.id);
   await answerInPage(page, first);
-  await expect(page.locator(".lesson-debrief")).toContainText(
-    "не разрешает сохранить отметку",
-  );
+  expect(
+    (await (await page.request.get("/api/me")).json()).progress
+      .completedLessonIds,
+  ).toContain(first.id);
 });
 
 test("mobile flow has readable days, lesson contents and no horizontal overflow", async ({
@@ -395,14 +384,15 @@ test("the final day and an already completed route never point to day 61", async
   page,
 }) => {
   await page.goto("/");
-  await page.evaluate(
-    ({ key, ids }) =>
-      localStorage.setItem(
-        key,
-        JSON.stringify({ version: 1, completedLessonIds: ids }),
-      ),
-    { key: storageKey, ids: plan.days.flatMap((day) => day.lessonIds) },
-  );
+  const me = await (await page.request.get("/api/me")).json();
+  await page.request.post("/api/progress", {
+    headers: { Origin: origin },
+    data: {
+      action: "import",
+      accountId: me.user.id,
+      lessonIds: plan.days.flatMap((day) => day.lessonIds),
+    },
+  });
   await page.reload();
   await expect(page.locator(".continue-learning")).toContainText(
     "МАРШРУТ ПРОЙДЕН",
@@ -420,7 +410,7 @@ test("the final day and an already completed route never point to day 61", async
   await page.screenshot({ path: "test-results/public-route-completed.png" });
 });
 
-test("read-only storage keeps an unsaved mark across client navigation", async ({
+test("read-only local storage does not prevent server progress across navigation", async ({
   page,
   context,
 }) => {
@@ -440,7 +430,8 @@ test("read-only storage keeps an unsaved mark across client navigation", async (
   await expect(
     page.getByRole("link", { name: "Продолжить день 2", exact: true }),
   ).toBeVisible();
-  await expect(page.locator(".device-progress-note").last()).toContainText(
-    "не разрешил сохранять отметки",
-  );
+  expect(
+    (await (await page.request.get("/api/me")).json()).progress
+      .completedLessonIds,
+  ).toContain(plan.days[0].lessonIds[0]);
 });

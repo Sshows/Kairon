@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { notFound, redirect } from "next/navigation";
 import { StarterPath } from "@/components/starter-path";
 import { getLearningPath, learningPaths } from "@/lib/learning-paths";
@@ -12,6 +13,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  await requireUser();
   const { slug } = await params;
   const path = getLearningPath(slug);
   return {
@@ -24,6 +26,7 @@ export default async function PathPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  await requireUser();
   const { slug } = await params;
   const path = getLearningPath(slug);
   if (path) return <StarterPath pathId={path.id} />;

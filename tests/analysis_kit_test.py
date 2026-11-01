@@ -10,7 +10,7 @@ import unittest
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-KIT=ROOT/'public/labs/kairon-analysis'
+KIT=ROOT/'private-materials/labs/kairon-analysis'
 
 def table(name):
     with (KIT/name).open(encoding='utf-8',newline='') as source:
@@ -18,7 +18,7 @@ def table(name):
 
 class AnalysisKit(unittest.TestCase):
     def test_zip_contains_exactly_the_original_inert_files(self):
-        target=ROOT/'public/downloads/kairon-analysis.zip'
+        target=ROOT/'private-materials/downloads/kairon-analysis.zip'
         manifest=json.loads(target.with_suffix('.json').read_text(encoding='utf-8'))
         self.assertEqual(sha256(target.read_bytes()).hexdigest(),manifest['sha256'])
         files=sorted(p for p in KIT.rglob('*') if p.is_file())

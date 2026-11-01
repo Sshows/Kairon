@@ -5,11 +5,11 @@ import json
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-company-lab"
+KIT = ROOT / "private-materials/labs/kairon-company-lab"
 
 
 def main():
-    target = ROOT / "public/downloads/kairon-company-lab.zip"
+    target = ROOT / "private-materials/downloads/kairon-company-lab.zip"
     target.parent.mkdir(exist_ok=True)
     files = sorted(path for path in KIT.rglob("*") if path.is_file())
     if not files:

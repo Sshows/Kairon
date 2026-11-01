@@ -1,3 +1,4 @@
+import "server-only";
 export const terms = [
   {
     term: "Код и программа / Code & Program",

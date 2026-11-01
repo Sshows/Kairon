@@ -1,8 +1,10 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import source from "../../../../content/source-audits/labex-kali.json";
 import { SourceReview } from "@/components/source-review";
 export const metadata = { title: "Разбор LabEx Kali Free Tutorials" };
-export default function LabExSourcePage() {
+export default async function LabExSourcePage() {
+  await requireUser();
   return (
     <div className="page-container document-page source-detail">
       <Link href="/toolbox" className="back-link">

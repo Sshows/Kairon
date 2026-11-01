@@ -1380,7 +1380,12 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background: linear-gradient(90deg, var(--lime-bright), var(--lime), var(--cyan));
+  background: linear-gradient(
+    90deg,
+    var(--lime-bright),
+    var(--lime),
+    var(--cyan)
+  );
   border-radius: 999px;
 }
 
@@ -3684,4 +3689,20 @@ progress::-webkit-progress-value {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Login and privacy are the public entry to the member area. */
+.auth-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+.auth-shell .main-shell {
+  margin-left: 0;
+  width: 100%;
+}
+.auth-shell .topbar {
+  left: 0;
+  justify-content: center;
+}
+.auth-shell .account-page {
+  min-height: calc(100dvh - 180px);
 }

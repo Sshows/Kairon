@@ -1,7 +1,13 @@
 "use client";
 import { useDeferredValue, useState } from "react";
-import { terms } from "@/lib/glossary";
-export function Glossary({ locale }: { locale: "ru" | "en" }) {
+import type { terms as glossaryTerms } from "@/lib/glossary";
+export function Glossary({
+  locale,
+  terms,
+}: {
+  locale: "ru" | "en";
+  terms: typeof glossaryTerms;
+}) {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
   const filtered = terms.filter((item) =>

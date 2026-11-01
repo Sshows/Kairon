@@ -264,13 +264,17 @@ test("email registration, isolated accounts, cross-device resume, logout and rec
     ).toEqual(["kali-install"]);
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.reload();
-    await expect(page.getByRole("heading", { name: "Мой прогресс", exact: true })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Мой прогресс", exact: true }),
+    ).toBeVisible();
     await page.screenshot({
       path: "test-results/public-account-profile-desktop.png",
       fullPage: true,
     });
     await page.getByRole("button", { name: "Выйти из аккаунта" }).click();
-    await expect(page.locator(".account-nav")).toHaveText("Войти");
+    await expect(
+      page.getByRole("heading", { name: "Войти в Kairon" }),
+    ).toBeVisible();
     expect((await (await page.request.get("/api/me")).json()).user).toBeNull();
 
     // Emulate a different login while an old tab still holds A's identity.
@@ -314,6 +318,20 @@ test("email registration, isolated accounts, cross-device resume, logout and rec
     expect(
       (await (await otherDevice.request.get("/api/me")).json()).user,
     ).toBeNull();
+    expect(
+      (
+        await otherDevice.request.get("/learn/kali-install", {
+          maxRedirects: 0,
+        })
+      ).headers().location,
+    ).toContain("/login");
+    expect(
+      (
+        await otherDevice.request.get("/downloads/kairon-kali-lab.zip", {
+          maxRedirects: 0,
+        })
+      ).status(),
+    ).toBe(401);
     await login(otherDevice, emails[0], password + "-new");
     expect(
       (await (await otherDevice.request.get("/api/me")).json()).progress

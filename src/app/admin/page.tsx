@@ -1,4 +1,6 @@
+import { requireUser } from "@/lib/access";
 import { redirect } from "next/navigation";
-export default function RetiredAccountPage() {
+export default async function RetiredAccountPage() {
+  await requireUser();
   redirect("/study-plan");
 }

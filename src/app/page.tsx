@@ -1,9 +1,11 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { CalendarDays, Monitor, CheckCircle2 } from "lucide-react";
 import { ContinueLearning } from "@/components/day-progress";
 import { learningDays, learningStages, totalDays } from "@/lib/day-plan";
 
-export default function Home() {
+export default async function Home() {
+  await requireUser();
   return (
     <div className="page-container day-home">
       <section className="first-visit-hero">
@@ -54,8 +56,8 @@ export default function Home() {
           <li>
             <strong>Проверь понимание и продолжай.</strong>
             <p>
-              Правильный ответ сохраняет отметку: без входа — в браузере, после входа — в аккаунте. Следующий шаг
-              находится внизу урока.
+              Правильный ответ сохраняет отметку: в вашем аккаунте. Следующий
+              шаг находится внизу урока.
             </p>
           </li>
         </ol>

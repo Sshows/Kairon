@@ -11,7 +11,7 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-KIT = ROOT / "public/labs/kairon-diagnostics"
+KIT = ROOT / "private-materials/labs/kairon-diagnostics"
 
 
 def text(name):
@@ -64,7 +64,7 @@ class DiagnosticsKitTest(unittest.TestCase):
         sources = {path.relative_to(KIT).as_posix(): path for path in KIT.rglob("*") if path.is_file()}
         self.assertEqual(set(sources), expected)
         self.assertIn("DIAG-READY-28", text("READY.txt"))
-        target = ROOT / "public/downloads/kairon-diagnostics.zip"
+        target = ROOT / "private-materials/downloads/kairon-diagnostics.zip"
         manifest = json.loads(target.with_suffix(".json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["file"], target.name)
         self.assertEqual(manifest["files"], 14)

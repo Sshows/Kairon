@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { collections } from "@/lib/collections";
@@ -8,6 +9,7 @@ export function generateStaticParams() {
   return collections.map(({ source, id }) => ({ source, id }));
 }
 export async function generateMetadata({ params }: Props) {
+  await requireUser();
   const { source, id } = await params;
   return {
     title:
@@ -16,6 +18,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 export default async function CollectionPage({ params }: Props) {
+  await requireUser();
   const { source, id } = await params;
   const entry = collections.find(
     (entry) => entry.source === source && entry.id === id,

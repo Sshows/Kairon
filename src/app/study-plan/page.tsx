@@ -1,3 +1,4 @@
+import { requireUser } from "@/lib/access";
 import { ContinueLearning, DayPlanList } from "@/components/day-progress";
 import {
   learningDays,
@@ -7,7 +8,8 @@ import {
 } from "@/lib/day-plan";
 
 export const metadata = { title: "План обучения по дням" };
-export default function StudyPlanPage() {
+export default async function StudyPlanPage() {
+  await requireUser();
   return (
     <div className="page-container document-page daily-plan-page">
       <span className="eyebrow">ОДИН ПОНЯТНЫЙ МАРШРУТ</span>
@@ -71,10 +73,10 @@ export default function StudyPlanPage() {
             </li>
             <li>
               <strong>Пройди самопроверку и переходи дальше.</strong> Правильный
-              короткий ответ сохраняет отметку: без входа — в браузере, после входа — в аккаунте. Для собственного
-              понимания важнее также выполнить практику и объяснить результат:
-              сайт не подключается к твоему компьютеру и не оценивает файл
-              отчёта.
+              короткий ответ сохраняет отметку: в вашем аккаунте. Для
+              собственного понимания важнее также выполнить практику и объяснить
+              результат: сайт не подключается к твоему компьютеру и не оценивает
+              файл отчёта.
             </li>
           </ol>
           <h3>Если результат отличается от примера</h3>
