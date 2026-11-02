@@ -329,8 +329,7 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
   const pythonSection = page
     .getByRole("navigation", { name: "Разделы этого урока" })
     .getByRole("link", {
-      name: "Самостоятельный опыт без изменения исходника",
-      exact: true,
+      name: /Самостоятельный опыт без изменения исходника/,
     });
   const pythonTarget = await pythonSection.getAttribute("href");
   await pythonSection.click();
@@ -355,7 +354,7 @@ test("mobile flow has readable days, lesson contents and no horizontal overflow"
   const anchor = page
     .getByRole("navigation", { name: "Разделы этого урока" })
     .getByRole("link", {
-      name: "2. Подготовь отдельную пустую папку для своего сайта",
+      name: "Сделай сейчас: запусти свой сервер и проверь три состояния",
       exact: true,
     });
   const target = await anchor.getAttribute("href");

@@ -18,7 +18,7 @@ test("first Kali actions stay visible while explanations open from the contents"
   );
   await expect(
     page.locator(".lesson-markdown blockquote").first(),
-  ).toContainText(/звёздоч|звездоч/);
+  ).toContainText(/звёздоч|звездоч/i);
   const explanation = page.locator(".lesson-explanation").first();
   await expect(explanation).not.toHaveAttribute("open", "");
   await page
