@@ -41,6 +41,12 @@ async function answerInPage(
   await expect(
     page.getByText("Самопроверка пройдена", { exact: true }),
   ).toBeVisible();
+  await expect(
+    page.getByText(
+      "Отметка сохранена в аккаунте и будет доступна на другом устройстве после входа.",
+      { exact: true },
+    ),
+  ).toBeVisible();
 }
 
 test("first visit has one clear starting action and the actual installation day", async ({
