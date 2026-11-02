@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { lessonSections } from "../src/lib/lesson-outline";
+import {
+  lessonSections,
+  lessonSectionKind,
+  lessonSteps,
+} from "../src/lib/lesson-outline";
 
 describe("lesson contents navigation", () => {
   it("keeps code comments inside fenced examples rather than turning them into lesson sections", () => {
@@ -27,5 +31,18 @@ describe("lesson contents navigation", () => {
     ]);
     expect(sections[0].id).not.toBe(sections[1].id);
     expect(sections[0].markdown).toContain("## inside code");
+  });
+  it("keeps example headings inside an instruction card and never drops code", () => {
+    const source =
+      "## Сделай сейчас: прочитай файл\nBefore\n### Шаг 1\n~~~python\n### a Python comment\nprint('example')\n~~~\nExpected\n### Шаг 2\nAfter";
+    const steps = lessonSteps(source);
+    expect(steps).toHaveLength(3);
+    expect(steps[1]).toContain("### a Python comment");
+    expect(steps.join("").trim()).toBe(source);
+    expect(lessonSectionKind("Почему это работает: текущая папка")).toBe(
+      "explanation",
+    );
+    expect(lessonSectionKind("Сделай сейчас: открой папку")).toBe("action");
+    expect(lessonSectionKind("Если не получилось")).toBe("reading");
   });
 });

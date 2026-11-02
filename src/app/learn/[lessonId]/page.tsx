@@ -7,6 +7,7 @@ import { getLessonDay, orderedLessonIds } from "@/lib/day-plan";
 import { getLearningPath } from "@/lib/learning-paths";
 import { LessonWorkspace } from "@/components/lesson-workspace";
 import { PracticeFolderHelp } from "@/components/practice-folder-help";
+import { FirstBootVisual } from "@/components/first-boot-visual";
 
 export function generateStaticParams() {
   return lessons.map((lesson) => ({ lessonId: lesson.id }));
@@ -85,6 +86,9 @@ export default async function LessonPage({
       <LessonWorkspace
         key={lessonId}
         lesson={publicLesson(lesson)}
+        folderVisual={
+          lessonId === "kali-first-boot" ? <FirstBootVisual /> : null
+        }
         path={path}
         practiceHelp={
           lesson.kit ? (

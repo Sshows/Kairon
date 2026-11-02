@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import type { PublicLesson } from "@/lib/lessons";
 import type { learningPaths } from "@/lib/learning-paths";
-import { lessonSections } from "@/lib/lesson-outline";
+import { LessonReading } from "./lesson-reading";
 import { useLearningProgress, ProgressFeedback } from "./learning-account";
 import { StudyBookmark } from "./study-bookmark";
 import { Button } from "./ui/button";
@@ -29,6 +29,7 @@ export function LessonWorkspace({
   dayTitle,
   nextDay,
   practiceHelp,
+  folderVisual,
 }: {
   lesson: PublicLesson;
   path: (typeof learningPaths)[number];
@@ -38,6 +39,7 @@ export function LessonWorkspace({
   dayTitle: string;
   nextDay: number | null;
   practiceHelp: ReactNode;
+  folderVisual: ReactNode;
 }) {
   const { completedLessonIds, storageAvailable, user, ready, markComplete } =
     useLearningProgress();
@@ -50,7 +52,6 @@ export function LessonWorkspace({
   const [passed, setPassed] = useState(false);
   const [debrief, setDebrief] = useState("");
   const [checkedSteps, setCheckedSteps] = useState<string[]>([]);
-  const sections = lessonSections(lesson.theory);
 
   async function submit(action: "hint" | "check") {
     if (pending) return;
@@ -127,44 +128,11 @@ export function LessonWorkspace({
           </a>
         )}
         {practiceHelp}
-        <details className="lesson-outline">
-          <summary>Содержание урока</summary>
-          <nav aria-label="Разделы этого урока">
-            {sections
-              .filter((section) => section.title)
-              .map((section) => (
-                <a href={`#${section.id}`} key={section.id}>
-                  {section.title}
-                </a>
-              ))}
-          </nav>
-        </details>
-        <div className="lesson-markdown">
-          {sections.map((section) => (
-            <section
-              id={section.id}
-              className="lesson-text-section"
-              key={section.id}
-            >
-              <Markdown
-                components={{
-                  img: ({ src, alt }) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={typeof src === "string" ? src : undefined}
-                      alt={alt ?? ""}
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                    />
-                  ),
-                }}
-              >
-                {section.markdown}
-              </Markdown>
-            </section>
-          ))}
-        </div>
+        <LessonReading
+          theory={lesson.theory}
+          goal={lesson.goal}
+          folderVisual={folderVisual}
+        />
         <section
           className="guide-checklist"
           aria-label="Проверь результат практики"
