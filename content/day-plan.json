@@ -3,14 +3,14 @@
   "title": "От первого запуска Kali к осмысленной проверке: единый план по дням",
   "introduction": "Пошаговый маршрут с нуля без сухих двухсловных определений и лишнего жаргона. Каждое понятие мы сначала переводим на обычный человеческий язык на примерах из жизни (квартира в доме, вахтёр на проходной, пломба на коробке, чек на кассе), а затем проверяем руками в твоей Kali Linux: какое окно открыть, куда нажать, что означает каждое слово команды и какой результат должен появиться на экране.",
   "dailyGuidance": "В каждом учебном дне 1 или 2 урока, от 40 до 120 минут по оценке, плюс перерывы, повторение и время на скачивание. Номер обозначает очередь шагов: один день можно разделить на несколько вечеров.",
-  "calendarGuidance": "В маршруте 100 учебных дней. При пяти занятиях в неделю это около 20 недель, при шести — около 17. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
-  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 100 дней и 177 уроков бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
+  "calendarGuidance": "В маршруте 108 учебных дней. При пяти занятиях в неделю это около 22 недель, при шести — около 18. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
+  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 108 дней и 193 урока бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
   "practiceGuidance": "Вся практика проходит безопасно внутри твоей собственной виртуальной машины Kali Linux на учебных файлах и локальных сервисах. Тебе не нужно устанавливать десятки программ заранее — каждый небольшой учебный архив (.zip) скачивается ровно перед тем этапом, где он нужен.",
-  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college, TryHackMe и Hack The Box Academy уже включены в общий порядок дней 61–100; отдельное продолжение искать не нужно.",
+  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college, TryHackMe и Hack The Box Academy уже включены в общий порядок дней 61–108; отдельное продолжение искать не нужно.",
   "reviewedAt": "2026-11-08",
-  "totalDays": 100,
-  "totalLessons": 177,
-  "totalMinutes": 8448,
+  "totalDays": 108,
+  "totalLessons": 193,
+  "totalMinutes": 9358,
   "stages": [
     {
       "id": "prepare",
@@ -144,6 +144,13 @@
       "firstDay": 97,
       "lastDay": 100,
       "summary": "Дни 97–100. Ключевые модули платформ TryHackMe и Hack The Box Academy: разведка виртуальных хостов (ffuf -fs) и аудит служб SMB/RPC/LDAP, безопасность Active Directory (билеты Kerberos, AS-REP/Kerberoasting, gMSA, графы прав BloodHound, DCSync и Tier 0), аудит повышения привилегий в Linux и Windows (cron, systemd, Unquoted Service Paths, SeImpersonatePrivilege) и расследования синей команды (Sysmon, правила Sigma, C2 Beaconing и DNS-туннелирование)."
+    },
+    {
+      "id": "thm-htb-advanced",
+      "title": "Практикум pwn.college, TryHackMe & HTB Academy (углублённый): символьное исполнение, облака, Kubernetes, CI/CD, Volatility и SOAR",
+      "firstDay": 101,
+      "lastDay": 108,
+      "summary": "Дни 101–108. Дополнительные репозитории GitHub pwn.college (CVE в bash/readelf/libxml2/Apache, заголовки прокси, Type Juggling, Linux Lunacy memfd/hidepid, символьное исполнение в angr/babyauto-crackmes) и продвинутые треки TryHackMe и Hack The Box Academy: SSRF и защита облачных метаданных IMDSv2, GraphQL/JWT/SSTI, сетевой Pivoting (SOCKS5, TUN L3) и шаблоны сертификатов AD CS (ESC1/ESC8), безопасность Docker и Kubernetes RBAC, CI/CD пайплайны GitHub Actions и Dependency Confusion, криминалистика памяти в Volatility 3 (psscan, malfind), телеметрия AMSI/ETW/PPL, деобфускация XOR/MITRE ATT&CK и плейбуки SOAR."
     }
   ],
   "days": [
@@ -2237,13 +2244,221 @@
       "outcome": "Ты умеешь писать точные правила детекта Sigma по телеметрии Sysmon без ложных срабатываний и находить скрытые каналы C2 Beaconing и DNS-экфильтрации по сетевым метаданным.",
       "minutes": 120,
       "notes": [
-        "Это завершение полного 100-дневного маршрута Kairon (177 уроков, объединяющих базовый курс, практикумы pwn.college, TryHackMe и Hack The Box Academy)."
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
       ],
       "resources": [
         {
           "label": "TryHackMe SOC Level 1 & HTB Academy: Threat Hunting & DFIR",
           "url": "https://tryhackme.com",
           "note": "Направления мониторинга безопасности, анализа журналов Sysmon и сетевой криминалистики"
+        }
+      ]
+    },
+    {
+      "day": 101,
+      "stageId": "thm-htb-advanced",
+      "title": "Разбери системные CVE (bash, readelf, libxml2), заголовки прокси и Type Juggling",
+      "summary": "По репозиториям pwncollege/challenges (what-is-a-bug и advanced-web-security) изучим ещё четыре настоящие системные CVE (переполнение redir_stack в bash CVE-2014-7186, выход sh_link за границы секций в readelf CVE-2021-20294, NULL-указатель в libxml2 и лимит токенов в mod_proxy), а затем проверим защиту обратных прокси (Host, X-Forwarded-For) и строгое сравнение хешей против Type Juggling (0e...).",
+      "goal": "Смоделировать защиту системных парсеров от выхода за границы таблиц и стеков, а также проверить фильтрацию X-Forwarded-For и сравнение секретов через hmac.compare_digest.",
+      "lessonIds": [
+        "pwn-cve-bash-apache-readelf-libxml",
+        "pwn-web-host-header-php-type-juggling"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь механизмы ошибок парсинга в системных утилитах и умеешь защищать веб-приложения от подмены заголовков прокси и нестрогого сравнения типов.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "GitHub: pwncollege/challenges (what-is-a-bug & advanced-web-security)",
+          "url": "https://github.com/pwncollege/challenges",
+          "note": "Открытые модули pwn.college по системным CVE и безопасности веб-серверов"
+        }
+      ]
+    },
+    {
+      "day": 102,
+      "stageId": "thm-htb-advanced",
+      "title": "Освой дескрипторы Linux Lunacy (memfd_create, hidepid=2) и символьное исполнение (angr / Z3)",
+      "summary": "По репозиториям pwncollege/linux-lunacy и pwncollege/babyauto-crackmes разберём работу с произвольными номерами файловых дескрипторов (dup2), анонимными файлами в памяти (memfd_create) и изоляцией /proc (hidepid=2), а затем изучим автоматическое решение бинарных проверок через символьное исполнение (Symbolic Execution) и отсечение тупиковых веток avoid.",
+      "goal": "Проверить клонирование дескрипторов и разбор /proc/self/cmdline, а затем решить систему путевых ограничений crackme и сравнить число состояний с отсечением avoid и без него.",
+      "lessonIds": [
+        "pwn-linux-lunacy-fds-memfd-proc",
+        "pwn-babyauto-symbolic-execution-angr"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты уверенно работаешь с дескрипторами памяти и защитой /proc в Linux и понимаешь математический принцип работы символьных анализаторов angr и Z3.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "GitHub: pwncollege/linux-lunacy & babyauto-crackmes",
+          "url": "https://github.com/pwncollege/babyauto-crackmes",
+          "note": "Репозитории pwn.college по системным вызовам Linux и символьному исполнению"
+        }
+      ]
+    },
+    {
+      "day": 103,
+      "stageId": "thm-htb-advanced",
+      "title": "Защити облачные метаданные от SSRF (IMDSv2) и проверь безопасность GraphQL, JWT и шаблонов",
+      "summary": "По курсам веб- и облачной безопасности TryHackMe и Hack The Box Academy разберём обход строковых фильтров SSRF через десятичную запись IP (2130706433), защиту сервиса метаданных 169.254.169.254 протоколом IMDSv2, отключение интроспекции __schema в GraphQL, валидацию заголовков alg/kid в JWT и предотвращение шаблонных инъекций (SSTI).",
+      "goal": "Проверить канонический фильтр IP на базе модуля ipaddress и сессионные токены IMDSv2, а также протестировать защиту GraphQL, JWT и рендеринга шаблонов в lab.py.",
+      "lessonIds": [
+        "thm-htb-web-ssrf-cloud-metadata-imdsv2",
+        "thm-htb-web-graphql-jwt-ssti"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь защищать облачные инстансы от кражи IAM-ключей через SSRF и закрывать уязвимости в GraphQL API, проверке JWT и серверных шаблонизаторах.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Cloud SSRF, GraphQL, JWT & SSTI",
+          "url": "https://academy.hackthebox.com",
+          "note": "Учебные модули по безопасности современных API и облачных сред"
+        }
+      ]
+    },
+    {
+      "day": 104,
+      "stageId": "thm-htb-advanced",
+      "title": "Изучи сетевой Pivoting (ssh -L/-D, TUN L3) и аудит шаблонов сертификатов AD CS (ESC1, ESC8)",
+      "summary": "По сети TryHackMe Wreath и курсам HTB Academy разберём маршрутизацию трафика через промежуточные узлы (локальный проброс ssh -L, динамический прокси SOCKS5 ssh -D и виртуальный сетевой интерфейс уровня L3 TUN) и защиту sshd_config, а затем проведём аудит шаблонов центра сертификации Active Directory (AD CS) на уязвимости ESC1 и ESC8.",
+      "goal": "Сравнить прохождение TCP и ICMP через разные типы туннелей и проверить автоматический поиск опасных комбинаций флагов в шаблонах сертификатов AD CS.",
+      "lessonIds": [
+        "thm-htb-pivoting-ssh-chisel-ligolo",
+        "thm-htb-ad-cs-certificates-esc1"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь различия между прикладным проксированием SOCKS5 и туннелированием уровня L3 (TUN), а также умеешь выявлять и устранять уязвимости ESC1 и ESC8 в службе сертификатов Active Directory.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Network Pivoting & AD CS Security",
+          "url": "https://tryhackme.com",
+          "note": "Практические курсы по туннелированию трафика и защите центров сертификации AD CS"
+        }
+      ]
+    },
+    {
+      "day": 105,
+      "stageId": "thm-htb-advanced",
+      "title": "Проверь изоляцию контейнеров Docker (docker.sock, Capabilities) и безопасность кластеров Kubernetes (RBAC)",
+      "summary": "По облачным и контейнерным модулям TryHackMe и Hack The Box Academy разберём векторы побега из контейнера на хост (проброс /var/run/docker.sock, привилегия CAP_SYS_ADMIN) и настройку профиля --cap-drop=ALL, а затем изучим защиту подов Kubernetes (отключение automountServiceAccountToken, аудит прав RBAC на secrets и pods и стандарт Pod Security Standards).",
+      "goal": "Проверить автоматическим аудитором спецификацию запуска контейнера Docker и манифесты Pod / RBAC в кластере Kubernetes.",
+      "lessonIds": [
+        "thm-htb-docker-socket-capabilities-escape",
+        "thm-htb-k8s-rbac-serviceaccount-imds"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь находить опасные привязки сокетов и привилегий в Docker и настраивать минимальные права RBAC и изоляцию подов в Kubernetes.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Docker & Kubernetes Security",
+          "url": "https://academy.hackthebox.com",
+          "note": "Руководства по харденингу контейнеров и кластеров Kubernetes"
+        }
+      ]
+    },
+    {
+      "day": 106,
+      "stageId": "thm-htb-advanced",
+      "title": "Защити конвейеры CI/CD (GitHub Actions Pwn Request), историю Git и цепочку поставок пакетов",
+      "summary": "По направлениям DevSecOps и Supply Chain Security разберём уязвимость Pwn Request (pull_request_target) и инъекцию выражений ${{ ... }} в воркфлоу GitHub Actions, криминалистический поиск удалённых секретов в объектной базе .git/objects и защиту от подмены зависимостей (Dependency Confusion) через привязку префиксов и криптографических хешей.",
+      "goal": "Написать анализатор безопасности пайплайнов GitHub Actions и проверить извлечение секретов из истории коммитов и защиту менеджера пакетов в lab.py.",
+      "lessonIds": [
+        "thm-htb-cicd-github-actions-pwnrequest",
+        "thm-htb-git-forensics-dependency-confusion"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь проектировать безопасные конвейеры CI/CD, проверять историю Git на утечки секретов и предотвращать атаки Dependency Confusion.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: DevSecOps, Git Forensics & Supply Chain",
+          "url": "https://tryhackme.com",
+          "note": "Практикумы по защите сборочных пайплайнов и управлению зависимостями"
+        }
+      ]
+    },
+    {
+      "day": 107,
+      "stageId": "thm-htb-advanced",
+      "title": "Проведи анализ памяти в Volatility 3 (psscan, malfind) и изучи сенсоры EDR (AMSI, ETW, PPL)",
+      "summary": "По курсам Memory Forensics и Endpoint Telemetry разберём обнаружение скрытых руткитом процессов (DKOM: psscan против pslist) и инжектированного кода в приватных регионах памяти RWX (malfind в Volatility 3), а затем изучим работу антивирусного интерфейса AMSI (AmsiScanBuffer), контроль целостности секций .text (amsi.dll / ntdll.dll) и защиту процесса EDR уровнем Protected Process Light (PPL).",
+      "goal": "Реализовать алгоритм сверки списков процессов и поиска регионов RWX с сигнатурой MZ в дампе памяти, а также проверить детектор модификации кодовых секций в EDR.",
+      "lessonIds": [
+        "thm-htb-dfir-volatility-memory-injection",
+        "thm-htb-edr-etw-amsi-telemetry"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь принципы поиска бестелесных имплантов в оперативной памяти с помощью Volatility 3 и устройство телеметрии AMSI, ETW-Ti и PPL в Windows.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Memory Forensics & EDR Telemetry",
+          "url": "https://academy.hackthebox.com",
+          "note": "Углублённые курсы по анализу оперативной памяти и архитектуре защиты конечных точек"
+        }
+      ]
+    },
+    {
+      "day": 108,
+      "stageId": "thm-htb-advanced",
+      "title": "Распакуй XOR-конфиг по Known-Plaintext, картируй MITRE ATT&CK и настрой плейбук SOAR",
+      "summary": "В завершающий день маршрута по курсам Malware Analysis и SOC Level 2 разберём статическое восстановление многобайтового ключа XOR по известному префиксу и автоматическое сопоставление импортов файла с техниками матрицы MITRE ATT&CK (capa), а также построим плейбук автоматического реагирования SOAR с предохранителем критической инфраструктуры (Tier 0 Allowlist Guard) и расчётом метрик MTTD/MTTR.",
+      "goal": "Извлечь скрытую конфигурацию C2 без запуска образца, определить техники MITRE ATT&CK по таблице импортов и протестировать предохранитель от самоблокировки в плейбуке SOAR.",
+      "lessonIds": [
+        "thm-htb-malware-deobfuscation-capa-yara",
+        "thm-htb-soc-soar-playbook-containment"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь безопасно извлекать замаскированные конфигурации вредоносного ПО, классифицировать возможности образцов по матрице MITRE ATT&CK и проектировать надёжные плейбуки автоматического реагирования SOAR.",
+      "minutes": 115,
+      "notes": [
+        "Это завершение полного 108-дневного маршрута Kairon (193 урока, объединяющих базовый курс и 64 разбора практикумов pwn.college, TryHackMe и Hack The Box Academy)."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Malware Triage, MITRE ATT&CK & SOAR",
+          "url": "https://tryhackme.com",
+          "note": "Заключительные практикумы по анализу вредоносного кода и автоматизации реагирования в SOC"
         }
       ]
     }

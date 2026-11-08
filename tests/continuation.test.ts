@@ -23,11 +23,11 @@ describe("book material in the ordinary daily route", () => {
       expect(getLessonDay(lesson.id)!.day).toBeGreaterThan(60);
     }
   });
-  it("adds fifty-seven explained practices and places the 71 lessons in the agreed order", () => {
-    expect(catalogue).toHaveLength(71);
-    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(57);
+  it("adds seventy-three explained practices and places the 87 lessons in the agreed order", () => {
+    expect(catalogue).toHaveLength(87);
+    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(73);
     const continuation = progressIndex.days.filter((d) => d.day > 60);
-    expect(continuation).toHaveLength(40);
+    expect(continuation).toHaveLength(48);
     expect(continuation.flatMap((d) => d.lessonIds)).toEqual(
       catalogue.map((e) => e.id),
     );
@@ -43,6 +43,8 @@ describe("book material in the ordinary daily route", () => {
     expect(getLessonDay("pwn-kernel-creds-modprobe-hardening")!.day).toBe(94);
     expect(getLessonDay("pwn-web-dom-clobbering-postmessage")!.day).toBe(95);
     expect(getLessonDay("thm-htb-dfir-pcap-beaconing-exfil")!.day).toBe(100);
+    expect(getLessonDay("pwn-cve-bash-apache-readelf-libxml")!.day).toBe(101);
+    expect(getLessonDay("thm-htb-soc-soar-playbook-containment")!.day).toBe(108);
     for (const item of catalogue) {
       const lesson = getLesson(item.id)!;
       expect(lesson.theory.length, item.id).toBeGreaterThan(4500);
@@ -51,18 +53,18 @@ describe("book material in the ordinary daily route", () => {
       expect(publicLesson(lesson)).not.toHaveProperty("answers");
     }
   });
-  it("accepts new bookmarks and all 177 IDs but rejects unpublished days and mismatched lessons", () => {
+  it("accepts new bookmarks and all 193 IDs but rejects unpublished days and mismatched lessons", () => {
     const accountId = "8af17b2d-3d08-466f-9d61-35e480b26c84";
     const bookmark = {
       accountId,
       action: "bookmark",
-      day: 100,
-      lessonId: "thm-htb-dfir-pcap-beaconing-exfil",
-      note: "Проверить детектор C2 Beaconing и DNS-туннелирования",
+      day: 108,
+      lessonId: "thm-htb-soc-soar-playbook-containment",
+      note: "Проверить предохранитель Tier 0 в плейбуке SOAR",
     };
     expect(progressRequestSchema.safeParse(bookmark).success).toBe(true);
     for (const change of [
-      { day: 101 },
+      { day: 109 },
       { day: 365 },
       { day: 0 },
       { day: 75 },
@@ -72,7 +74,7 @@ describe("book material in the ordinary daily route", () => {
         progressRequestSchema.safeParse({ ...bookmark, ...change }).success,
       ).toBe(false);
     const lessonIds = progressIndex.days.flatMap((d) => d.lessonIds);
-    expect(lessonIds).toHaveLength(177);
+    expect(lessonIds).toHaveLength(193);
     expect(
       progressRequestSchema.safeParse({
         accountId,

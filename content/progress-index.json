@@ -676,6 +676,62 @@
         "thm-htb-soc-sysmon-eventlogs-sigma",
         "thm-htb-dfir-pcap-beaconing-exfil"
       ]
+    },
+    {
+      "day": 101,
+      "lessonIds": [
+        "pwn-cve-bash-apache-readelf-libxml",
+        "pwn-web-host-header-php-type-juggling"
+      ]
+    },
+    {
+      "day": 102,
+      "lessonIds": [
+        "pwn-linux-lunacy-fds-memfd-proc",
+        "pwn-babyauto-symbolic-execution-angr"
+      ]
+    },
+    {
+      "day": 103,
+      "lessonIds": [
+        "thm-htb-web-ssrf-cloud-metadata-imdsv2",
+        "thm-htb-web-graphql-jwt-ssti"
+      ]
+    },
+    {
+      "day": 104,
+      "lessonIds": [
+        "thm-htb-pivoting-ssh-chisel-ligolo",
+        "thm-htb-ad-cs-certificates-esc1"
+      ]
+    },
+    {
+      "day": 105,
+      "lessonIds": [
+        "thm-htb-docker-socket-capabilities-escape",
+        "thm-htb-k8s-rbac-serviceaccount-imds"
+      ]
+    },
+    {
+      "day": 106,
+      "lessonIds": [
+        "thm-htb-cicd-github-actions-pwnrequest",
+        "thm-htb-git-forensics-dependency-confusion"
+      ]
+    },
+    {
+      "day": 107,
+      "lessonIds": [
+        "thm-htb-dfir-volatility-memory-injection",
+        "thm-htb-edr-etw-amsi-telemetry"
+      ]
+    },
+    {
+      "day": 108,
+      "lessonIds": [
+        "thm-htb-malware-deobfuscation-capa-yara",
+        "thm-htb-soc-soar-playbook-containment"
+      ]
     }
   ]
 }

@@ -79,14 +79,15 @@ export default async function MaterialsPage() {
         <h2>Все занятия — в общем плане</h2>
         <p>
           Автоматизация на Python, bug bounty, анализ программ, криптография и
-          48 разборов практикумов pwn.college, TryHackMe и Hack The Box Academy
+          64 разбора практикумов pwn.college, TryHackMe и Hack The Box Academy
           (Linux Luminarium, The Art of the Shell, Computing 101, Intro to
           Programming Languages, Playing With Programs, Intro to Cybersecurity,
           Program Security, System Security, Software Exploitation, Cryptomania,
           Content Injection, ARM64/XNU, Windows Warzone, Fuzz Dojo, DOS Dojo,
-          dojjail, Active Directory, PrivEsc и SOC/DFIR). Все эти занятия идут
-          по порядку в днях 61–100, с практикой и сохранением отметок в
-          аккаунте.
+          dojjail, Linux Lunacy, Symbolic Execution, Active Directory &amp; AD CS,
+          PrivEsc, Cloud SSRF/IMDSv2, GraphQL/JWT, Docker/Kubernetes, CI/CD,
+          Volatility 3, AMSI/ETW и SOC/DFIR/SOAR). Все эти занятия идут по
+          порядку в днях 61–108, с практикой и сохранением отметок в аккаунте.
         </p>
         <Link className="subtle-link" href="/days/61">
           Перейти к дню 61 →

@@ -50,10 +50,11 @@ examples are separately authored.
 
 ## pwn.college Dojos, TryHackMe & Hack The Box Academy
 
-Days 77–100 (48 lessons) cover the curriculum topics of the official and community
+Days 77–108 (64 lessons) cover the curriculum topics of the official and community
 dojos at https://pwn.college/dojos and https://github.com/pwncollege , as well as
-core infrastructure, Active Directory, Privilege Escalation, and SOC/DFIR tracks
-inspired by https://tryhackme.com and https://academy.hackthebox.com :
+core infrastructure, Active Directory, AD CS, Cloud, Kubernetes, CI/CD, Privilege
+Escalation, Memory Forensics, and SOC/DFIR/SOAR tracks inspired by
+https://tryhackme.com and https://academy.hackthebox.com :
 - `pwncollege/linux-luminarium` (BSD-2-Clause) & `shell-lin-do` (The Art of the Shell)
 - `pwncollege/computing-101` (BSD-2-Clause) & `intro-to-programming-languages`
 - `pwncollege/fundamentals-dojo` (Playing With Programs)
@@ -65,8 +66,8 @@ inspired by https://tryhackme.com and https://academy.hackthebox.com :
 - `pwncollege/injection-dojo` (Content Injection)
 - `pwncollege/arm-dojo` & `pwncollege/xnu-dojo` (ARM Architecture & XNU Dojo)
 - `pwncollege/windows-dojo` (Windows Warzone) & `fuzz` (Fuzz Dojo)
-- `pwncollege/challenges` (`advanced-web-security`, `what-is-a-bug`), `pwncollege/exec-suid`, `pwncollege/dos-dojo` & `pwncollege/dojjail`
-- TryHackMe & Hack The Box Academy topic coverage (VHost Fuzzing, SMB/RPC/LDAP, Kerberos/AD ACLs/DCSync, Linux/Windows PrivEsc, Sysmon/Sigma & Network DFIR)
+- `pwncollege/challenges` (`advanced-web-security`, `what-is-a-bug`), `pwncollege/exec-suid`, `pwncollege/dos-dojo`, `pwncollege/dojjail`, `pwncollege/linux-lunacy` & `pwncollege/babyauto-crackmes`
+- TryHackMe & Hack The Box Academy topic coverage (VHost Fuzzing, SMB/RPC/LDAP, Kerberos/AD ACLs/DCSync/AD CS ESC1–ESC8, Linux/Windows PrivEsc, Cloud SSRF/IMDSv2, GraphQL/JWT/SSTI, Network Pivoting/TUN, Docker/Kubernetes RBAC, GitHub Actions CI/CD & Dependency Confusion, Volatility 3 Memory Forensics, AMSI/ETW/PPL, XOR Deobfuscation/MITRE ATT&CK & Sysmon/Sigma/SOAR)
 
 Kairon does not copy or mirror third-party challenge containers, virtual machines,
 videos, slides, or proprietary prose. All Russian explanations, step-by-step Kali
