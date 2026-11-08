@@ -23,11 +23,11 @@ describe("book material in the ordinary daily route", () => {
       expect(getLessonDay(lesson.id)!.day).toBeGreaterThan(60);
     }
   });
-  it("adds twenty-one explained practices and places the 35 lessons in the agreed order", () => {
-    expect(catalogue).toHaveLength(35);
-    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(21);
+  it("adds thirty-three explained practices and places the 47 lessons in the agreed order", () => {
+    expect(catalogue).toHaveLength(47);
+    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(33);
     const continuation = progressIndex.days.filter((d) => d.day > 60);
-    expect(continuation).toHaveLength(22);
+    expect(continuation).toHaveLength(28);
     expect(continuation.flatMap((d) => d.lessonIds)).toEqual(
       catalogue.map((e) => e.id),
     );
@@ -37,6 +37,8 @@ describe("book material in the ordinary daily route", () => {
     expect(getLessonDay("source-sink")!.day).toBe(76);
     expect(getLessonDay("pwn-linux-shell-globbing")!.day).toBe(77);
     expect(getLessonDay("pwn-software-format-file-structs")!.day).toBe(82);
+    expect(getLessonDay("pwn-linux-processes-signals")!.day).toBe(83);
+    expect(getLessonDay("pwn-windows-pe-tokens-acl")!.day).toBe(88);
     for (const item of catalogue) {
       const lesson = getLesson(item.id)!;
       expect(lesson.theory.length, item.id).toBeGreaterThan(4500);
@@ -45,18 +47,18 @@ describe("book material in the ordinary daily route", () => {
       expect(publicLesson(lesson)).not.toHaveProperty("answers");
     }
   });
-  it("accepts new bookmarks and all 141 IDs but rejects unpublished days and mismatched lessons", () => {
+  it("accepts new bookmarks and all 153 IDs but rejects unpublished days and mismatched lessons", () => {
     const accountId = "8af17b2d-3d08-466f-9d61-35e480b26c84";
     const bookmark = {
       accountId,
       action: "bookmark",
-      day: 82,
-      lessonId: "pwn-software-format-file-structs",
-      note: "Проверить шаблон форматирования и fflush",
+      day: 88,
+      lessonId: "pwn-windows-pe-tokens-acl",
+      note: "Проверить заголовок PE и список DACL",
     };
     expect(progressRequestSchema.safeParse(bookmark).success).toBe(true);
     for (const change of [
-      { day: 83 },
+      { day: 89 },
       { day: 365 },
       { day: 0 },
       { day: 75 },
@@ -66,7 +68,7 @@ describe("book material in the ordinary daily route", () => {
         progressRequestSchema.safeParse({ ...bookmark, ...change }).success,
       ).toBe(false);
     const lessonIds = progressIndex.days.flatMap((d) => d.lessonIds);
-    expect(lessonIds).toHaveLength(141);
+    expect(lessonIds).toHaveLength(153);
     expect(
       progressRequestSchema.safeParse({
         accountId,

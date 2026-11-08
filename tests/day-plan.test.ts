@@ -13,10 +13,10 @@ import originalRoute from "./fixtures/original-route.json";
 import { lessons, getLesson } from "../src/lib/lessons";
 
 describe("one complete beginner route", () => {
-  it("places every published lesson exactly once in a continuous 82-day sequence", () => {
-    expect(learningDays).toHaveLength(82);
+  it("places every published lesson exactly once in a continuous 88-day sequence", () => {
+    expect(learningDays).toHaveLength(88);
     expect(learningDays.map((day) => day.day)).toEqual(
-      Array.from({ length: 82 }, (_, index) => index + 1),
+      Array.from({ length: 88 }, (_, index) => index + 1),
     );
     expect(
       learningDays
@@ -74,13 +74,13 @@ describe("one complete beginner route", () => {
     expect(totalPlannedMinutes).toBe(
       lessons.reduce((sum, lesson) => sum + lesson.minutes, 0),
     );
-    expect(totalPlannedMinutes).toBe(6403);
+    expect(totalPlannedMinutes).toBe(7083);
     expect(dayPlan.dailyGuidance).toContain("перерывы");
-    expect(dayPlan.calendarGuidance).toContain("17 недель");
+    expect(dayPlan.calendarGuidance).toContain("18 недель");
   });
 
-  it("partitions the route into fifteen stages without gaps and rejects unknown lookups", () => {
-    expect(learningStages).toHaveLength(15);
+  it("partitions the route into sixteen stages without gaps and rejects unknown lookups", () => {
+    expect(learningStages).toHaveLength(16);
     const stageDays = learningStages.flatMap((stage) => {
       const days = learningDays.filter((day) => day.stageId === stage.id);
       expect(days[0].day).toBe(stage.firstDay);
@@ -89,7 +89,7 @@ describe("one complete beginner route", () => {
     });
     expect(stageDays).toEqual(learningDays.map((day) => day.day));
     expect(getLearningDay(0)).toBeUndefined();
-    expect(getLearningDay(83)).toBeUndefined();
+    expect(getLearningDay(89)).toBeUndefined();
     expect(getLearningDay(1.5)).toBeUndefined();
     expect(getLearningDay(Number.NaN)).toBeUndefined();
     expect(getLessonDay("unknown")).toBeUndefined();

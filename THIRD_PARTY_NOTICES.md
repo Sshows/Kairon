@@ -50,8 +50,8 @@ examples are separately authored.
 
 ## pwn.college Dojos
 
-Days 77–82 cover the curriculum topics of the official dojos at
-https://pwn.college/dojos and https://github.com/pwncollege/official-dojos :
+Days 77–88 (24 lessons) cover the curriculum topics of the official and community
+dojos at https://pwn.college/dojos and https://github.com/pwncollege/official-dojos :
 - `pwncollege/linux-luminarium` (BSD-2-Clause)
 - `pwncollege/computing-101` (BSD-2-Clause)
 - `pwncollege/fundamentals-dojo` (Playing With Programs)
@@ -59,6 +59,10 @@ https://pwn.college/dojos and https://github.com/pwncollege/official-dojos :
 - `pwncollege/program-security-dojo` (Program Security)
 - `pwncollege/system-security-dojo` (System Security)
 - `pwncollege/software-exploitation-dojo` (Software Exploitation)
+- `prathamgupta36/cryptomania` (Cryptographic Exploitation)
+- `pwncollege/injection-dojo` (Content Injection)
+- `pwncollege/arm-dojo` & `pwncollege/xnu-dojo` (ARM Architecture & XNU Dojo)
+- `pwncollege/windows-dojo` (Windows Warzone)
 
 Kairon does not copy or mirror pwn.college challenge containers, videos, slides,
 or prose. All Russian explanations, step-by-step Kali instructions, and

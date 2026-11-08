@@ -79,8 +79,11 @@ export default async function MaterialsPage() {
         <h2>Все занятия — в общем плане</h2>
         <p>
           Автоматизация на Python, bug bounty, анализ программ, криптография и
-          разборы практикумов pwn.college. Все эти занятия идут по порядку в
-          днях 61–82, с практикой и сохранением отметок в аккаунте.
+          полный курс из 24 разборов практикумов pwn.college (Linux Luminarium,
+          Computing 101, Playing With Programs, Intro to Cybersecurity, Program
+          Security, System Security, Software Exploitation, Cryptomania, Content
+          Injection, ARM64/XNU и Windows Warzone). Все эти занятия идут по
+          порядку в днях 61–88, с практикой и сохранением отметок в аккаунте.
         </p>
         <Link className="subtle-link" href="/days/61">
           Перейти к дню 61 →

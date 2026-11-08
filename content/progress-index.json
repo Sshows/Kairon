@@ -550,6 +550,48 @@
         "pwn-system-sandboxing-races",
         "pwn-software-format-file-structs"
       ]
+    },
+    {
+      "day": 83,
+      "lessonIds": [
+        "pwn-linux-processes-signals",
+        "pwn-linux-env-subshells"
+      ]
+    },
+    {
+      "day": 84,
+      "lessonIds": [
+        "pwn-computing-debugging-elf",
+        "pwn-reverse-control-flow-cfg"
+      ]
+    },
+    {
+      "day": 85,
+      "lessonIds": [
+        "pwn-program-rop-got-relro",
+        "pwn-software-primitives-safelinking"
+      ]
+    },
+    {
+      "day": 86,
+      "lessonIds": [
+        "pwn-system-kernel-ioctl-smep",
+        "pwn-system-speculative-cache"
+      ]
+    },
+    {
+      "day": 87,
+      "lessonIds": [
+        "pwn-crypto-ecb-padding-prng",
+        "pwn-injection-csv-yaml-xml"
+      ]
+    },
+    {
+      "day": 88,
+      "lessonIds": [
+        "pwn-arch-arm64-xnu-pac",
+        "pwn-windows-pe-tokens-acl"
+      ]
     }
   ]
 }

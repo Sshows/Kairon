@@ -179,5 +179,97 @@ class ContinuationPractice(unittest.TestCase):
         self.assertIn("writes_before_flush= 0 writes_after_flush= 1", fmt_out)
         self.assertIn("writes_before_flush= 1", run(fmt_code.replace('"Prompt without newline:"', '"Prompt without newline:\\n"')))
 
+    def test_pwn_linux_processes_and_env(self):
+        proc_code = program("pwn-linux-processes-signals")
+        proc_out = run(proc_code)
+        self.assertIn("chain_executed= ['check_config:0', 'start_worker:1', 'write_error_log:0'] final_code= 0", proc_out)
+        self.assertIn("sigterm_handled= ('graceful_shutdown:SIGTERM', 0)", proc_out)
+        self.assertIn("sigkill_forced= ('killed_by_kernel', 137)", proc_out)
+        self.assertIn(
+            "['check_config:0', 'start_worker:0', 'notify_ready:0']",
+            run(proc_code.replace('("&&", "start_worker", 1)', '("&&", "start_worker", 0)')),
+        )
+
+        env_code = program("pwn-linux-env-subshells")
+        env_out = run(env_code)
+        self.assertIn("normal_child_keys= ['API_MODE', 'LD_PRELOAD', 'PATH', 'REQ_ID']", env_out)
+        self.assertIn("local_note_leaked= False", env_out)
+        self.assertIn("setuid_child_keys= ['API_MODE', 'PATH']", env_out)
+        self.assertIn(
+            "local_note_leaked= True",
+            run(env_code.replace('{"PATH", "API_MODE", "LD_PRELOAD"}', '{"PATH", "API_MODE", "LD_PRELOAD", "LOCAL_NOTE"}')),
+        )
+
+    def test_pwn_debugging_elf_and_reverse_cfg(self):
+        elf_code = program("pwn-computing-debugging-elf")
+        elf_out = run(elf_code)
+        self.assertIn("elf_info= {'valid': True, 'bits': 64, 'endian': 'little', 'entry': '0x401060'}", elf_out)
+        self.assertIn("saved_opcode= 0x55 patched_hex= cc4889e583ec10c3", elf_out)
+        self.assertIn("saved_opcode= 0xc3 patched_hex= 554889e583ec10cc", run(elf_code.replace("offset=0", "offset=7")))
+
+        cfg_code = program("pwn-reverse-control-flow-cfg")
+        cfg_out = run(cfg_code)
+        self.assertIn("recovered_key= KRN-7428", cfg_out)
+        self.assertIn("wrong_attempt= False ['bb_entry', 'bb_check_prefix', 'bb_check_loop', 'bb_fail_byte_4']", cfg_out)
+        self.assertIn("right_attempt= True ['bb_entry', 'bb_check_prefix', 'bb_check_loop', 'bb_accept']", cfg_out)
+        self.assertIn("['bb_entry', 'bb_fail_len']", run(cfg_code.replace('b"KRN-0000"', 'b"SHORT"')))
+
+    def test_pwn_rop_relro_and_safelinking(self):
+        rop_code = program("pwn-program-rop-got-relro")
+        rop_out = run(rop_code)
+        self.assertIn("aligned_shadow_ok= ret_ok:0x401180", rop_out)
+        self.assertIn("unaligned_rsp= fault:unaligned_stack_movaps", rop_out)
+        self.assertIn("shadow_mismatch= fault:cet_shadow_stack_mismatch", rop_out)
+        self.assertIn("got_full_relro= ('blocked:got_is_read_only_full_relro', '0x7ffff7e44200')", rop_out)
+        self.assertIn("modified:partial_relro", run(rop_code.replace("full_relro=True)", "full_relro=False)")))
+
+        safe_code = program("pwn-software-primitives-safelinking")
+        safe_out = run(safe_code)
+        self.assertIn("mangled_ptr= 0x555000203556", safe_out)
+        self.assertIn("valid_pop= ('allocated:ok', '0x555555756200')", safe_out)
+        self.assertIn("corrupted_raw_Overwrite= ('aborted:unaligned_tcache_chunk', '0x5551517de')", safe_out)
+        self.assertIn("signed_bug_vs_strict= read_value:SECRET_BEFORE rejected:index_out_of_bounds", safe_out)
+
+    def test_pwn_kernel_smep_and_speculative_cache(self):
+        kern_code = program("pwn-system-kernel-ioctl-smep")
+        kern_out = run(kern_code)
+        self.assertIn("valid_ioctl= copy_from_user_ok:bytes=32", kern_out)
+        self.assertIn("kernel_addr_leak_attempt= errno:EFAULT_bad_user_address", kern_out)
+        self.assertIn("direct_deref_smap= kernel_oops:smap_violation_direct_user_access", kern_out)
+        self.assertIn("smep_check= kernel_oops:smep_violation_user_page_exec", kern_out)
+        self.assertIn("errno:EINVAL_invalid_length", run(kern_code.replace("handle_kernel_ioctl(0x7FFFFFFFE000, 32)", "handle_kernel_ioctl(0x7FFFFFFFE000, 128)")))
+
+        spec_code = program("pwn-system-speculative-cache")
+        spec_out = run(spec_code)
+        self.assertIn("unprotected_status= bounds_rejected arch_return= None cache_hits= [(90, 32)]", spec_out)
+        self.assertIn("nospec_masked_status= bounds_rejected cache_hits= []", spec_out)
+        self.assertIn("architectural_read", run(spec_code.replace("idx=4, branch_trained=True, use_nospec_mask=False", "idx=2, branch_trained=True, use_nospec_mask=False")))
+
+    def test_pwn_crypto_injection_arm_xnu_and_windows(self):
+        cry_code = program("pwn-crypto-ecb-padding-prng")
+        cry_out = run(cry_code)
+        self.assertIn("padded_len= 32 last_pad_byte= 0xd", cry_out)
+        self.assertIn("authentic_packet= accepted:user=alex&role=user", cry_out)
+        self.assertIn("swapped_block_caught= rejected:invalid_mac_before_decrypt", cry_out)
+
+        inj_code = program("pwn-injection-csv-yaml-xml")
+        inj_out = run(inj_code)
+        self.assertIn('safe_csv_cell= "\'=HYPERLINK(""http://127.0.0.1/collect"", ""Invoice"")"', inj_out)
+        self.assertIn("yaml_check= blocked:unsafe_yaml_type_tag", inj_out)
+        self.assertIn("xml_check= blocked:xml_doctype_or_xxe_entity", inj_out)
+        self.assertIn("clean_xml_check= safe_xml_element_tree", inj_out)
+
+        arm_code = program("pwn-arch-arm64-xnu-pac")
+        arm_out = run(arm_code)
+        self.assertIn("arm64_regs= {'X0': 10, 'X1': 20, 'X2': 30, 'X30_LR': '0x100003f40'}", arm_out)
+        self.assertIn("verify_valid= ('autia_ok', '0x100003f40')", arm_out)
+        self.assertIn("verify_tampered= ('fault:pac_authentication_failed', '0x100009990')", arm_out)
+
+        win_code = program("pwn-windows-pe-tokens-acl")
+        win_out = run(win_code)
+        self.assertIn("pe_info= {'valid_pe': True, 'pe_offset': '0x80', 'arch': 'x86_64'}", win_out)
+        self.assertIn("user_read_write= ('STATUS_SUCCESS:handle_issued', ['READ', 'WRITE'])", win_out)
+        self.assertIn("guest_write_blocked= ('ERROR_ACCESS_DENIED:explicit_deny', [])", win_out)
+
 if __name__ == "__main__":
     unittest.main()

@@ -3,14 +3,14 @@
   "title": "От первого запуска Kali к осмысленной проверке: единый план по дням",
   "introduction": "Пошаговый маршрут с нуля без сухих двухсловных определений и лишнего жаргона. Каждое понятие мы сначала переводим на обычный человеческий язык на примерах из жизни (квартира в доме, вахтёр на проходной, пломба на коробке, чек на кассе), а затем проверяем руками в твоей Kali Linux: какое окно открыть, куда нажать, что означает каждое слово команды и какой результат должен появиться на экране.",
   "dailyGuidance": "В каждом учебном дне 1 или 2 урока, от 40 до 120 минут по оценке, плюс перерывы, повторение и время на скачивание. Номер обозначает очередь шагов: один день можно разделить на несколько вечеров.",
-  "calendarGuidance": "В маршруте 82 учебных дня. При пяти занятиях в неделю это около 17 недель, при шести — около 14. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
-  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 82 дня и 141 урок бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
+  "calendarGuidance": "В маршруте 88 учебных дней. При пяти занятиях в неделю это около 18 недель, при шести — около 15. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
+  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 88 дней и 153 урока бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
   "practiceGuidance": "Вся практика проходит безопасно внутри твоей собственной виртуальной машины Kali Linux на учебных файлах и локальных сервисах. Тебе не нужно устанавливать десятки программ заранее — каждый небольшой учебный архив (.zip) скачивается ровно перед тем этапом, где он нужен.",
-  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college уже включены в общий порядок дней 61–82; отдельное продолжение искать не нужно.",
+  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college уже включены в общий порядок дней 61–88; отдельное продолжение искать не нужно.",
   "reviewedAt": "2026-11-08",
-  "totalDays": 82,
-  "totalLessons": 141,
-  "totalMinutes": 6403,
+  "totalDays": 88,
+  "totalLessons": 153,
+  "totalMinutes": 7083,
   "stages": [
     {
       "id": "prepare",
@@ -116,6 +116,13 @@
       "firstDay": 80,
       "lastDay": 82,
       "summary": "Дни 80–82. По темам курсов Intro to Cybersecurity, Program Security, System Security и Software Exploitation разбираем модели доступа DAC и MAC, защиту стека и кучи (Stack Canary, NX, ASLR, tcache, UAF), песочницы seccomp, гонки TOCTOU и строки форматирования."
+    },
+    {
+      "id": "pwn-advanced",
+      "title": "Практикум pwn.college: углублённый анализ систем, криптографии и архитектур",
+      "firstDay": 83,
+      "lastDay": 88,
+      "summary": "Дни 83–88. Расширенные модули официальных практикумов pwn.college: процессы, сигналы и AT_SECURE в Linux Luminarium, отладка ELF и граф потока управления (CFG), цепочки ROP, Full RELRO, CET Shadow Stack и Safe-Linking, безопасность ядра (ioctl, SMEP/SMAP, спекулятивное исполнение и кэш Flush+Reload), Cryptomania, Content Injection, ARM64/XNU PAC и Windows Warzone (PE, DACL)."
     }
   ],
   "days": [
@@ -1741,13 +1748,169 @@
       "outcome": "Ты умеешь оценивать границы песочниц seccomp, защищать файловые операции от TOCTOU и устранять ошибки строк форматирования и буферизации потоков.",
       "minutes": 115,
       "notes": [
-        "Это завершение расширенного 82-дневного маршрута Kairon с разбором практикумов pwn.college."
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и переходи к углублённому блоку практикумов pwn.college."
       ],
       "resources": [
         {
           "label": "pwn.college: System Security & Software Exploitation",
           "url": "https://pwn.college/system-security",
           "note": "Продвинутые курсы pwn.college по изоляции процессов, гонкам и безопасности библиотек"
+        }
+      ]
+    },
+    {
+      "day": 83,
+      "stageId": "pwn-advanced",
+      "title": "Разбери управление процессами, сигналы и фильтр AT_SECURE в Linux",
+      "summary": "По продвинутым модулям Linux Luminarium (Processes, Chaining, Variables, Shenanigans) разберём коды возврата ($?), цепочки && / ||, сигналы SIGTERM против SIGKILL и то, как наследование переменных окружения (export, LD_PRELOAD) фильтруется режимом AT_SECURE при запуске setuid-программ.",
+      "goal": "Проверить выполнение условных цепочек команд и обработку сигналов SIGTERM/SIGKILL, а также сравнить окружение обычного дочернего процесса и привилегированного setuid-процесса.",
+      "lessonIds": [
+        "pwn-linux-processes-signals",
+        "pwn-linux-env-subshells"
+      ],
+      "prepare": [
+        "Своя Kali Linux, терминал и Python 3."
+      ],
+      "outcome": "Ты уверенно читаешь коды возврата процессов (включая 128 + N от сигналов), строишь цепочки && / || и понимаешь, как работают export, подоболочки и защита AT_SECURE.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Linux Luminarium",
+          "url": "https://pwn.college/linux-luminarium",
+          "note": "Модули Processes, Chaining, Variables и Shenanigans"
+        }
+      ]
+    },
+    {
+      "day": 84,
+      "stageId": "pwn-advanced",
+      "title": "Изучи заголовок ELF, точки останова 0xCC и граф потока управления (CFG)",
+      "summary": "По модулям Introspecting, Debugging Refresher и Reverse Engineering разберём внутреннее устройство заголовка и секций ELF, механизм программной точки останова 0xCC (int3) в отладчике gdb и восстановление проверок ключа по базовым блокам графа потока управления (CFG).",
+      "goal": "Разобрать поля 64-битного заголовка ELF и смоделировать установку точки останова 0xCC, а затем пройти по базовым блокам CFG и восстановить ключ обращением операций над константами .rodata.",
+      "lessonIds": [
+        "pwn-computing-debugging-elf",
+        "pwn-reverse-control-flow-cfg"
+      ],
+      "prepare": [
+        "Своя Kali Linux, Python 3 и утилиты readelf / strings."
+      ],
+      "outcome": "Ты понимаешь устройство секций ELF, принцип работы программных и аппаратных точек останова в gdb и умеешь обращать проверочные циклы в задачах реверс-инжиниринга.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Computing 101 & Program Security",
+          "url": "https://pwn.college/computing-101",
+          "note": "Модули Introspecting, Debugging Refresher и Reverse Engineering"
+        }
+      ]
+    },
+    {
+      "day": 85,
+      "stageId": "pwn-advanced",
+      "title": "Проверь выравнивание стека в ROP, Full RELRO, CET и маскирование Safe-Linking",
+      "summary": "По модулям Return-Oriented Programming, Exploitation Primitives и Dynamic Allocator Exploitation разберём переходы ret, выравнивание RSP по 16 байтам, защиту таблиц PLT/GOT через Full RELRO, теневой стек CET и защиту кучи Safe-Linking в glibc 2.32+.",
+      "goal": "Смоделировать проверку выравнивания RSP, сверку адреса возврата с Shadow Stack и режим Full RELRO для таблицы GOT, а также проверить кодирование указателей tcache по формуле Safe-Linking и строгий контроль границ массива.",
+      "lessonIds": [
+        "pwn-program-rop-got-relro",
+        "pwn-software-primitives-safelinking"
+      ],
+      "prepare": [
+        "Своя Kali Linux, Python 3 и утилита readelf."
+      ],
+      "outcome": "Ты понимаешь, как работают связка PLT/GOT, Full RELRO, аппаратный Shadow Stack и формула Safe-Linking в современном аллокаторе glibc.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Program Security & Software Exploitation",
+          "url": "https://pwn.college/software-exploitation",
+          "note": "Модули Return-Oriented Programming, Exploitation Primitives и Dynamic Allocator Exploitation"
+        }
+      ]
+    },
+    {
+      "day": 86,
+      "stageId": "pwn-advanced",
+      "title": "Разбери защиту ядра (ioctl, SMEP/SMAP) и побочный канал кэша Flush+Reload",
+      "summary": "По модулям Kernel Security, System Exploitation и Speculative Execution курса System Security разберём границу Ring 0 / Ring 3, проверку буферов в copy_from_user, флаги процессора SMEP/SMAP и то, как спекулятивное чтение за границей массива оставляет след в кэше (Spectre v1 / Flush+Reload).",
+      "goal": "Проверить валидацию адресов и размеров в обработчике ioctl и работу SMEP/SMAP, а затем промоделировать замер времени кэша Flush+Reload и защиту через маскирование индекса (array_index_nospec).",
+      "lessonIds": [
+        "pwn-system-kernel-ioctl-smep",
+        "pwn-system-speculative-cache"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты объясняешь назначение copy_from_user, SMEP, SMAP и KPTI, а также понимаешь физику побочных каналов кэша Flush+Reload и защиту от спекулятивного обхода границ.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: System Security",
+          "url": "https://pwn.college/system-security",
+          "note": "Модули Kernel Security, System Exploitation и Speculative Execution"
+        }
+      ]
+    },
+    {
+      "day": 87,
+      "stageId": "pwn-advanced",
+      "title": "Проверь режимы шифрования (Cryptomania) и защиту форматов CSV, YAML и XML",
+      "summary": "По официальным практикумам Cryptographic Exploitation (Cryptomania) и Content Injection (injection-dojo) разберём перестановку блоков AES-ECB, оракул дополнения PKCS#7, защиту Encrypt-then-MAC и предотвращение инъекций в документы CSV, YAML и XML (XXE).",
+      "goal": "Проверить валидацию дополнения PKCS#7 и схему verify_then_unpad (Encrypt-then-MAC), а также реализовать экранирование формул CSV и фильтрацию опасных тегов YAML и внешних сущностей XML.",
+      "lessonIds": [
+        "pwn-crypto-ecb-padding-prng",
+        "pwn-injection-csv-yaml-xml"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь, почему Encrypt-then-MAC и AEAD закрывают оракул дополнения PKCS#7, и умеешь безопасно обрабатывать пользовательские данные при экспорте в CSV и разборе YAML/XML.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Cryptomania & Content Injection",
+          "url": "https://pwn.college/cryptomania",
+          "note": "Официальные практикумы pwn.college по криптографии и безопасности форматов данных"
+        }
+      ]
+    },
+    {
+      "day": 88,
+      "stageId": "pwn-advanced",
+      "title": "Сравни архитектуры ARM64/XNU (Mach IPC, PAC) и Windows (PE, DACL)",
+      "summary": "По практикумам ARM Architecture, XNU Dojo и Windows Warzone разберём соглашение о вызовах AArch64 (регистры X0–X7, X30/LR), сообщения Mach IPC и криптографическую подпись указателей PAC, а затем изучим структуру исполняемых файлов PE (MZ, PE\\0\\0, IAT) и проверку списков доступа DACL в Windows.",
+      "goal": "Смоделировать регистры вызова AArch64 и проверку подписи указателя PAC (PACIA/AUTIA) с привязкой к контексту стека, а также разобрать заголовок PE-файла и канонический порядок правил DENY/ALLOW в списке DACL.",
+      "lessonIds": [
+        "pwn-arch-arm64-xnu-pac",
+        "pwn-windows-pe-tokens-acl"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты свободно ориентируешься в различиях между Linux (ELF, x86-64/ARM64), macOS/iOS (XNU, Mach IPC, PAC) и Windows (PE, Access Tokens, DACL).",
+      "minutes": 120,
+      "notes": [
+        "Это завершение полного 88-дневного маршрута Kairon (153 урока), охватывающего как базовую программу, так и все ключевые направления практикумов pwn.college."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Official & Community Dojos",
+          "url": "https://pwn.college/dojos",
+          "note": "Полный каталог практикумов pwn.college (ARM, XNU, Windows Warzone и др.)"
         }
       ]
     }
