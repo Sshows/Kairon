@@ -137,8 +137,8 @@ test("day 76 bookmark and completion survive a second device with the same accou
     });
     const second = await device.newPage();
     await second.goto("/profile");
-    await expect(second.locator(".profile-stats")).toContainText("1 / 76");
-    await expect(second.locator(".profile-stats")).toContainText("0 / 129");
+    await expect(second.locator(".profile-stats")).toContainText("1 / 82");
+    await expect(second.locator(".profile-stats")).toContainText("0 / 141");
   } finally {
     await device.close();
   }

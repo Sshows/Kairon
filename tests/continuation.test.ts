@@ -23,11 +23,11 @@ describe("book material in the ordinary daily route", () => {
       expect(getLessonDay(lesson.id)!.day).toBeGreaterThan(60);
     }
   });
-  it("adds nine explained practices and places the 23 lessons in the agreed order", () => {
-    expect(catalogue).toHaveLength(23);
-    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(9);
+  it("adds twenty-one explained practices and places the 35 lessons in the agreed order", () => {
+    expect(catalogue).toHaveLength(35);
+    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(21);
     const continuation = progressIndex.days.filter((d) => d.day > 60);
-    expect(continuation).toHaveLength(16);
+    expect(continuation).toHaveLength(22);
     expect(continuation.flatMap((d) => d.lessonIds)).toEqual(
       catalogue.map((e) => e.id),
     );
@@ -35,6 +35,8 @@ describe("book material in the ordinary daily route", () => {
     expect(getLessonDay("bug-race-oauth-logic")!.day).toBe(70);
     expect(getLessonDay("crypto-public-key-pqc")!.day).toBe(73);
     expect(getLessonDay("source-sink")!.day).toBe(76);
+    expect(getLessonDay("pwn-linux-shell-globbing")!.day).toBe(77);
+    expect(getLessonDay("pwn-software-format-file-structs")!.day).toBe(82);
     for (const item of catalogue) {
       const lesson = getLesson(item.id)!;
       expect(lesson.theory.length, item.id).toBeGreaterThan(4500);
@@ -43,18 +45,18 @@ describe("book material in the ordinary daily route", () => {
       expect(publicLesson(lesson)).not.toHaveProperty("answers");
     }
   });
-  it("accepts new bookmarks and all 129 IDs but rejects unpublished days and mismatched lessons", () => {
+  it("accepts new bookmarks and all 141 IDs but rejects unpublished days and mismatched lessons", () => {
     const accountId = "8af17b2d-3d08-466f-9d61-35e480b26c84";
     const bookmark = {
       accountId,
       action: "bookmark",
-      day: 76,
-      lessonId: "source-sink",
-      note: "Проверить преобразование перед операцией",
+      day: 82,
+      lessonId: "pwn-software-format-file-structs",
+      note: "Проверить шаблон форматирования и fflush",
     };
     expect(progressRequestSchema.safeParse(bookmark).success).toBe(true);
     for (const change of [
-      { day: 77 },
+      { day: 83 },
       { day: 365 },
       { day: 0 },
       { day: 75 },
@@ -64,7 +66,7 @@ describe("book material in the ordinary daily route", () => {
         progressRequestSchema.safeParse({ ...bookmark, ...change }).success,
       ).toBe(false);
     const lessonIds = progressIndex.days.flatMap((d) => d.lessonIds);
-    expect(lessonIds).toHaveLength(129);
+    expect(lessonIds).toHaveLength(141);
     expect(
       progressRequestSchema.safeParse({
         accountId,

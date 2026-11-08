@@ -11,6 +11,7 @@ const modules = {
   cryptography: "Прикладная криптография",
   malware: "Подробный разбор программ",
   "zero-day": "Подробный разбор программ",
+  "pwn-dojos": "Практикум pwn.college",
 };
 function preparation(id) {
   return [
@@ -72,7 +73,9 @@ export function continuationLessons() {
           ? "bug-bounty"
           : entry.id.startsWith("crypto-")
             ? "cryptography"
-            : "malware");
+            : entry.id.startsWith("pwn-")
+              ? "pwn-dojos"
+              : "malware");
     const body = read(
       original
         ? `content/book-courses/${entry.course}/${entry.id}.md`

@@ -508,6 +508,48 @@
         "binary-map",
         "source-sink"
       ]
+    },
+    {
+      "day": 77,
+      "lessonIds": [
+        "pwn-linux-shell-globbing",
+        "pwn-linux-pipes-permissions"
+      ]
+    },
+    {
+      "day": 78,
+      "lessonIds": [
+        "pwn-computing-syscalls-memory",
+        "pwn-computing-stack-server"
+      ]
+    },
+    {
+      "day": 79,
+      "lessonIds": [
+        "pwn-fundamentals-data-http",
+        "pwn-fundamentals-misuse-sql"
+      ]
+    },
+    {
+      "day": 80,
+      "lessonIds": [
+        "pwn-intro-dac-mac",
+        "pwn-intro-integrated-chain"
+      ]
+    },
+    {
+      "day": 81,
+      "lessonIds": [
+        "pwn-program-stack-mitigations",
+        "pwn-program-allocator-invariants"
+      ]
+    },
+    {
+      "day": 82,
+      "lessonIds": [
+        "pwn-system-sandboxing-races",
+        "pwn-software-format-file-structs"
+      ]
     }
   ]
 }

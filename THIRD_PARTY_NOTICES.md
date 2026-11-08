@@ -47,3 +47,21 @@ The existing catalogue attributes Hack-with-Github / Awesome-Hacking and its
 CC0-1.0 license. The complete 81-entry audited index remains available at
 `/collections` and `/sources/awesome-hacking`. Kairon's explanations and
 examples are separately authored.
+
+## pwn.college Dojos
+
+Days 77–82 cover the curriculum topics of the official dojos at
+https://pwn.college/dojos and https://github.com/pwncollege/official-dojos :
+- `pwncollege/linux-luminarium` (BSD-2-Clause)
+- `pwncollege/computing-101` (BSD-2-Clause)
+- `pwncollege/fundamentals-dojo` (Playing With Programs)
+- `pwncollege/intro-to-cybersecurity-dojo` (Intro to Cybersecurity)
+- `pwncollege/program-security-dojo` (Program Security)
+- `pwncollege/system-security-dojo` (System Security)
+- `pwncollege/software-exploitation-dojo` (Software Exploitation)
+
+Kairon does not copy or mirror pwn.college challenge containers, videos, slides,
+or prose. All Russian explanations, step-by-step Kali instructions, and
+self-contained Python verification models in `content/continuation/pwn-*.md` are
+independently authored for Kairon and link directly to the corresponding
+official pwn.college dojos and GitHub repositories.

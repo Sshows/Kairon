@@ -23,18 +23,18 @@ import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("preserves the original courses and integrates follow-on lessons with stable IDs", () => {
-    expect(lessons).toHaveLength(129);
+    expect(lessons).toHaveLength(141);
     const web = getCourseLessons("web-security");
-    expect(web).toHaveLength(19);
-    expect(getCourseModules("web-security")).toHaveLength(5);
+    expect(web).toHaveLength(20);
+    expect(getCourseModules("web-security")).toHaveLength(6);
     expect(web.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1400);
     const kali = getCourseLessons("from-zero");
     const company = getCourseLessons("blue-team");
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
     const practice = getCourseLessons("kali-practice");
-    expect(practice).toHaveLength(33);
-    expect(getCourseModules("kali-practice")).toHaveLength(6);
+    expect(practice).toHaveLength(36);
+    expect(getCourseModules("kali-practice")).toHaveLength(7);
     expect(practice.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2400);
     const diagnostics = getCourseLessons("diagnostics");
     expect(diagnostics).toHaveLength(8);
@@ -43,15 +43,15 @@ describe("Kali guides and answer checks", () => {
     const analysis = getCourseLessons("file-analysis");
     expect(kali).toHaveLength(20);
     expect(company).toHaveLength(12);
-    expect(projects).toHaveLength(11);
+    expect(projects).toHaveLength(13);
     expect(basics).toHaveLength(12);
-    expect(analysis).toHaveLength(14);
+    expect(analysis).toHaveLength(20);
     expect(getCourseModules("from-zero")).toHaveLength(4);
     expect(getCourseModules("blue-team")).toHaveLength(3);
-    expect(getCourseModules("kali-tools")).toHaveLength(3);
+    expect(getCourseModules("kali-tools")).toHaveLength(4);
     expect(getCourseModules("security-basics")).toHaveLength(3);
-    expect(getCourseModules("file-analysis")).toHaveLength(3);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(129);
+    expect(getCourseModules("file-analysis")).toHaveLength(4);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(141);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
