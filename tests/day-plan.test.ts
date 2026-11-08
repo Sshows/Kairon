@@ -13,10 +13,10 @@ import originalRoute from "./fixtures/original-route.json";
 import { lessons, getLesson } from "../src/lib/lessons";
 
 describe("one complete beginner route", () => {
-  it("places every published lesson exactly once in a continuous 108-day sequence", () => {
-    expect(learningDays).toHaveLength(108);
+  it("places every published lesson exactly once in a continuous 114-day sequence", () => {
+    expect(learningDays).toHaveLength(114);
     expect(learningDays.map((day) => day.day)).toEqual(
-      Array.from({ length: 108 }, (_, index) => index + 1),
+      Array.from({ length: 114 }, (_, index) => index + 1),
     );
     expect(
       learningDays
@@ -74,13 +74,13 @@ describe("one complete beginner route", () => {
     expect(totalPlannedMinutes).toBe(
       lessons.reduce((sum, lesson) => sum + lesson.minutes, 0),
     );
-    expect(totalPlannedMinutes).toBe(9358);
+    expect(totalPlannedMinutes).toBe(10043);
     expect(dayPlan.dailyGuidance).toContain("перерывы");
-    expect(dayPlan.calendarGuidance).toContain("22 недель");
+    expect(dayPlan.calendarGuidance).toContain("23 недель");
   });
 
-  it("partitions the route into twenty stages without gaps and rejects unknown lookups", () => {
-    expect(learningStages).toHaveLength(20);
+  it("partitions the route into twenty-one stages without gaps and rejects unknown lookups", () => {
+    expect(learningStages).toHaveLength(21);
     const stageDays = learningStages.flatMap((stage) => {
       const days = learningDays.filter((day) => day.stageId === stage.id);
       expect(days[0].day).toBe(stage.firstDay);
@@ -89,7 +89,7 @@ describe("one complete beginner route", () => {
     });
     expect(stageDays).toEqual(learningDays.map((day) => day.day));
     expect(getLearningDay(0)).toBeUndefined();
-    expect(getLearningDay(109)).toBeUndefined();
+    expect(getLearningDay(115)).toBeUndefined();
     expect(getLearningDay(1.5)).toBeUndefined();
     expect(getLearningDay(Number.NaN)).toBeUndefined();
     expect(getLessonDay("unknown")).toBeUndefined();

@@ -732,6 +732,48 @@
         "thm-htb-malware-deobfuscation-capa-yara",
         "thm-htb-soc-soar-playbook-containment"
       ]
+    },
+    {
+      "day": 109,
+      "lessonIds": [
+        "pwn-sqli-union-error-schema-extraction",
+        "pwn-sqli-blind-boolean-time-second-order"
+      ]
+    },
+    {
+      "day": 110,
+      "lessonIds": [
+        "pwn-injection-dojo-csv-yaml-json-xml",
+        "thm-htb-nosqli-ldap-xpath-injection"
+      ]
+    },
+    {
+      "day": 111,
+      "lessonIds": [
+        "thm-htb-wstg-xxe-cors-csrf-audit",
+        "thm-htb-wstg-fileupload-magic-polyglot-lfi"
+      ]
+    },
+    {
+      "day": 112,
+      "lessonIds": [
+        "pwn-ctf-archive-reversing-keygen-solver",
+        "pwn-ctf-archive-pwn-format-leak-pie-ret2win"
+      ]
+    },
+    {
+      "day": 113,
+      "lessonIds": [
+        "pwn-ctf-dc33-dca-deceit-race-legion",
+        "pwn-ctf-acsac-crypto-prng-padding-oracle"
+      ]
+    },
+    {
+      "day": 114,
+      "lessonIds": [
+        "pwn-hacker-history-morris-fingerd-heartbleed",
+        "thm-htb-full-pentest-ctf-assessment-pipeline"
+      ]
     }
   ]
 }

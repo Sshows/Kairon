@@ -3,14 +3,14 @@
   "title": "От первого запуска Kali к осмысленной проверке: единый план по дням",
   "introduction": "Пошаговый маршрут с нуля без сухих двухсловных определений и лишнего жаргона. Каждое понятие мы сначала переводим на обычный человеческий язык на примерах из жизни (квартира в доме, вахтёр на проходной, пломба на коробке, чек на кассе), а затем проверяем руками в твоей Kali Linux: какое окно открыть, куда нажать, что означает каждое слово команды и какой результат должен появиться на экране.",
   "dailyGuidance": "В каждом учебном дне 1 или 2 урока, от 40 до 120 минут по оценке, плюс перерывы, повторение и время на скачивание. Номер обозначает очередь шагов: один день можно разделить на несколько вечеров.",
-  "calendarGuidance": "В маршруте 108 учебных дней. При пяти занятиях в неделю это около 22 недель, при шести — около 18. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
-  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 108 дней и 193 урока бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
+  "calendarGuidance": "В маршруте 114 учебных дней. При пяти занятиях в неделю это около 23 недель, при шести — около 19. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
+  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 114 дней и 205 уроков бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
   "practiceGuidance": "Вся практика проходит безопасно внутри твоей собственной виртуальной машины Kali Linux на учебных файлах и локальных сервисах. Тебе не нужно устанавливать десятки программ заранее — каждый небольшой учебный архив (.zip) скачивается ровно перед тем этапом, где он нужен.",
-  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college, TryHackMe и Hack The Box Academy уже включены в общий порядок дней 61–108; отдельное продолжение искать не нужно.",
+  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college, TryHackMe, Hack The Box Academy, PayloadsAllTheThings и OWASP WSTG уже включены в общий порядок дней 61–114; отдельное продолжение искать не нужно.",
   "reviewedAt": "2026-11-08",
-  "totalDays": 108,
-  "totalLessons": 193,
-  "totalMinutes": 9358,
+  "totalDays": 114,
+  "totalLessons": 205,
+  "totalMinutes": 10043,
   "stages": [
     {
       "id": "prepare",
@@ -151,6 +151,13 @@
       "firstDay": 101,
       "lastDay": 108,
       "summary": "Дни 101–108. Дополнительные репозитории GitHub pwn.college (CVE в bash/readelf/libxml2/Apache, заголовки прокси, Type Juggling, Linux Lunacy memfd/hidepid, символьное исполнение в angr/babyauto-crackmes) и продвинутые треки TryHackMe и Hack The Box Academy: SSRF и защита облачных метаданных IMDSv2, GraphQL/JWT/SSTI, сетевой Pivoting (SOCKS5, TUN L3) и шаблоны сертификатов AD CS (ESC1/ESC8), безопасность Docker и Kubernetes RBAC, CI/CD пайплайны GitHub Actions и Dependency Confusion, криминалистика памяти в Volatility 3 (psscan, malfind), телеметрия AMSI/ETW/PPL, деобфускация XOR/MITRE ATT&CK и плейбуки SOAR."
+    },
+    {
+      "id": "pwn-ctf-sqli-wstg",
+      "title": "Полигон SQL-инъекций, OWASP WSTG, PayloadsAllTheThings и архив соревнований pwn.college CTF",
+      "firstDay": 109,
+      "lastDay": 114,
+      "summary": "Дни 109–114. Полная анатомия всех 7 видов SQL-инъекций (In-Band Auth Bypass, ORDER BY, UNION SELECT, Error-Based, Boolean/Time Blind с бинарным поиском, Second-Order, OOB) и параметризации, инъекции в форматы данных из pwncollege/injection-dojo (CSV, YAML, JSON, XML) и NoSQL/LDAP/XPath, проверочный стандарт OWASP WSTG и PayloadsAllTheThings (XXE, CORS, CSRF, File Upload Magic Bytes, Polyglot, LFI), разбор реальных задач из архива pwncollege/ctf-archive (Reversing Keygen, Format String PIE+Canary ret2win), DEF CON 33 DCA Dojo (dc33-dca-dojo), ACSAC CTF Dojo (LCG PRNG, CBC Padding Oracle), Hacker History (червь Морриса 1988, Heartbleed CVE-2014-0160) и итоговый сквозной конвейер аудита."
     }
   ],
   "days": [
@@ -2452,13 +2459,169 @@
       "outcome": "Ты умеешь безопасно извлекать замаскированные конфигурации вредоносного ПО, классифицировать возможности образцов по матрице MITRE ATT&CK и проектировать надёжные плейбуки автоматического реагирования SOAR.",
       "minutes": 115,
       "notes": [
-        "Это завершение полного 108-дневного маршрута Kairon (193 урока, объединяющих базовый курс и 64 разбора практикумов pwn.college, TryHackMe и Hack The Box Academy)."
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
       ],
       "resources": [
         {
           "label": "TryHackMe & HTB Academy: Malware Triage, MITRE ATT&CK & SOAR",
           "url": "https://tryhackme.com",
           "note": "Заключительные практикумы по анализу вредоносного кода и автоматизации реагирования в SOC"
+        }
+      ]
+    },
+    {
+      "day": 109,
+      "stageId": "pwn-ctf-sqli-wstg",
+      "title": "Разбери все виды SQL-инъекций: In-Band (Auth Bypass, ORDER BY, UNION, Error-Based), Blind и Second-Order",
+      "summary": "На реальной реляционной базе SQLite в памяти и в интерактивном полигоне на /web-labs разберём полную классификацию SQL-инъекций по материалам pwn.college, PayloadsAllTheThings и OWASP WSTG-INPV-05: обход проверки входа, определение числа столбцов через ORDER BY, чтение схемы из sqlite_master и секретов через UNION SELECT, посимвольный бинарный поиск в Boolean-Based Blind SQLi (за 7 запросов на символ) и отложенную атаку Second-Order SQLi при смене пароля.",
+      "goal": "Проверить в lab.py прямые (UNION / Error-Based), слепые (Boolean Blind с бинарным поиском) и отложенные (Second-Order) SQL-инъекции, а также их полное блокирование параметризованными запросами ?.",
+      "lessonIds": [
+        "pwn-sqli-union-error-schema-extraction",
+        "pwn-sqli-blind-boolean-time-second-order"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты досконально понимаешь устройство всех типов SQL-инъекций, умеешь извлекать данные через UNION SELECT и бинарный поиск по булеву оракулу и защищать каждый запрос параметризацией.",
+      "minutes": 115,
+      "notes": [
+        "Дополнительно открой интерактивный полигон на странице /web-labs, чтобы протестировать все 7 видов SQL-инъекций прямо в браузере."
+      ],
+      "resources": [
+        {
+          "label": "PayloadsAllTheThings: SQL Injection & OWASP WSTG-INPV-05",
+          "url": "https://github.com/swisskyrepo/PayloadsAllTheThings",
+          "note": "Эталонный справочник по всем видам SQL-инъекций и параметризованной защите"
+        }
+      ]
+    },
+    {
+      "day": 110,
+      "stageId": "pwn-ctf-sqli-wstg",
+      "title": "Изучи pwn.college Content Injection Dojo (CSV, YAML, JSON, XML) и инъекции в NoSQL и LDAP",
+      "summary": "По официальному репозиторию pwncollege/injection-dojo и справочнику PayloadsAllTheThings разберём инъекции табличных формул в CSV (=, +, -, @), небезопасную десериализацию объектов в yaml.load против yaml.safe_load, дублирование ключей в JSON (object_pairs_hook), экранирование XML, а также операторные инъекции в документоориентированных БД MongoDB ($ne, $regex) и фильтрах каталога LDAP (RFC 4515).",
+      "goal": "Написать защитные парсеры для всех четырёх форматов из pwncollege/injection-dojo и заблокировать подмену строки словарём операторов в NoSQL и метасимволы в LDAP.",
+      "lessonIds": [
+        "pwn-injection-dojo-csv-yaml-json-xml",
+        "thm-htb-nosqli-ldap-xpath-injection"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь защищать приложения от инъекций в любые текстовые и объектные форматы представления данных (CSV, YAML, JSON, XML, NoSQL и LDAP).",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college GitHub: pwncollege/injection-dojo",
+          "url": "https://github.com/pwncollege/injection-dojo",
+          "note": "Официальный репозиторий задач pwn.college по контентным инъекциям"
+        }
+      ]
+    },
+    {
+      "day": 111,
+      "stageId": "pwn-ctf-sqli-wstg",
+      "title": "Проведи аудит веб-приложения по стандарту OWASP WSTG: XXE, CORS, CSRF, File Upload и LFI",
+      "summary": "По руководству OWASP Web Security Testing Guide (WSTG) и курсам TryHackMe / HTB Academy проверим защиту от внешних сущностей XML (XXE <!ENTITY>), зеркального отражения Origin в заголовках CORS при включённом Credentials: true, подделки межсайтовых запросов (CSRF), а также разберём четырёхступенчатую защиту загрузки файлов (Magic Bytes, перехват полиглотов GIF89a+PHP, двойные расширения и хранение под UUID вне Web Root) и предотвращение LFI.",
+      "goal": "Протестировать в lab.py автоматический аудитор для XXE, CORS и CSRF, а также многослойный верификатор загрузки изображений и разрешения шаблонных путей.",
+      "lessonIds": [
+        "thm-htb-wstg-xxe-cors-csrf-audit",
+        "thm-htb-wstg-fileupload-magic-polyglot-lfi"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь проводить системную проверку веб-приложений по чек-листу OWASP WSTG и закрывать уязвимости в парсерах XML, политиках CORS, загрузке файлов и шаблонах.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "OWASP Web Security Testing Guide (WSTG)",
+          "url": "https://github.com/OWASP/wstg",
+          "note": "Официальный стандарт проверки безопасности веб-приложений OWASP"
+        }
+      ]
+    },
+    {
+      "day": 112,
+      "stageId": "pwn-ctf-sqli-wstg",
+      "title": "Решай задачи из архива соревнований pwn.college CTF Archive: Reversing Keygen и Format Leak + PIE ret2win",
+      "summary": "Переходим к официальному архиву соревнований pwn.college CTF Archive (https://pwn.college/ctf-archive и github.com/pwncollege/ctf-archive): напишем автоматический обратный решатель флагов для побайтовых цепочек реверс-инжиниринга (SUB -> ROR8 -> XOR), а затем соберём двухшаговый бинарный эксплойт, извлекающий канарейку стека и базу PIE через уязвимость строки форматирования (%p) с выравниванием стека по 16 байтам гаджетом ret.",
+      "goal": "Восстановить флаг реверс-задачи из массива .rodata и выполнить двухшаговый обход Stack Canary + PIE/ASLR с соблюдением 16-байтового выравнивания RSP в lab.py.",
+      "lessonIds": [
+        "pwn-ctf-archive-reversing-keygen-solver",
+        "pwn-ctf-archive-pwn-format-leak-pie-ret2win"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь писать скрипты-решатели для соревновательных задач реверс-инжиниринга и комбинировать информационную утечку строки форматирования с выровненной цепочкой возврата в условиях PIE и Stack Canary.",
+      "minutes": 120,
+      "notes": [
+        "Прямые ссылки на живой архив pwn.college CTF Archive и встроенные проверочные тесты также доступны на странице /web-labs."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college CTF Archive (Живой полигон и GitHub)",
+          "url": "https://pwn.college/ctf-archive",
+          "note": "Сотни пересобранных задач с мировых турниров CTF для запуска прямо в браузере"
+        }
+      ]
+    },
+    {
+      "day": 113,
+      "stageId": "pwn-ctf-sqli-wstg",
+      "title": "Разбери турниры DEF CON 33 DCA Dojo (dc33-dca-dojo) и ACSAC CTF Dojo (LCG PRNG и CBC Padding Oracle)",
+      "summary": "По репозиториям pwncollege/dc33-dca-dojo и pwncollege/acsac-ctf-dojo изучим ошибки знаковой распаковки 16-битной длины пакета (int16 против uint16), рассинхронизацию шлюза и бэкенда при дублирующихся параметрах, атомарное закрытие гонки погашения купонов (UPDATE ... WHERE used = 0), а также обращение линейного конгруэнтного генератора (LCG) и побайтовую расшифровку через оракул дополнения AES-CBC Padding Oracle.",
+      "goal": "Проверить в lab.py защиту от знакового переполнения, рассинхронизации парсеров и гонок TOCTOU, а также реализовать восстановление сида LCG и атаку CBC Padding Oracle.",
+      "lessonIds": [
+        "pwn-ctf-dc33-dca-deceit-race-legion",
+        "pwn-ctf-acsac-crypto-prng-padding-oracle"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь устройство соревновательных задач DEF CON 33 DCA и ACSAC CTF и умеешь устранять уязвимости в бинарных парсерах, многопоточных транзакциях и криптографических схемах.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "GitHub: pwncollege/dc33-dca-dojo & acsac-ctf-dojo",
+          "url": "https://github.com/pwncollege/dc33-dca-dojo",
+          "note": "Официальные репозитории турнирных практикумов DEF CON 33 и ACSAC от pwn.college"
+        }
+      ]
+    },
+    {
+      "day": 114,
+      "stageId": "pwn-ctf-sqli-wstg",
+      "title": "Изучи историю эксплойтов (червь Морриса 1988, Heartbleed CVE-2014-0160) и запусти сквозной полигон аудита",
+      "summary": "В финальный день курса по репозиториям pwncollege/hacker-history-dojo и oldschool реконструируем два исторических бага (переполнение буфера gets() в демоне fingerd 1988 г. и чтение кучи из-за непроверенного поля payload_length в OpenSSL Heartbleed 2014 г.), а затем объединим все пройденные домены курса в единый автоматизированный конвейер проверки безопасности (Security-as-Code).",
+      "goal": "Проверить модели исправления fingerd и Heartbleed и запустить сквозной верификатор защищённости системы по всем 6 доменам курса в lab.py.",
+      "lessonIds": [
+        "pwn-hacker-history-morris-fingerd-heartbleed",
+        "thm-htb-full-pentest-ctf-assessment-pipeline"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты прошёл полный 114-дневный курс Kairon (205 уроков), понимаешь историческую эволюцию эксплойтов и защитных механизмов и умеешь проводить комплексную верификацию безопасности веб-приложений, сетей, облаков, бинарных сервисов и инфраструктуры.",
+      "minutes": 115,
+      "notes": [
+        "Это завершение полного 114-дневного маршрута Kairon (205 уроков, включая 76 разборов практикумов pwn.college, CTF Archive, TryHackMe, Hack The Box Academy, PayloadsAllTheThings и OWASP WSTG)."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college Hacker History, CTF Archive, TryHackMe & HTB Academy",
+          "url": "https://github.com/pwncollege/hacker-history-dojo",
+          "note": "Исторические реконструкции и итоговая программа проверки знаний"
         }
       ]
     }

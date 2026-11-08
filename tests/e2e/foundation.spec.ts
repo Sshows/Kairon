@@ -130,7 +130,7 @@ test("all 108 days and 193 lessons are readable after login", async ({
         expect(data.xp).toBeUndefined();
       }),
     );
-  for (const value of ["0", "109", "01", "1e1", "-1", "missing"])
+  for (const value of ["0", "115", "01", "1e1", "-1", "missing"])
     expect((await page.request.get("/days/" + value)).status()).toBe(404);
   const sql = cheats.sections.find(
     (entry) => entry.filename === "SQL_Injection_Prevention_Cheat_Sheet.md",

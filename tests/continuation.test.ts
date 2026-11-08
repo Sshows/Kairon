@@ -23,11 +23,11 @@ describe("book material in the ordinary daily route", () => {
       expect(getLessonDay(lesson.id)!.day).toBeGreaterThan(60);
     }
   });
-  it("adds seventy-three explained practices and places the 87 lessons in the agreed order", () => {
-    expect(catalogue).toHaveLength(87);
-    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(73);
+  it("adds eighty-five explained practices and places the 99 lessons in the agreed order", () => {
+    expect(catalogue).toHaveLength(99);
+    expect(catalogue.filter((e) => !("course" in e))).toHaveLength(85);
     const continuation = progressIndex.days.filter((d) => d.day > 60);
-    expect(continuation).toHaveLength(48);
+    expect(continuation).toHaveLength(54);
     expect(continuation.flatMap((d) => d.lessonIds)).toEqual(
       catalogue.map((e) => e.id),
     );
@@ -45,6 +45,8 @@ describe("book material in the ordinary daily route", () => {
     expect(getLessonDay("thm-htb-dfir-pcap-beaconing-exfil")!.day).toBe(100);
     expect(getLessonDay("pwn-cve-bash-apache-readelf-libxml")!.day).toBe(101);
     expect(getLessonDay("thm-htb-soc-soar-playbook-containment")!.day).toBe(108);
+    expect(getLessonDay("pwn-sqli-union-error-schema-extraction")!.day).toBe(109);
+    expect(getLessonDay("thm-htb-full-pentest-ctf-assessment-pipeline")!.day).toBe(114);
     for (const item of catalogue) {
       const lesson = getLesson(item.id)!;
       expect(lesson.theory.length, item.id).toBeGreaterThan(4500);
@@ -53,18 +55,18 @@ describe("book material in the ordinary daily route", () => {
       expect(publicLesson(lesson)).not.toHaveProperty("answers");
     }
   });
-  it("accepts new bookmarks and all 193 IDs but rejects unpublished days and mismatched lessons", () => {
+  it("accepts new bookmarks and all 205 IDs but rejects unpublished days and mismatched lessons", () => {
     const accountId = "8af17b2d-3d08-466f-9d61-35e480b26c84";
     const bookmark = {
       accountId,
       action: "bookmark",
-      day: 108,
-      lessonId: "thm-htb-soc-soar-playbook-containment",
-      note: "Проверить предохранитель Tier 0 в плейбуке SOAR",
+      day: 114,
+      lessonId: "thm-htb-full-pentest-ctf-assessment-pipeline",
+      note: "Проверить итоговый конвейер безопасности",
     };
     expect(progressRequestSchema.safeParse(bookmark).success).toBe(true);
     for (const change of [
-      { day: 109 },
+      { day: 115 },
       { day: 365 },
       { day: 0 },
       { day: 75 },
@@ -74,7 +76,7 @@ describe("book material in the ordinary daily route", () => {
         progressRequestSchema.safeParse({ ...bookmark, ...change }).success,
       ).toBe(false);
     const lessonIds = progressIndex.days.flatMap((d) => d.lessonIds);
-    expect(lessonIds).toHaveLength(193);
+    expect(lessonIds).toHaveLength(205);
     expect(
       progressRequestSchema.safeParse({
         accountId,

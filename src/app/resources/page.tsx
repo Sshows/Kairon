@@ -15,12 +15,28 @@ const repositories = [
     use: "Каталог ссылок, а не готовый курс. CC0-1.0.",
   },
   {
+    name: "swisskyrepo / PayloadsAllTheThings",
+    url: "https://github.com/swisskyrepo/PayloadsAllTheThings",
+    stars: "82 400",
+    description:
+      "Справочник для проверки веб-приложений и систем: все виды SQL-инъекций, NoSQLi, XXE, SSRF, SSTI, GraphQL, JWT и обходы фильтров.",
+    use: "Разобран в днях 109–111 и в интерактивном полигоне на /web-labs. MIT.",
+  },
+  {
     name: "Omar Santos / h4cker",
     url: "https://github.com/The-Art-of-Hacking/h4cker",
     stars: "29 909",
     description:
       "Дополнительные материалы к книгам и занятиям: домашняя лаборатория, защита, сети и другие темы.",
     use: "Открывай build-your-own-lab и основы. MIT для репозитория.",
+  },
+  {
+    name: "OWASP / wstg (Web Security Testing Guide)",
+    url: "https://github.com/OWASP/wstg",
+    stars: "19 800",
+    description:
+      "Официальное руководство OWASP по проверке безопасности веб-приложений с пошаговыми тест-кейсами.",
+    use: "Практикумы WSTG-INPV, WSTG-CLNT и WSTG-BUSL включены в дни 109–114. CC BY-SA 4.0.",
   },
   {
     name: "sundowndev / hacker-roadmap",
@@ -37,6 +53,14 @@ const repositories = [
     description:
       "Инструменты и книги для расследования инцидентов: журналы, улики и отчёт.",
     use: "Для следующего шага после наших учебных дел. Apache-2.0.",
+  },
+  {
+    name: "pwncollege / ctf-archive & injection-dojo",
+    url: "https://github.com/pwncollege/ctf-archive",
+    stars: "650",
+    description:
+      "Официальный архив CTF-соревнований pwn.college (https://pwn.college/ctf-archive), DEF CON 33 DCA, ACSAC CTF и Content Injection Dojo.",
+    use: "Прямые разборы и решатели флагов включены в дни 109–114 и на странице /web-labs.",
   },
   {
     name: "Packt / Digital Forensics with Kali Linux",

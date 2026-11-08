@@ -3,6 +3,7 @@ import { ReferenceRouteNote } from "@/components/reference-route-note";
 import Link from "next/link";
 import { webSources, webTopics } from "@/lib/web-sources";
 import { WebTopicCatalog } from "@/components/web-topic-catalog";
+import { CtfSqliWorkbench } from "@/components/ctf-sqli-workbench";
 
 export const metadata = {
   title: "Juice Shop, Hacker101 и OWASP: веб-безопасность с нуля",
@@ -42,6 +43,7 @@ export default async function WebLabsPage() {
           <Link href="/paths/web-security">Посмотреть все 14 уроков →</Link>
         </div>
       </section>
+      <CtfSqliWorkbench />
       <section className="study-example">
         <h2>Где откроется магазин</h2>
         <p>
