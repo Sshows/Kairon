@@ -271,5 +271,88 @@ class ContinuationPractice(unittest.TestCase):
         self.assertIn("user_read_write= ('STATUS_SUCCESS:handle_issued', ['READ', 'WRITE'])", win_out)
         self.assertIn("guest_write_blocked= ('ERROR_ACCESS_DENIED:explicit_deny', [])", win_out)
 
+    def test_pwn_shell_expansion_and_linux_data_tmux(self):
+        sh_code = program("pwn-shell-expansion-restrictions")
+        sh_out = run(sh_code)
+        self.assertIn("denylist_check= passed_denylist expanded_argv= ['cat', '/etc/hostname']", sh_out)
+        self.assertIn("brace_expanded= ['id', '-u']", sh_out)
+        self.assertIn("allowlist_tricky= ('rejected:not_in_allowlist', [])", sh_out)
+        self.assertIn("allowlist_valid= ('execve_direct_no_shell', ['systemctl', 'status', 'app.service'])", sh_out)
+
+        tm_code = program("pwn-linux-data-tmux-jobs")
+        tm_out = run(tm_code)
+        self.assertIn("top_ips= [('10.0.0.5', 3), ('10.0.0.12', 2), ('10.0.0.99', 1)]", tm_out)
+        self.assertIn("uniq_without_sort= ['10.0.0.5', '10.0.0.12', '10.0.0.5']", tm_out)
+        self.assertIn("uniq_after_sort= ['10.0.0.12', '10.0.0.5']", tm_out)
+
+    def test_pwn_computing_numbers_and_assembly_lea(self):
+        num_code = program("pwn-computing-numbers-twos-complement")
+        num_out = run(num_code)
+        self.assertIn("byte_0xff_views= unsigned: 255 signed_int8: -1", num_out)
+        self.assertIn("byte_0x80_views= unsigned: 128 signed_int8: -128", num_out)
+        self.assertIn("overflow_bug= passed_buggy_check:wrapped_total=10:actual_copy=250", num_out)
+        self.assertIn("safe_check= rejected:safe_overflow_free_check", num_out)
+        self.assertIn("ascii_parsed= 1337", num_out)
+
+        lea_code = program("pwn-computing-assembly-flags-loops")
+        lea_out = run(lea_code)
+        self.assertIn("lea_calc= 0x401048", lea_out)
+        self.assertIn("cmp_0xff_vs_0x01= {'je_equal': False, 'jb_unsigned_below': False, 'jl_signed_less': True}", lea_out)
+        self.assertIn("loop_checksum= 0x436", lea_out)
+
+    def test_pwn_c_strings_structs_and_cpp_vtables(self):
+        c_code = program("pwn-lang-c-strings-structs-padding")
+        c_out = run(c_code)
+        self.assertIn("unterminated_puts= AAAAAAAAKEY-991", c_out)
+        self.assertIn("safe_terminated_puts= AAAAAAA", c_out)
+        self.assertIn("uninitialized_padding= b'OLD_KEY' zeroed_padding= 00000000000000", c_out)
+
+        cpp_code = program("pwn-lang-cpp-vtables-type-safety")
+        cpp_out = run(cpp_code)
+        self.assertIn("valid_vcall= ('called:GuestReader::view_public', '0x402000')", cpp_out)
+        self.assertIn("confused_no_cfi= ('unsafe_jump_to_untrusted_vptr', '0x41414141')", cpp_out)
+        self.assertIn("confused_with_cfi= ('aborted:cfi_invalid_vptr', '0x41414141')", cpp_out)
+        self.assertIn("dynamic_cast_to_admin= None", cpp_out)
+
+    def test_pwn_crypto_rsa_ecc_zkp_and_xnu_windows_fuzz_kernel(self):
+        rsa_code = program("pwn-crypto-rsa-modular-padding")
+        rsa_out = run(rsa_code)
+        self.assertIn("raw_m3_less_than_n= True cube_root_recovered= 42", rsa_out)
+        self.assertIn("padded_m3_wraps_mod_n= True cube_root_on_padded= -1", rsa_out)
+        self.assertIn("proper_key_decrypt= 42", rsa_out)
+
+        ecc_code = program("pwn-crypto-ecc-nonce-zkp")
+        ecc_out = run(ecc_code)
+        self.assertIn("same_r_detected= True recovered_d_matches= True rec_d= 73912", ecc_out)
+        self.assertIn("zkp_verified= True", ecc_out)
+
+        iok_code = program("pwn-xnu-iokit-task-ports")
+        iok_out = run(iok_code)
+        self.assertIn("iokit_valid= kIOReturnSuccess:s_write_config", iok_out)
+        self.assertIn("iokit_bad_selector= kIOReturnBadArgument:invalid_selector", iok_out)
+        self.assertIn("iokit_bad_struct_size= kIOReturnBadArgument:struct_size_mismatch", iok_out)
+        self.assertIn("task_port_authorized= KERN_SUCCESS:mach_vm_read:port=port_child", iok_out)
+        self.assertIn("task_port_blocked= KERN_INVALID_RIGHT:no_send_right_to_task_port", iok_out)
+
+        dll_code = program("pwn-windows-dll-hijacking-handles")
+        dll_out = run(dll_code)
+        self.assertIn("unsafe_relative_dll= ('hijack_risk_writable_dir', 'C:\\\\TempWork\\\\telemetry_ext.dll')", dll_out)
+        self.assertIn("safe_system32_flag= ('not_found', None)", dll_out)
+        self.assertIn("safe_dbghelp_sys32= ('trusted_location', 'C:\\\\Windows\\\\System32\\\\dbghelp.dll')", dll_out)
+        self.assertIn("leaked_handles= ['h_secret_config', 'h_stdout_pipe']", dll_out)
+        self.assertIn("scoped_handles= ['h_stdout_pipe']", dll_out)
+
+        fuz_code = program("pwn-fuzz-coverage-sanitizers")
+        fuz_out = run(fuz_code)
+        self.assertIn("fuzz_result= ASAN_TRAP:heap-buffer-overflow_at_offset_4", fuz_out)
+        self.assertIn("crashing_input= b'KRN!' total_execs= 22 corpus_saved= 5", fuz_out)
+
+        kcr_code = program("pwn-kernel-creds-modprobe-hardening")
+        kcr_out = run(kcr_code)
+        self.assertIn("pools_separated= True cred_pool= slab:cred_jar_isolated", kcr_out)
+        self.assertIn("safe_helper_path= /sbin/usermode-helper-rodata", kcr_out)
+        self.assertIn("bind_port_check= ALLOWED:CAP_NET_BIND_SERVICE", kcr_out)
+        self.assertIn("load_module_check= EPERM:missing_capability:CAP_SYS_MODULE", kcr_out)
+
 if __name__ == "__main__":
     unittest.main()

@@ -592,6 +592,48 @@
         "pwn-arch-arm64-xnu-pac",
         "pwn-windows-pe-tokens-acl"
       ]
+    },
+    {
+      "day": 89,
+      "lessonIds": [
+        "pwn-shell-expansion-restrictions",
+        "pwn-linux-data-tmux-jobs"
+      ]
+    },
+    {
+      "day": 90,
+      "lessonIds": [
+        "pwn-computing-numbers-twos-complement",
+        "pwn-computing-assembly-flags-loops"
+      ]
+    },
+    {
+      "day": 91,
+      "lessonIds": [
+        "pwn-lang-c-strings-structs-padding",
+        "pwn-lang-cpp-vtables-type-safety"
+      ]
+    },
+    {
+      "day": 92,
+      "lessonIds": [
+        "pwn-crypto-rsa-modular-padding",
+        "pwn-crypto-ecc-nonce-zkp"
+      ]
+    },
+    {
+      "day": 93,
+      "lessonIds": [
+        "pwn-xnu-iokit-task-ports",
+        "pwn-windows-dll-hijacking-handles"
+      ]
+    },
+    {
+      "day": 94,
+      "lessonIds": [
+        "pwn-fuzz-coverage-sanitizers",
+        "pwn-kernel-creds-modprobe-hardening"
+      ]
     }
   ]
 }

@@ -3,14 +3,14 @@
   "title": "От первого запуска Kali к осмысленной проверке: единый план по дням",
   "introduction": "Пошаговый маршрут с нуля без сухих двухсловных определений и лишнего жаргона. Каждое понятие мы сначала переводим на обычный человеческий язык на примерах из жизни (квартира в доме, вахтёр на проходной, пломба на коробке, чек на кассе), а затем проверяем руками в твоей Kali Linux: какое окно открыть, куда нажать, что означает каждое слово команды и какой результат должен появиться на экране.",
   "dailyGuidance": "В каждом учебном дне 1 или 2 урока, от 40 до 120 минут по оценке, плюс перерывы, повторение и время на скачивание. Номер обозначает очередь шагов: один день можно разделить на несколько вечеров.",
-  "calendarGuidance": "В маршруте 88 учебных дней. При пяти занятиях в неделю это около 18 недель, при шести — около 15. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
-  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 88 дней и 153 урока бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
+  "calendarGuidance": "В маршруте 94 учебных дня. При пяти занятиях в неделю это около 19 недель, при шести — около 16. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
+  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 94 дня и 165 уроков бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
   "practiceGuidance": "Вся практика проходит безопасно внутри твоей собственной виртуальной машины Kali Linux на учебных файлах и локальных сервисах. Тебе не нужно устанавливать десятки программ заранее — каждый небольшой учебный архив (.zip) скачивается ровно перед тем этапом, где он нужен.",
-  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college уже включены в общий порядок дней 61–88; отдельное продолжение искать не нужно.",
+  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college уже включены в общий порядок дней 61–94; отдельное продолжение искать не нужно.",
   "reviewedAt": "2026-11-08",
-  "totalDays": 88,
-  "totalLessons": 153,
-  "totalMinutes": 7083,
+  "totalDays": 94,
+  "totalLessons": 165,
+  "totalMinutes": 7763,
   "stages": [
     {
       "id": "prepare",
@@ -123,6 +123,13 @@
       "firstDay": 83,
       "lastDay": 88,
       "summary": "Дни 83–88. Расширенные модули официальных практикумов pwn.college: процессы, сигналы и AT_SECURE в Linux Luminarium, отладка ELF и граф потока управления (CFG), цепочки ROP, Full RELRO, CET Shadow Stack и Safe-Linking, безопасность ядра (ioctl, SMEP/SMAP, спекулятивное исполнение и кэш Flush+Reload), Cryptomania, Content Injection, ARM64/XNU PAC и Windows Warzone (PE, DACL)."
+    },
+    {
+      "id": "pwn-mastery",
+      "title": "Практикум pwn.college: оболочка, языки C/C++, криптография RSA/ECC, драйверы, фаззинг и ядро",
+      "firstDay": 89,
+      "lastDay": 94,
+      "summary": "Дни 89–94. Заключительные разделы каталога pwn.college: The Art of the Shell (раскрытие скобок, $IFS и белые списки), потоковая обработка данных и tmux, дополнительный код (Two's Complement), инструкции lea и флаги переходов, C-строки, padding структур и таблицы vtable C++, математика RSA-OAEP, ECDSA nonce и доказательства с нулевым разглашением (ZKP), драйверы IOKit и DLL Hijacking, фаззинг с покрытием (ASan) и защита struct cred в ядре."
     }
   ],
   "days": [
@@ -1904,13 +1911,169 @@
       "outcome": "Ты свободно ориентируешься в различиях между Linux (ELF, x86-64/ARM64), macOS/iOS (XNU, Mach IPC, PAC) и Windows (PE, Access Tokens, DACL).",
       "minutes": 120,
       "notes": [
-        "Это завершение полного 88-дневного маршрута Kairon (153 урока), охватывающего как базовую программу, так и все ключевые направления практикумов pwn.college."
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и переходи к следующему блоку практикумов pwn.college."
       ],
       "resources": [
         {
           "label": "pwn.college: Official & Community Dojos",
           "url": "https://pwn.college/dojos",
           "note": "Полный каталог практикумов pwn.college (ARM, XNU, Windows Warzone и др.)"
+        }
+      ]
+    },
+    {
+      "day": 89,
+      "stageId": "pwn-mastery",
+      "title": "Разбери раскрытие строк оболочки (The Art of the Shell), потоки данных и tmux",
+      "summary": "По практикуму The Art of the Shell (shell-lin-do) и модулям Data Manipulation / Terminal Multiplexing курса Linux Luminarium разберём пятишаговое раскрытие выражений в bash ({a,b}, $IFS, $'\\x..') против белых списков, а также потоковый конвейер tr | cut | sort | uniq -c и сохранение сессий в tmux.",
+      "goal": "Проследить обход наивного фильтра чёрного списка конструкциями оболочки и работу безопасного белого списка, а затем собрать конвейер частотного анализа логов и проверить работу sort | uniq.",
+      "lessonIds": [
+        "pwn-shell-expansion-restrictions",
+        "pwn-linux-data-tmux-jobs"
+      ],
+      "prepare": [
+        "Своя Kali Linux, терминал bash и Python 3."
+      ],
+      "outcome": "Ты понимаешь, почему защита от Command Injection требует вызова без оболочки (shell=False) и белых списков, и умеешь мгновенно агрегировать текстовые потоки конвейером UNIX.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: The Art of the Shell & Linux Luminarium",
+          "url": "https://pwn.college/shell-lin-do",
+          "note": "Практикумы по тонкостям командной оболочки, потоковой обработке и мультиплексору tmux"
+        }
+      ]
+    },
+    {
+      "day": 90,
+      "stageId": "pwn-mastery",
+      "title": "Изучи дополнительный код (Two's Complement), целочисленное переполнение и инструкцию lea",
+      "summary": "По модулям Nibbling on Numbers, Numbers as Strings, Assembly Assortment и Control Flow курса Computing 101 разберём хранение знаковых и беззнаковых чисел, обход проверок длины через переполнение при сложении, адресную арифметику lea и разницу между переходами jb и jl.",
+      "goal": "Сравнить беззнаковое и знаковое представление байтов 0xFF и 0x80 и защитить проверку размера от переполнения, а затем промоделировать расчёт адреса в инструкции lea и флаги знаковых/беззнаковых переходов.",
+      "lessonIds": [
+        "pwn-computing-numbers-twos-complement",
+        "pwn-computing-assembly-flags-loops"
+      ],
+      "prepare": [
+        "Своя Kali Linux, Python 3 и утилита objdump."
+      ],
+      "outcome": "Ты уверенно отличаешь знаковые переходы jl/jg от беззнаковых jb/ja, читаешь адресные формулы lea и умеешь писать проверки размеров буфера без риска целочисленного переполнения.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Computing 101",
+          "url": "https://pwn.college/computing-101",
+          "note": "Модули Nibbling on Numbers, Numbers as Strings, Assembly Assortment и Control Flow"
+        }
+      ]
+    },
+    {
+      "day": 91,
+      "stageId": "pwn-mastery",
+      "title": "Проверь безопасность строк и структур C (padding) и таблиц vtable в C++",
+      "summary": "По практикуму Intro to Programming Languages разберём устройство нуль-терминированных строк в C, утечки неинициализированной памяти через байты выравнивания (padding) внутри struct, а также работу указателя vptr, таблиц виртуальных методов vtable в C++, ошибку смешения типов (Type Confusion) и защиту dynamic_cast / CFI.",
+      "goal": "Воспроизвести чтение за границей незавершённой C-строки и утечку padding структуры без обнуления, а затем промоделировать диспетчеризацию vtable, защиту CFI и безопасное приведение типов dynamic_cast.",
+      "lessonIds": [
+        "pwn-lang-c-strings-structs-padding",
+        "pwn-lang-cpp-vtables-type-safety"
+      ],
+      "prepare": [
+        "Своя Kali Linux, Python 3 и утилита c++filt."
+      ],
+      "outcome": "Ты понимаешь, как предотвращать утечки через незавершённые строки и padding структур в C и как работают таблицы vtable, RTTI и защита CFI в C++.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Intro to Programming Languages",
+          "url": "https://pwn.college/intro-to-programming-languages",
+          "note": "Практикум по внутреннему устройству типов, строк, структур и объектов C/C++"
+        }
+      ]
+    },
+    {
+      "day": 92,
+      "stageId": "pwn-mastery",
+      "title": "Разбери модульную арифметику RSA-OAEP, повтор nonce в ECDSA и протокол ZKP",
+      "summary": "По модулям Basic Mathematics, RSA, ECC и Zero-Knowledge Proofs практикума Cryptomania разберём генерацию ключей RSA, атаку извлечения кубического корня при малом показателе e=3 без OAEP, катастрофу повторного использования одноразового числа nonce k в подписи ECDSA и работу доказательства с нулевым разглашением (ZKP Шнорра).",
+      "goal": "Сравнить «учебный RSA» на коротком сообщении с защищённым рандомизированным дополнением, вычислить закрытый ключ при повторе nonce k в ECDSA и проверить протокол ZKP Шнорра.",
+      "lessonIds": [
+        "pwn-crypto-rsa-modular-padding",
+        "pwn-crypto-ecc-nonce-zkp"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь математику RSA-OAEP, причину компрометации ключа при повторе nonce k в ECDSA (и защиту RFC 6979 / Ed25519) и устройство протоколов Zero-Knowledge Proof.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Cryptographic Exploitation (Cryptomania)",
+          "url": "https://pwn.college/cryptomania",
+          "note": "Модули Basic Mathematics, RSA, ECC и Zero-Knowledge Proofs"
+        }
+      ]
+    },
+    {
+      "day": 93,
+      "stageId": "pwn-mastery",
+      "title": "Проверь диспетчер драйверов IOKit (XNU) и защиту от перехвата DLL в Windows",
+      "summary": "По продвинутым модулям XNU Dojo (Mach Ports, IOKit) и Windows Warzone (Injection and Hijacking) разберём проверку селекторов и размеров в таблице IOExternalMethodDispatch и права Task Port в macOS/iOS, а затем изучим порядок поиска библиотек LoadLibrary (DLL Hijacking), флаг LOAD_LIBRARY_SEARCH_SYSTEM32 и фильтрацию наследуемых дескрипторов HANDLE.",
+      "goal": "Смоделировать валидацию вызовов драйвера IOKit и контроль прав Task Port, а также сравнить уязвимый поиск DLL по относительному имени с принудительной загрузкой из System32.",
+      "lessonIds": [
+        "pwn-xnu-iokit-task-ports",
+        "pwn-windows-dll-hijacking-handles"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь проверять границы безопасности драйверов IOKit и Mach-портов в XNU и предотвращать уязвимости DLL Hijacking и утечки дескрипторов в Windows.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: XNU Dojo & Windows Warzone",
+          "url": "https://pwn.college/xnu",
+          "note": "Специализированные практикумы по безопасности ядер и системных служб XNU и Windows"
+        }
+      ]
+    },
+    {
+      "day": 94,
+      "stageId": "pwn-mastery",
+      "title": "Освой фаззинг с покрытием веток (ASan) и защиту паспорта процесса struct cred в ядре",
+      "summary": "В завершающий день маршрута по практикумам Fuzz Dojo и модулю Kernel Exploitation разберём, как фаззер с обратной связью по покрытию (AFL++ / LibFuzzer) и санитайзер ASan автоматически находят глубокие ошибки памяти, и как современное ядро Linux защищает структуру полномочий процесса struct cred (изоляция слэб-кэша cred_jar, STATIC_USERMODEHELPER и битовые маски Linux Capabilities).",
+      "goal": "Проследить пошаговое накопление корпуса входов в фаззере с обратной связью по покрытию до срабатывания ASan, а затем проверить изоляцию кэша cred_jar, защиту usermodehelper и проверку масок Capabilities.",
+      "lessonIds": [
+        "pwn-fuzz-coverage-sanitizers",
+        "pwn-kernel-creds-modprobe-hardening"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь устройство современного фаззинга с обратной связью по покрытию и санитайзеров памяти, а также знаешь, как устроена защита учётных данных struct cred и привилегий в ядре Linux.",
+      "minutes": 120,
+      "notes": [
+        "Это завершение полного 94-дневного маршрута Kairon (165 уроков, включая 36 подробных уроков по всем направлениям pwn.college)."
+      ],
+      "resources": [
+        {
+          "label": "pwn.college: Fuzz Dojo & Software Exploitation",
+          "url": "https://pwn.college/dojos",
+          "note": "Заключительные практикумы по автоматизированному поиску уязвимостей и защите ядра"
         }
       ]
     }

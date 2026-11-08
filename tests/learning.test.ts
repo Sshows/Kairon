@@ -23,9 +23,9 @@ import { isUnlocked } from "../src/lib/learning";
 
 describe("Kali guides and answer checks", () => {
   it("preserves the original courses and integrates follow-on lessons with stable IDs", () => {
-    expect(lessons).toHaveLength(153);
+    expect(lessons).toHaveLength(165);
     const web = getCourseLessons("web-security");
-    expect(web).toHaveLength(22);
+    expect(web).toHaveLength(24);
     expect(getCourseModules("web-security")).toHaveLength(6);
     expect(web.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1400);
     const kali = getCourseLessons("from-zero");
@@ -33,7 +33,7 @@ describe("Kali guides and answer checks", () => {
     const projects = getCourseLessons("kali-tools");
     const basics = getCourseLessons("security-basics");
     const practice = getCourseLessons("kali-practice");
-    expect(practice).toHaveLength(38);
+    expect(practice).toHaveLength(40);
     expect(getCourseModules("kali-practice")).toHaveLength(7);
     expect(practice.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2400);
     const diagnostics = getCourseLessons("diagnostics");
@@ -45,13 +45,13 @@ describe("Kali guides and answer checks", () => {
     expect(company).toHaveLength(12);
     expect(projects).toHaveLength(13);
     expect(basics).toHaveLength(12);
-    expect(analysis).toHaveLength(28);
+    expect(analysis).toHaveLength(36);
     expect(getCourseModules("from-zero")).toHaveLength(4);
     expect(getCourseModules("blue-team")).toHaveLength(3);
     expect(getCourseModules("kali-tools")).toHaveLength(4);
     expect(getCourseModules("security-basics")).toHaveLength(3);
     expect(getCourseModules("file-analysis")).toHaveLength(4);
-    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(153);
+    expect(new Set(lessons.map((lesson) => lesson.id)).size).toBe(165);
     expect(kali.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(2130);
     expect(company.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(1360);
     expect(projects.reduce((sum, lesson) => sum + lesson.xp, 0)).toBe(900);
