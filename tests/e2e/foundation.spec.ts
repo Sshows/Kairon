@@ -96,7 +96,7 @@ test("first visit has one clear starting action and the actual installation day"
   await expect(page.locator(".lesson-top")).toContainText("День 1");
 });
 
-test("all 94 days and 165 lessons are readable after login", async ({
+test("all 100 days and 177 lessons are readable after login", async ({
   page,
 }) => {
   await page.goto("/study-plan");
@@ -130,7 +130,7 @@ test("all 94 days and 165 lessons are readable after login", async ({
         expect(data.xp).toBeUndefined();
       }),
     );
-  for (const value of ["0", "95", "01", "1e1", "-1", "missing"])
+  for (const value of ["0", "101", "01", "1e1", "-1", "missing"])
     expect((await page.request.get("/days/" + value)).status()).toBe(404);
   const sql = cheats.sections.find(
     (entry) => entry.filename === "SQL_Injection_Prevention_Cheat_Sheet.md",

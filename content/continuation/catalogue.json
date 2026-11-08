@@ -1906,5 +1906,449 @@
         "note": "Модули по безопасности структур ядра Linux и механизмам защиты Ring 0"
       }
     ]
+  },
+  {
+    "id": "pwn-web-dom-clobbering-postmessage",
+    "pathId": "web-security",
+    "minutes": 55,
+    "title": "pwn.college Advanced Web Security: postMessage (event.origin), DOM Clobbering и Prototype Pollution",
+    "summary": "По репозиторию pwncollege/challenges (web-security и advanced-web-security) разберём три клиентских и серверных вектора современных веб-приложений: приём сообщений window.postMessage без проверки event.origin, подмену глобальных переменных через HTML-атрибуты id/name (DOM Clobbering) и загрязнение прототипа Object.prototype через ключ __proto__.",
+    "goal": "Смоделировать строгую фильтрацию event.origin в обработчике postMessage, защиту конфигурации от DOM Clobbering через модульные константы и блокировку ключей __proto__/constructor/prototype при слиянии JSON.",
+    "checklist": [
+      "Сравнил обработку postMessage без проверки источника и со строгой сверкой со списком ALLOWED_ORIGINS",
+      "Убедился, что модульная константа защищает от подмены глобального имени через DOM Clobbering",
+      "Проверил блокировку ключа __proto__ против Prototype Pollution"
+    ],
+    "question": "Почему при проверке отправителя в обработчике window.addEventListener('message', ...) опасно использовать подстрочную проверку event.origin.includes('trusted.example.org') вместо строгого равенства ===?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Потому что подстрочную проверку легко обойти с внешнего домена вроде https://trusted.example.org.attacker.com; проверять нужно только полное совпадение источника (схема + хост + порт) по белому списку."
+      },
+      {
+        "id": "b",
+        "text": "Потому что метод includes удаляет все куки в браузере."
+      },
+      {
+        "id": "c",
+        "text": "Потому что свойство event.origin всегда содержит число 0."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Только точное сравнение полной строки origin (например, event.origin === 'https://portal.kairon.local') гарантирует, что сообщение пришло с доверенного домена.",
+    "resources": [
+      {
+        "label": "GitHub: pwncollege/challenges (advanced-web-security)",
+        "url": "https://github.com/pwncollege/challenges/tree/main/challenges/advanced-web-security",
+        "note": "Исходные модули pwn.college по продвинутой веб-безопасности, DOM Clobbering, postMessage и Prototype Pollution"
+      }
+    ]
+  },
+  {
+    "id": "pwn-cve-what-is-a-bug-sudo-libcue",
+    "pathId": "file-analysis",
+    "minutes": 60,
+    "title": "pwn.college What Is A Bug & exec-suid: разбор CVE-2021-3156 (sudo), CVE-2023-43641 (libcue) и python3 -I",
+    "summary": "По репозиториям pwncollege/challenges/what-is-a-bug и pwncollege/exec-suid разберём анатомию настоящих CVE: выход за границу буфера кучи при одиночной обратной косой черте в sudo (CVE-2021-3156), запись по отрицательному индексу в libcue (CVE-2023-43641) и безопасный запуск привилегированных скриптов через /proc/self/fd/100 и python3 -I.",
+    "goal": "Воспроизвести ошибку шага через нулевой терминатор при экранировании '\\' в конце строки, проверить двусторонний контроль границ индекса массива 0 <= idx < max и сформировать изолированный вызов интерпретатора.",
+    "checklist": [
+      "Сравнил выход за границу буфера при одиночном '\\' перед \\x00 с безопасной проверкой pos + 1 < n",
+      "Убедился, что проверка только верхней границы пропускает отрицательный индекс -42 (CVE-2023-43641)",
+      "Проверил очистку PYTHONPATH и работу флага python3 -I в терминале Kali"
+    ],
+    "question": "Зачем утилита pwncollege/exec-suid запускает привилегированные Python-скрипты с флагом изолированного режима python3 -I и разделителем -- перед путём /proc/self/fd/N?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Флаг -I отключает PYTHONPATH и исключает текущую папку и пользовательский site-packages из sys.path, а разделитель -- и дескриптор /proc/self/fd/N защищают от подмены опций и гонок TOCTOU."
+      },
+      {
+        "id": "b",
+        "text": "Флаг -I переводит Python на язык ассемблера."
+      },
+      {
+        "id": "c",
+        "text": "Это нужно только для ускорения вывода текста в консоль."
+      }
+    ],
+    "answer": "a",
+    "explanation": "При запуске интерпретатора с повышенными привилегиями необходимо полностью исключить влияние пользовательских переменных окружения и текущих рабочих каталогов на загрузку модулей.",
+    "resources": [
+      {
+        "label": "GitHub: pwncollege/challenges (what-is-a-bug) & exec-suid",
+        "url": "https://github.com/pwncollege/challenges/tree/main/challenges/what-is-a-bug",
+        "note": "Практический разбор реальных CVE и безопасного запуска привилегированных скриптов на pwn.college"
+      }
+    ]
+  },
+  {
+    "id": "pwn-dos-realmode-segments-ivt",
+    "pathId": "file-analysis",
+    "minutes": 55,
+    "title": "pwn.college DOS Dojo: 16-битный Real Mode, сегментная адресация Segment:Offset и таблица прерываний IVT",
+    "summary": "По репозиторию pwncollege/dos-dojo разберём, как работает 16-битный реальный режим процессора x86 без аппаратной защиты памяти (MMU и колец привилегий): вычисление 20-битного физического адреса (Segment << 4) + Offset, перекрывающиеся сегменты (алиасы) и перехват векторов системных прерываний INT 21h в таблице IVT.",
+    "goal": "Вычислить 20-битные физические адреса для перекрывающихся пар Segment:Offset и сравнить беспрепятственную перезапись вектора INT 21h в Real Mode с аппаратной защитой таблицы IDT в Protected/Long Mode.",
+    "checklist": [
+      "Убедился, что пары 0x1000:0x0020 и 0x1002:0x0000 указывают на одну и ту же физическую ячейку 0x10020",
+      "Вычислил смещение вектора прерывания INT 21h в таблице IVT (0x21 * 4 = 0x84)",
+      "Сравнил перехват IVT в Real Mode с исключением общей защиты (GPF) при попытке записи из Ring 3 в Long Mode"
+    ],
+    "question": "По какой формуле процессор x86 в 16-битном реальном режиме (Real Mode) вычисляет 20-битный физический адрес ячейки памяти из пары регистров Segment:Offset?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Сдвигает значение сегментного регистра на 4 бита влево (умножает на 16) и прибавляет 16-битное смещение: (Segment << 4) + Offset."
+      },
+      {
+        "id": "b",
+        "text": "Перемножает Segment и Offset между собой."
+      },
+      {
+        "id": "c",
+        "text": "Вычитает Offset из Segment."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Умножение 16-битного сегмента на 16 (сдвиг на 4 бита) и сложение со смещением позволяло адресовать 1 МБ (20 бит) памяти с помощью 16-битных регистров и создавало тысячи перекрывающихся пар Segment:Offset.",
+    "resources": [
+      {
+        "label": "GitHub: pwncollege/dos-dojo",
+        "url": "https://github.com/pwncollege/dos-dojo",
+        "note": "Практикум DOS Dojo по 16-битной архитектуре, реальному режиму и истории систем"
+      }
+    ]
+  },
+  {
+    "id": "pwn-jail-namespaces-seccomp-cgroups",
+    "pathId": "kali-practice",
+    "minutes": 55,
+    "title": "pwn.college dojjail: изоляция контейнеров через пространства имён (Namespaces), seccomp-bpf и cgroups v2",
+    "summary": "По репозиториям pwncollege/dojjail и pwncollege/dojo разберём, как строятся многопользовательские песочницы для безопасного запуска кода: изоляция видимости процессов и сети через Linux Namespaces (pid, mnt, net), блокировка опасных системных вызовов фильтром seccomp-bpf и защита от fork bomb лимитом pids.max в cgroups v2.",
+    "goal": "Проверить на модели песочницы изоляцию таблицы процессов в PID namespace, отсечение системного вызова mount фильтром seccomp-bpf и срабатывание квоты pids.max в cgroups v2.",
+    "checklist": [
+      "Убедился, что процесс внутри своего PID namespace видит только собственные локальные PID [1, 2]",
+      "Проверил пропуск вызова read и блокировку вызова mount в фильтре seccomp-bpf",
+      "Проверил отказ EAGAIN при достижении потолка pids.max = 64 и осмотрел /proc/self/ns в Kali"
+    ],
+    "question": "Какую задачу в архитектуре контейнерной песочницы (такой как dojjail) решает контрольная группа cgroups v2 с параметром pids.max?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Она жёстко ограничивает максимальное число процессов и потоков внутри песочницы, не позволяя бесконечному циклу fork() (fork bomb) исчерпать ресурсы родительского сервера."
+      },
+      {
+        "id": "b",
+        "text": "Она шифрует все имена файлов на жёстком диске."
+      },
+      {
+        "id": "c",
+        "text": "Она заменяет таблицу маршрутизации DNS."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Пространства имён (namespaces) изолируют видимость объектов, seccomp-bpf фильтрует системные вызовы, а контрольные группы (cgroups v2) ограничивают физическое потребление ресурсов (PID, RAM, CPU).",
+    "resources": [
+      {
+        "label": "GitHub: pwncollege/dojjail",
+        "url": "https://github.com/pwncollege/dojjail",
+        "note": "Фреймворк pwn.college для запуска изолированных конфигураций Linux Namespaces"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-recon-vhost-ffuf",
+    "pathId": "web-security",
+    "minutes": 55,
+    "title": "TryHackMe & HTB Academy: разведка виртуальных хостов (VHost Fuzzing), фильтрация размера (-fs) и изоляция Nginx",
+    "summary": "По программам TryHackMe (Jr Penetration Tester) и Hack The Box Academy (Attacking Web Applications with Ffuf) разберём разницу между DNS-поддоменами и маршрутизацией виртуальных хостов по заголовку Host:, калибровку фильтра размера ответа (ffuf -fs) для отсечения страницы default_server и защиту внутренних сервисов привязкой к внутреннему интерфейсу.",
+    "goal": "Написать анализатор ответов VHost-сканирования с автоматической калибровкой базового размера default_server, обнаружить скрытый виртуальный хост dev-api.corp.htb и проверить его изоляцию для внешних клиентов.",
+    "checklist": [
+      "Определил эталонный размер ответа default_server (560 байт) калибровочным запросом",
+      "Отфильтровал ложные срабатывания 200 OK и выделил виртуальный хост dev-api.corp.htb (40 байт)",
+      "Проверил закрытие внешнего доступа к внутреннему VHost при enforce_internal_bind=True и команду curl -H 'Host: ...'"
+    ],
+    "question": "Почему при поиске виртуальных хостов (VHost Fuzzing) через заголовок Host: нельзя полагаться только на код ответа HTTP 200 OK, а необходимо фильтровать ответы по размеру (-fs) или числу слов (-fw)?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Потому что веб-сервер (Nginx/Apache) для любого неизвестного имени в заголовке Host по умолчанию возвращает страницу default_server с тем же кодом 200 OK и одинаковой длиной тела ответа."
+      },
+      {
+        "id": "b",
+        "text": "Потому что протокол HTTP не поддерживает коды состояния, отличные от 200."
+      },
+      {
+        "id": "c",
+        "text": "Потому что заголовок Host передаётся только по протоколу FTP."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Калибровка по заведомо несуществующему имени хоста позволяет узнать точный размер дефолтной страницы-заглушки и исключить его флагом -fs.",
+    "resources": [
+      {
+        "label": "Hack The Box Academy & TryHackMe: Web Fuzzing & VHost Enumeration",
+        "url": "https://academy.hackthebox.com",
+        "note": "Методика обнаружения виртуальных хостов и защиты внутренней маршрутизации веб-серверов"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-smb-rpc-ldap-enum",
+    "pathId": "kali-practice",
+    "minutes": 55,
+    "title": "TryHackMe & HTB Academy: аудит нулевых сессий SMB/RPC, обязательная подпись SMB Signing и LDAP Base DN",
+    "summary": "По модулям TryHackMe (Network Services / Active Directory) и HTB Academy (SMB, RPC & LDAP Enumeration) разберём устройство общих папок SMB (IPC$, SYSVOL), опасность анонимного входа (Null Session), формирование корневого контекста LDAP Base DN (DC=...) и защиту от ретрансляции NTLM Relay через обязательную подпись пакетов SMB Signing.",
+    "goal": "Преобразовать доменное имя в корневой контекст LDAP Base DN, сравнить видимость ресурсов SMB при разрешённой и запрещённой нулевой сессии и проверить блокировку анонимного поиска в каталоге LDAP.",
+    "checklist": [
+      "Вычислил корневой контекст DC=corp,DC=kairon,DC=local из доменного имени",
+      "Сравнил утечку списка шар через Null Session с отказом STATUS_ACCESS_DENIED при restrict_anonymous=True",
+      "Проверил блокировку анонимного поиска LDAP и синтаксис утилит smbclient и ldapsearch в Kali"
+    ],
+    "question": "От какого класса сетевых атак защищает включение обязательной криптографической подписи каждого пакета SMB (SMB Signing = Required) на серверах и рабочих станциях?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "От перехвата и ретрансляции аутентификации (NTLM Relay), когда посредник в сети пытается пересылать чужие сессионные команды от имени подключившегося клиента."
+      },
+      {
+        "id": "b",
+        "text": "От физического отключения кабеля питания сервера."
+      },
+      {
+        "id": "c",
+        "text": "От переполнения диска логами."
+      }
+    ],
+    "answer": "a",
+    "explanation": "При включённом SMB Signing каждый пакет в установленной сессии заверяется кодом аутентификации сообщения на основе сессионного ключа, что делает подмену или пересылку команд невозможной.",
+    "resources": [
+      {
+        "label": "TryHackMe & HTB Academy: Network Services & AD Enumeration",
+        "url": "https://tryhackme.com",
+        "note": "Практикумы по аудиту и защите протоколов SMB, RPC и LDAP"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-ad-kerberos-tickets",
+    "pathId": "web-security",
+    "minutes": 60,
+    "title": "TryHackMe & HTB Academy: билеты Kerberos (AS-REQ/TGT/TGS), защита Pre-Authentication и аккаунты gMSA",
+    "summary": "По курсам TryHackMe (Attacking Kerberos) и HTB Academy (Active Directory Enumeration & Attacks) разберём трёхшаговую архитектуру протокола Kerberos (AS-REQ -> TGT -> TGS), почему отключение предварительной проверки (UF_DONT_REQ_PREAUTH) приводит к AS-REP Roasting, почему слабые пароли сервисных аккаунтов с SPN уязвимы к Kerberoasting и как gMSA + AES-256 устраняют оба риска.",
+    "goal": "Смоделировать проверку предварительной аутентификации при выдаче билета AS-REP и провести аудит сервисных учётных записей с SPN, сравнив устаревший RC4 (etype 23) с защищёнными аккаунтами gMSA на AES-256.",
+    "checklist": [
+      "Сравнил выдачу AS-REP без пароля при отключённом Pre-Auth с защитой KRB5KDC_ERR_PREAUTH_REQUIRED",
+      "Проверил уязвимость сервисного аккаунта с коротким паролем и шифром RC4_ETYPE_23",
+      "Убедился, что групповой управляемый аккаунт gMSA (120 символов + AES-256) защищён от офлайн-перебора, и проверил битовую маску 0x400000"
+    ],
+    "question": "Какое архитектурное решение в Active Directory полностью закрывает риск офлайн-перебора сервисных билетов TGS (Kerberoasting) для служб с зарегистрированным SPN?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Использование групповых управляемых сервисных учётных записей (gMSA) со случайным 120-символьным автоматически ротируемым паролем и принудительным шифрованием билетов по алгоритму AES-256 (с отключением RC4)."
+      },
+      {
+        "id": "b",
+        "text": "Отключение предварительной аутентификации (DONT_REQ_PREAUTH) для всех пользователей."
+      },
+      {
+        "id": "c",
+        "text": "Хранение паролей служб в поле описания (description) в открытом виде."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Даже если билет TGS будет запрошен любым пользователем домена, 120-символьный случайный пароль gMSA в сочетании с AES-256 делает офлайн-подбор вычислительно невозможным.",
+    "resources": [
+      {
+        "label": "TryHackMe & HTB Academy: Active Directory & Kerberos Security",
+        "url": "https://academy.hackthebox.com",
+        "note": "Учебные модули по устройству билетов Kerberos, SPN и защите сервисных учётных записей"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-ad-acls-dcsync-tiering",
+    "pathId": "web-security",
+    "minutes": 60,
+    "title": "TryHackMe & HTB Academy: графы прав AD ACL (принцип BloodHound), права репликации DCSync и модель Tier 0/1/2",
+    "summary": "По модулям TryHackMe (Red Teaming) и HTB Academy (Active Directory BloodHound & ACL Abuse) разберём, как транзитивные цепочки делегированных прав (ForceChangePassword, WriteDACL, GenericAll) приводят к получению прав репликации домена (DS-Replication-Get-Changes-All / DCSync) и как поиск в ширину (BFS) и модель уровней Tier 0/1/2 помогают находить и разрывать такие маршруты.",
+    "goal": "Реализовать алгоритм поиска кратчайшего пути повышения привилегий в ориентированном графе прав Active Directory до корня домена и проверить разрыв цепочки после удаления избыточного права WriteDACL.",
+    "checklist": [
+      "Построил и нашёл через BFS четырёхшаговый путь от user_intern до права GetChangesAll_DCSync на корне домена",
+      "Убедился, что отзыв избыточного права WriteDACL у сервисной учётной записи полностью разрывает маршрут",
+      "Проверил фильтр поиска нелегитимных субъектов с правом репликации вне группы Domain Controllers"
+    ],
+    "question": "Кому в защищённом домене Active Directory должны принадлежать расширенные права DS-Replication-Get-Changes и DS-Replication-Get-Changes-All на корневом объекте домена?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Исключительно группе контроллеров домена (Domain Controllers / Enterprise Domain Controllers), так как эти права позволяют выгружать хэши паролей всех учётных записей по протоколу репликации (DCSync)."
+      },
+      {
+        "id": "b",
+        "text": "Любому пользователю из группы Helpdesk для удобства сброса паролей."
+      },
+      {
+        "id": "c",
+        "text": "Группе анонимного входа (Anonymous Logon)."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Наличие обоих прав репликации у обычного пользователя или сервисного аккаунта позволяет имитировать контроллер домена и запросить синхронизацию секретов из NTDS.dit.",
+    "resources": [
+      {
+        "label": "TryHackMe & HTB Academy: Active Directory ACLs & BloodHound",
+        "url": "https://tryhackme.com",
+        "note": "Анализ графов прав доступа Active Directory и эшелонированная защита Tier 0"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-linux-privesc-systemd-cron",
+    "pathId": "kali-practice",
+    "minutes": 55,
+    "title": "TryHackMe & HTB Academy: аудит привилегий Linux (PATH в cron, LD_PRELOAD в sudo, wildcard в tar и systemd)",
+    "summary": "По практикумам TryHackMe (Linux PrivEsc) и HTB Academy (Linux Privilege Escalation) разберём системный аудит конфигурации Linux-сервера: перехват относительных команд через перезаписываемые каталоги PATH в crontab, опасность сохранения LD_PRELOAD в sudoers, инъекцию флагов через раскрытие звёздочки * в tar и слабые права доступа на юнит-файлы systemd.",
+    "goal": "Написать автоматический аудитор конфигурации Linux-сервера, выявляющий все пять векторов локального повышения привилегий, и проверить эталонную защищённую конфигурацию.",
+    "checklist": [
+      "Выявил в уязвимой конфигурации относительный путь в cron, пользовательский каталог в PATH и LD_PRELOAD в sudoers",
+      "Обнаружил отсутствие разделителя '--' перед '*' в команде tar и права записи группы 0664 на юнит systemd",
+      "Проверил защищённую конфигурацию и выполнил поиск изменяемых юнитов find /etc/systemd/system -perm /022 в Kali"
+    ],
+    "question": "Как в bash-скрипте резервного копирования защитить команду tar czf /var/backups/archive.tgz * от превращения имён файлов, начинающихся с дефиса (например, --checkpoint=1), во флаги самой утилиты tar?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Поставить явный разделитель опций -- перед звёздочкой (tar czf /var/backups/archive.tgz -- *) или указывать относительный префикс ./*."
+      },
+      {
+        "id": "b",
+        "text": "Запускать скрипт дважды подряд."
+      },
+      {
+        "id": "c",
+        "text": "Добавить папку /tmp в переменную PATH."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Разделитель -- сообщает парсеру аргументов GNU getopt, что все последующие токены являются именами файлов, даже если они начинаются с символа '-'.",
+    "resources": [
+      {
+        "label": "TryHackMe & HTB Academy: Linux Privilege Escalation",
+        "url": "https://tryhackme.com",
+        "note": "Практические руководства по аудиту привилегий и харденингу серверов Linux"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-windows-privesc-services-tokens",
+    "pathId": "file-analysis",
+    "minutes": 55,
+    "title": "TryHackMe & HTB Academy: аудит привилегий Windows (Unquoted Service Paths, ACL служб и SeImpersonatePrivilege)",
+    "summary": "По модулям TryHackMe (Windows PrivEsc) и HTB Academy (Windows Privilege Escalation) разберём последовательность перебора путей при запуске служб с неэкранированными пробелами (Unquoted Service Paths), опасность прав записи на каталоги установки и привилегии токена процесса (SeImpersonatePrivilege и SeBackupPrivilege).",
+    "goal": "Воспроизвести генерацию всех промежуточных путей .exe для неэкранированного пути службы Windows с пробелами, выявить перехватываемый каталог и убедиться, что заключение пути в двойные кавычки полностью закрывает уязвимость.",
+    "checklist": [
+      "Проследил превращение неэкранированного пути с пробелами в 4 кандидата поиска .exe",
+      "Обнаружил перехватываемый путь в доступном на запись каталоге C:\\Program Files\\Corp Utils\\Agent.exe",
+      "Убедился, что путь в двойных кавычках проверяет ровно 1 точный файл, и проверил фильтр путей в Kali"
+    ],
+    "question": "Почему путь службы Windows C:\\Program Files\\Corp Utils\\Agent Service\\agent.exe без двойных кавычек опасен, если папка C:\\Program Files\\Corp Utils\\ доступна на запись обычному пользователю?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "Потому что при отсутствии кавычек Windows разбивает путь по пробелам и последовательно пытается запустить C:\\Program.exe, C:\\Program Files\\Corp.exe и C:\\Program Files\\Corp Utils\\Agent.exe с правами службы (SYSTEM)."
+      },
+      {
+        "id": "b",
+        "text": "Потому что Windows не поддерживает имена папок длиннее 8 символов."
+      },
+      {
+        "id": "c",
+        "text": "Потому что пробелы в пути автоматически отключают антивирус."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Заключение пути исполняемого файла службы в двойные кавычки (\"C:\\Program Files\\...\") устраняет неоднозначность разбора пробелов в CreateProcess.",
+    "resources": [
+      {
+        "label": "TryHackMe & HTB Academy: Windows Privilege Escalation",
+        "url": "https://academy.hackthebox.com",
+        "note": "Методика аудита служб, реестра и привилегий токенов в Windows"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-soc-sysmon-eventlogs-sigma",
+    "pathId": "kali-practice",
+    "minutes": 60,
+    "title": "TryHackMe SOC Level 1 & HTB Academy: журналы Windows Event Logs, телеметрия Sysmon и правила детекта Sigma",
+    "summary": "По программам подготовки аналитиков SOC в TryHackMe (SOC Level 1) и HTB Academy (Windows Event Logs & Finding Evil) разберём ключевые события безопасности (4624/4625/4688, Sysmon Event ID 1/3/11, PowerShell 4104), выявление веб-шеллов и вредоносных макросов по цепочке ParentImage -> Image, декодирование -EncodedCommand (UTF-16LE) и логику правил Sigma (selection and not filter).",
+    "goal": "Написать верификатор событий Sysmon Event ID 1 по логике правила Sigma, отделить подозрительный запуск powershell.exe из-под веб-воркера IIS (w3wp.exe) от плановой задачи мониторинга и декодировать команду из UTF-16LE Base64.",
+    "checklist": [
+      "Проверил срабатывание алерта Sigma на порождение powershell.exe процессом w3wp.exe",
+      "Убедился, что блок filter отсекает штатный запуск --healthcheck от агента мониторинга без ложной тревоги",
+      "Декодировал полезную нагрузку PowerShell -EncodedCommand в кодировке UTF-16LE"
+    ],
+    "question": "В какой кодировке символов PowerShell по умолчанию ожидает строку внутри Base64 при запуске с флагом -EncodedCommand (-enc)?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "В двухбайтовой кодировке UTF-16LE (Unicode Little-Endian), где после каждого стандартного ASCII-символа следует нулевой байт \\x00."
+      },
+      {
+        "id": "b",
+        "text": "В кодировке KOI8-R."
+      },
+      {
+        "id": "c",
+        "text": "В сжатом архиве ZIP."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Именно из-за кодировки UTF-16LE при декодировании строк PowerShell -enc необходимо применять .decode('utf-16le').",
+    "resources": [
+      {
+        "label": "TryHackMe SOC Level 1 & HTB Academy: Sysmon & Sigma Rules",
+        "url": "https://tryhackme.com",
+        "note": "Курсы синей команды по анализу журналов событий Windows, Sysmon и написанию правил Sigma"
+      }
+    ]
+  },
+  {
+    "id": "thm-htb-dfir-pcap-beaconing-exfil",
+    "pathId": "kali-practice",
+    "minutes": 60,
+    "title": "TryHackMe & HTB Academy DFIR: сетевая криминалистика, поиск маяков C2 Beaconing и DNS-туннелирования",
+    "summary": "По курсам сетевой криминалистики TryHackMe (Wireshark / Zeek) и HTB Academy (Intro to Network Traffic Analysis) разберём, как без расшифровки TLS обнаружить периодический маяк агента управления (C2 Beaconing) по малому разбросу интервалов времени между пакетами и как выявить скрытую выгрузку данных через длинные шестнадцатеричные поддомены в DNS-запросах.",
+    "goal": "Написать статистический детектор периодических маяков C2 по временным меткам пакетов и анализатор журнала DNS-запросов, извлекающий переданное по частям сообщение.",
+    "checklist": [
+      "Отличил живой трафик пользователя с высоким разбросом пауз от периодического маяка C2 с периодом 60 секунд",
+      "Обнаружил в журнале DNS длинные hex-поддомены и собрал строку KRN-DFIR-RECOVER",
+      "Проверил наличие и синтаксис консольного анализатора трафика tshark в Kali Linux"
+    ],
+    "question": "По какому статистическому признаку сетевой анализатор (например, на базе Zeek или RITA) отличает автоматический маяк импланта (C2 Beaconing) от обычного веб-сёрфинга человека в зашифрованном HTTPS-трафике?",
+    "choices": [
+      {
+        "id": "a",
+        "text": "По стабильной периодичности: разницы во времени между соседними соединениями к одному узлу имеют очень малый разброс (низкое отклонение вокруг фиксированного таймера сна)."
+      },
+      {
+        "id": "b",
+        "text": "По цвету кабеля Ethernet, подключённого к сетевой карте."
+      },
+      {
+        "id": "c",
+        "text": "По тому, что человек отправляет пакеты только по нечётным числам месяца."
+      }
+    ],
+    "answer": "a",
+    "explanation": "Даже при добавлении небольшого случайного смещения (jitter) автоматические опросы C2-сервера образуют выраженный периодический паттерн во временных рядах и размерах пакетов.",
+    "resources": [
+      {
+        "label": "TryHackMe & HTB Academy: Network Traffic Analysis & DFIR",
+        "url": "https://academy.hackthebox.com",
+        "note": "Практикумы по расследованию сетевых дампов PCAP, поиску C2 Beaconing и защите DNS"
+      }
+    ]
   }
 ]

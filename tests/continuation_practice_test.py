@@ -354,5 +354,86 @@ class ContinuationPractice(unittest.TestCase):
         self.assertIn("bind_port_check= ALLOWED:CAP_NET_BIND_SERVICE", kcr_out)
         self.assertIn("load_module_check= EPERM:missing_capability:CAP_SYS_MODULE", kcr_out)
 
+    def test_pwn_github_labs_web_cve_dos_and_dojjail(self):
+        web_code = program("pwn-web-dom-clobbering-postmessage")
+        web_out = run(web_code)
+        self.assertIn("postmsg_unverified= ('accepted:action_executed', 'export_tokens')", web_out)
+        self.assertIn("postmsg_verified= ('rejected:untrusted_origin', None)", web_out)
+        self.assertIn("dom_Fallback_clobbered= ('clobbered_by_dom_element', 'https://attacker.example/ fake-api')", web_out)
+        self.assertIn("dom_strict_module_const= ('from_module_const', 'https://api.kairon.local/v1')", web_out)
+        self.assertIn("pollution_vuln_isAdmin= True safe_merge= blocked:prototype_pollution_attempt", web_out)
+
+        cve_code = program("pwn-cve-what-is-a-bug-sudo-libcue")
+        cve_out = run(cve_code)
+        self.assertIn("sudo_buggy= ('heap_oob_write:stepped_past_null_terminator', 5)", cve_out)
+        self.assertIn("sudo_fixed= ('safe_unescape_ok', 'AAAA\\\\')", cve_out)
+        self.assertIn("libcue_buggy= underflow_write:negative_offset_-42", cve_out)
+        self.assertIn("libcue_fixed= rejected:index_out_of_range", cve_out)
+        self.assertIn("exec_suid_argv= ['/usr/bin/python3', '-I', '--', '/proc/self/fd/100'] pythonpath_leaked= False", cve_out)
+
+        dos_code = program("pwn-dos-realmode-segments-ivt")
+        dos_out = run(dos_code)
+        self.assertIn("phys_a= 0x10020 phys_b= 0x10020 same_cell= True", dos_out)
+        self.assertIn("int21h_ivt_offset= 0x84", dos_out)
+        self.assertIn("dos_realmode_write= ('ivt_hooked_in_real_mode', 'ivt[0x0084]=2000:0100')", dos_out)
+        self.assertIn("protected_ring3_write= ('fault:GPF_ring3_cannot_modify_IDT', None)", dos_out)
+
+        jail_code = program("pwn-jail-namespaces-seccomp-cgroups")
+        jail_out = run(jail_code)
+        self.assertIn("student_a_visible_pids= [1, 2]", jail_out)
+        self.assertIn("seccomp_read= SECCOMP_RET_ALLOW:read", jail_out)
+        self.assertIn("seccomp_mount= SECCOMP_RET_ERRNO:EPERM_blocked_mount", jail_out)
+        self.assertIn("cgroup_within_limit= ('fork_ok', 11)", jail_out)
+        self.assertIn("cgroup_fork_bomb_stopped= ('EAGAIN:cgroup_pids_max_exceeded', 64)", jail_out)
+
+    def test_thm_htb_recon_ad_privesc_and_soc_dfir(self):
+        vh_code = program("thm-htb-recon-vhost-ffuf")
+        vh_out = run(vh_code)
+        self.assertIn("baseline_default_size= 560", vh_out)
+        self.assertIn("unprotected_vhost_scan= [('dev-api.corp.htb', 200, 40)]", vh_out)
+        self.assertIn("hardened_internal_bind_scan= []", vh_out)
+
+        smb_code = program("thm-htb-smb-rpc-ldap-enum")
+        smb_out = run(smb_code)
+        self.assertIn("derived_base_dn= DC=corp,DC=kairon,DC=local", smb_out)
+        self.assertIn("smb_legacy_null= {'status': 'STATUS_SUCCESS:session_established', 'visible_shares': ['IPC$', 'PublicDocs'], 'relay_protected': False}", smb_out)
+        self.assertIn("smb_hardened_null= {'status': 'STATUS_ACCESS_DENIED:null_session_blocked', 'visible_shares': [], 'relay_protected': True}", smb_out)
+        self.assertIn("ldap_anon_blocked= ('000004DC: LdapErr: anonymous_bind_rejected_for_search', [])", smb_out)
+
+        krb_code = program("thm-htb-ad-kerberos-tickets")
+        krb_out = run(krb_code)
+        self.assertIn("as_req_no_preauth= ('VULNERABLE:AS_REP_issued_without_preauth', 'svc_legacy')", krb_out)
+        self.assertIn("as_req_enforced= ('KRB5KDC_ERR_PREAUTH_REQUIRED:blocked', 'alex.admin')", krb_out)
+        self.assertIn("spn_audit_weak= HIGH_RISK:TGS_weak_spn_offline_crackable", krb_out)
+        self.assertIn("spn_audit_gmsa= HARDENED:gMSA_AES256_resistant_to_offline_cracking", krb_out)
+
+        acl_code = program("thm-htb-ad-acls-dcsync-tiering")
+        acl_out = run(acl_code)
+        self.assertIn("dcsync_path_before= user_intern --[MemberOf]--> grp_helpdesk --[ForceChangePassword]--> svc_deploy --[WriteDACL]--> grp_replication_ops --[GetChangesAll_DCSync]--> DOMAIN_ROOT_CORP", acl_out)
+        self.assertIn("dcsync_path_after_remediation= None", acl_out)
+
+        lpe_code = program("thm-htb-linux-privesc-systemd-cron")
+        lpe_out = run(lpe_code)
+        self.assertIn("vuln_audit= ['CRON_WRITABLE_PATH_DIR', 'CRON_RELATIVE_COMMAND_PATH', 'SUDO_LD_PRELOAD_ENABLED', 'TAR_WILDCARD_ARGUMENT_INJECTION', 'SYSTEMD_UNIT_GROUP_OR_WORLD_WRITABLE']", lpe_out)
+        self.assertIn("hardened_audit= ['HARDENED:no_privesc_vectors_found']", lpe_out)
+
+        wpe_code = program("thm-htb-windows-privesc-services-tokens")
+        wpe_out = run(wpe_code)
+        self.assertIn("unquoted_candidates= ['C:\\\\Program.exe', 'C:\\\\Program Files\\\\Corp.exe', 'C:\\\\Program Files\\\\Corp Utils\\\\Agent.exe', 'C:\\\\Program Files\\\\Corp Utils\\\\Agent Service\\\\agent.exe']", wpe_out)
+        self.assertIn("unquoted_audit= {'candidates_checked': 4, 'hijackable_paths': ['C:\\\\Program Files\\\\Corp Utils\\\\Agent.exe'], 'token_escalation_privs': ['SeImpersonatePrivilege']}", wpe_out)
+        self.assertIn("quoted_audit= {'candidates_checked': 1, 'hijackable_paths': [], 'token_escalation_privs': []}", wpe_out)
+
+        sig_code = program("thm-htb-soc-sysmon-eventlogs-sigma")
+        sig_out = run(sig_code)
+        self.assertIn("event1_verdict= ALERT:sigma_webshell_or_macro_child_process", sig_out)
+        self.assertIn("event2_verdict= benign:filtered_known_admin_task", sig_out)
+        self.assertIn("decoded_ps_cmd= whoami /priv", sig_out)
+
+        dfir_code = program("thm-htb-dfir-pcap-beaconing-exfil")
+        dfir_out = run(dfir_code)
+        self.assertIn("human_flow= ('benign:human_browsing_variance', 62.0)", dfir_out)
+        self.assertIn("beacon_flow= ('ALERT:periodic_c2_beacon_detected', 60.0)", dfir_out)
+        self.assertIn("dns_audit= ('ALERT:dns_hex_exfiltration', 'KRN-DFIR-RECOVER')", dfir_out)
+
 if __name__ == "__main__":
     unittest.main()

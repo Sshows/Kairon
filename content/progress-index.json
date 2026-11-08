@@ -634,6 +634,48 @@
         "pwn-fuzz-coverage-sanitizers",
         "pwn-kernel-creds-modprobe-hardening"
       ]
+    },
+    {
+      "day": 95,
+      "lessonIds": [
+        "pwn-web-dom-clobbering-postmessage",
+        "pwn-cve-what-is-a-bug-sudo-libcue"
+      ]
+    },
+    {
+      "day": 96,
+      "lessonIds": [
+        "pwn-dos-realmode-segments-ivt",
+        "pwn-jail-namespaces-seccomp-cgroups"
+      ]
+    },
+    {
+      "day": 97,
+      "lessonIds": [
+        "thm-htb-recon-vhost-ffuf",
+        "thm-htb-smb-rpc-ldap-enum"
+      ]
+    },
+    {
+      "day": 98,
+      "lessonIds": [
+        "thm-htb-ad-kerberos-tickets",
+        "thm-htb-ad-acls-dcsync-tiering"
+      ]
+    },
+    {
+      "day": 99,
+      "lessonIds": [
+        "thm-htb-linux-privesc-systemd-cron",
+        "thm-htb-windows-privesc-services-tokens"
+      ]
+    },
+    {
+      "day": 100,
+      "lessonIds": [
+        "thm-htb-soc-sysmon-eventlogs-sigma",
+        "thm-htb-dfir-pcap-beaconing-exfil"
+      ]
     }
   ]
 }

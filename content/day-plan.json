@@ -3,14 +3,14 @@
   "title": "От первого запуска Kali к осмысленной проверке: единый план по дням",
   "introduction": "Пошаговый маршрут с нуля без сухих двухсловных определений и лишнего жаргона. Каждое понятие мы сначала переводим на обычный человеческий язык на примерах из жизни (квартира в доме, вахтёр на проходной, пломба на коробке, чек на кассе), а затем проверяем руками в твоей Kali Linux: какое окно открыть, куда нажать, что означает каждое слово команды и какой результат должен появиться на экране.",
   "dailyGuidance": "В каждом учебном дне 1 или 2 урока, от 40 до 120 минут по оценке, плюс перерывы, повторение и время на скачивание. Номер обозначает очередь шагов: один день можно разделить на несколько вечеров.",
-  "calendarGuidance": "В маршруте 94 учебных дня. При пяти занятиях в неделю это около 19 недель, при шести — около 16. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
-  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 94 дня и 165 уроков бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
+  "calendarGuidance": "В маршруте 100 учебных дней. При пяти занятиях в неделю это около 20 недель, при шести — около 17. Это ориентир для планирования, а не срок получения профессии: глубина самостоятельной практики и повторение влияют на результат.",
+  "completionGuidance": "В каждом дне прочитай объяснение, выполни практику, сверь наблюдения и пройди самопроверку. Все 100 дней и 177 уроков бесплатны. Отметки и закладка сохраняются в твоём аккаунте.",
   "practiceGuidance": "Вся практика проходит безопасно внутри твоей собственной виртуальной машины Kali Linux на учебных файлах и локальных сервисах. Тебе не нужно устанавливать десятки программ заранее — каждый небольшой учебный архив (.zip) скачивается ровно перед тем этапом, где он нужен.",
-  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college уже включены в общий порядок дней 61–94; отдельное продолжение искать не нужно.",
+  "nextStepGuidance": "Для незнакомого слова открой словарь, для повторения — нужный день. John, Metasploit, автоматизация, bug bounty, криптография, анализ программ и практикумы pwn.college, TryHackMe и Hack The Box Academy уже включены в общий порядок дней 61–100; отдельное продолжение искать не нужно.",
   "reviewedAt": "2026-11-08",
-  "totalDays": 94,
-  "totalLessons": 165,
-  "totalMinutes": 7763,
+  "totalDays": 100,
+  "totalLessons": 177,
+  "totalMinutes": 8448,
   "stages": [
     {
       "id": "prepare",
@@ -130,6 +130,20 @@
       "firstDay": 89,
       "lastDay": 94,
       "summary": "Дни 89–94. Заключительные разделы каталога pwn.college: The Art of the Shell (раскрытие скобок, $IFS и белые списки), потоковая обработка данных и tmux, дополнительный код (Two's Complement), инструкции lea и флаги переходов, C-строки, padding структур и таблицы vtable C++, математика RSA-OAEP, ECDSA nonce и доказательства с нулевым разглашением (ZKP), драйверы IOKit и DLL Hijacking, фаззинг с покрытием (ASan) и защита struct cred в ядре."
+    },
+    {
+      "id": "pwn-github-labs",
+      "title": "Репозитории GitHub pwn.college: реальные CVE, Advanced Web, 16-битный DOS и песочница dojjail",
+      "firstDay": 95,
+      "lastDay": 96,
+      "summary": "Дни 95–96. Дополнительные открытые репозитории GitHub-организации pwncollege: продвинутая клиентская веб-безопасность (postMessage, DOM Clobbering, Prototype Pollution), разбор исторических уязвимостей в What Is A Bug (CVE-2021-3156 в sudo, CVE-2023-43641 в libcue) и exec-suid, 16-битный Real Mode в DOS Dojo и устройство контейнерной песочницы dojjail (namespaces, seccomp-bpf, cgroups v2)."
+    },
+    {
+      "id": "thm-htb-operations",
+      "title": "Практикум TryHackMe & Hack The Box Academy: инфраструктура, Active Directory, PrivEsc и SOC/DFIR",
+      "firstDay": 97,
+      "lastDay": 100,
+      "summary": "Дни 97–100. Ключевые модули платформ TryHackMe и Hack The Box Academy: разведка виртуальных хостов (ffuf -fs) и аудит служб SMB/RPC/LDAP, безопасность Active Directory (билеты Kerberos, AS-REP/Kerberoasting, gMSA, графы прав BloodHound, DCSync и Tier 0), аудит повышения привилегий в Linux и Windows (cron, systemd, Unquoted Service Paths, SeImpersonatePrivilege) и расследования синей команды (Sysmon, правила Sigma, C2 Beaconing и DNS-туннелирование)."
     }
   ],
   "days": [
@@ -2067,13 +2081,169 @@
       "outcome": "Ты понимаешь устройство современного фаззинга с обратной связью по покрытию и санитайзеров памяти, а также знаешь, как устроена защита учётных данных struct cred и привилегий в ядре Linux.",
       "minutes": 120,
       "notes": [
-        "Это завершение полного 94-дневного маршрута Kairon (165 уроков, включая 36 подробных уроков по всем направлениям pwn.college)."
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
       ],
       "resources": [
         {
           "label": "pwn.college: Fuzz Dojo & Software Exploitation",
           "url": "https://pwn.college/dojos",
-          "note": "Заключительные практикумы по автоматизированному поиску уязвимостей и защите ядра"
+          "note": "Практикумы по автоматизированному поиску уязвимостей и защите ядра"
+        }
+      ]
+    },
+    {
+      "day": 95,
+      "stageId": "pwn-github-labs",
+      "title": "Разбери Advanced Web Security (postMessage, DOM Clobbering) и реальные CVE в What Is A Bug",
+      "summary": "По открытым GitHub-репозиториям pwncollege/challenges (advanced-web-security, what-is-a-bug) и pwncollege/exec-suid разберём клиентские веб-векторы (postMessage без проверки event.origin, DOM Clobbering и Prototype Pollution), а затем изучим анатомию настоящих системных CVE (выход за границу буфера при экранировании '\\' в sudo CVE-2021-3156, отрицательный индекс в libcue CVE-2023-43641) и изолированный запуск скриптов через exec-suid (python3 -I).",
+      "goal": "Смоделировать защиту обработчика postMessage и слияния JSON от Prototype Pollution, а также проверить инварианты границ в парсерах экранирования и индексов массивов.",
+      "lessonIds": [
+        "pwn-web-dom-clobbering-postmessage",
+        "pwn-cve-what-is-a-bug-sudo-libcue"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь защищать клиентские обработчики postMessage и слияние объектов от DOM Clobbering и Prototype Pollution, а также понимаешь корневые причины реальных CVE в системных парсерах и работу exec-suid.",
+      "minutes": 115,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "GitHub: pwncollege/challenges (advanced-web-security & what-is-a-bug)",
+          "url": "https://github.com/pwncollege/challenges",
+          "note": "Открытый репозиторий модулей и разборов CVE платформы pwn.college"
+        }
+      ]
+    },
+    {
+      "day": 96,
+      "stageId": "pwn-github-labs",
+      "title": "Изучи 16-битный Real Mode (DOS Dojo) и архитектуру контейнерной песочницы dojjail",
+      "summary": "По репозиториям pwncollege/dos-dojo и pwncollege/dojjail сравним работу процессора x86 в 16-битном реальном режиме без аппаратной защиты памяти (сегментная адресация Segment:Offset и перехват таблицы векторов прерываний IVT) с современной многослойной изоляцией контейнерных песочниц на базе Linux Namespaces, фильтра seccomp-bpf и лимитов cgroups v2.",
+      "goal": "Вычислить перекрывающиеся пары адресов Segment:Offset и проверить защиту таблицы прерываний, а затем протестировать изоляцию PID namespace, блокировку системных вызовов seccomp-bpf и лимит pids.max.",
+      "lessonIds": [
+        "pwn-dos-realmode-segments-ivt",
+        "pwn-jail-namespaces-seccomp-cgroups"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь эволюцию аппаратной защиты памяти от 16-битного Real Mode до Long Mode и знаешь, как устроена контейнерная изоляция пространств имён, seccomp-bpf и cgroups v2.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "GitHub: pwncollege/dos-dojo & pwncollege/dojjail",
+          "url": "https://github.com/pwncollege/dojjail",
+          "note": "Репозитории DOS Dojo и контейнерной песочницы dojjail"
+        }
+      ]
+    },
+    {
+      "day": 97,
+      "stageId": "thm-htb-operations",
+      "title": "Освой разведку виртуальных хостов (VHost Fuzzing) и аудит служб SMB, RPC и LDAP",
+      "summary": "По ключевым модулям TryHackMe (Jr Penetration Tester / Network Services) и Hack The Box Academy (Web Fuzzing / SMB & LDAP Enumeration) разберём обнаружение скрытых виртуальных хостов по заголовку Host с фильтрацией размера ответа (-fs), а также аудит нулевых сессий SMB/RPC, обязательной подписи пакетов SMB Signing и контекстов LDAP Base DN.",
+      "goal": "Написать анализатор ответов VHost-сканирования с калибровкой базового размера default_server и провести программный аудит настроек анонимного доступа и подписи пакетов на сервере SMB/LDAP.",
+      "lessonIds": [
+        "thm-htb-recon-vhost-ffuf",
+        "thm-htb-smb-rpc-ldap-enum"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь находить и изолировать внутренние виртуальные хосты веб-сервера и проверять защищённость файловых служб SMB и каталогов LDAP от нулевых сессий и NTLM Relay.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & Hack The Box Academy: Enumeration & Web Fuzzing",
+          "url": "https://academy.hackthebox.com",
+          "note": "Учебные направления по сетевой разведке и тестированию веб-приложений"
+        }
+      ]
+    },
+    {
+      "day": 98,
+      "stageId": "thm-htb-operations",
+      "title": "Проверь защиту билетов Kerberos (gMSA, Pre-Auth) и графов прав Active Directory (DCSync, Tier 0)",
+      "summary": "По курсам Active Directory на TryHackMe и Hack The Box Academy разберём протокол аутентификации Kerberos (AS-REQ, TGT, TGS), устранение рисков AS-REP Roasting и Kerberoasting с помощью Pre-Authentication, аккаунтов gMSA и шифра AES-256, а также поиск транзитивных путей повышения привилегий в графах AD ACL (BloodHound) до права репликации DCSync.",
+      "goal": "Смоделировать аудит билетов Kerberos и сервисных аккаунтов с SPN, а затем реализовать поиск кратчайшего пути в графе прав Active Directory и разорвать цепочку делегирований.",
+      "lessonIds": [
+        "thm-htb-ad-kerberos-tickets",
+        "thm-htb-ad-acls-dcsync-tiering"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты понимаешь устройство протокола Kerberos и графов прав доступа Active Directory и умеешь защищать домен от офлайн-перебора билетов и несанкционированной репликации DCSync.",
+      "minutes": 120,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Active Directory Security",
+          "url": "https://tryhackme.com",
+          "note": "Модули по безопасности Kerberos, графам прав BloodHound и защите Tier 0"
+        }
+      ]
+    },
+    {
+      "day": 99,
+      "stageId": "thm-htb-operations",
+      "title": "Проведи аудит привилегий в Linux (cron, systemd, sudo) и Windows (Unquoted Paths, токены)",
+      "summary": "По практикумам Linux PrivEsc и Windows PrivEsc платформ TryHackMe и Hack The Box Academy разберём системный поиск ошибок конфигурации: относительные пути в crontab, сохранение LD_PRELOAD в sudoers, инъекцию аргументов через wildcard * в tar, права на юниты systemd, неэкранированные пути служб Windows с пробелами (Unquoted Service Paths) и привилегии токена SeImpersonatePrivilege / SeBackupPrivilege.",
+      "goal": "Проверить автоматическим аудитором конфигурации серверов Linux и Windows и убедиться, что канонические пути, разделители опций и двойные кавычки полностью закрывают векторы повышения привилегий.",
+      "lessonIds": [
+        "thm-htb-linux-privesc-systemd-cron",
+        "thm-htb-windows-privesc-services-tokens"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь находить и устранять классические уязвимости локального повышения привилегий как на серверах Linux, так и на хостах Windows.",
+      "minutes": 110,
+      "notes": [
+        "Номер дня обозначает порядок, а не срок. Сохрани свою заметку и при необходимости раздели занятие на два вечера."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe & HTB Academy: Linux & Windows Privilege Escalation",
+          "url": "https://academy.hackthebox.com",
+          "note": "Практические модули по аудиту конфигураций и защите привилегированных служб"
+        }
+      ]
+    },
+    {
+      "day": 100,
+      "stageId": "thm-htb-operations",
+      "title": "Расследуй инциденты синей команды: телеметрия Sysmon, правила Sigma, маяки C2 и DNS-туннели",
+      "summary": "В сотый, юбилейный день маршрута по программам TryHackMe (SOC Level 1 / Cyber Defense) и Hack The Box Academy (Threat Hunting & Network Traffic Analysis) разберём работу аналитика мониторинга и сетевой криминалистики (DFIR): обнаружение веб-шеллов и макросов по событиям Sysmon Event ID 1 с помощью правил Sigma, декодирование PowerShell -EncodedCommand (UTF-16LE), статистический поиск периодических маяков C2 Beaconing и выявление утечек данных через DNS-запросы.",
+      "goal": "Написать детектор событий Sysmon Event ID 1 по логике Sigma с декодированием UTF-16LE Base64, а затем обнаружить периодический маяк C2 по временным интервалам и восстановить данные из DNS-туннеля.",
+      "lessonIds": [
+        "thm-htb-soc-sysmon-eventlogs-sigma",
+        "thm-htb-dfir-pcap-beaconing-exfil"
+      ],
+      "prepare": [
+        "Своя Kali Linux и Python 3."
+      ],
+      "outcome": "Ты умеешь писать точные правила детекта Sigma по телеметрии Sysmon без ложных срабатываний и находить скрытые каналы C2 Beaconing и DNS-экфильтрации по сетевым метаданным.",
+      "minutes": 120,
+      "notes": [
+        "Это завершение полного 100-дневного маршрута Kairon (177 уроков, объединяющих базовый курс, практикумы pwn.college, TryHackMe и Hack The Box Academy)."
+      ],
+      "resources": [
+        {
+          "label": "TryHackMe SOC Level 1 & HTB Academy: Threat Hunting & DFIR",
+          "url": "https://tryhackme.com",
+          "note": "Направления мониторинга безопасности, анализа журналов Sysmon и сетевой криминалистики"
         }
       ]
     }

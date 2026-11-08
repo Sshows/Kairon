@@ -48,10 +48,12 @@ CC0-1.0 license. The complete 81-entry audited index remains available at
 `/collections` and `/sources/awesome-hacking`. Kairon's explanations and
 examples are separately authored.
 
-## pwn.college Dojos
+## pwn.college Dojos, TryHackMe & Hack The Box Academy
 
-Days 77–94 (36 lessons) cover the curriculum topics of the official and community
-dojos at https://pwn.college/dojos and https://github.com/pwncollege/official-dojos :
+Days 77–100 (48 lessons) cover the curriculum topics of the official and community
+dojos at https://pwn.college/dojos and https://github.com/pwncollege , as well as
+core infrastructure, Active Directory, Privilege Escalation, and SOC/DFIR tracks
+inspired by https://tryhackme.com and https://academy.hackthebox.com :
 - `pwncollege/linux-luminarium` (BSD-2-Clause) & `shell-lin-do` (The Art of the Shell)
 - `pwncollege/computing-101` (BSD-2-Clause) & `intro-to-programming-languages`
 - `pwncollege/fundamentals-dojo` (Playing With Programs)
@@ -63,9 +65,12 @@ dojos at https://pwn.college/dojos and https://github.com/pwncollege/official-do
 - `pwncollege/injection-dojo` (Content Injection)
 - `pwncollege/arm-dojo` & `pwncollege/xnu-dojo` (ARM Architecture & XNU Dojo)
 - `pwncollege/windows-dojo` (Windows Warzone) & `fuzz` (Fuzz Dojo)
+- `pwncollege/challenges` (`advanced-web-security`, `what-is-a-bug`), `pwncollege/exec-suid`, `pwncollege/dos-dojo` & `pwncollege/dojjail`
+- TryHackMe & Hack The Box Academy topic coverage (VHost Fuzzing, SMB/RPC/LDAP, Kerberos/AD ACLs/DCSync, Linux/Windows PrivEsc, Sysmon/Sigma & Network DFIR)
 
-Kairon does not copy or mirror pwn.college challenge containers, videos, slides,
-or prose. All Russian explanations, step-by-step Kali instructions, and
-self-contained Python verification models in `content/continuation/pwn-*.md` are
-independently authored for Kairon and link directly to the corresponding
-official pwn.college dojos and GitHub repositories.
+Kairon does not copy or mirror third-party challenge containers, virtual machines,
+videos, slides, or proprietary prose. All Russian explanations, step-by-step Kali
+instructions, and self-contained Python verification models in
+`content/continuation/pwn-*.md` and `content/continuation/thm-htb-*.md` are
+independently authored for Kairon and link to the corresponding platforms and
+repositories.

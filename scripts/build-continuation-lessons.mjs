@@ -73,7 +73,7 @@ export function continuationLessons() {
           ? "bug-bounty"
           : entry.id.startsWith("crypto-")
             ? "cryptography"
-            : entry.id.startsWith("pwn-")
+            : entry.id.startsWith("pwn-") || entry.id.startsWith("thm-htb-")
               ? "pwn-dojos"
               : "malware");
     const body = read(

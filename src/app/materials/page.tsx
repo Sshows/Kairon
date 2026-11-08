@@ -79,12 +79,13 @@ export default async function MaterialsPage() {
         <h2>Все занятия — в общем плане</h2>
         <p>
           Автоматизация на Python, bug bounty, анализ программ, криптография и
-          полный курс из 36 разборов практикумов pwn.college (Linux Luminarium,
-          The Art of the Shell, Computing 101, Intro to Programming Languages,
-          Playing With Programs, Intro to Cybersecurity, Program Security,
-          System Security, Software Exploitation, Cryptomania, Content
-          Injection, ARM64/XNU, Windows Warzone и Fuzz Dojo). Все эти занятия
-          идут по порядку в днях 61–94, с практикой и сохранением отметок в
+          48 разборов практикумов pwn.college, TryHackMe и Hack The Box Academy
+          (Linux Luminarium, The Art of the Shell, Computing 101, Intro to
+          Programming Languages, Playing With Programs, Intro to Cybersecurity,
+          Program Security, System Security, Software Exploitation, Cryptomania,
+          Content Injection, ARM64/XNU, Windows Warzone, Fuzz Dojo, DOS Dojo,
+          dojjail, Active Directory, PrivEsc и SOC/DFIR). Все эти занятия идут
+          по порядку в днях 61–100, с практикой и сохранением отметок в
           аккаунте.
         </p>
         <Link className="subtle-link" href="/days/61">
